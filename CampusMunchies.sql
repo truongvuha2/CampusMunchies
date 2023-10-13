@@ -130,8 +130,8 @@ create table Manager(
 --('0123456785', 'Richard Brown', 'password5', '8765 Crew St, Workville', '1978-07-07');
 
 ---- Insert data into Manager table
---INSERT INTO Manager (username, password) VALUES
---('admin', 'admin');
+INSERT INTO Manager (username, password) VALUES
+('admin', 'admin');
 
 ---- Insert data into Order table
 --INSERT INTO [Order] (ord_id, ord_date, ord_type, ord_status, ord_note, ord_total, cus_phone, emp_phone) VALUES
