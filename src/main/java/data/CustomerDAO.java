@@ -173,14 +173,44 @@ public class CustomerDAO extends DBContext {
         }
     }
 
+    public void deleteCustomer(String phone) {
+        try {
+            String sql = "delete Customer where cus_phone = ?  ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, phone);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    public int forgotPassword(String password, String phone) {
+        int fp = 0;
+        String sql = "update Customer set cus_password=convert(varchar(20),hashbytes('MD5',?),2) where cus_phone=?";
+        try {
+            if (password != null && !password.isEmpty()) {           
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, password);
+            ps.setString(2, phone);
+            ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+             System.out.println(e);
+        }
+        return fp;
+    }
+
     public static void main(String[] args) {
         CustomerDAO c = new CustomerDAO();
+
         List<Customer> cus = c.getCustomerbyName("a");
         for (Customer a : cus) {
             System.out.println(a.getName());
         }
 
         System.out.println(c.getCustomerByPhone("0123456780").getName());
+
     }
 
 }
