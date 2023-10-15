@@ -8,7 +8,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import model.Customer;
 
 /**
@@ -63,11 +64,56 @@ public class CustomerDAO extends DBContext {
             System.out.println(e);
         }
     }
-    
+
+    /**
+     * Get all customers
+     *
+     * @return a list
+     */
+    public List<Customer> getAllCustomers() {
+        List<Customer> customers = new ArrayList<>();
+        String sql = "select *from Customer";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String phone = rs.getString(1);
+                String name = rs.getString(2);
+                String password = rs.getString(3);
+                String address = rs.getString(4);
+                Date birthday = rs.getDate(5);
+                Date create_date = rs.getDate(6);
+                int cus_cancel_count = rs.getInt(7);
+                customers.add(new Customer(phone, name, address, birthday, create_date, cus_cancel_count));
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return customers;
+    }
+
+    public void updateCustomer(String phone, String name, String address, Date birthday, int cancel) {
+        try {
+            String sql = "update Customer set  cus_name=?,  cus_address=?, cus_birthday=?, cus_cancel_count=? where cus_phone=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, name);
+
+            ps.setString(2, address);
+            ps.setDate(3, birthday);
+            ps.setInt(4, cancel);
+             ps.setString(5, phone);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     public static void main(String[] args) {
         CustomerDAO c = new CustomerDAO();
-        c.addCustomer("0101010101", "Khang", "123", "FPT", Date.valueOf("2003-01-23"), 0);
+        c.updateCustomer("0123456780", "TranTien2",  "NinhKieu_CanTho", Date.valueOf("2003-11-24"), 0);
     }
-    
-}
 
+}
