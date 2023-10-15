@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 /**
  *
  * @author khang
@@ -28,7 +27,7 @@ public class FoodDAO extends DBContext {
             System.out.println(e);
         }
     }
-    
+
     public static void main(String[] args) {
         FoodDAO f = new FoodDAO();
         f.getAllManagers();

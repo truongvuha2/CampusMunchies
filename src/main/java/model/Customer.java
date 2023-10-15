@@ -9,5 +9,5 @@ package model;
  * @author khang
  */
 public class Customer {
-    
+   
 }
