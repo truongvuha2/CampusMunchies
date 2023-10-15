@@ -62,7 +62,5 @@ public class CustomerDAO extends DBContext {
             System.out.println(e);
         }
     }
-
-
-
 }
+
