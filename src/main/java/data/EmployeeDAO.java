@@ -4,6 +4,7 @@
  */
 package data;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +18,10 @@ import model.Employee;
  */
 public class EmployeeDAO extends DBContext {
 
-    //Get all employees in Employee table 
+    /**
+     * Get all employees
+     * @return list employees
+     */
     public List<Employee> getAllEmployees() {
         List<Employee> list = new ArrayList<>();
         try {
@@ -27,12 +31,10 @@ public class EmployeeDAO extends DBContext {
             while (rs.next()) {
                 list.add(new Employee(rs.getString(1),
                         rs.getString(2),
-                        rs.getString(3),
                         rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6)
+                        rs.getDate(5),
+                        rs.getDate(6)
                 ));
-
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -40,22 +42,25 @@ public class EmployeeDAO extends DBContext {
         return list;
     }
 
+    /**
+     * get employee by phone
+     * @param phone
+     * @return employee
+     */
     public Employee getEmployeebyPhone(String phone) {
 
         try {
-            String sql = "select * from Employee  where emp_phone = ?  ";
+            String sql = "select * from Employee where emp_phone = ?  ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, phone);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 return new Employee(rs.getString(1),
                         rs.getString(2),
-                        rs.getString(3),
                         rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6)
+                        rs.getDate(5),
+                        rs.getDate(6)
                 );
-
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -63,31 +68,36 @@ public class EmployeeDAO extends DBContext {
         return null;
     }
 
-    //Get employee by name
-    public Employee getEmployeebyName(String name) {
-
+    /**
+     * get employee by name
+     * @param name
+     * @return list employee
+     */
+    public List<Employee> getEmployeebyName(String name) {
+        List<Employee> list = new ArrayList<>();
         try {
             String sql = "select * from Employee  where emp_name LIKE ?  ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, "%" + name + "%");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                return new Employee(rs.getString(1),
+                list.add(new Employee(rs.getString(1),
                         rs.getString(2),
-                        rs.getString(3),
                         rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6)
-                );
-
+                        rs.getDate(5),
+                        rs.getDate(6)
+                ));
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return null;
+        return list;
     }
 
-    //Delete employee by phone number
+    /**
+     * delete an employee
+     * @param phone 
+     */
     public void deleteEmployee(String phone) {
         try {
             String sql = "delete Employee where emp_phone = ?  ";
@@ -100,20 +110,26 @@ public class EmployeeDAO extends DBContext {
         }
     }
 
-    public void addEmployee(Employee employee) {
+    /**
+     * add employee
+     * @param phone
+     * @param name
+     * @param password
+     * @param address
+     * @param birthday 
+     */
+    public void addEmployee(String phone, String name, String password, String address, Date birthday) {
         try {
             String sql = "insert into [Employee] values"
                     + "(?,?,CONVERT(VARCHAR(20), HASHBYTES('MD5', ?), 2),"
                     + "?,?,getdate())";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, employee.getEmp_phone());
-            ps.setString(2, employee.getEmp_name());
-            ps.setString(3, employee.getEmp_password());
-            ps.setString(4, employee.getEmp_address());
-            ps.setString(5, employee.getEmp_birthday());
-            
+            ps.setString(1, phone);
+            ps.setString(2, name);
+            ps.setString(3, password);
+            ps.setString(4, address);
+            ps.setDate(5, birthday);
             ps.executeUpdate();
-
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -121,12 +137,6 @@ public class EmployeeDAO extends DBContext {
 
     public static void main(String[] args) {
         EmployeeDAO employeeDAO = new EmployeeDAO();
-//
-//        // Gọi phương thức getAllEmployees để lấy danh sách nhân viên
-        List<Employee> employees = employeeDAO.getAllEmployees();
-        System.out.println(employeeDAO.getEmployeebyPhone("0123456785"));
-        System.out.println(employeeDAO.getEmployeebyName("vid"));
-        //employeeDAO.deleteEmployee("0123456785");
-        employeeDAO.addEmployee(new Employee("0123456785", "Tien", "adc", "", "2003-04-03"));
+
     }
 }

@@ -74,6 +74,11 @@ public class Customer {
     public void setCancel_count(int cancel_count) {
         this.cancel_count = cancel_count;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" + "phone=" + phone + ", name=" + name + ", address=" + address + ", birthday=" + birthday + ", create_date=" + create_date + ", cancel_count=" + cancel_count + '}';
+    }
     
      
 
