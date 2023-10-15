@@ -173,6 +173,11 @@ public class CustomerDAO extends DBContext {
         }
     }
 
+    /**
+     * delete a customer
+     *
+     * @param phone
+     */
     public void deleteCustomer(String phone) {
         try {
             String sql = "delete Customer where cus_phone = ?  ";
@@ -184,21 +189,26 @@ public class CustomerDAO extends DBContext {
             System.out.println(e);
         }
     }
-    
-    public int forgotPassword(String password, String phone) {
-        int fp = 0;
+
+    /**
+     * change the password
+     *
+     * @param password
+     * @param phone
+     * @return
+     */
+    public void changePassword(String password, String phone) {
         String sql = "update Customer set cus_password=convert(varchar(20),hashbytes('MD5',?),2) where cus_phone=?";
         try {
-            if (password != null && !password.isEmpty()) {           
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, password);
-            ps.setString(2, phone);
-            ps.executeUpdate();
+            if (password != null && !password.isEmpty()) {
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setString(1, password);
+                ps.setString(2, phone);
+                ps.executeUpdate();
             }
         } catch (SQLException e) {
-             System.out.println(e);
+            System.out.println(e);
         }
-        return fp;
     }
 
     public static void main(String[] args) {
