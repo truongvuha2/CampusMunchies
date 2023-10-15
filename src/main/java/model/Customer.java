@@ -15,18 +15,15 @@ public class Customer {
     private String name;
     private String address;
     private Date birthday;
-    private Date crate_date;
+    private Date create_date;
     private int cancel_count;
-    
-    public Customer() {
-    }
 
-    public Customer(String phone, String name, String address, Date birthday, Date crate_date, int cancel_count) {
+    public Customer(String phone, String name, String address, Date birthday, Date create_date, int cancel_count) {
         this.phone = phone;
         this.name = name;
         this.address = address;
         this.birthday = birthday;
-        this.crate_date = crate_date;
+        this.create_date = create_date;
         this.cancel_count = cancel_count;
     }
 
@@ -62,12 +59,12 @@ public class Customer {
         this.birthday = birthday;
     }
 
-    public Date getCrate_date() {
-        return crate_date;
+    public Date getCreate_date() {
+        return create_date;
     }
 
-    public void setCrate_date(Date crate_date) {
-        this.crate_date = crate_date;
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
     }
 
     public int getCancel_count() {
@@ -78,6 +75,6 @@ public class Customer {
         this.cancel_count = cancel_count;
     }
     
-   
+     
 
 }
