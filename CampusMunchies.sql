@@ -109,29 +109,33 @@ create table Manager(
 --('F24', 'Green Tea', 1.99, 0, 'Available', 'C4', 'img'),
 --('F25', 'Cheesecake', 6.99, 0, 'Available', 'C3', 'img');
 
---INSERT INTO Customer (cus_phone, cus_name, cus_password, cus_address, cus_birthday, cus_cancel_count) VALUES
---('0123456789', 'John Smith', 'password1', '123 Main St, Cityville', '1990-05-15', 0),
---('0123456788', 'Sarah Johnson', 'password2', '456 Elm St, Townsville', '1985-09-20', 2),
---('0123456787', 'Michael Davis', 'password3', '789 Oak St, Villageton', '1995-02-10', 1),
---('0123456786', 'Emily Wilson', 'password4', '101 Maple St, Hamletown', '1988-11-30', 0),
---('0123456785', 'Daniel Lee', 'password5', '222 Pine St, Forestville', '1992-03-25', 3),
---('0123456784', 'Olivia Brown', 'password6', '333 Cedar St, Hillside', '1993-07-12', 0),
---('0123456783', 'James Taylor', 'password7', '444 Birch St, Mountainview', '1991-08-18', 2),
---('0123456782', 'Ava Martinez', 'password8', '555 Redwood St, Lakeside', '1987-06-08', 0),
---('0123456781', 'Ethan Harris', 'password9', '666 Fir St, Riverside', '1994-04-05', 1),
---('0123456780', 'Sophia Clark', 'password10', '777 Cedar St, Parkville', '1996-01-03', 0);
+INSERT INTO Customer (cus_phone, cus_name, cus_password, cus_address, cus_birthday, cus_cancel_count) VALUES
+('0123456789', 'John Smith', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'matkhau'), 2), '123 Main St, Cityville', '1990-05-15', 0),
+('0123456788', 'Sarah Johnson', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password2'), 2), '456 Elm St, Townsville', '1985-09-20', 2),
+('0123456787', 'Michael Davis', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password3'), 2), '789 Oak St, Villageton', '1995-02-10', 1),
+('0123456786', 'Emily Wilson', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password4'), 2), '101 Maple St, Hamletown', '1988-11-30', 0),
+('0123456785', 'Daniel Lee', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password5'), 2), '222 Pine St, Forestville', '1992-03-25', 3),
+('0123456784', 'Olivia Brown', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password6'), 2), '333 Cedar St, Hillside', '1993-07-12', 0),
+('0123456783', 'James Taylor', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password7'), 2), '444 Birch St, Mountainview', '1991-08-18', 2),
+('0123456782', 'Ava Martinez', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password8'), 2), '555 Redwood St, Lakeside', '1987-06-08', 0),
+('0123456781', 'Ethan Harris', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password9'), 2), '666 Fir St, Riverside', '1994-04-05', 1),
+('0123456780', 'Sophia Clark', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password10'), 2), '777 Cedar St, Parkville', '1996-01-03', 0);
+
+
 
 ---- Insert data into Employee table with 10-digit phone numbers starting with 0
---INSERT INTO Employee (emp_phone, emp_name, emp_password, emp_address, emp_birthday) VALUES
---('0123456789', 'David Anderson', 'password1', '1234 Employee St, Stafftown', '1980-04-22'),
---('0123456788', 'Jennifer White', 'password2', '5678 Worker St, Laborville', '1982-08-15'),
---('0123456787', 'Robert Martin', 'password3', '9876 Staff St, Employeeville', '1975-11-10'),
---('0123456786', 'Mary Wilson', 'password4', '5432 Service St, Serviceton', '1983-02-28'),
---('0123456785', 'Richard Brown', 'password5', '8765 Crew St, Workville', '1978-07-07');
+INSERT INTO Employee (emp_phone, emp_name, emp_password, emp_address, emp_birthday) VALUES
+('0123456789', 'David Anderson', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password1'), 2), '1234 Employee St, Stafftown', '1980-04-22'),
+('0123456788', 'Jennifer White', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password2'), 2), '5678 Worker St, Laborville', '1982-08-15'),
+('0123456787', 'Robert Martin', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password3'), 2), '9876 Staff St, Employeeville', '1975-11-10'),
+('0123456786', 'Mary Wilson', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password4'), 2), '5420 Service St, Serviceton', '1983-02-28'),
+('0123456785', 'Richard Brown', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password5'), 2), '8765 Crew St, Workville', '1978-07-07');
+
 
 ---- Insert data into Manager table
 INSERT INTO Manager (username, password) VALUES
-('admin', 'admin');
+('admin', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password1'), 2)),
+('admin1', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password1'), 2));
 
 ---- Insert data into Order table
 --INSERT INTO [Order] (ord_id, ord_date, ord_type, ord_status, ord_note, ord_total, cus_phone, emp_phone) VALUES
