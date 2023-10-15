@@ -8,6 +8,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import model.Customer;
 
 /**
  *
@@ -48,7 +50,7 @@ public class CustomerDAO extends DBContext {
     public void addCustomer(String phone, String name, String password, String address, Date birthday, int cancel) {
         try {
             String sql = "INSERT INTO Customer VALUES\n"
-                    + "(?, ?, CONVERT(VARCHAR(20), HASHBYTES('MD5', ?), 2), ?, ?, ?)";
+                    + "(?, ?, CONVERT(VARCHAR(20), HASHBYTES('MD5', ?), 2), ?, ?, GETDATE(), ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, phone);
             ps.setString(2, name);
@@ -60,6 +62,11 @@ public class CustomerDAO extends DBContext {
         } catch (SQLException e) {
             System.out.println(e);
         }
+    }
+    
+    public static void main(String[] args) {
+        CustomerDAO c = new CustomerDAO();
+        c.addCustomer("0101010101", "Khang", "123", "FPT", Date.valueOf("2003-01-23"), 0);
     }
     
 }
