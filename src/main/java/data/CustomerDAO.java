@@ -94,6 +94,14 @@ public class CustomerDAO extends DBContext {
         return customers;
     }
 
+    /**
+     * Update customer information
+     * @param phone
+     * @param name
+     * @param address
+     * @param birthday
+     * @param cancel 
+     */
     public void updateCustomer(String phone, String name, String address, Date birthday, int cancel) {
         try {
             String sql = "update Customer set  cus_name=?,  cus_address=?, cus_birthday=?, cus_cancel_count=? where cus_phone=?";
@@ -104,7 +112,7 @@ public class CustomerDAO extends DBContext {
             ps.setString(2, address);
             ps.setDate(3, birthday);
             ps.setInt(4, cancel);
-             ps.setString(5, phone);
+            ps.setString(5, phone);
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -113,7 +121,7 @@ public class CustomerDAO extends DBContext {
 
     public static void main(String[] args) {
         CustomerDAO c = new CustomerDAO();
-        c.updateCustomer("0123456780", "TranTien2",  "NinhKieu_CanTho", Date.valueOf("2003-11-24"), 0);
+        c.updateCustomer("0123456780", "TranTien2", "NinhKieu_CanTho", Date.valueOf("2003-11-24"), 0);
     }
 
 }

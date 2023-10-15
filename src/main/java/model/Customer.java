@@ -79,12 +79,5 @@ public class Customer {
     }
     
    
-//    public Customer(String email, String password, String hoten) {
-//        this.email = email;
-//        this.password = password;
-//        this.hoten = hoten;
-//    }
-    
-    
-    
+
 }
