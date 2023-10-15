@@ -41,7 +41,7 @@ create table Employee (
 	emp_password varchar(20) not null,
 	emp_address nvarchar(50) not null,
 	emp_birthday date not null,
-	emp_create date not null,
+	emp_create date NOT NULL,
 	primary key (emp_phone)
 )
 

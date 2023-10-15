@@ -27,6 +27,14 @@ public class Employee {
         this.emp_birthday = emp_birthday;
         this.emp_create = emp_create;
     }
+    
+    public Employee(String emp_phone, String emp_name, String emp_password, String emp_address, String emp_birthday) {
+        this.emp_phone = emp_phone;
+        this.emp_name = emp_name;
+        this.emp_password = emp_password;
+        this.emp_address = emp_address;
+        this.emp_birthday = emp_birthday;
+        }
 
     public String getEmp_phone() {
         return emp_phone;

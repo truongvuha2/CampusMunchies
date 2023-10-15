@@ -62,7 +62,8 @@ public class EmployeeDAO extends DBContext {
         }
         return null;
     }
-    
+
+    //Get employee by name
     public Employee getEmployeebyName(String name) {
 
         try {
@@ -85,20 +86,38 @@ public class EmployeeDAO extends DBContext {
         }
         return null;
     }
-    
-    public void deleteEmployee(String phone){
+
+    //Delete employee by phone number
+    public void deleteEmployee(String phone) {
         try {
             String sql = "delete Employee where emp_phone = ?  ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, phone);
             ps.executeUpdate();
-           
+
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
-    
-    
+
+    public void addEmployee(Employee employee) {
+        try {
+            String sql = "insert into [Employee] values"
+                    + "(?,?,CONVERT(VARCHAR(20), HASHBYTES('MD5', ?), 2),"
+                    + "?,?,getdate())";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, employee.getEmp_phone());
+            ps.setString(2, employee.getEmp_name());
+            ps.setString(3, employee.getEmp_password());
+            ps.setString(4, employee.getEmp_address());
+            ps.setString(5, employee.getEmp_birthday());
+            
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
 
     public static void main(String[] args) {
         EmployeeDAO employeeDAO = new EmployeeDAO();
@@ -107,7 +126,7 @@ public class EmployeeDAO extends DBContext {
         List<Employee> employees = employeeDAO.getAllEmployees();
         System.out.println(employeeDAO.getEmployeebyPhone("0123456785"));
         System.out.println(employeeDAO.getEmployeebyName("vid"));
-        employeeDAO.deleteEmployee("0123456785");
-        }
+        //employeeDAO.deleteEmployee("0123456785");
+        employeeDAO.addEmployee(new Employee("0123456785", "Tien", "adc", "", "2003-04-03"));
     }
-
+}
