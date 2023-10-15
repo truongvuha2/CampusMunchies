@@ -23,7 +23,7 @@
                 <div class="password py-1">
                     <input class="p-2" type="password" placeholder="Password">
                 </div>
-                
+
                 <div class="d-flex justify-content-between align-items-center w-100 mb-5">
                     <div><input type="checkbox" class="me-1"><Span  style="color: #4D4D4D;">Remember Me</Span></div>
                     <div><a href="#">Forgot Your Password?</a></div>
