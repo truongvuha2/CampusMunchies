@@ -42,7 +42,7 @@
 
         <div class="banner">
             <div class="banner-slide">
-                <img src="img/dual-monitor-wallpaper-10.jpg" alt=""/>
+                <img src="img/Banner1.png" alt=""/>
             </div>
         </div>
 
