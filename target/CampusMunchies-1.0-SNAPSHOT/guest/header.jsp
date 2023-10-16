@@ -99,16 +99,16 @@
     <body>
         <nav class="navbar">
             <div class="logo">
-                <a href="#"><img
-                        src="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg"
-                        alt="Logo"></a>
+                <a  href="#">
+                    <img style="width: 80px; height:80px" src="../img/logo.png" alt=""/>
+                </a>
             </div>
             <div class="search-box">
                 <input type="text" placeholder="Search food">
                 <button type="submit">Search</button>
             </div>
             <div class="login-button">
-                <a href="/login">Login</a>
+                <a href="/CampusMunchies/guest/login">Login</a>
             </div>
         </nav>
 
