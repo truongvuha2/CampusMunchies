@@ -6,11 +6,15 @@
     </servlet>
     <servlet>
         <servlet-name>EmployeeLogin</servlet-name>
-        <servlet-class>controller.customer.EmployeeLogin</servlet-class>
+        <servlet-class>controller.employee.EmployeeLogin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GuestLogin</servlet-name>
         <servlet-class>controller.guest.GuestLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerHome</servlet-name>
+        <servlet-class>controller.customer.CustomerHome</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>GuestLogin</servlet-name>
         <url-pattern>/guest/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerHome</servlet-name>
+        <url-pattern>/customer/home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

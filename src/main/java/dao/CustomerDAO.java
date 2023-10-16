@@ -167,5 +167,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).toString());
         }
+        
+        System.out.println(c.isExisted("0123456788", "password2"));
     }
 }

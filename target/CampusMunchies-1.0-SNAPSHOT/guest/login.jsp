@@ -86,7 +86,7 @@
         <form action="#" method="post">
             <div class="form-group">
                 <label for="username">Your phone</label>
-                <input type="text" id="username" name="username" placeholder="Enter your phone..." >
+                <input type="text" id="username" name="phone" placeholder="Enter your phone..." >
             </div>
 
             <div class="form-group">

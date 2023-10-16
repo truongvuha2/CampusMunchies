@@ -4,6 +4,7 @@
  */
 package controller.guest;
 
+import dao.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -69,7 +70,12 @@ public class GuestLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        CustomerDAO c = new CustomerDAO();
+        String phone = request.getParameter("phone");
+        String password = request.getParameter("password");
+        if(c.isExisted(phone, password)){
+            response.sendRedirect("/CampusMunchies/customer/home");
+        } else  response.sendRedirect("/CampusMunchies/guest/login");
     }
 
     /**
