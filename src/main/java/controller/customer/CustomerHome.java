@@ -4,6 +4,7 @@
  */
 package controller.customer;
 
+import dao.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -56,6 +57,8 @@ public class CustomerHome extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        CustomerDAO c = new CustomerDAO();
         Cookie[] cookies = request.getCookies();
         String phone = "";
         for (Cookie cookie : cookies) {
@@ -64,7 +67,8 @@ public class CustomerHome extends HttpServlet {
                 break;
             }
         }
-        request.setAttribute("phone", phone);
+        String name = c.searchByPhone(phone).getName();
+        request.setAttribute("name", name);
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 

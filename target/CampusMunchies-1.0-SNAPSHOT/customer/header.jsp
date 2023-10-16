@@ -122,7 +122,7 @@
 
             <div class="logout-button">
                 <a href="/CampusMunchies/customer/logout">
-                    <span class="original-text">${phone}</span>
+                    <span class="original-text">${name}</span>
                     <span class="hover-text">Log out</span>
                 </a>
             </div>
