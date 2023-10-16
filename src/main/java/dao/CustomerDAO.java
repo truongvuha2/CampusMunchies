@@ -18,14 +18,6 @@ import model.Customer;
  */
 public class CustomerDAO extends DBContext implements ICRUD<Customer> {
 
-    /**
-     * check customer is existed in customer table
-     * return true if existed
-     * return fail if not existed
-     * @param phone
-     * @param password
-     * @return
-     */
     @Override
     public boolean isExisted(String phone, String password) {
         try {
@@ -40,11 +32,6 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    /**
-     *
-     * @param customer
-     * @param password
-     */
     @Override
     public void add(Customer customer, String password) {
         try {
@@ -63,10 +50,6 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    /**
-     *
-     * @param customer
-     */
     @Override
     public void update(Customer customer) {
         try {
@@ -83,10 +66,6 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    /**
-     *
-     * @param phone
-     */
     @Override
     public void remove(String phone) {
         try {
@@ -100,10 +79,6 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public List getAll() {
         List<Customer> customers = new ArrayList<>();
@@ -126,11 +101,6 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         return customers;
     }
 
-    /**
-     *
-     * @param name
-     * @return
-     */
     @Override
     public List<Customer> searchByName(String name) {
         List<Customer> customers = new ArrayList<>();
@@ -155,11 +125,6 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         return customers;
     }
 
-    /**
-     *
-     * @param phone
-     * @return
-     */
     @Override
     public Customer searchByPhone(String phone) {
         try {
@@ -183,11 +148,6 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         return null;
     }
 
-    /**
-     *
-     * @param phone
-     * @param password
-     */
     @Override
     public void changePassword(String phone, String password) {
         String sql = "update Customer set cus_password=convert(varchar(20),hashbytes('MD5',?),2) where cus_phone=?";
@@ -201,11 +161,11 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    /**
-     *
-     * @param args
-     */
     public static void main(String[] args) {
-
+        CustomerDAO c = new CustomerDAO();
+        List<Customer> list = c.getAll();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).toString());
+        }
     }
 }

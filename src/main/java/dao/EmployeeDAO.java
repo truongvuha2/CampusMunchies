@@ -18,14 +18,6 @@ import model.Employee;
  */
 public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
 
-    /**
-     * check phone and password is existed in employee table
-     * return true if existed
-     * return fail if not existed
-     * @param phone
-     * @param password
-     * @return
-     */
     @Override
     public boolean isExisted(String phone, String password) {
         try {
@@ -40,11 +32,6 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
         }
     }
 
-    /**
-     * add new employee to employee table
-     * @param employee
-     * @param password
-     */
     @Override
     public void add(Employee employee, String password) {
         try {
@@ -63,10 +50,6 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
         }
     }
 
-    /**
-     * update employee in employee table
-     * @param employee
-     */
     @Override
     public void update(Employee employee) {
         try {
@@ -82,10 +65,6 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
         }
     }
 
-    /**
-     * remove employee in employee table
-     * @param phone
-     */
     @Override
     public void remove(String phone) {
         try {
@@ -99,10 +78,6 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
         }
     }
 
-    /**
-     * get all employee in employee table
-     * @return
-     */
     @Override
     public List getAll() {
         List<Employee> list = new ArrayList<>();
@@ -124,11 +99,6 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
         return list;
     }
 
-    /**
-     * search employee by name in employee table
-     * @param name
-     * @return
-     */
     @Override
     public List searchByName(String name) {
         List<Employee> list = new ArrayList<>();
@@ -151,11 +121,6 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
         return list;
     }
 
-    /**
-     * search employee by phone in employee table
-     * @param phone
-     * @return
-     */
     @Override
     public Employee searchByPhone(String phone) {
         try {
@@ -177,11 +142,6 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
         return null;
     }
 
-    /**
-     * change password employee in employee table
-     * @param phone
-     * @param password
-     */
     @Override
     public void changePassword(String phone, String password) {
         String sql = "update employee set emp_password=convert(varchar(20),hashbytes('MD5',?),2) where emp_phone=?";
@@ -195,10 +155,6 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
         }
     }
 
-    /**
-     *
-     * @param args
-     */
     public static void main(String[] args) {
 
     }
