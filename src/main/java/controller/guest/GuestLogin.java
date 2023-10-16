@@ -8,9 +8,11 @@ import dao.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.net.HttpCookie;
 
 /**
  *
@@ -73,9 +75,16 @@ public class GuestLogin extends HttpServlet {
         CustomerDAO c = new CustomerDAO();
         String phone = request.getParameter("phone");
         String password = request.getParameter("password");
-        if(c.isExisted(phone, password)){
+        if (c.isExisted(phone, password)) {
+            Cookie cookie = new Cookie("phone", phone);
+            cookie.setMaxAge(-1);
+            cookie.setPath(request.getContextPath());
+            response.addCookie(cookie);
             response.sendRedirect("/CampusMunchies/customer/home");
-        } else  response.sendRedirect("/CampusMunchies/guest/login");
+        } else {
+            response.sendRedirect("/CampusMunchies/guest/login");
+        }
+
     }
 
     /**

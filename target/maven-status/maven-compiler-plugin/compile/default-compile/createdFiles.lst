@@ -1,3 +1,13 @@
+dao\FoodDAO.class
+dao\CustomerDAO.class
+controller\guest\GuestHome.class
+controller\guest\GuestLogin.class
+controller\customer\CustomerHome.class
+controller\employee\EmployeeLogin.class
+dao\DBContext.class
+dao\ICRUD.class
 model\Food.class
 model\Employee.class
+dao\EmployeeDAO.class
 model\Customer.class
+filter\CustomerFilter.class

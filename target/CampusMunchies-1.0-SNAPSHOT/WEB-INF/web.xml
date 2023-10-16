@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>CustomerFilter</filter-name>
+        <filter-class>filter.CustomerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>GuestHome</servlet-name>
         <servlet-class>controller.guest.GuestHome</servlet-class>
@@ -16,6 +24,10 @@
         <servlet-name>CustomerHome</servlet-name>
         <servlet-class>controller.customer.CustomerHome</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerLogout</servlet-name>
+        <servlet-class>controller.customer.CustomerLogout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
         <url-pattern>/guest/home</url-pattern>
@@ -31,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>CustomerHome</servlet-name>
         <url-pattern>/customer/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerLogout</servlet-name>
+        <url-pattern>/customer/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

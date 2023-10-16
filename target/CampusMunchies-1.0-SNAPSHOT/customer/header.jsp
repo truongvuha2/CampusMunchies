@@ -60,8 +60,8 @@
                 cursor: pointer;
             }
 
-            /* Style the login button */
-            .login-button a {
+            /* Style the logout button */
+            .logout-button a {
                 text-decoration: none;
                 color: #ff6600;
                 padding: 10px 20px;
@@ -70,7 +70,19 @@
                 transition: background-color 0.3s, color 0.3s;
             }
 
-            .login-button a:hover {
+            .logout-button a .hover-text {
+                display: none;
+            }
+
+            .logout-button a:hover .original-text {
+                display: none;
+            }
+
+            .logout-button a:hover .hover-text {
+                display: inline-block;
+            }
+
+            .logout-button a:hover {
                 background-color: #ff6600;
                 color: #fff;
             }
@@ -107,8 +119,12 @@
                 <input type="text" placeholder="Search food">
                 <button type="submit">Search</button>
             </div>
-            <div class="login-button">
-                <a href="/CampusMunchies/guest/login">Login</a>
+
+            <div class="logout-button">
+                <a href="/CampusMunchies/customer/logout">
+                    <span class="original-text">${phone}</span>
+                    <span class="hover-text">Log out</span>
+                </a>
             </div>
         </nav>
 
