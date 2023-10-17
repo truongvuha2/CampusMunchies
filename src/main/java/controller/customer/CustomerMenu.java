@@ -5,20 +5,21 @@
 package controller.customer;
 
 import CMCookie.CMCookie;
-import dao.CustomerDAO;
+import dao.FoodDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Food;
 
 /**
  *
  * @author khang
  */
-public class CustomerHome extends HttpServlet {
+public class CustomerMenu extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +38,10 @@ public class CustomerHome extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CustomerHome</title>");
+            out.println("<title>Servlet CustomerMenu</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CustomerHome at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CustomerMenu at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,11 +59,11 @@ public class CustomerHome extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        CustomerDAO c = new CustomerDAO();
+        FoodDAO f = new FoodDAO();
         CMCookie.getNameCustomer(request, response);
-
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        List<Food> foods = f.getAll();
+        request.setAttribute("foods", foods);
+        request.getRequestDispatcher("menu.jsp").forward(request, response);
     }
 
     /**

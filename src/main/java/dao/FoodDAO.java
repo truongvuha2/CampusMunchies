@@ -24,7 +24,10 @@ public class FoodDAO extends DBContext {
      */
     public static void main(String[] args) {
         FoodDAO f = new FoodDAO();
-
+        List<Food> foods = f.getAll();
+        for (int i = 0; i < foods.size(); i++) {
+            System.out.println(foods.get(i).toString());
+        }
     }
 
     /**
@@ -104,6 +107,7 @@ public class FoodDAO extends DBContext {
 
     /**
      * update food status by id in food table
+     *
      * @param id
      * @param status
      */
@@ -198,9 +202,10 @@ public class FoodDAO extends DBContext {
         }
         return list;
     }
-    
+
     /**
      * search by cateID from food table
+     *
      * @param cateID
      * @return
      */

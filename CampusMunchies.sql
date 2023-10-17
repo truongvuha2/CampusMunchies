@@ -1,6 +1,6 @@
 --drop database CampusMunchies
 
-create database CampusMunchies
+drop database CampusMunchies
 go
 use CampusMunchies
 
@@ -16,7 +16,7 @@ create table Food(
 	foo_name nvarchar(50) not null,
 	foo_price decimal(10,2)  not null,
 	foo_sale decimal(10,2)  not null,
-	foo_desription nvarchar (200) not null,
+	foo_description nvarchar (200) not null,
 	foo_status varchar(10) not null ,
     foo_img varchar(255) not null,
 	primary key (foo_id),
@@ -76,40 +76,38 @@ create table Manager(
 	primary key (username)
 )
 
----- Insert data into Category table
---INSERT INTO Category (cate_id, cate_name) VALUES
---('C1', 'Appetizers'),
---('C2', 'Main Courses'),
---('C3', 'Desserts'),
---('C4', 'Beverages');
+
+-- Insert data into Category table
+INSERT INTO Category (cat_id, cat_name)
+VALUES ('CAT001', N'Appetizers'),
+       ('CAT002', N'Soups'),
+       ('CAT003', N'Salads'),
+       ('CAT004', N'Entrees'),
+       ('CAT005', N'Desserts');
 
 ---- Insert data into Food table
---INSERT INTO Food VALUES
---('F1', 'Spring Rolls', 5.99, 0, 'Available', 'C1', 'img'),
---('F2', 'Chicken Wings', 8.99, 0, 'Available', 'C1', 'img'),
---('F3', 'Spaghetti Bolognese', 12.99, 0, 'Available', 'C2', 'img'),
---('F4', 'Margherita Pizza', 10.99, 0, 'Available', 'C2', 'img'),
---('F5', 'Chocolate Cake', 6.99, 0, 'Available', 'C3', 'img'),
---('F6', 'Vanilla Ice Cream', 4.99, 0, 'Available', 'C3', 'img'),
---('F7', 'Coca-Cola', 1.99, 0, 'Available', 'C4', 'img'),
---('F8', 'Iced Tea', 1.99, 0, 'Available', 'C4', 'img'),
---('F9', 'Caesar Salad', 7.99, 0, 'Available', 'C1', 'img'),
---('F10', 'Grilled Salmon', 14.99, 0, 'Available', 'C2', 'img'),
---('F11', 'Tiramisu', 8.99, 0, 'Available', 'C3', 'img'),
---('F12', 'Orange Juice', 2.99, 0, 'Available', 'C4', 'img'),
---('F13', 'Mozzarella Sticks', 6.99, 0, 'Available', 'C1', 'img'),
---('F14', 'Beef Tacos', 9.99, 0, 'Available', 'C2', 'img'),
---('F15', 'Fruit Salad', 5.99, 0, 'Available', 'C3', 'img'),
---('F16', 'Lemonade', 1.99, 0, 'Available', 'C4', 'img'),
---('F17', 'Onion Rings', 4.99, 0, 'Available', 'C1', 'img'),
---('F18', 'Shrimp Alfredo', 13.99, 0, 'Available', 'C2', 'img'),
---('F19', 'Red Velvet Cake', 7.99, 0, 'Available', 'C3', 'img'),
---('F20', 'Coffee', 2.49, 0, 'Available', 'C4', 'img'),
---('F21', 'Cheeseburger', 8.99, 0, 'Available', 'C2', 'img'),
---('F22', 'Fried Chicken', 10.99, 0, 'Available', 'C2', 'img'),
---('F23', 'Pineapple Pizza', 11.99, 0, 'Available', 'C2', 'img'),
---('F24', 'Green Tea', 1.99, 0, 'Available', 'C4', 'img'),
---('F25', 'Cheesecake', 6.99, 0, 'Available', 'C3', 'img');
+INSERT INTO Food (foo_id, cat_id, foo_name, foo_price, foo_sale, foo_description, foo_status, foo_img)
+VALUES
+    ('FOOD001', 'CAT001', N'Cheese Sticks', 6.99, 0.00, N'Fried cheese sticks with dipping sauce', 'Available', 'cheese-sticks.jpg'),
+    ('FOOD002', 'CAT001', N'Chicken Wings', 8.99, 0.00, N'Spicy buffalo chicken wings', 'Available', 'chicken-wings.jpg'),
+    ('FOOD003', 'CAT002', N'Tomato Soup', 5.99, 0.00, N'Classic tomato soup with croutons', 'Available', 'tomato-soup.jpg'),
+    ('FOOD004', 'CAT002', N'Chicken Noodle Soup', 6.99, 0.00, N'Hearty chicken noodle soup', 'Available', 'chicken-noodle-soup.jpg'),
+    ('FOOD005', 'CAT003', N'Garden Salad', 7.99, 0.00, N'Fresh garden salad with mixed greens', 'Available', 'garden-salad.jpg'),
+    ('FOOD006', 'CAT003', N'Caesar Salad', 8.99, 0.00, N'Classic Caesar salad with dressing', 'Available', 'caesar-salad.jpg'),
+    ('FOOD007', 'CAT004', N'Grilled Chicken', 12.99, 0.00, N'Grilled chicken breast with sides', 'Available', 'grilled-chicken.jpg'),
+    ('FOOD008', 'CAT004', N'Steak', 18.99, 0.00, N'Juicy steak with your choice of sauce', 'Available', 'steak.jpg'),
+    ('FOOD009', 'CAT005', N'Chocolate Cake', 6.99, 0.00, N'Delicious chocolate cake with frosting', 'Available', 'chocolate-cake.jpg'),
+    ('FOOD010', 'CAT005', N'Apple Pie', 5.99, 0.00, N'Warm apple pie with a scoop of ice cream', 'Available', 'apple-pie.jpg'),
+    ('FOOD011', 'CAT001', N'Mozzarella Sticks', 7.99, 0.00, N'Fried mozzarella sticks with marinara sauce', 'Available', 'mozzarella-sticks.jpg'),
+    ('FOOD012', 'CAT001', N'Onion Rings', 6.99, 0.00, N'Crunchy onion rings with ketchup', 'Available', 'onion-rings.jpg'),
+    ('FOOD013', 'CAT002', N'Clam Chowder', 8.99, 0.00, N'Creamy clam chowder with crackers', 'Available', 'clam-chowder.jpg'),
+    ('FOOD014', 'CAT002', N'Vegetable Soup', 6.99, 0.00, N'Vegetable soup with fresh veggies', 'Available', 'vegetable-soup.jpg'),
+    ('FOOD015', 'CAT003', N'Greek Salad', 9.99, 0.00, N'Healthy Greek salad with feta cheese', 'Available', 'greek-salad.jpg'),
+    ('FOOD016', 'CAT003', N'Cobb Salad', 10.99, 0.00, N'Classic Cobb salad with bacon', 'Available', 'cobb-salad.jpg'),
+    ('FOOD017', 'CAT004', N'Salmon', 14.99, 0.00, N'Pan-seared salmon with lemon butter', 'Available', 'salmon.jpg'),
+    ('FOOD018', 'CAT004', N'Vegetarian Pasta', 11.99, 0.00, N'Vegetarian pasta with tomato sauce', 'Available', 'vegetarian-pasta.jpg'),
+    ('FOOD019', 'CAT005', N'New York Cheesecake', 7.99, 0.00, N'Rich New York-style cheesecake', 'Available', 'cheesecake.jpg'),
+    ('FOOD020', 'CAT005', N'Lemon Sorbet', 5.99, 0.00, N'Refreshing lemon sorbet dessert', 'Available', 'lemon-sorbet.jpg');
 
 INSERT INTO Customer  VALUES
 ('0123456789', 'John Smith', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'matkhau'), 2), '123 Main St, Cityville', '1990-05-15','2023-10-15', 0),

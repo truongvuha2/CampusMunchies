@@ -28,6 +28,14 @@
         <servlet-name>CustomerLogout</servlet-name>
         <servlet-class>controller.customer.CustomerLogout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GuestMenu</servlet-name>
+        <servlet-class>controller.guest.GuestMenu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerMenu</servlet-name>
+        <servlet-class>controller.customer.CustomerMenu</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
         <url-pattern>/guest/home</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>CustomerLogout</servlet-name>
         <url-pattern>/customer/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuestMenu</servlet-name>
+        <url-pattern>/guest/menu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerMenu</servlet-name>
+        <url-pattern>/customer/menu</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -9,14 +9,16 @@ package model;
  * @author khang
  */
 public class Food {
-     private String id;
-     private String categoryId;
-     private String name;
-     private double price;
-     private double sale;
-     private String description;
-     private String status;
-     private String img;
+
+    private String id;
+    private String categoryId;
+    private String name;
+    private double price;
+    private double sale;
+    private String description;
+    private String status;
+    private String img;
+    private double realPrice;
 
     public Food() {
     }
@@ -30,6 +32,8 @@ public class Food {
         this.description = description;
         this.status = status;
         this.img = img;
+        realPrice = price * sale / 100;
+        realPrice= (double) Math.round(realPrice * 100) / 100;
     }
 
     public String getId() {
@@ -96,11 +100,15 @@ public class Food {
         this.img = img;
     }
 
+    public double getRealPrice() {
+        return realPrice;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Food{" + "id=" + id + ", categoryId=" + categoryId + ", name=" + name + ", price=" + price + ", sale=" + sale + ", description=" + description + ", status=" + status + ", img=" + img + '}';
     }
-     
-     
-     
+
 }

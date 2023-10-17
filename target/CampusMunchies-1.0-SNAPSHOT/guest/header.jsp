@@ -113,10 +113,9 @@
         </nav>
 
         <nav class="secondary-navbar">
-            <a href="#">Home</a>
-            <a href="#">Category</a>
-            <a href="#">Menu</a>
-            <a href="#">Order</a>
+            <a href="/CampusMunchies/guest/home">Home</a>
+            <a href="/CampusMunchies/guest/menu">Menu</a>
+            <a href="#">Order History</a>
             <a href="#">Sale</a>
             <a href="#">About Us</a>
             <a href="#">Cart</a>
