@@ -27,6 +27,14 @@ public class Customer {
         this.cancel_count = cancel_count;
     }
 
+    public Customer(String phone, String name, String address, Date birthday) {
+        this.phone = phone;
+        this.name = name;
+        this.address = address;
+        this.birthday = birthday;
+       
+    }
+    
     public String getPhone() {
         return phone;
     }

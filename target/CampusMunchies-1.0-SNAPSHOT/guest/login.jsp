@@ -110,7 +110,7 @@
                 <a href="#">Forget password</a>
             </div>
             <div class="register">
-                <p>If you don't have account, <a href="#">click here</a></p>
+                <p>If you don't have account, <a href="">click here</a></p>
                 
             </div>
             

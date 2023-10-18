@@ -1,13 +1,17 @@
+controller\guest\GuestMenu.class
 dao\FoodDAO.class
 dao\CustomerDAO.class
+controller\customer\CustomerLogout.class
 controller\guest\GuestHome.class
 controller\guest\GuestLogin.class
 controller\customer\CustomerHome.class
 controller\employee\EmployeeLogin.class
 dao\DBContext.class
+controller\customer\CustomerMenu.class
 dao\ICRUD.class
 model\Food.class
 model\Employee.class
 dao\EmployeeDAO.class
 model\Customer.class
+CMCookie\CMCookie.class
 filter\CustomerFilter.class
