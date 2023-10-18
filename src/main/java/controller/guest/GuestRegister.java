@@ -60,7 +60,7 @@ public class GuestRegister extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("register.jsp").forward(request, response);
     }
 
     /**

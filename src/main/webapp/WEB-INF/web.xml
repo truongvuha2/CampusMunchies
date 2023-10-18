@@ -37,7 +37,6 @@
         <servlet-class>controller.customer.CustomerMenu</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>GuestSearch</servlet-name>
         <servlet-class>controller.guest.GuestSearch</servlet-class>
     </servlet>
@@ -78,17 +77,16 @@
         <url-pattern>/customer/menu</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>GuestSearch</servlet-name>
         <url-pattern>/guest/search</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerSearch</servlet-name>
         <url-pattern>/customer/search</url-pattern>
-        =======
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>GuestRegister</servlet-name>
         <url-pattern>/guest/register</url-pattern>
-        >>>>>>> c2f2a4c72800629ddde199497b88de3a39f34a65
     </servlet-mapping>
     <session-config>
         <session-timeout>
