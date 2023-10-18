@@ -6,121 +6,165 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 
     <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <title>Header Example</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+              integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
-            /* Reset some default styles for better visual consistency */
-            body,
-            html {
+            * {
+                box-sizing: border-box;
                 margin: 0;
                 padding: 0;
-                font-family: Arial, sans-serif;
             }
 
-            /* Style the primary navigation bar */
-            .navbar {
-                background-color: #333;
-                color: #fff;
+
+            body {
+                font-family: "Poppins", sans-serif;
+                --color1: #FFF;
+                --color2: rgba(48,47,47,0.85);
+
+            }
+
+            header{
+                position: fixed;
+                top: 0;
+                width: 100%; /* Đảm bảo thanh header chiếm toàn bộ chiều rộng của trang */
+                z-index: 999;
+            }
+            .nav-bar {
+                width: 100%;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 10px 20px;
+                list-style: none;
+                position: relative;
+                background-color: var(--color2);
+                
+                padding: 12px 20px;
+                margin-bottom: 0;
             }
 
-            /* Style the logo */
             .logo img {
-                height: 40px;
-                /* Adjust the height as needed */
+                width: 60px;
             }
 
-            /* Style the search box */
-            .search-box {
-                flex: 1;
+            .menu {
                 display: flex;
-                justify-content: center;
             }
 
-            .search-box input[type="text"] {
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                width: 50%;
+            .menu li {
+                padding-left: 30px;
             }
 
-            .search-box button {
-                background-color: #ff6600;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                padding: 10px 20px;
-                margin-left: 10px;
+            .menu li a {
+                display: inline-block;
+                text-decoration: none;
+                color: var(--color1);
+                text-align: center;
+                transition: 0.15s ease-in-out;
+                position: relative;
+                text-transform: uppercase;
+            }
+
+            .menu li a::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background-color: var(--color1);
+                transition: 0.15s ease-in-out;
+            }
+
+            .menu li a:hover:after {
+                width: 100%;
+            }
+
+            .open-menu,
+            .close-menu {
+                position: absolute;
+                color: var(--color1);
                 cursor: pointer;
+                font-size: 1.5rem;
+                display: none;
             }
 
-            /* Style the login button */
-            .login-button a {
-                text-decoration: none;
-                color: #ff6600;
-                padding: 10px 20px;
-                border: 2px solid #ff6600;
-                border-radius: 5px;
-                transition: background-color 0.3s, color 0.3s;
+            .open-menu {
+                top: 50%;
+                right: 20px;
+                transform: translateY(-50%);
             }
 
-            .login-button a:hover {
-                background-color: #ff6600;
-                color: #fff;
+            .close-menu {
+                top: 20px;
+                right: 20px;
             }
 
-            /* Style the secondary navigation bar */
-            .secondary-navbar {
-                background-color: #eee;
-                display: flex;
-                justify-content: center;
-                padding: 10px;
+            #check {
+                display: none;
             }
 
-            .secondary-navbar a {
-                color: #333;
-                padding: 0 20px;
-                text-decoration: none;
-            }
+            @media(max-width: 610px) {
+                .menu {
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 80%;
+                    height: 100vh;
+                    position: fixed;
+                    top: 0;
+                    right: -100%;
+                    z-index: 100;
+                    background-color: var(--color2);
+                    transition: all 0.2s ease-in-out;
+                }
 
-            .secondary-navbar a:hover {
-                background-color: #ddd;
-                border-radius: 5px;
+                .menu li {
+                    margin-top: 40px;
+                }
+
+                .menu li a {
+                    padding: 10px;
+                }
+
+                .open-menu,
+                .close-menu {
+                    display: block;
+                }
+
+                #check:checked~.menu {
+                    right: 0;
+                }
             }
         </style>
     </head>
 
     <body>
-        <nav class="navbar">
-            <div class="logo">
-                <a  href="#">
-                    <img style="width: 80px; height:80px" src="../img/logo.png" alt=""/>
-                </a>
-            </div>
-            <div class="search-box">
-                <input type="text" placeholder="Search food">
-                <button type="submit">Search</button>
-            </div>
-            <div class="login-button">
-                <a href="/CampusMunchies/guest/login">Login</a>
-            </div>
-        </nav>
-
-        <nav class="secondary-navbar">
-            <a href="/CampusMunchies/guest/home">Home</a>
-            <a href="/CampusMunchies/guest/menu">Menu</a>
-            <a href="#">Order History</a>
-            <a href="#">Sale</a>
-            <a href="#">About Us</a>
-            <a href="#">Cart</a>
-        </nav>
-
+        <header>
+            <nav>
+                <ul class="nav-bar">
+                    <li class="logo">
+                        <a href=""><img src="../img/logo.png" alt=""/></a>
+                    </li>
+                    <input type="checkbox" id="check">
+                    <span class="menu">
+                        <li><a href="/CampusMunchies/guest/home">Home</a></li>
+                        <li><a href="/CampusMunchies/guest/menu">Menu</a></li>
+                        <li><a href="">About Us</a></li>
+                        <li><a  style = "color:orange" href="/CampusMunchies/guest/login">Login</a></li>
+                        <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+                    </span>
+                    <label for="check" class="close-menu">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                </ul>
+            </nav>
+        </header>
     </body>
 
 </html>

@@ -14,71 +14,175 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <style>
-            .food{
-                padding: 0 10%;
-            }
-            .food-row {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 20px;
-            }
 
-            /* Style cho mỗi món ăn trong hàng */
+            *{
+                margin: 0;
+                padding:0;
+            }
             .food-item {
-                border: 1px solid #ddd;
-                padding: 10px;
+                height: 300px;
                 text-align: center;
-                width: 23%; /* Để mỗi món ăn chiếm khoảng 23% của khung chứa */
-                margin-right: 1%;
-                position: relative;
+                margin-bottom: 15px;
             }
 
-            .food-item:last-child {
-                margin-right: 0;
+            .food-border {
+                border: 2px #b4b4b4 solid;
+                border-radius: 5px;
+                padding: 5px;
+                height:100%
             }
 
-            .food-item .cart-icon {
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                font-size: 20px;
-                color: #ff6600;
+            .food-image {
+                width: 100%;
             }
+
+            .food-image img {
+                width: 100%;
+            }
+
+            .name {
+                font-weight: bold;
+            }
+
+            .food-button button {
+                width: 50px;
+                border-radius: 5px;
+                border: none
+            }
+
+            .cart {
+                background-color: rgb(254, 124, 17);
+                margin-bottom: 3px
+            }
+
+            .detail {
+                background-color: rgb(70, 70, 255);
+            }
+            button:hover{
+                border: 2px #000 solid
+            }
+            @media screen and (max-width:576px) {
+                .food-border{
+                    display: flex;
+                    text-align: left;
+                    align-items: center;
+
+                }
+                .food-item{
+                    height:200px
+                }/*
+                
+                .food-image img{
+                    height:100%
+                }*/
+            }
+
+            @media screen and (min-width:1200px) {
+
+                .food-item{
+                    height:350px
+                }/*
+                
+                .food-image img{
+                    height:100%
+                }*/
+            }
+
+
+
+            .search-box {
+                margin-top: 100px;
+                text-align: center;
+                margin-bottom: 20px
+            }
+
+
+            .search-box input[type="text"] {
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                width: 50%;
+                border: #BDBBBB 2px solid;
+            }
+
+
+
+
         </style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     </head>
     <body>
         <%@include file="header.jsp"%>
 
+        <div class ="container">
+            <div class="search-box">
+                <input oninput="searchByName(this)" type="text" name = "txt" placeholder="Search food">
+            </div>
 
-        <div class="food">
-            <div class="best-seller">
-                <h2>Menu</h2>
-                <c:forEach var="food" items="${requestScope.foods}" varStatus="status">
-                    <c:if test="${status.index % 4 == 0}">
-                        <div class="food-row">
-                        </c:if>
-                        <div class="food-item">
-                            <img sr="${food.getImg()}">
-                            <h3>${food.getName()}</h3>
-                            <p> <c:choose>
-                                    <c:when test="${food.getSale() == 0 }">
-                                        <c:out value="$${food.getPrice()}"></c:out>
-                                    </c:when>
-                                    <c:otherwise>
-                                        $<fmt:formatNumber value="${food.getRealPrice()}" type="number" maxFractionDigits="2" minFractionDigits="2"/>
-                                        <del>$${food.getPrice()}</del>
-                                    </c:otherwise>
-                                </c:choose></p>
-                            <i class="fas fa-shopping-cart cart-icon"></i>
-                        </div>
-                        <c:if test="${status.index % 4 == 3 or status.index == fn:length(requestScope.foods) - 1}">
-                        </div>
-                    </c:if>
-                </c:forEach>
 
+            <div class="container">
+                <div class="row" id="content">
+                    <c:forEach var="food" items="${requestScope.foods}" >
+                        <div class="food-item col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="food-border">
+                                <div class="food-image col-lg-12 col-md-12 col-sm-12 col-4">
+                                    <img src="${food.getImg()}" alt="" srcset="">
+                                </div>
+                                <div class="food-details col-lg-12 col-md-12 col-sm-12 col-8">
+                                    <p class="name">${food.getName()}</p>
+                                    <p class="price"> <c:choose>
+                                            <c:when test="${food.getSale() == 0}">
+                                                <c:out value="$${food.getPrice()}"></c:out>
+                                            </c:when>
+                                            <c:otherwise>
+                                                $<fmt:formatNumber value="${food.getRealPrice()}" type="number" maxFractionDigits="2" minFractionDigits="2"/>
+                                                <del>$${food.getPrice()}</del>
+                                            </c:otherwise>
+                                        </c:choose></p>
+                                    <div class="food-button">
+                                        <button class="cart" onclick="">
+                                            <i class="fas fa-shopping-cart cart-icon"></i>
+                                        </button>
+                                        <button class="detail" onclick="">
+                                            <i class="fas fa-info-circle"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
         </div>
-    </div>
-    <%@include file="footer.jsp"%>
-</body>
+
+
+
+        <%@include file="footer.jsp"%>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            function searchByName(param) {
+                var txtSearch = param.value;
+                $.ajax({
+                    url: "/CampusMunchies/customer/search",
+                    type: "get",
+                    data: {
+                        txt: txtSearch
+                    },
+                    success: function (data) {
+                        // Đảm bảo rằng bạn sử dụng document.getElementById thay vì document.getElementbyID
+                        var row = document.getElementById("content");
+
+                        // Sử dụng innerHTML để cập nhật nội dung của phần tử "content"
+                        row.innerHTML = data;
+                    },
+                    error: function (xhr) {
+                        // Xử lý lỗi ở đây nếu cần
+                        console.log(error);
+                    }
+                });
+            }
+
+        </script>
+
+    </body>
 </html>

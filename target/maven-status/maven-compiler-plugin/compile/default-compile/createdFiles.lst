@@ -1,5 +1,6 @@
 controller\guest\GuestMenu.class
 dao\FoodDAO.class
+controller\guest\GuestRegister.class
 dao\CustomerDAO.class
 controller\customer\CustomerLogout.class
 controller\guest\GuestHome.class
@@ -7,9 +8,11 @@ controller\guest\GuestLogin.class
 controller\customer\CustomerHome.class
 controller\employee\EmployeeLogin.class
 dao\DBContext.class
+controller\customer\CustomerSearch.class
 controller\customer\CustomerMenu.class
 dao\ICRUD.class
 model\Food.class
+controller\guest\GuestSearch.class
 model\Employee.class
 dao\EmployeeDAO.class
 model\Customer.class

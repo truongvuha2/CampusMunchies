@@ -11,7 +11,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Campus Munchies</title>
     </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <style>
+        .banner{
+            margin-bottom: 20px;
+            margin-top: 83px;
+        }
+        .banner-slide img {
+            width: 100%
+        }
+        
         .food{
             padding: 0 10%;
         }

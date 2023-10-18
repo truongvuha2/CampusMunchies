@@ -37,6 +37,14 @@
         <servlet-class>controller.customer.CustomerMenu</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>GuestSearch</servlet-name>
+        <servlet-class>controller.guest.GuestSearch</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerSearch</servlet-name>
+        <servlet-class>controller.customer.CustomerSearch</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>GuestRegister</servlet-name>
         <servlet-class>controller.guest.GuestRegister</servlet-class>
     </servlet>
@@ -67,6 +75,14 @@
     <servlet-mapping>
         <servlet-name>CustomerMenu</servlet-name>
         <url-pattern>/customer/menu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuestSearch</servlet-name>
+        <url-pattern>/guest/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerSearch</servlet-name>
+        <url-pattern>/customer/search</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GuestRegister</servlet-name>
