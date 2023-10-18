@@ -36,6 +36,10 @@
         <servlet-name>CustomerMenu</servlet-name>
         <servlet-class>controller.customer.CustomerMenu</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GuestRegister</servlet-name>
+        <servlet-class>controller.guest.GuestRegister</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
         <url-pattern>/guest/home</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>CustomerMenu</servlet-name>
         <url-pattern>/customer/menu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuestRegister</servlet-name>
+        <url-pattern>/guest/register</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
