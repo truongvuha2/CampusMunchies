@@ -20,6 +20,7 @@
                 justify-content: space-between;
                 align-items: center;
                 font-size: 14px;
+
             }
 
             /* Style cho phần footer bên trái (left-footer) */

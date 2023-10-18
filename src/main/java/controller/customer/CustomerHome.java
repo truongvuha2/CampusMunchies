@@ -61,7 +61,7 @@ public class CustomerHome extends HttpServlet {
 
         CustomerDAO c = new CustomerDAO();
         CMCookie.getNameCustomer(request, response);
-
+        
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 

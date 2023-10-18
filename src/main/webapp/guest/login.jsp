@@ -83,7 +83,7 @@
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form action="#" method="post">
+        <form action="/CampusMunchies/guest/login" method="post">
             <div class="form-group">
                 <label for="username">Your phone</label>
                 <input type="text" id="username" name="phone" placeholder="Enter your phone..." >

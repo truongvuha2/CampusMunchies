@@ -110,6 +110,10 @@ public class CustomerFilter implements Filter {
         String url = httpRequest.getServletPath();
         Cookie[] cookies = httpRequest.getCookies();
         String phone = "";
+        if (cookies == null) {
+            httpResponse.sendRedirect("/CampusMunchies/guest/home");
+            return;
+        }
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("phone")) {
                 phone = cookie.getValue();
