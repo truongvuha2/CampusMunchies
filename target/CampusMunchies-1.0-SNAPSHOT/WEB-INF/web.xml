@@ -6,7 +6,7 @@
     </filter>
     <filter-mapping>
         <filter-name>CustomerFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/customer/*</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>GuestHome</servlet-name>
