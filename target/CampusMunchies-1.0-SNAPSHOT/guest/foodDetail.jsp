@@ -78,20 +78,15 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card food-card">
-                            <img src="https://i.ibb.co/wy9QKBJ/Pasta.png" alt="Food Image" class="card-img-top food-image">
+                            <img src="${food.getImg()}" alt="Food Image" class="card-img-top food-image">
                         </div>
                     </div>
                     <div class="detail col-md-6">
                         <!-- Thông tin chi tiết sản phẩm -->
-                        <h1 class="mt-3">Hamburger</h1>
-                        <h2 class="text-success">$5.00</h2>
+                        <h1 class="mt-3">${food.getName()}</h1>
+                        <h2 class="text-success">$${food.getPrice()}</h2>
                         <p class="description mt-3 food-details">
-                            Sink your teeth into this delicious hamburger
-                            featuring a toasted sesame seed bun, crisp lettuce,
-                            vine-ripened tomato, melted cheese, and a juicy 100%
-                            beef patty. An American classic ready to satisfy
-                            your
-                            burger craving!
+                            ${food.getDescription()}
                         </p>
                         <div class="combo-button">
                             <box class="quantity mt-2">

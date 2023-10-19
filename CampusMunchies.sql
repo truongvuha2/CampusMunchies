@@ -1,6 +1,18 @@
 --drop database CampusMunchies
 
-drop database CampusMunchies
+--DECLARE @DatabaseName nvarchar(50)
+--SET @DatabaseName = N'CampusMunchies'
+
+--DECLARE @SQL varchar(max)
+
+--SELECT @SQL = COALESCE(@SQL,'') + 'Kill ' + Convert(varchar, SPId) + ';'
+--FROM MASTER..SysProcesses
+--WHERE DBId = DB_ID(@DatabaseName) AND SPId <> @@SPId
+
+----SELECT @SQL 
+--EXEC(@SQL)
+
+create database CampusMunchies
 go
 use CampusMunchies
 
@@ -88,26 +100,38 @@ VALUES ('CAT001', N'Appetizers'),
 ---- Insert data into Food table
 INSERT INTO Food (foo_id, cat_id, foo_name, foo_price, foo_sale, foo_description, foo_status, foo_img)
 VALUES
-    ('FOOD001', 'CAT001', N'Cheese Sticks', 6.99, 0.00, N'Fried cheese sticks with dipping sauce', 'Available', 'cheese-sticks.jpg'),
-    ('FOOD002', 'CAT001', N'Chicken Wings', 8.99, 0.00, N'Spicy buffalo chicken wings', 'Available', 'chicken-wings.jpg'),
-    ('FOOD003', 'CAT002', N'Tomato Soup', 5.99, 0.00, N'Classic tomato soup with croutons', 'Available', 'tomato-soup.jpg'),
-    ('FOOD004', 'CAT002', N'Chicken Noodle Soup', 6.99, 0.00, N'Hearty chicken noodle soup', 'Available', 'chicken-noodle-soup.jpg'),
-    ('FOOD005', 'CAT003', N'Garden Salad', 7.99, 0.00, N'Fresh garden salad with mixed greens', 'Available', 'garden-salad.jpg'),
-    ('FOOD006', 'CAT003', N'Caesar Salad', 8.99, 0.00, N'Classic Caesar salad with dressing', 'Available', 'caesar-salad.jpg'),
-    ('FOOD007', 'CAT004', N'Grilled Chicken', 12.99, 0.00, N'Grilled chicken breast with sides', 'Available', 'grilled-chicken.jpg'),
-    ('FOOD008', 'CAT004', N'Steak', 18.99, 0.00, N'Juicy steak with your choice of sauce', 'Available', 'steak.jpg'),
-    ('FOOD009', 'CAT005', N'Chocolate Cake', 6.99, 0.00, N'Delicious chocolate cake with frosting', 'Available', 'chocolate-cake.jpg'),
-    ('FOOD010', 'CAT005', N'Apple Pie', 5.99, 0.00, N'Warm apple pie with a scoop of ice cream', 'Available', 'apple-pie.jpg'),
-    ('FOOD011', 'CAT001', N'Mozzarella Sticks', 7.99, 0.00, N'Fried mozzarella sticks with marinara sauce', 'Available', 'mozzarella-sticks.jpg'),
-    ('FOOD012', 'CAT001', N'Onion Rings', 6.99, 0.00, N'Crunchy onion rings with ketchup', 'Available', 'onion-rings.jpg'),
-    ('FOOD013', 'CAT002', N'Clam Chowder', 8.99, 0.00, N'Creamy clam chowder with crackers', 'Available', 'clam-chowder.jpg'),
-    ('FOOD014', 'CAT002', N'Vegetable Soup', 6.99, 0.00, N'Vegetable soup with fresh veggies', 'Available', 'vegetable-soup.jpg'),
-    ('FOOD015', 'CAT003', N'Greek Salad', 9.99, 0.00, N'Healthy Greek salad with feta cheese', 'Available', 'greek-salad.jpg'),
-    ('FOOD016', 'CAT003', N'Cobb Salad', 10.99, 0.00, N'Classic Cobb salad with bacon', 'Available', 'cobb-salad.jpg'),
-    ('FOOD017', 'CAT004', N'Salmon', 14.99, 0.00, N'Pan-seared salmon with lemon butter', 'Available', 'salmon.jpg'),
-    ('FOOD018', 'CAT004', N'Vegetarian Pasta', 11.99, 0.00, N'Vegetarian pasta with tomato sauce', 'Available', 'vegetarian-pasta.jpg'),
-    ('FOOD019', 'CAT005', N'New York Cheesecake', 7.99, 0.00, N'Rich New York-style cheesecake', 'Available', 'cheesecake.jpg'),
-    ('FOOD020', 'CAT005', N'Lemon Sorbet', 5.99, 0.00, N'Refreshing lemon sorbet dessert', 'Available', 'lemon-sorbet.jpg');
+	('FOOD001', 'CAT001', N'Salad', 7.99, 0.00, N'Fresh and healthy salad with a variety of ingredients', 'Available', 'https://i.ibb.co/4ST0XCZ/Salad.png'),
+
+    ('FOOD002', 'CAT003', N'Kebab', 8.99, 0.00, N'Grilled kebab served with pita bread and sauce', 'Available', 'https://i.ibb.co/MscZLfn/Kebab.png'),
+
+    ('FOOD003', 'CAT001', N'Italian Pasta', 9.99, 0.00, N'Delicious Italian pasta with your choice of sauce', 'Available', 'https://i.ibb.co/zxnNz2h/Pasta.png'),
+
+    ('FOOD004', 'CAT002', N'Fried Chicken Wings', 10.99, 0.00, N'Crispy fried chicken wings with your choice of sauce', 'Available', 'https://i.ibb.co/jzLLJkq/Chicken-Wings.png'),
+
+    ('FOOD005', 'CAT002', N'Fried Chicken Drumsticks', 10.99, 0.00, N'Crispy fried chicken drumsticks with your choice of sauce', 'Available', 'https://i.ibb.co/cXwkt1L/Chicken-Drumstick.png'),
+
+    ('FOOD006', 'CAT003', N'Egg Banh Mi', 5.99, 0.00, N'Delicious egg sandwich with fresh ingredients', 'Available', 'https://i.ibb.co/xDnxGBX/Egg-Banh-Mi.png'),
+
+    ('FOOD007', 'CAT003', N'Meat Banh Mi', 6.99, 0.00, N'Hearty meat sandwich with a variety of fillings', 'Available', 'https://i.ibb.co/zNtW5wN/Meat-Banh-Mi.png'),
+
+    ('FOOD008', 'CAT002', N'French Fries', 3.99, 0.00, N'Golden and crispy french fries with ketchup', 'Available', 'https://i.ibb.co/yyvfzsN/French-Fries.png'),
+
+    ('FOOD009', 'CAT003', N'Hamburger', 7.49, 0.00, N'Delicious hamburger with your choice of toppings', 'Available', 'https://i.ibb.co/Nm3BsQt/Hamburger.png'),
+
+	('FOOD010', 'CAT003', N'Xoi Man', 4.99, 0.00, N'Sticky rice with a variety of toppings', 'Available', 'https://i.ibb.co/ydX8vbb/XoiMan.png'),
+
+    ('FOOD011', 'CAT003', N'Toco', 3.49, 0.00, N'Toco Toco', 'Available', 'https://i.ibb.co/kKxPFRy/Toco.png'),
+
+    ('FOOD012', 'CAT001', N'Pepsi', 1.99, 0.00, N'Classic Pepsi soda', 'Available', 'https://i.ibb.co/8r2cnDh/Pepsi.png'),
+
+    ('FOOD013', 'CAT001', N'Coca-Cola', 1.99, 0.00, N'Classic Coca-Cola soda', 'Available', 'https://i.ibb.co/G7jBD5M/CocaCola.png'),
+
+    ('FOOD014', 'CAT001', N'7UP', 1.99, 0.00, N'Refreshing 7UP soda', 'Available', 'https://i.ibb.co/sVSMXJs/7up.png'),
+
+    ('FOOD015', 'CAT001', N'Fanta', 1.99, 0.00, N'Fruity Fanta soda', 'Available', 'https://i.ibb.co/9wxKxXW/Fanta.png'),
+
+    ('FOOD016', 'CAT001', N'Milo', 2.49, 0.00, N'Delicious Milo chocolate drink', 'Available', 'https://i.ibb.co/m8d7Qft/Milo.png');
+
 
 INSERT INTO Customer  VALUES
 ('0123456789', 'John Smith', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'matkhau'), 2), '123 Main St, Cityville', '1990-05-15','2023-10-15', 0),
