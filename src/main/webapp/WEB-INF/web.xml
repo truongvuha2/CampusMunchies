@@ -48,6 +48,10 @@
         <servlet-name>GuestRegister</servlet-name>
         <servlet-class>controller.guest.GuestRegister</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GuestFoodDetail</servlet-name>
+        <servlet-class>controller.guest.GuestFoodDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
         <url-pattern>/guest/home</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>GuestRegister</servlet-name>
         <url-pattern>/guest/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuestFoodDetail</servlet-name>
+        <url-pattern>/guest/foodDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

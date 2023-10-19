@@ -120,7 +120,7 @@ public class CustomerFilter implements Filter {
                 break;
             }
         }
-        if (url.contains("/customer") && phone.equals("")) {
+        if (phone.equals("")) {
             httpResponse.sendRedirect("/CampusMunchies/guest/home");
         }
 

@@ -163,7 +163,7 @@
             function searchByName(param) {
                 var txtSearch = param.value;
                 $.ajax({
-                    url: "/CampusMunchies/guest/search",
+                    url: "/CampusMunchies/customer/search",
                     type: "get",
                     data: {
                         txt: txtSearch

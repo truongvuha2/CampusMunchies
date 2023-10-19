@@ -143,7 +143,7 @@
                                         <button class="cart" onclick="">
                                             <i class="fas fa-shopping-cart cart-icon"></i>
                                         </button>
-                                        <button class="detail" onclick="">
+                                        <button class="detail" onclick="getDetail('${food.getId()}')">
                                             <i class="fas fa-info-circle"></i>
                                         </button>
                                     </div>
@@ -159,11 +159,18 @@
 
         <%@include file="footer.jsp"%>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
         <script>
+
+        </script>
+        <script>
+            function getDetail(id) {
+                window.location = "foodDetail?id=" + id;
+            }
             function searchByName(param) {
                 var txtSearch = param.value;
                 $.ajax({
-                    url: "/CampusMunchies/customer/search",
+                    url: "/CampusMunchies/guest/search",
                     type: "get",
                     data: {
                         txt: txtSearch
@@ -181,6 +188,7 @@
                     }
                 });
             }
+
 
         </script>
 
