@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 --drop database CampusMunchies
 
 --DECLARE @DatabaseName nvarchar(50)
@@ -13,6 +14,11 @@
 --EXEC(@SQL)
 
 create database CampusMunchies
+=======
+﻿--drop database CampusMunchies
+create database CampusMunchies
+drop database CampusMunchies
+>>>>>>> dde83484e53d5ac656d917554a06a83a068993ed
 go
 use CampusMunchies
 
@@ -174,3 +180,41 @@ INSERT INTO Manager (username, password) VALUES
 --('ORD9', '2023-10-10', 'Delivery', 'Pending', 'Apartment 5A', 65.80, '0123456781', '0123456781'),
 --('ORD10', '2023-10-11', 'Dine-In', 'Complete', 'Table 2', 47.25, '0123456780', '0123456780');
 
+-- Tạo 10 đơn đặt hàng
+INSERT INTO [Order] (ord_id, cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_note, ord_total)
+VALUES
+    ('ORD001', '0123456789', '0123456789', '2023-10-10', 'Takeout', 'Pending', N'Please deliver fast', 32.97),
+    ('ORD002', '0123456788', '0123456788', '2023-10-11', 'Delivery', 'Processing', N'Deliver to the back entrance', 23.97),
+    ('ORD003', '0123456787', '0123456787', '2023-10-12', 'Takeout', 'Delivered', N'Dont include any plastic cutlery', 39.95),
+    ('ORD004', '0123456786', '0123456786', '2023-10-13', 'Delivery', 'Delivered', N'Please add extra ketchup packets', 51.96),
+    ('ORD005', '0123456785', '0123456785', '2023-10-14', 'Takeout', 'Cancelled', N'Deliver after 7 pm', 27.98),
+    ('ORD006', '0123456784', '0123456785', '2023-10-15', 'Takeout', 'Pending', N'Call before arriving', 23.97),
+    ('ORD007', '0123456783', '0123456786', '2023-10-16', 'Delivery', 'Processing', N'Leave the food at the doorstep', 47.94),
+    ('ORD008', '0123456782', '0123456787', '2023-10-17', 'Takeout', 'Delivered', N'Extra napkins needed', 55.96),
+    ('ORD009', '0123456781', '0123456788', '2023-10-18', 'Takeout', 'Delivered', N'Include disposable cutlery', 15.98),
+    ('ORD010', '0123456780', '0123456789', '2023-10-19', 'Delivery', 'Cancelled', N'Deliver before 6 pm', 35.97);
+	select * from employee
+	select * from customer 
+-- Tạo 10 chi tiết đơn đặt hàng tương ứng
+INSERT INTO OrderDetail (ord_id, foo_id, quantity, price)
+VALUES
+    ('ORD001', 'FOOD001', 2, 13.98),
+    ('ORD001', 'FOOD005', 1, 7.99),
+    ('ORD002', 'FOOD007', 1, 12.99),
+    ('ORD002', 'FOOD009', 3, 20.97),
+    ('ORD003', 'FOOD010', 2, 11.98),
+    ('ORD003', 'FOOD016', 1, 10.99),
+    ('ORD004', 'FOOD008', 2, 37.98),
+    ('ORD004', 'FOOD014', 1, 6.99),
+    ('ORD005', 'FOOD002', 2, 17.98),
+    ('ORD005', 'FOOD003', 1, 5.99),
+    ('ORD006', 'FOOD004', 3, 20.97),
+    ('ORD006', 'FOOD006', 1, 8.99),
+    ('ORD007', 'FOOD011', 2, 15.98),
+    ('ORD007', 'FOOD013', 1, 8.99),
+    ('ORD008', 'FOOD012', 2, 13.98),
+    ('ORD008', 'FOOD015', 1, 9.99),
+    ('ORD009', 'FOOD017', 3, 44.97),
+    ('ORD009', 'FOOD019', 1, 7.99),
+    ('ORD010', 'FOOD018', 2, 23.98),
+    ('ORD010', 'FOOD020', 1, 5.99);

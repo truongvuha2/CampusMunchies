@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
 
 /* Reset some default styles */
 body, h1, h2, h3, p, ul, li, table {
@@ -54,7 +55,8 @@ body, h1, h2, h3, p, ul, li, table {
   /* Set the background color for the entire page */
   body {
     background-color: #f2f2f2;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+
   }
   
   .container-i {
@@ -77,6 +79,7 @@ body, h1, h2, h3, p, ul, li, table {
     font-style: italic;
     font-weight: 800;
     line-height: normal;
+    font-family: Arial, sans-serif;
   }
 
   .Munchines{
@@ -106,6 +109,7 @@ body, h1, h2, h3, p, ul, li, table {
     list-style: none;
     padding: 0;
     text-align: left;
+    font-family: 'Poppins', sans-serif;
   }
   
   .sidebar .side-menu li {
@@ -136,21 +140,19 @@ body, h1, h2, h3, p, ul, li, table {
 
   /* Insights Styles */
   .insights {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    grid-gap: 24px;
-    margin-top: 36px;
+    display: flex;
+    margin-top: 5px;
 }
 
 .insights li {
+    width: 100%;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
-    cursor: pointer;
-    margin: 10px; 
+    margin: 8px; 
 }
 
 .insights li .bx {
@@ -164,10 +166,7 @@ body, h1, h2, h3, p, ul, li, table {
 }
 
 .insights li .info {
-    flex: 1;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 }
 
 .insights li .info .text h3 {
@@ -185,7 +184,7 @@ body, h1, h2, h3, p, ul, li, table {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
+    margin-top: 10px;
   }
   
   h2 {
@@ -195,7 +194,6 @@ body, h1, h2, h3, p, ul, li, table {
   
   .user-list {
     display: flex;
-    justify-content: space-between;
   }
   
   .user {
@@ -210,7 +208,7 @@ body, h1, h2, h3, p, ul, li, table {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
+    margin-top: 18px;
   }
   
   table {
@@ -219,11 +217,13 @@ body, h1, h2, h3, p, ul, li, table {
   }
   
   thead {
-    background-color: #333;
+    background-color: #C21010;
     color: #fff;
   }
   
   th, td {
+    font-weight: 600;
+    font-size: larger;
     padding: 20px 0 20px 0;
     text-align: center;
     border-bottom: 1px solid #ccc ;
