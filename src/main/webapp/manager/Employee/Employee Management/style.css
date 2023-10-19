@@ -143,8 +143,27 @@ main {
   padding: 20px;
 }
 
-/* Order Management Styles */
-.orders-table {
+/* Customer Management Styles */
+.btn-create-acc{
+  margin-top: 20px;
+}
+
+.btn-create-acc button{
+  padding: 17px;
+  border-radius: 5px;
+  width: 200px;
+  font-size: 17px;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+  color: white;
+  background-color: #0dd10d;
+}
+
+.btn-create-acc button:hover{
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+}
+
+.customer-table {
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
@@ -153,12 +172,12 @@ main {
   padding-bottom: 30px;
 }
 
-.order-list {
+.customer-list {
   margin-bottom: 20px;
 }
 
-.select-box{
-  margin-left: 45%;
+.select-box {
+  margin-left: 40%;
   margin-bottom: 20px;
   padding: 0 20px 0 15px;
   border-radius: 10px;
@@ -168,7 +187,7 @@ main {
   font-size: 16px;
 }
 
-.select-box option{
+.select-box option {
   font-size: 16px;
 }
 
@@ -187,6 +206,17 @@ main {
   font-size: 16px;
 }
 
+.search-button {
+  margin-bottom: 20px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
 .search-main {
   display: flex;
 }
@@ -202,12 +232,12 @@ main {
 table {
   width: 100%;
   border-collapse: collapse;
+  justify-content: space-between;
 }
 
 thead {
   background-color: #C21010;
   color: #fff;
-  cursor: pointer;
 }
 
 th,
@@ -219,6 +249,8 @@ td {
   border-bottom: 1px solid #ccc;
 }
 
+
+
 #itemList {
   list-style: none;
   padding: 0;
@@ -229,6 +261,8 @@ td {
   margin-top: 10px;
 }
 
+
+
 .btn-pagination button {
   font-size: 50px;
   width: 70px;
@@ -238,12 +272,40 @@ td {
   cursor: pointer;
 }
 
+th{
+  cursor: pointer;
+}
+
+
 a {
   display: inline-block;
   text-decoration: none;
   color: #007bff;
 }
 
+.other-info{
+  display: flex;
+}
+
+.honor-employee-table{
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  padding-bottom: 30px;
+  margin-right: 10px;
+}
+
+.honor-employee-table h2{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
+.honor-employee-table th{
+  background-color: #00CDCD;
+}
 
 /* Media Query for Responsive Design */
 @media (max-width: 768px) {

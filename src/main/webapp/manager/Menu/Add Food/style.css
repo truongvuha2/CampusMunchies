@@ -27,6 +27,21 @@ body, h1, h2, h3, p, ul, li, table {
     line-height: normal;
   }
 
+  .order-id{
+    font-size: 2rem;
+    text-align: center;
+    color: #C21010;
+    font-weight: 800;
+  }
+
+  .status{
+    font-size: 2rem;
+    text-align: center;
+    color: #28c210;
+    font-weight: 700;
+
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -54,9 +69,8 @@ body, h1, h2, h3, p, ul, li, table {
 
   /* Set the background color for the entire page */
   body {
-    background-color: #f2f2f2;
     font-family: 'Poppins', sans-serif;
-
+    background-color: #f2f2f2;
   }
   
   .container-i {
@@ -80,6 +94,7 @@ body, h1, h2, h3, p, ul, li, table {
     font-weight: 800;
     line-height: normal;
     font-family: Arial, sans-serif;
+    
   }
 
   .Munchines{
@@ -137,109 +152,172 @@ body, h1, h2, h3, p, ul, li, table {
     flex: 1;
     padding: 20px;
   }
-
-  /* Insights Styles */
-  .insights {
+  
+  /* Order Food Information Styles */
+  .food-info{
     display: flex;
-    margin-top: 5px;
-}
+  }
 
-.insights li {
+  .left-info{
+    margin-left: 5%;
+  }
+
+  .right-info{
+    margin-left: 12%;
+  }
+
+  h2{
+    margin-top: 20px;
+    margin-left: 5%;
+  }
+  .food-info li {
+    list-style-type: none;
     width: 100%;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    margin: 8px; 
-}
-
-.insights li .bx {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    font-size: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.insights li .info {
-    display: flex;
-}
-
-.insights li .info .text h3 {
-    font-size: 24px;
-    font-weight: 600;
-}
-
-  .info h3, .info h1 {
-    margin-bottom: 10px;
+    margin-top: 20px;
   }
-  /* New Users Styles */
-  
-  .new-users {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    margin-top: 10px;
+
+  .food-info label{
+    color: #C21010;
+    font-weight: 500;
+    font-size: 19px;
   }
-  
-  h2 {
+
+  .food-info input[type=text]{
+    padding: 10px;
+    margin-left: 2px;
+    margin-right: 12px;
     font-size: 20px;
-    margin-bottom: 20px;
+    border-radius: 15px;
+    border: none;
   }
-  
-  .user-list {
-    display: flex;
+
+  .food-info input[type=number]{
+    padding: 10px;
+    margin-left: 2px;
+    margin-right: 12px;
+    font-size: 20px;
+    border-radius: 15px;
+    border: none;
   }
-  
-  .user {
-    text-align: center;
-    padding: 0 100px 10px 100px;
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
-  
-  
-  /* Recent Orders Styles */
-  .recent-orders {
-    background-color: #fff;
+
+  .upload{
+    margin: 20px 8%;
+  }
+
+  .upload button{
+    font-size: 17px;
+    width: 160px;
+    padding: 15px;
+    border: none;
+    color: white;
+    background-color: #06c2cf;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+  }
+
+  .upload button:hover{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+  }
+
+  .left-info li:nth-child(6){
+    width: 60%;
+    height: 200px;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    margin-top: 18px;
+    margin-top: 20px;
   }
-  
-  table {
+
+  .left-info li:nth-child(6) img{
     width: 100%;
-    border-collapse: collapse;
+    height: 200px;
+  }
+
+  .left-info li:nth-child(5) input{
+    display: none;
+  }
+
+  .right-info li:first-child select{
+    width: 50%;
+    height: 40px;
+  }
+
+  .right-info li:nth-child(3) select{
+    width: 50%;
+    height: 40px;
+  }
+
+  .select-box{
+    margin-left: 10px;
+    padding: 0 30px 0 15px;
+    border-radius: 10px;
+    width: 15%;
+    color: black;
+    background-color: white;
+    font-size: 18px;
+  }
+
+  .select-box option{
+    font-size: 15px;
+  }
+
+  .right-info li:nth-child(2) textarea{
+    vertical-align: middle;
+    margin-left: 15px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .right-info li:nth-child(4){
+    display: none;
+  }
+
+  .btn-product{
+    display: flex;
+    margin-top: 30px;
+    margin-left: 17%;
+  }
+
+  .btn-product button{
+    padding: 17px;
+    border-radius: 5px;
+    width: 150px;
+    font-size: 17px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+  }
+
+  .btn-product button:hover{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+  }
+
+  .btn-add-product button{
+    margin-right: 10px;
+    background-color: #5ace56;
+    color: white;
   }
   
-  thead {
+  .btn-cancel-product button{
+    margin-left: 10px;
     background-color: #C21010;
-    color: #fff;
+    color: white;
   }
-  
-  th, td {
-    font-weight: 600;
-    font-size: larger;
-    padding: 20px 0 20px 0;
-    text-align: center;
-    border-bottom: 1px solid #ccc ;
-  }
-  
+
   a {
     display: inline-block;
     text-decoration: none;
-    color: #007bff;
-  }
-  
-  .show{
-    padding-top: 20px;
+    color: #000000;
   }
  
-  
   /* Media Query for Responsive Design */
   @media (max-width: 768px) {
     .container-i {

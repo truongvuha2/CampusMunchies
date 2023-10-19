@@ -34,6 +34,14 @@ table {
   line-height: normal;
 }
 
+.order-id {
+  color: #000;
+  font-size: 2rem;
+  text-align: center;
+  color: #C21010;
+  font-weight: 800;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -61,12 +69,18 @@ table {
 
 /* Set the background color for the entire page */
 body {
-  background-color: #f2f2f2;
   font-family: 'Poppins', sans-serif;
+  background-color: #f2f2f2;
 }
 
 .container-i {
   display: flex;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: #000000;
 }
 
 /* Sidebar Styles */
@@ -86,6 +100,7 @@ aside {
   font-weight: 800;
   line-height: normal;
   font-family: Arial, sans-serif;
+
 }
 
 .Munchines {
@@ -115,6 +130,7 @@ aside {
   list-style: none;
   padding: 0;
   text-align: left;
+  font-family: 'Poppins', sans-serif;
 }
 
 .sidebar .side-menu li {
@@ -143,42 +159,135 @@ main {
   padding: 20px;
 }
 
-/* Order Management Styles */
-.orders-table {
+/* Menu Styles */
+h2 {
+  margin-top: 20px;
+  font-size: 30px;
+  color: #C21010;
+}
+
+.list-menu {
+  margin-top: 10px;
+  list-style-type: none;
+}
+
+.best-seller{
+  flex: 0 0 calc(25% - 20px);
+  /* Sử dụng calc để tính toán chiều rộng và trừ đi margin */
+  margin: 10px;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.food {
+  flex: 0 0 calc(25% - 20px);
+  /* Sử dụng calc để tính toán chiều rộng và trừ đi margin */
+  margin: 10px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.name-food {
+  font-weight: 600;
+  text-align: center;
+  font-size: 25px;
+  padding-bottom: 5px;
+}
+
+.food-info {
+  color: #C21010;
+  font-weight: 500;
+}
+
+.food-btn {
+  text-align: center;
   margin-top: 20px;
-  padding-bottom: 30px;
+  display: flex;
+
 }
 
-.order-list {
-  margin-bottom: 20px;
-}
-
-.select-box{
-  margin-left: 45%;
-  margin-bottom: 20px;
-  padding: 0 20px 0 15px;
+.food-btn button {
+  padding: 10px;
+  color: white;
+  width: 100%;
+  border: none;
   border-radius: 10px;
-  width: 16%;
+  font-size: 17px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+
+}
+
+.food-btn button:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+
+}
+
+.food-btn button:first-child {
+  background-color: #23befc;
+  margin-right: 5px;
+}
+
+.food-btn button:nth-child(2) {
+  background-color: #C21010;
+  margin-left: 5px;
+}
+
+.list-menu {
+  overflow: hidden;
+}
+
+.list-menu img {
+  object-fit: contain;
+  width: 95%;
+  display: inline-block;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.list-menu img:hover {
+  transform: scale(1.1);
+}
+
+.search-main {
+  display: flex;
+  margin-top: 5px;
+}
+
+.sort-food {
+  margin-left: 2%;
+}
+
+.sort-food button{
+  color: white;
+  padding: 6px;
+  background-color: #45cc39;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
+.sort-food button:hover{
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+}
+
+.select-box {
+  padding: 10px;
+  border-radius: 10px;
+  width: 52%;
   color: black;
   background-color: white;
   font-size: 16px;
 }
 
-.select-box option{
+.select-box option {
   font-size: 16px;
 }
 
-.search-container {
-  display: flex;
-  align-items: center;
-}
-
 .search-box {
-  margin-left: 10px;
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -187,61 +296,14 @@ main {
   font-size: 16px;
 }
 
-.search-main {
-  display: flex;
+.icon {
+  margin: 0;
 }
 
-.search-button:hover {
-  background-color: #C21010;
-}
-
-.status {
-  color: rgb(27, 230, 0);
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-thead {
-  background-color: #C21010;
-  color: #fff;
-  cursor: pointer;
-}
-
-th,
-td {
-  font-weight: 600;
-  font-size: larger;
-  padding: 20px 0 20px 0;
+.not-found{
   text-align: center;
-  border-bottom: 1px solid #ccc;
-}
-
-#itemList {
-  list-style: none;
-  padding: 0;
-}
-
-#pagination {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.btn-pagination button {
-  font-size: 50px;
-  width: 70px;
-  border: none;
-  color: black;
-  background-color: white;
-  cursor: pointer;
-}
-
-a {
-  display: inline-block;
-  text-decoration: none;
-  color: #007bff;
+  font-size: 30px;
+  color: #C21010;
 }
 
 

@@ -34,6 +34,13 @@ table {
   line-height: normal;
 }
 
+.order-id {
+  font-size: 2rem;
+  text-align: center;
+  color: #C21010;
+  font-weight: 800;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -61,8 +68,8 @@ table {
 
 /* Set the background color for the entire page */
 body {
-  background-color: #f2f2f2;
   font-family: 'Poppins', sans-serif;
+  background-color: #f2f2f2;
 }
 
 .container-i {
@@ -86,6 +93,7 @@ aside {
   font-weight: 800;
   line-height: normal;
   font-family: Arial, sans-serif;
+
 }
 
 .Munchines {
@@ -115,6 +123,7 @@ aside {
   list-style: none;
   padding: 0;
   text-align: left;
+  font-family: 'Poppins', sans-serif;
 }
 
 .sidebar .side-menu li {
@@ -143,60 +152,33 @@ main {
   padding: 20px;
 }
 
-/* Order Management Styles */
-.orders-table {
+/* other information */
+.employee-details-info {
+  display: flex;
+  margin-top: 10px;
+  list-style-type: none;
+}
+
+.employee-details-info li {
+  width: 100%;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  margin-top: 20px;
-  padding-bottom: 30px;
-}
-
-.order-list {
-  margin-bottom: 20px;
-}
-
-.select-box{
-  margin-left: 45%;
-  margin-bottom: 20px;
-  padding: 0 20px 0 15px;
-  border-radius: 10px;
-  width: 16%;
-  color: black;
-  background-color: white;
-  font-size: 16px;
-}
-
-.select-box option{
-  font-size: 16px;
-}
-
-.search-container {
-  display: flex;
   align-items: center;
+  margin: 10px;
 }
 
-.search-box {
-  margin-left: 10px;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 50px;
-  width: 320px;
-  font-size: 16px;
+.employee-details-info p {
+  margin-top: 20px;
+  font-size: larger;
 }
 
-.search-main {
-  display: flex;
-}
+.employee-details-info h2 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 10px;
 
-.search-button:hover {
-  background-color: #C21010;
-}
-
-.status {
-  color: rgb(27, 230, 0);
 }
 
 table {
@@ -207,7 +189,6 @@ table {
 thead {
   background-color: #C21010;
   color: #fff;
-  cursor: pointer;
 }
 
 th,
@@ -219,30 +200,40 @@ td {
   border-bottom: 1px solid #ccc;
 }
 
-#itemList {
-  list-style: none;
-  padding: 0;
-}
-
-#pagination {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.btn-pagination button {
-  font-size: 50px;
-  width: 70px;
-  border: none;
-  color: black;
-  background-color: white;
-  cursor: pointer;
-}
-
 a {
-  display: inline-block;
   text-decoration: none;
-  color: #007bff;
 }
+
+.btn-detail {
+  display: flex;
+  margin-top: 20px;
+  margin-left: 60%;
+}
+
+.btn-detail button {
+  padding: 17px;
+  border-radius: 5px;
+  width: 200px;
+  font-size: 17px;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+  color: white;
+}
+
+.btn-detail button:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+}
+
+.btn-create-acc button{
+  background-color: #0dd10d;
+  margin-right: 10px;
+}
+
+.btn-delete-cus button{
+  background-color: #C21010;
+  margin-left: 10px;
+}
+
 
 
 /* Media Query for Responsive Design */
