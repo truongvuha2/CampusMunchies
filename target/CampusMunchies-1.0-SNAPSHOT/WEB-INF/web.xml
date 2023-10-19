@@ -52,14 +52,18 @@
         <servlet-name>GuestFoodDetail</servlet-name>
         <servlet-class>controller.guest.GuestFoodDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EmployeeController</servlet-name>
+        <servlet-class>controller.employee.EmployeeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
         <url-pattern>/guest/home</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
+<!--    <servlet-mapping>
         <servlet-name>EmployeeLogin</servlet-name>
         <url-pattern>/employee/login</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>GuestLogin</servlet-name>
         <url-pattern>/guest/login</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>GuestFoodDetail</servlet-name>
         <url-pattern>/guest/foodDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmployeeController</servlet-name>
+        <url-pattern>/employee/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

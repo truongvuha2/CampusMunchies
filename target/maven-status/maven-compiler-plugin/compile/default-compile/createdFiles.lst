@@ -6,12 +6,14 @@ controller\customer\CustomerLogout.class
 controller\guest\GuestHome.class
 controller\guest\GuestLogin.class
 controller\customer\CustomerHome.class
+controller\guest\GuestFoodDetail.class
 controller\employee\EmployeeLogin.class
 dao\DBContext.class
 controller\customer\CustomerSearch.class
 controller\customer\CustomerMenu.class
 dao\ICRUD.class
 model\Food.class
+controller\employee\EmployeeController.class
 controller\guest\GuestSearch.class
 model\Employee.class
 dao\EmployeeDAO.class

@@ -13,7 +13,7 @@
         <title>Campus Munchies</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link href="css/header.css" rel="stylesheet" type="text/css"/>
+        <link href="/EmployeePage/css/header.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="container-fluid m-0 p-0">
