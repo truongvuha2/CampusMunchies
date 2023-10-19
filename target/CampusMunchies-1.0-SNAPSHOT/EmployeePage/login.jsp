@@ -15,10 +15,10 @@
     <body>
         <%@include file="header.jsp" %>
         <form action="/employee" method="post">
-        <div class="container-fluid d-flex justify-content-center py-5 mb-5">
-            <div class="loginBox d-flex flex-column align-items-center px-5 py-1 w-25">
-                <div class="title py-4">Login</div>
-               
+            <div class="container-fluid d-flex justify-content-center py-5 mb-5">
+                <div class="loginBox d-flex flex-column align-items-center px-5 py-1 w-25">
+                    <div class="title py-4">Login</div>
+
                     <div class="phone py-1">
                         <input class="p-2" type="text" placeholder="Phone number" name="phone">
                     </div>
@@ -34,9 +34,9 @@
                     <div class="btnLogin mb-4">
                         <button name="btnLogin" type="submit" value="login" class="px-5 py-2">Login</button>
                     </div>
-                
+
+                </div>
             </div>
-        </div>
         </form>
         <%@include file="footer.jsp" %>
     </body>

@@ -5,12 +5,15 @@
 package controller.employee;
 
 import dao.EmployeeDAO;
+import dao.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Order;
 
 /**
  *
@@ -83,6 +86,7 @@ public class EmployeeController extends HttpServlet {
             EmployeeDAO empDAO = new EmployeeDAO();
             boolean result = empDAO.isExisted(phone, password);
             if (result) {
+                request.getSession().setAttribute("phone", phone);
                 response.sendRedirect("/employee/orderList");
             } else {
                 response.sendRedirect("/employee/login");
