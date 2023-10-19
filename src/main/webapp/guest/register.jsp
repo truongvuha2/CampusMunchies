@@ -64,6 +64,17 @@
                 display: block;
                 margin: 0 auto;
             }
+            .birthday-input {
+                width: 90%;
+                padding: 10px;
+                margin-top: 5px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                float: left;
+                color: gray
+            }
+
         </style>
     </head>
     <body>
@@ -93,9 +104,9 @@
                 </div>
                 <div class="form-group">
                     <label for="birthday">Birthday</label>
-                    <input type="date" id="birthday" name="birthday" placeholder="Enter birthday (yyyy/mm/dd)"
-                           style="width: 40%; height: 20px;" >
+                    <input type="date" id="birthday" name="birthday" class="birthday-input" placeholder="Enter birthday (yyyy/mm/dd)">
                 </div>
+
                 <div class="form-group">
                     <button type="submit" class="register-button">Register</button>
                 </div>
