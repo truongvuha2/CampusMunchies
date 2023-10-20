@@ -108,6 +108,7 @@ public class CustomerFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String url = httpRequest.getServletPath();
+        System.out.println(url);
         Cookie[] cookies = httpRequest.getCookies();
         String phone = "";
         if (cookies == null) {
