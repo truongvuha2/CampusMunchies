@@ -60,7 +60,7 @@ public class CustomerMenu extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         FoodDAO f = new FoodDAO();
-        CMCookie.getNameCustomer(request, response);
+
         List<Food> foods = f.getAll();
         request.setAttribute("foods", foods);
         request.getRequestDispatcher("menu.jsp").forward(request, response);

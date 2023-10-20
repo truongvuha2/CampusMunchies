@@ -60,7 +60,7 @@ public class CustomerHome extends HttpServlet {
             throws ServletException, IOException {
 
 
-        CMCookie.getNameCustomer(request, response);
+
         
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }

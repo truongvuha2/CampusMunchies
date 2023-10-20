@@ -15,17 +15,22 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public class CMCookie {
 
-    public static void getNameCustomer(HttpServletRequest request, HttpServletResponse response) {
+    public static boolean isCustomerLogIn(HttpServletRequest request, HttpServletResponse response) {
         CustomerDAO c = new CustomerDAO();
         Cookie[] cookies = request.getCookies();
         String phone = "";
+        if (cookies == null) {
+            return false;
+        }
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("phone")) {
                 phone = cookie.getValue();
-                break;
+                String name = c.searchByPhone(phone).getName();
+                request.setAttribute("name", name);
+                return true;
             }
         }
-        String name = c.searchByPhone(phone).getName();
-        request.setAttribute("name", name);
+
+        return false;
     }
 }

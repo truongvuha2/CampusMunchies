@@ -59,7 +59,7 @@ public class CustomerFoodDetail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        CMCookie.getNameCustomer(request, response);
+
         
         FoodDAO f = new FoodDAO();
         String id = request.getParameter("id");

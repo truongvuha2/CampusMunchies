@@ -4,6 +4,7 @@
  */
 package filter;
 
+import CMCookie.CMCookie;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -109,22 +110,19 @@ public class CustomerFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String url = httpRequest.getServletPath();
         System.out.println(url);
-        Cookie[] cookies = httpRequest.getCookies();
-        String phone = "";
-        if (cookies == null) {
-            httpResponse.sendRedirect("/CampusMunchies/guest/home");
-            return;
-        }
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("phone")) {
-                phone = cookie.getValue();
-                break;
+        if (url.equals("/")) {
+            if (!CMCookie.isCustomerLogIn(httpRequest, httpResponse)) {
+                httpResponse.sendRedirect("/CampusMunchies/guest/home");
+            } else {
+                httpResponse.sendRedirect("/CampusMunchies/customer/home");
+                return;
             }
         }
-        if (phone.equals("")) {
-            httpResponse.sendRedirect("/CampusMunchies/guest/home");
+        if (url.startsWith("/customer")) {
+            if (!CMCookie.isCustomerLogIn(httpRequest, httpResponse)) {
+                httpResponse.sendRedirect("/CampusMunchies/guest/home");
+            }
         }
-
         Throwable problem = null;
         try {
             chain.doFilter(request, response);
