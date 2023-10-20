@@ -79,7 +79,7 @@ public class CustomerSearch extends HttpServlet {
                         + "                                    <p class=\"name\">" + food.getName() + "</p>\n"
                         + "                                    <p class=\"price\">" + b + "</p>\n"
                         + "                                    <div class=\"food-button\">\n"
-                        + "                                        <button class=\"cart\" onclick=\"\">\n"
+                        + "                                        <button class=\"cart\" onclick=\"addToCart('" + food.getId() + "')\">\n"
                         + "                                            <i class=\"fas fa-shopping-cart cart-icon\"></i>\n"
                         + "                                        </button>\n"
                         + "                                        <button class=\"detail\" onclick=\"getDetail('" + food.getId() + "')\">\n"

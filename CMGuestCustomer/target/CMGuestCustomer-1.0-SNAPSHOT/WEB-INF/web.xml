@@ -12,7 +12,6 @@
         <servlet-name>GuestHome</servlet-name>
         <servlet-class>controller.guest.GuestHome</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>GuestLogin</servlet-name>
         <servlet-class>controller.guest.GuestLogin</servlet-class>
@@ -49,10 +48,13 @@
         <servlet-name>GuestFoodDetail</servlet-name>
         <servlet-class>controller.guest.GuestFoodDetail</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>CustomerFoodDetail</servlet-name>
         <servlet-class>controller.customer.CustomerFoodDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerAddToCart</servlet-name>
+        <servlet-class>controller.customer.CustomerAddToCart</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
@@ -98,10 +100,13 @@
         <servlet-name>CustomerFoodDetail</servlet-name>
         <url-pattern>/customer/foodDetail</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerAddToCart</servlet-name>
+        <url-pattern>/customer/addToCart</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-
 </web-app>

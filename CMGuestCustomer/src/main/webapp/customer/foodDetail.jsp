@@ -94,7 +94,7 @@
                                 <span class="mx-2">1</span>
                                 <button class="btn btn-plus">+</button>
                             </box>
-                            <button class="btn-add mt-2">Add to Cart</button>
+                            <button class="btn-add mt-2"  onclick="addToCart('${food.getId()}')">Add to Cart</button>
                             <button class="btn-buy mt-2">Buy it Now</button>
                         </div>
                     </div>
@@ -103,6 +103,7 @@
         </div>
         <%@include file="footer.jsp"%>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         const quantityText = document.querySelector(".quantity span");
         const minusButton = document.querySelector(".btn-sub");
@@ -121,6 +122,24 @@
             quantity++;
             quantityText.textContent = quantity;
         });
+        function addToCart(id) {
+
+            $.ajax({
+                url: "/CampusMunchies/customer/addToCart",
+                type: "get",
+                data: {
+                    foodId: id
+                },
+                success: function (data) {
+
+
+                },
+                error: function (xhr) {
+                    // Xử lý lỗi ở đây nếu cần
+                    console.log(error);
+                }
+            });
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

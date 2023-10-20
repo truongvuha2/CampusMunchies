@@ -140,7 +140,7 @@
                                             </c:otherwise>
                                         </c:choose></p>
                                     <div class="food-button">
-                                        <button class="cart" onclick="">
+                                        <button class="cart" onclick="addToCart('${food.getId()}')">
                                             <i class="fas fa-shopping-cart cart-icon"></i>
                                         </button>
                                         <button class="detail" onclick="getDetail('${food.getId()}')">
@@ -162,6 +162,24 @@
         <script>
                                             function getDetail(id) {
                                                 window.location = "foodDetail?id=" + id;
+                                            }
+                                            function addToCart(id) {
+
+                                                $.ajax({
+                                                    url: "/CampusMunchies/customer/addToCart",
+                                                    type: "get",
+                                                    data: {
+                                                        foodId: id
+                                                    },
+                                                    success: function (data) {
+                                                       
+                                                      
+                                                    },
+                                                    error: function (xhr) {
+                                                        // Xử lý lỗi ở đây nếu cần
+                                                        console.log(error);
+                                                    }
+                                                });
                                             }
                                             function searchByName(param) {
                                                 var txtSearch = param.value;

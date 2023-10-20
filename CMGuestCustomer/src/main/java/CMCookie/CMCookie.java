@@ -33,4 +33,22 @@ public class CMCookie {
 
         return false;
     }
+
+    public static String getCustomerPhone(HttpServletRequest request, HttpServletResponse response) {
+        CustomerDAO c = new CustomerDAO();
+        Cookie[] cookies = request.getCookies();
+        String phone = "";
+        if (cookies == null) {
+            return null;
+        }
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("phone")) {
+                phone = cookie.getValue();
+
+                return phone;
+            }
+        }
+
+        return null;
+    }
 }
