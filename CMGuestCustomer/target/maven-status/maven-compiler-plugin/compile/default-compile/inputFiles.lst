@@ -1,6 +1,7 @@
 D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\model\Food.java
 D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\filter\CustomerFilter.java
 D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerFoodDetail.java
+D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\dao\CartDAO.java
 D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\dao\DBContext.java
 D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerLogout.java
 D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerSearch.java
@@ -15,4 +16,5 @@ D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\Customer
 D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestFoodDetail.java
 D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerMenu.java
 D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestRegister.java
+D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerAddToCart.java
 D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\dao\CustomerDAO.java

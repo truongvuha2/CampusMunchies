@@ -68,6 +68,31 @@
                 border-radius: 5px;
                 margin-right: 50px;
             }
+            #popup {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                display: none;
+                animation: fadeOut 3s forwards;
+            }
+
+            @keyframes fadeOut {
+                0% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+
+            .hidden {
+                display: none;
+            }
+
         </style>
     </head>
 
@@ -91,10 +116,10 @@
                         <div class="combo-button">
                             <box class="quantity mt-2">
                                 <button class="btn btn-sub">-</button>
-                                <span class="mx-2">1</span>
+                                <span class="mx-2" id="quantity">1</span>
                                 <button class="btn btn-plus">+</button>
                             </box>
-                            <button class="btn-add mt-2"  onclick="addToCart('${food.getId()}')">Add to Cart</button>
+                            <button class="btn-add mt-2" id="cartButton" onclick="addToCart('${food.getId()}')">Add to Cart</button>
                             <button class="btn-buy mt-2">Buy it Now</button>
                         </div>
                     </div>
@@ -102,8 +127,19 @@
             </div>
         </div>
         <%@include file="footer.jsp"%>
+        <div id="popup" class="hidden">
+            <div id="popupContent">
+                Add successfully!!!
+            </div>
+        </div>
+
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+
+
+    </script>
     <script>
         const quantityText = document.querySelector(".quantity span");
         const minusButton = document.querySelector(".btn-sub");
@@ -122,13 +158,21 @@
             quantity++;
             quantityText.textContent = quantity;
         });
-        function addToCart(id) {
 
+        function addToCart(id) {
+            var popup = document.getElementById("popup");
+            popup.style.display = "block";
+            setTimeout(function () {
+                popup.style.display = "none";
+            }, 1000);
+
+            var q = document.getElementById("quantity").innerText;
             $.ajax({
                 url: "/CampusMunchies/customer/addToCart",
                 type: "get",
                 data: {
-                    foodId: id
+                    foodId: id,
+                    quantity: q
                 },
                 success: function (data) {
 

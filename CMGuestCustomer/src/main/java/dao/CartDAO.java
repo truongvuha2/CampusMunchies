@@ -29,7 +29,7 @@ public class CartDAO extends DBContext {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setString(2, phone);
                 ps.setString(3, foodId);
-                ps.setInt(1, quantity+1);
+                ps.setInt(1, quantity + 1);
                 ps.executeUpdate();
             }
 
@@ -49,8 +49,32 @@ public class CartDAO extends DBContext {
 
     }
 
+    public void add(String phone, String foodId, int quantity) {
+        try {
+            int quantity2 = getQuantity(phone, foodId);
+            if (quantity2 == 0) {
+                String sql = "insert into cart values(?,?,?) ";
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setString(1, phone);
+                ps.setString(2, foodId);
+                ps.setInt(3, quantity);
+                ps.executeUpdate();
+            } else {
+                String sql = "update cart set quantity = ? where cus_phone=? and foo_id=?";
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setString(2, phone);
+                ps.setString(3, foodId);
+                ps.setInt(1, quantity2 + quantity);
+                ps.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     public static void main(String[] args) {
         CartDAO c = new CartDAO();
-        c.add("0123456788", "FOOD002");
+        c.add("0123456788", "FOOD003",3);
     }
 }

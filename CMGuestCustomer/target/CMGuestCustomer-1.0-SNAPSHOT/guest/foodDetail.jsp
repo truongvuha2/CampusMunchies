@@ -68,6 +68,32 @@
                 border-radius: 5px;
                 margin-right: 50px;
             }
+
+            #popup {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                display: none;
+                animation: fadeOut 5s forwards;
+            }
+
+            @keyframes fadeOut {
+                0% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+
+            .hidden {
+                display: none;
+            }
+
         </style>
     </head>
 
@@ -94,7 +120,7 @@
                                 <span class="mx-2">1</span>
                                 <button class="btn btn-plus">+</button>
                             </box>
-                            <button class="btn-add mt-2">Add to Cart</button>
+                            <button class="btn-add mt-2" onclick="addToCart()">Add to Cart</button>
                             <button class="btn-buy mt-2">Buy it Now</button>
                         </div>
                     </div>
@@ -102,6 +128,11 @@
             </div>
         </div>
         <%@include file="footer.jsp"%>
+        <div id="popup" class="hidden">
+            <div id="popupContent">
+                Please log in before add to cart!!!
+            </div>
+        </div>
     </div>
     <script>
         const quantityText = document.querySelector(".quantity span");
@@ -121,6 +152,13 @@
             quantity++;
             quantityText.textContent = quantity;
         });
+        function addToCart() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "block";
+            setTimeout(function () {
+                popup.style.display = "none";
+            }, 3000);
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

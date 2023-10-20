@@ -105,7 +105,30 @@
                 border: #BDBBBB 2px solid;
             }
 
+            #popup {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                display: none;
+                animation: fadeOut 3s forwards;
+            }
 
+            @keyframes fadeOut {
+                0% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+
+            .hidden {
+                display: none;
+            }
 
 
         </style>
@@ -158,13 +181,22 @@
 
 
         <%@include file="footer.jsp"%>
+        <div id="popup" class="hidden">
+            <div id="popupContent">
+                Add successfully!!!
+            </div>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
                                             function getDetail(id) {
                                                 window.location = "foodDetail?id=" + id;
                                             }
                                             function addToCart(id) {
-
+                                                var popup = document.getElementById("popup");
+                                                popup.style.display = "block";
+                                                setTimeout(function () {
+                                                    popup.style.display = "none";
+                                                }, 1000);
                                                 $.ajax({
                                                     url: "/CampusMunchies/customer/addToCart",
                                                     type: "get",
@@ -172,8 +204,8 @@
                                                         foodId: id
                                                     },
                                                     success: function (data) {
-                                                       
-                                                      
+
+
                                                     },
                                                     error: function (xhr) {
                                                         // Xử lý lỗi ở đây nếu cần

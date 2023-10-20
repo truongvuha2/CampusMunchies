@@ -104,8 +104,30 @@
                 width: 50%;
                 border: #BDBBBB 2px solid;
             }
+            #popup {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                display: none;
+                animation: fadeOut 5s forwards;
+            }
 
+            @keyframes fadeOut {
+                0% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
 
+            .hidden {
+                display: none;
+            }
 
 
         </style>
@@ -140,7 +162,7 @@
                                             </c:otherwise>
                                         </c:choose></p>
                                     <div class="food-button">
-                                        <button class="cart" onclick="addToCart('${food.getId()}')">
+                                        <button class="cart" onclick="addToCart()">
                                             <i class="fas fa-shopping-cart cart-icon"></i>
                                         </button>
                                         <button class="detail" onclick="getDetail('${food.getId()}')">
@@ -158,6 +180,11 @@
 
 
         <%@include file="footer.jsp"%>
+        <div id="popup" class="hidden">
+            <div id="popupContent">
+                 Please log in before add to cart!!!
+            </div>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <script>
@@ -167,8 +194,12 @@
             function getDetail(id) {
                 window.location = "foodDetail?id=" + id;
             }
-            function addToCart(id) {
-
+            function addToCart() {
+                var popup = document.getElementById("popup");
+                popup.style.display = "block";
+                setTimeout(function () {
+                    popup.style.display = "none";
+                }, 3000);
             }
             function searchByName(param) {
                 var txtSearch = param.value;

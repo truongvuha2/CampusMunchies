@@ -59,7 +59,12 @@ public class CustomerAddToCart extends HttpServlet {
         CartDAO c = new CartDAO();
         String phone = CMCookie.CMCookie.getCustomerPhone(request, response);
         String id = request.getParameter("foodId");
-        c.add(phone, id);
+        String quantity = request.getParameter("quantity");
+        if (quantity != null) {
+            c.add(phone, id, Integer.parseInt(quantity));
+        } else {
+            c.add(phone, id);
+        }
     }
 
     /**
