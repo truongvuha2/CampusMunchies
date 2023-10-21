@@ -14,11 +14,7 @@
 --EXEC(@SQL)
 
 create database CampusMunchies
-=======
-﻿--drop database CampusMunchies
-create database CampusMunchies
-drop database CampusMunchies
->>>>>>> dde83484e53d5ac656d917554a06a83a068993ed
+
 go
 use CampusMunchies
 
@@ -140,7 +136,7 @@ VALUES
 
 
 INSERT INTO Customer  VALUES
-('0123456789', 'John Smith', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'matkhau'), 2), '123 Main St, Cityville', '1990-05-15','2023-10-15', 0),
+('0123456789', 'John Smith', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password'), 2), '123 Main St, Cityville', '1990-05-15','2023-10-15', 0),
 ('0123456788', 'Sarah Johnson', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password2'), 2), '456 Elm St, Townsville', '1985-09-20','2023-9-11', 2),
 ('0123456787', 'Michael Davis', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password3'), 2), '789 Oak St, Villageton', '1995-02-10','2023-10-15', 1),
 ('0123456786', 'Emily Wilson', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password4'), 2), '101 Maple St, Hamletown', '1988-11-30','2023-01-20', 0),

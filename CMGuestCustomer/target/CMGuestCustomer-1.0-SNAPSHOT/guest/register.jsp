@@ -121,7 +121,8 @@
         <script>
 
 
-            document.querySelector('.register-button').addEventListener('click', function () {
+            document.querySelector('.register-button').addEventListener('click', function (event) {
+                event.preventDefault();
                 const name = document.getElementById('name').value;
                 const phone = document.getElementById('phone').value;
                 const password = document.getElementById('password').value;
@@ -171,7 +172,12 @@
                         text: 'Please enter a valid date of birth in yyyy/mm/dd format.'
                     });
 
+                }else {
+                    // Nếu tất cả thông tin hợp lệ, cho phép form được submit
+                    document.querySelector('form').submit();
                 }
+
+                
             });
 
             function isValidPhone(phone) {
