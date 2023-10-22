@@ -60,13 +60,14 @@ public class OrderDetailController extends HttpServlet {
             throws ServletException, IOException {
         String path = request.getRequestURI();
         String folder = "/EmployeePage";
+        String phone = request.getSession().getAttribute("phone") + "";
         if(path.startsWith("/orderDetail")){
             String[] data = path.split("/");
             String id = data[data.length-1];
             OrderDetailDAO odd = new OrderDetailDAO();
             OrderDAO ord = new OrderDAO();
             
-            ResultSet order = ord.getOrderById(id);
+            ResultSet order = ord.getOrderById(id,phone);
             request.setAttribute("orderInfo", order);
             
             ResultSet orderDetailList = odd.getListOrderDetailById(id);

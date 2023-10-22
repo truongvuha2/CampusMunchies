@@ -24,40 +24,42 @@
                 <div class="text d-flex align-items-center justify-content-center">Order Detail</div>
             </div>
             <%
-                
-                String orderId = request.getAttribute("orderId")+"";
+
+                String orderId = request.getAttribute("orderId") + "";
                 ResultSet customerInfo = (ResultSet) request.getAttribute("orderInfo");
-                int status =0;
+                int status = 0;
                 if (customerInfo.next()) {
-                if(customerInfo.getString("ord_status").equals("Preparing")){
-                status=1;
-                }else if (customerInfo.getString("ord_status").equals("Completed")){
-                status =2;
-                }else if (customerInfo.getString("ord_status").equals("Cancelled")){
-                status=3;
-                }
+                    if (customerInfo.getString("ord_status").equals("Preparing")) {
+                        status = 1;
+                    } else if (customerInfo.getString("ord_status").equals("Completed")) {
+                        status = 2;
+                    } else if (customerInfo.getString("ord_status").equals("Cancelled")) {
+                        status = 3;
+                    }
 
             %>
             <div class="box1 d-flex justify-content-around mx-auto">
-                <div class="order-status mt-5">
-                    <div class="preparing">
-                        <input type="radio" name="status" <%= status==1? "checked":"" %>>
-                        Preparing
-                    </div>
-                    <div class="completed">
-                        <input type="radio" name="status" <%= status==2? "checked":"" %>>
-                        Completed
-                    </div>
-                    <div class="cancel">
-                        <input type="radio" name="status" <%= status==3? "checked":"" %>>
-                        Cancelled
-                    </div>
+                <form action="action" method="post">
+                    <div class="order-status mt-5">
+                        <div class="preparing">
+                            <input type="radio" name="status" <%= status == 1 ? "checked" : ""%>>
+                            Preparing
+                        </div>
+                        <div class="completed">
+                            <input type="radio" name="status" <%= status == 2 ? "checked" : ""%>>
+                            Completed
+                        </div>
+                        <div class="cancel">
+                            <input type="radio" name="status" <%= status == 3 ? "checked" : ""%>>
+                            Cancelled
+                        </div>
 
-                    <div class="btnUpdate mt-3">
-                        <button>Update</button>
-                    </div>
+                        <div class="btnUpdate mt-3">
+                            <button type="submit" value="Update">Update</button>
+                        </div>
 
-                </div>
+                    </div>
+                </form> 
                 <div class="customer-info mt-5">
                     <div class="">
 
@@ -89,8 +91,8 @@
                     <tbody>
                         <%
                             ResultSet detailList = (ResultSet) request.getAttribute("orderDetailList");
-            //                OrderDetailDAO odd = new OrderDetailDAO();
-            //                ResultSet detailList = odd.getListOrderDetailById("ORD001");
+                            //                OrderDetailDAO odd = new OrderDetailDAO();
+                            //                ResultSet detailList = odd.getListOrderDetailById("ORD001");
                             double total = 0;
                             while (detailList.next()) {
                         %>
