@@ -101,7 +101,7 @@
                                     <ul class="list-unstyled mb-4">
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Price</strong><strong id ="totalPrice"></strong></li>
 
-                                    </ul><a href="purchase" class="btn btn-dark rounded-pill py-2 btn-block">Buy</a>
+                                    </ul><a href="/CampusMunchies/customer/purchase" class="btn btn-dark rounded-pill py-2 btn-block">Buy</a>
                                 </div>
                             </div>
                         </div>
