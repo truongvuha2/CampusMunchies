@@ -16,30 +16,44 @@
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="/EmployeePage/css/orderList.css"/>
-
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <style>
+            .btn-pagination button {
+                font-size: 50px;
+                width: 70px;
+                border: none;
+                color: black;
+                background-color: white;
+                cursor: pointer;
+            }
+            #pagination {
+                text-align: center;
+                margin-top: 10px;
+            }
+        </style>
     </head>
     <body>
         <%@include file="/EmployeePage/header.jsp" %>
-        <div class="container-fluid">
+        <div class="container-fluid" >
             <div class="d-flex justify-content-center">
                 <div class="d-flex justify-content-center px-2 py-1 title my-3">Order List</div>
             </div>
             <%
-                String startDate="";
-                String endDate="";
+                String startDate = "";
+                String endDate = "";
                 try {
-                        startDate = request.getAttribute("startDate")+"";
-                        endDate = request.getAttribute("endDate")+"";
-                    } catch (Exception e) {
-                        
-                    }
-                
+                    startDate = request.getAttribute("startDate") + "";
+                    endDate = request.getAttribute("endDate") + "";
+                } catch (Exception e) {
+
+                }
+
             %>
             <div class="d-flex justify-content-end mb-2 mt-4">
                 <form action="/employee" method="post">
                     <div>
-                        <label for="">From: </label><input type="date" name="startDate" value="<%= startDate.equals("")?"": startDate %>">
-                        <label for="">To: </label><input type="date" name="endDate" value="<%= endDate.equals("")?"": endDate %>">
+                        <label for="">From: </label><input type="date" name="startDate" value="<%= startDate.equals("") ? "" : startDate%>">
+                        <label for="">To: </label><input type="date" name="endDate" value="<%= endDate.equals("") ? "" : endDate%>">
                         <button class="mx-2" style="border: none;background: none" name="btnSearch" value="Search">
                             <!--<div class="search p-0 d-flex justify-content-center align-items-center">-->
                             <i class="fa-solid fa-magnifying-glass nav_acc_glass" style="color: #FFB23E;"></i>
@@ -51,7 +65,7 @@
 
 
 
-            <table class="table table-bordered" style="color: white">
+            <table class="table table-bordered" style="color: white; font-size: 25px;font-weight: bold">
                 <thead>
                     <tr align="center">
                         <th scope="col">Order ID</th>
@@ -64,7 +78,7 @@
                         <th scope="col">Detail</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="itemList">
                     <%
 
                         ResultSet rs = (ResultSet) request.getAttribute("rs");
@@ -77,15 +91,15 @@
                                 String status = rs.getString("ord_status");
                                 if (status.equals("Preparing")) {
                             %>
-                            <div class="btn btn-warning"><%= rs.getString("ord_status")%></div>
+                            <div class="btn btn-warning" style="font-weight: bold; font-size: 25px"><%= rs.getString("ord_status")%></div>
                             <%
                             } else if (status.equals("Completed")) {
                             %>
-                            <div class="btn btn-success"><%= rs.getString("ord_status")%></div>
+                            <div class="btn btn-success" style="font-weight: bold;  font-size: 25px""><%= rs.getString("ord_status")%></div>
                             <%
                             } else {
                             %>
-                            <div class="btn btn-danger"><%= rs.getString("ord_status")%></div>
+                            <div class="btn btn-danger" style="font-weight: bold;  font-size: 25px""><%= rs.getString("ord_status")%></div>
                             <%
                                 }
                             %>
@@ -102,8 +116,68 @@
                         }
                     %>
                 </tbody>
+
             </table>
+            <div class="btn-pagination" id="pagination">
+                <button id="prevButton"><i class='bx bx-left-arrow-circle'></i></button>
+                <button id="nextButton"><i class='bx bx-right-arrow-circle'></i></button>
+            </div>
         </div>
         <%@include file="/EmployeePage/footer.jsp" %>
     </body>
+    <script>
+        // Pavigation
+
+        const itemList = document.getElementById('itemList');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const rows = itemList.querySelectorAll('tr');
+
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function showPage(pageNumber) {
+            rows.forEach((row, index) => {
+                if (index >= (pageNumber - 1) * rowsPerPage && index < pageNumber * rowsPerPage) {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        showPage(currentPage);
+
+        prevButton.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            const totalPages = Math.ceil(rows.length / rowsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+
+
+        // Sử dụng AJAX để tìm kiếm Order bằng ID
+        document.querySelector('.searchButton button').addEventListener('click', function () {
+            const searchValue = document.querySelector('.searchText input').value;
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Cập nhật phần tử itemList
+                    document.getElementById('itemList').innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "/employee/searchByOrderId?orderId=" + searchValue, true);
+            xhttp.send();
+        });
+
+    </script>
 </html>

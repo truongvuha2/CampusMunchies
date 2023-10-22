@@ -14,6 +14,23 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="/EmployeePage/css/header.css" rel="stylesheet" type="text/css"/>
+        <style>
+            .profileBox {
+                display: none;
+                position: absolute;
+                top: 100px;
+                right: 100px;
+                width: 150px;
+                background: #fff;
+                padding: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .profileBox.show {
+                display: block;
+            }
+
+        </style>
     </head>
     <body>
         <div class="container-fluid m-0 p-0">
@@ -49,12 +66,39 @@
                               fill="#C21010" />
                         </svg>
                     </div>
+                    <%
+                        String name = request.getSession().getAttribute("fullname") + "";
+                        if (name.equals("") || name.equals("null")) {
+                    %>
                     <div class="nameAccount">
                         <a href="#">My Account</a>
+                        <div class="profileBox" id="profileBox">
+                            <a href="/employee/login"><div>Login</div></a>
+                        </div>
                     </div>
+                    <%} else {%>
+                    <div class="nameAccount">
+                        <a href="#">${sessionScope.fullname}</a>
+                    </div>
+                    <div class="profileBox" id="profileBox">
+                        <a href="url">Update Profile</a>
+                        <a href="/employee/logout"><div>Logout</div></a>
+                    </div>
+                    <%}%>
+
                 </div>
             </div>
 
         </div>
     </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const profileIcon = document.querySelector('.iconAvatar');
+            const profileBox = document.querySelector('.profileBox');
+
+            profileIcon.addEventListener('click', function () {
+                profileBox.classList.toggle('show');
+            });
+        });
+    </script>
 </html>

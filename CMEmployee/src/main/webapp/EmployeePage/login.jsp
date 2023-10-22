@@ -13,8 +13,8 @@
         <link href="/EmployeePage/css/login.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <%@include file="header.jsp" %>
-        <form action="/employee" method="post">
+        <header><%@include file="header.jsp" %></header>
+          <form action="/employee" method="post" style="height: calc(100vh - 137px - 241px);">
             <div class="container-fluid d-flex justify-content-center py-5 mb-5">
                 <div class="loginBox d-flex flex-column align-items-center px-5 py-1 w-25">
                     <div class="title py-4">Login</div>
@@ -37,7 +37,11 @@
 
                 </div>
             </div>
-        </form>
-        <%@include file="footer.jsp" %>
+        </form>  
+        </main>
+        <footer>
+            <%@include file="footer.jsp" %>
+        </footer>
+        
     </body>
 </html>

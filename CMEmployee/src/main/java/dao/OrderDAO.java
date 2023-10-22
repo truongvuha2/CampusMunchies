@@ -40,11 +40,22 @@ public class OrderDAO extends DBContext {
         return rs;
     }
     
-    public ResultSet getOrderByPhone(String empoyeePhone) {
+    public ResultSet getOrderByEmployeePhone(String employeePhone) {
         String sql = "select * from [Order] o join Customer c on c.cus_phone=o.cus_phone where o.emp_phone=?";
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, empoyeePhone);
+            ps.setString(1, employeePhone);
+            rs = ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+    }
+    public ResultSet getOrderByCustomerPhone(String customerPhone) {
+        String sql = "select * from [Order] o join Customer c on c.cus_phone=o.cus_phone where o.cus_phone=?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, customerPhone);
             rs = ps.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -52,11 +63,12 @@ public class OrderDAO extends DBContext {
         return rs;
     }
     
-    public ResultSet getOrderById(String orderId) {
-        String sql = "select * from [Order] o join Customer c on c.cus_phone=o.cus_phone where o.ord_id=?";
+    public ResultSet getOrderById(String orderId, String employeePhone) {
+        String sql = "select * from [Order] o join Customer c on c.cus_phone=o.cus_phone where o.ord_id=? and o.emp_phone=?";
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, orderId);
+            ps.setString(2, employeePhone);
             rs = ps.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
