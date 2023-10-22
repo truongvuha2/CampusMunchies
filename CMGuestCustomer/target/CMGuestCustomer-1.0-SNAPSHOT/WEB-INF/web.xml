@@ -56,6 +56,14 @@
         <servlet-name>CustomerAddToCart</servlet-name>
         <servlet-class>controller.customer.CustomerAddToCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerCart</servlet-name>
+        <servlet-class>controller.customer.CustomerCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerChangeQuantity</servlet-name>
+        <servlet-class>controller.customer.CustomerChangeQuantity</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
         <url-pattern>/guest/home</url-pattern>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>CustomerAddToCart</servlet-name>
         <url-pattern>/customer/addToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerCart</servlet-name>
+        <url-pattern>/customer/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerChangeQuantity</servlet-name>
+        <url-pattern>/customer/changeQuantity</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

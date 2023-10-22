@@ -43,7 +43,7 @@
                 list-style: none;
                 position: relative;
                 background-color: var(--color2);
-                
+
                 padding: 12px 20px;
                 margin-bottom: 0;
             }
@@ -155,6 +155,7 @@
                     <span class="menu">
                         <li><a href="/CampusMunchies/customer/home">Home</a></li>
                         <li><a href="/CampusMunchies/customer/menu">Menu</a></li>
+                        <li><a href="/CampusMunchies/customer/cart">Cart</a></li>
                         <li><a href="">About Us</a></li>
                         <li><a  style = "color:orange" href="/CampusMunchies/customer/logout">${name}</a></li>
                         <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
