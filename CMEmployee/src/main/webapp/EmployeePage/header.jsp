@@ -37,7 +37,7 @@
             <div class="header d-flex justify-content-around my-0 align-items-center">
                 <div class="brand d-flex align-items-center">
                     <div class="logo">
-                        <img src="/img/logo.png" alt="Logo Campus Munchies"/>
+                        <a href="/employee/orderList"><img src="/img/logo.png" alt="Logo Campus Munchies"/></a> 
                     </div>
 
                     <div class="name">
@@ -48,7 +48,7 @@
 
                 <div class="search d-flex">
                     <div class="searchText">
-                        <input type="text" placeholder="Search Order By ID">
+                        <input name="orderId" type="text" placeholder="Search Order By ID">
                     </div>
                     <div class="searchButton">
                         <button>Search</button>

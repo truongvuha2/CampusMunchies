@@ -89,4 +89,18 @@ public class OrderDAO extends DBContext {
         }
         return rs;
     }
+    
+    public int updateOrderStatus(String orderId, String status){
+        String sql ="update [Order] set ord_status=? where ord_id = ?;";
+        int kq =0;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, status);
+            ps.setString(2, orderId);
+            kq = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return kq;
+    }
 }

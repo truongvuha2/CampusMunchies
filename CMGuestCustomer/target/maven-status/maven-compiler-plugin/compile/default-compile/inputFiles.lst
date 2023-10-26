@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestMenu.java
+D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerCart.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestFoodDetail.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\filter\CustomerFilter.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestHome.java
@@ -10,35 +10,14 @@ D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\mai
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerLogout.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerMenu.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerSearch.java
+D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\model\Cart.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\model\Food.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\dao\FoodDAO.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerHome.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\dao\DBContext.java
+D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerChangeQuantity.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerFoodDetail.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestRegister.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\CMCookie\CMCookie.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestLogin.java
 D:\FPT_SE1702\Fall23\SWP391\Project\21_10\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestSearch.java
-=======
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\model\Food.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\filter\CustomerFilter.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerFoodDetail.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\dao\CartDAO.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerCart.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\dao\DBContext.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerLogout.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerSearch.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestLogin.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestSearch.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\dao\FoodDAO.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\CMCookie\CMCookie.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestHome.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\model\Customer.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestMenu.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerHome.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestFoodDetail.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerMenu.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\guest\GuestRegister.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\controller\customer\CustomerAddToCart.java
-D:\GIT\CampusMunchies\CMGuestCustomer\src\main\java\dao\CustomerDAO.java
->>>>>>> 2a96ef15d91a0de2be78d568019195a487cc276d

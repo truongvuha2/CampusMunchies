@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Customer;
 
 /**
@@ -134,13 +136,14 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, phone);
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
                 return new Customer(rs.getString(1),
                         rs.getString(2),
                         rs.getString(4), //chỗ này là địa chỉ nhưng lúc đầu lấy cột 3
                         rs.getDate(5),
                         rs.getDate(6),
-                        rs.getInt(7)
+                        getCancelCount(phone)
                 );
             }
         } catch (SQLException e) {
@@ -162,13 +165,31 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
+    public int getCancelCount(String cusPhone) {
+        String cancelCount = "select COUNT(o.ord_id) from Customer c \n"
+                + "join [Order] o on c.cus_phone = o.cus_phone and o.ord_status = 'Cancelled'\n"
+                + "where c.cus_phone=?\n"
+                + "group by c.cus_phone";
+        try {
+            PreparedStatement ps = connection.prepareStatement(cancelCount);
+            ps.setString(1, cusPhone);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
     public static void main(String[] args) {
         CustomerDAO c = new CustomerDAO();
         List<Customer> list = c.getAll();
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).toString());
         }
-        
+
         System.out.println(c.isExisted("0123456788", "password2"));
     }
 

@@ -24,7 +24,6 @@
                 <div class="text d-flex align-items-center justify-content-center">Order Detail</div>
             </div>
             <%
-
                 String orderId = request.getAttribute("orderId") + "";
                 ResultSet customerInfo = (ResultSet) request.getAttribute("orderInfo");
                 int status = 0;
@@ -38,24 +37,24 @@
                     }
 
             %>
-            <div class="box1 d-flex justify-content-around mx-auto">
-                <form action="action" method="post">
+            <div class="box1 d-flex justify-content-around mx-auto" style="height: 22.1875rem">
+                <form method="post" action="/employee?orderId=<%= orderId %>">
                     <div class="order-status mt-5">
                         <div class="preparing">
-                            <input type="radio" name="status" <%= status == 1 ? "checked" : ""%>>
+                            <input type="radio" value="Preparing" name="status" <%= status == 1 ? "checked" : ""%>>
                             Preparing
                         </div>
                         <div class="completed">
-                            <input type="radio" name="status" <%= status == 2 ? "checked" : ""%>>
+                            <input type="radio" value="Completed" name="status" <%= status == 2 ? "checked" : ""%>>
                             Completed
                         </div>
                         <div class="cancel">
-                            <input type="radio" name="status" <%= status == 3 ? "checked" : ""%>>
+                            <input type="radio" value="Cancelled" name="status" <%= status == 3 ? "checked" : ""%>>
                             Cancelled
                         </div>
 
                         <div class="btnUpdate mt-3">
-                            <button type="submit" value="Update">Update</button>
+                            <button name="btnUpdateStatus" type="submit" value="Update">Update</button>
                         </div>
 
                     </div>
@@ -63,10 +62,11 @@
                 <div class="customer-info mt-5">
                     <div class="">
 
-                        <div>Customer: <%= customerInfo.getString("cus_name")%> <a href="/employee/customerInfo/<%=orderId%>/<%= customerInfo.getString("cus_phone")%>"><i class="fa-solid fa-circle-info"></i></a></div>
+                        <div>Customer: <%= customerInfo.getString("cus_name")%> <a id="more" href="/employee/customerInfo/<%=orderId%>/<%= customerInfo.getString("cus_phone")%>"><i class="fa-solid fa-circle-info"></i></a></div>
                         <div>Address: <%= customerInfo.getString("cus_address")%></div>
                         <div>Phone: <%= customerInfo.getString("cus_phone")%></div>
-                        <div>Payment: <%= customerInfo.getString("ord_type")%></div>
+                        <div>Payment: <%= customerInfo.getString("ord_pay")%></div>
+                        <div>Type: <%= customerInfo.getString("ord_type")%></div>
                         <div>Order date: <%= customerInfo.getString("ord_date")%></div>
 
                         <div>Note: <%= customerInfo.getString("ord_note")%></div>
@@ -121,5 +121,6 @@
             </div>
         </div>
         <%@include file="/EmployeePage/footer.jsp" %>
+
     </body>
 </html>

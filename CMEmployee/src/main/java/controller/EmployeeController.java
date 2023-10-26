@@ -69,7 +69,7 @@ public class EmployeeController extends HttpServlet {
         String folder = "/EmployeePage";
         String path = request.getRequestURI();
         OrderDAO ordDAO = new OrderDAO();
-        if (path.equals("/employee/login")) {
+        if (path.endsWith("/employee/login")) {
             request.getRequestDispatcher(folder + "/login.jsp").forward(request, response);
         } else if (path.endsWith("/employee/orderList")) {
 
@@ -102,7 +102,7 @@ public class EmployeeController extends HttpServlet {
                     searchResultHtml += "<tr align=\"center\">";
                     searchResultHtml += "<td>" + rs.getString("ord_id") + "</td>";
                     String status = rs.getString("ord_status");
-                    searchResultHtml+="<td>";
+                    searchResultHtml += "<td>";
                     if (status.equals("Preparing")) {
                         searchResultHtml += "<div style=\"font-weight: bold; font-size: 25px\" class=\"btn btn-warning\">" + rs.getString("ord_status") + "</div>";
                     } else if (status.equals("Completed")) {
@@ -110,11 +110,12 @@ public class EmployeeController extends HttpServlet {
                     } else {
                         searchResultHtml += "<div style=\"font-weight: bold; font-size: 25px\" class=\"btn btn-danger\">" + rs.getString("ord_status") + "</div>";
                     }
-                    searchResultHtml+="</td>";
+                    searchResultHtml += "</td>";
                     searchResultHtml += "<td>" + rs.getString("ord_date") + "</td>";
                     searchResultHtml += "<td>" + rs.getString("cus_name") + "</td>";
                     searchResultHtml += "<td>" + rs.getString("cus_phone") + "</td>";
                     searchResultHtml += "<td>" + rs.getString("ord_type") + "</td>";
+                    searchResultHtml += "<td>" + rs.getString("ord_pay") + "</td>";
                     searchResultHtml += "<td>" + rs.getString("ord_total") + "</td>";
                     searchResultHtml += "<td><a href=\"/orderDetail/" + rs.getString("ord_id") + "\">View</a></td>";
                     searchResultHtml += "</tr>";
@@ -126,10 +127,14 @@ public class EmployeeController extends HttpServlet {
                 Logger.getLogger(EmployeeController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        }else if(path.endsWith("/employee/logout")){
+        } else if (path.endsWith("/employee/logout")) {
             session.removeAttribute("phone");
             session.removeAttribute("fullname");
-            request.getRequestDispatcher(folder+"/login.jsp").forward(request, response);
+            request.getRequestDispatcher(folder + "/login.jsp").forward(request, response);
+        } else if (path.endsWith("/employee/login/fail")) {
+            String loginError = "The phone or password is incorrect!";
+            request.setAttribute("loginError", loginError);
+            request.getRequestDispatcher(folder + "/login.jsp").forward(request, response);
         }
     }
 
@@ -147,6 +152,7 @@ public class EmployeeController extends HttpServlet {
         String folder = "/EmployeePage";
         String btnLogin = request.getParameter("btnLogin");
         String btnSearch = request.getParameter("btnSearch");
+        String btnUpdateStatus =request.getParameter("btnUpdateStatus");
         EmployeeDAO empDAO = new EmployeeDAO();
         OrderDAO ordDAO = new OrderDAO();
         if (btnLogin != null && btnLogin.equals("login")) {
@@ -156,11 +162,11 @@ public class EmployeeController extends HttpServlet {
             boolean result = empDAO.isExisted(phone, password);
             Employee emp = empDAO.searchByPhone(phone);
             if (result) {
-                request.getSession().setAttribute("fullname",emp.getName() );
+                request.getSession().setAttribute("fullname", emp.getName());
                 request.getSession().setAttribute("phone", phone);
                 response.sendRedirect("/employee/orderList");
             } else {
-                response.sendRedirect("/employee/login");
+                response.sendRedirect("/employee/login/fail");
             }
         }
         if (btnSearch != null && btnSearch.equals("Search")) {
@@ -172,6 +178,20 @@ public class EmployeeController extends HttpServlet {
             request.setAttribute("startDate", startDate);
             request.setAttribute("endDate", endDate);
             request.getRequestDispatcher(folder + "/orderList.jsp").forward(request, response);
+        }
+        if(btnUpdateStatus!=null && btnUpdateStatus.equals("Update")){
+            String[] statusValues = request.getParameterValues("status");
+            String orderId = request.getParameter("orderId");
+            String selectedStatus = "";
+            if(statusValues!=null){
+                selectedStatus = statusValues[0];
+            }
+            int kq = ordDAO.updateOrderStatus(orderId, selectedStatus);
+            if (kq!=0) {
+                response.sendRedirect("/orderDetail/"+orderId);
+            } else {
+                response.sendRedirect("/orderDetail/"+orderId);
+            }
         }
     }
 

@@ -74,6 +74,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Type</th>
+                        <th scope="col">Payment</th>
                         <th scope="col">Total</th>
                         <th scope="col">Detail</th>
                     </tr>
@@ -109,8 +110,9 @@
                         <td><%= rs.getString("cus_name")%></td>
                         <td><%= rs.getString("cus_phone")%></td>
                         <td><%= rs.getString("ord_type")%></td>
+                        <td><%= rs.getString("ord_pay")%></td>
                         <td><%= rs.getString("ord_total")%></td>
-                        <td><a href="/orderDetail/<%= rs.getString("ord_id")%>">View</a></td>
+                        <td><a id="btnView" href="/orderDetail/<%= rs.getString("ord_id")%>">View</a></td>
                     </tr>   
                     <%
                         }
