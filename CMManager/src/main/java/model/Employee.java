@@ -8,7 +8,11 @@ import java.sql.Date;
 
 /**
  *
+<<<<<<< HEAD
  * @author Khanh
+=======
+ * @author khang
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
  */
 public class Employee {
 
@@ -18,10 +22,15 @@ public class Employee {
     private String password;
     private Date birthday;
     private Date create;
+<<<<<<< HEAD
     private int order_served;
     private String emp_status;
 
     public Employee(String name, String phone, String password, String address, Date birthday, Date create) {
+=======
+
+    public Employee(String phone, String name, String password, String address, Date birthday, Date create) {
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
         this.phone = phone;
         this.name = name;
         this.password = password;
@@ -30,6 +39,7 @@ public class Employee {
         this.create = create;
     }
 
+<<<<<<< HEAD
     public Employee(String name, String phone, String address, Date birthday, int order_served, Date create, String emp_status) {
         this.phone = phone;
         this.name = name;
@@ -54,6 +64,8 @@ public class Employee {
         this.emp_status = emp_status;
     }
 
+=======
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
     public String getPassword() {
         return password;
     }
@@ -102,6 +114,7 @@ public class Employee {
         this.create = create;
     }
 
+<<<<<<< HEAD
     public int getOrder_served() {
         return order_served;
     }
@@ -110,6 +123,8 @@ public class Employee {
         this.order_served = order_served;
     }
     
+=======
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
     @Override
     public String toString() {
         return "Employee{" + "phone=" + phone + ", name=" + name + ", address=" + address + ", birthday=" + birthday + ", create=" + create + '}';

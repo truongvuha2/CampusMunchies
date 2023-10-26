@@ -11,20 +11,21 @@ import java.sql.Date;
  * @author ddand
  */
 public class Customer {
+
     private String phone;
     private String name;
     private String address;
     private Date birthday;
     private Date create_date;
-    private int cancel_count;
+    private String status;
 
-    public Customer(String phone, String name, String address, Date birthday, Date create_date, int cancel_count) {
+    public Customer(String phone, String name, String address, Date birthday, Date create_date, String status) {
         this.phone = phone;
         this.name = name;
         this.address = address;
         this.birthday = birthday;
         this.create_date = create_date;
-        this.cancel_count = cancel_count;
+        this.status = status;
     }
 
     public Customer(String phone, String name, String address, Date birthday) {
@@ -32,9 +33,10 @@ public class Customer {
         this.name = name;
         this.address = address;
         this.birthday = birthday;
-       
     }
     
+    
+
     public String getPhone() {
         return phone;
     }
@@ -75,19 +77,17 @@ public class Customer {
         this.create_date = create_date;
     }
 
-    public int getCancel_count() {
-        return cancel_count;
+    public String getStatus() {
+        return status;
     }
 
-    public void setCancel_count(int cancel_count) {
-        this.cancel_count = cancel_count;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return "Customer{" + "phone=" + phone + ", name=" + name + ", address=" + address + ", birthday=" + birthday + ", create_date=" + create_date + ", cancel_count=" + cancel_count + '}';
+        return "Customer{" + "phone=" + phone + ", name=" + name + ", address=" + address + ", birthday=" + birthday + ", create_date=" + create_date + ", status=" + status + '}';
     }
-    
-     
 
 }

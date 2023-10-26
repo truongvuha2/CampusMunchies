@@ -4,18 +4,24 @@
  */
 package controller;
 
+<<<<<<< HEAD
 import dao.CustomerDAO;
 import dao.OrderDAO;
+=======
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import model.Customer;
 import model.Order;
+=======
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 
 /**
  *
@@ -40,7 +46,11 @@ public class Analytics extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+<<<<<<< HEAD
             out.println("<title>Servlet Analytics</title>");
+=======
+            out.println("<title>Servlet Analytics</title>");            
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Analytics at " + request.getContextPath() + "</h1>");
@@ -61,6 +71,7 @@ public class Analytics extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         try {
             CustomerDAO customerDao = new CustomerDAO();
             OrderDAO orderDao = new OrderDAO();
@@ -81,6 +92,9 @@ public class Analytics extends HttpServlet {
         } catch (Exception e) {
             System.out.println(e);
         }
+=======
+        processRequest(request, response);
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
     }
 
     /**
@@ -94,6 +108,10 @@ public class Analytics extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
+=======
+        processRequest(request, response);
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
     }
 
     /**

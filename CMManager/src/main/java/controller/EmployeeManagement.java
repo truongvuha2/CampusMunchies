@@ -4,13 +4,17 @@
  */
 package controller;
 
+<<<<<<< HEAD
 import dao.EmployeeDAO;
+=======
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import model.Employee;
@@ -18,6 +22,12 @@ import model.Employee;
 /**
  *
  * @author Khanh
+=======
+
+/**
+ *
+ * @author Admin
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
  */
 public class EmployeeManagement extends HttpServlet {
 
@@ -59,6 +69,7 @@ public class EmployeeManagement extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         EmployeeDAO employeeDao = new EmployeeDAO();
         List<Employee> listEmployeeMain = new ArrayList<Employee>();
         List<Employee> listEmployeeHonor = new ArrayList<Employee>();
@@ -72,6 +83,9 @@ public class EmployeeManagement extends HttpServlet {
         } catch (Exception e) {
             System.out.println(e);
         }
+=======
+        processRequest(request, response);
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
     }
 
     /**
@@ -85,10 +99,14 @@ public class EmployeeManagement extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         try {
             
         } catch (Exception e) {
         }
+=======
+        processRequest(request, response);
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
     }
 
     /**

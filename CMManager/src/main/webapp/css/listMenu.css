@@ -133,6 +133,16 @@ aside {
   font-family: 'Poppins', sans-serif;
 }
 
+<<<<<<< HEAD
+=======
+ .sidebar .side-menu .sub-menu{
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+  }
+
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 .sidebar .side-menu li {
   margin: 10px 0;
 }
@@ -145,6 +155,20 @@ aside {
   font-size: 18px;
 }
 
+<<<<<<< HEAD
+=======
+ .sidebar .side-menu .sub-menu{
+    color: #ffffff;
+    display: block;
+    padding: 10px;
+    transition: 0.3s;
+    font-size: 18px;
+    display: none;
+  }
+ .sidebar li:hover .sub-menu{
+    display: block;
+  }
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 
 
 .sidebar .side-menu a:hover {
@@ -154,6 +178,18 @@ aside {
   padding-left: 6px;
 }
 
+<<<<<<< HEAD
+=======
+
+ .sidebar .side-menu a:hover .sub-menu{
+    background-color: #C21010;
+    color: #ecf0f1;
+    border-left: 4px solid #C21010;
+    padding-left: 6px;
+}
+
+
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 main {
   flex: 1;
   padding: 20px;
@@ -318,4 +354,16 @@ h2 {
   .right-section {
     margin-left: 0;
   }
+<<<<<<< HEAD
 }
+=======
+}
+
+ .slidebar .slide-menu .li{
+      position: relative;
+  }
+ .slidebar .slide-menu ul.sub-menu{
+      position: absolute;
+  }
+  
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0

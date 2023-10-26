@@ -18,7 +18,7 @@ import model.Customer;
  */
 public class CustomerDAO extends DBContext implements ICRUD<Customer> {
 
-    @Override
+     
     public boolean isExisted(String phone, String password) {
         try {
             String sql = "select * from Customer "
@@ -32,7 +32,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    @Override
+     
     public void add(Customer customer, String password) {
         try {
             String sql = "INSERT INTO Customer VALUES\n"
@@ -50,7 +50,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    @Override
+     
     public void update(Customer customer) {
         try {
             String sql = "update Customer set  cus_name=?,  cus_address=?, cus_birthday=?, cus_cancel_count=? where cus_phone=?";
@@ -66,7 +66,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    @Override
+     
     public void remove(String phone) {
         try {
             String sql = "delete Customer where cus_phone = ?  ";
@@ -79,7 +79,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    @Override
+     
     public List getAll() {
         List<Customer> customers = new ArrayList<>();
         String sql = "select * from Customer";
@@ -101,7 +101,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         return customers;
     }
 
-    @Override
+     
     public List<Customer> searchByName(String name) {
         List<Customer> customers = new ArrayList<>();
         try {
@@ -125,7 +125,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         return customers;
     }
 
-    @Override
+     
     public Customer searchByPhone(String phone) {
         try {
             String sql = "SELECT * "
@@ -148,7 +148,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         return null;
     }
 
-    @Override
+     
     public void changePassword(String phone, String password) {
         String sql = "update Customer set cus_password=convert(varchar(20),hashbytes('MD5',?),2) where cus_phone=?";
         try {

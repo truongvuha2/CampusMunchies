@@ -6,6 +6,7 @@ const tableRows = document.querySelectorAll('tbody tr');
 // Lắng nghe sự kiện input trên thanh tìm kiếm và change trên select
 searchInput.addEventListener('input', filterTable);
 filterSelect.addEventListener('change', filterTable);
+<<<<<<< HEAD
 filterSelect.addEventListener('change', function () {
     searchInput.value = ''; // Đặt lại giá trị thanh tìm kiếm về chuỗi trống
     filterTable();
@@ -28,6 +29,30 @@ function filterTable() {
 
         row.style.display = shouldDisplay ? 'table-row' : 'none';
     });
+=======
+filterSelect.addEventListener('change', function() {
+  searchInput.value = ''; // Đặt lại giá trị thanh tìm kiếm về chuỗi trống
+  filterTable();
+});
+function filterTable() {
+  const searchTerm = searchInput.value.toLowerCase();
+  const selectedOption = filterSelect.value;
+
+  tableRows.forEach(row => {
+    const cells = row.querySelectorAll('td');
+    let shouldDisplay = false;
+
+    if (selectedOption === 'all') {
+      shouldDisplay = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(searchTerm));
+    } else {
+      const column = document.querySelector(`th[data-filter="${selectedOption}"`);
+      const columnIndex = Array.from(column.parentElement.children).indexOf(column);
+      shouldDisplay = cells[columnIndex].textContent.toLowerCase().includes(searchTerm);
+    }
+
+    row.style.display = shouldDisplay ? 'table-row' : 'none';
+  });
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }
 
 // Pavigation
@@ -41,6 +66,7 @@ const rowsPerPage = 10;
 let currentPage = 1;
 
 function showPage(pageNumber) {
+<<<<<<< HEAD
     rows.forEach((row, index) => {
         if (index >= (pageNumber - 1) * rowsPerPage && index < pageNumber * rowsPerPage) {
             row.style.display = 'table-row';
@@ -48,11 +74,21 @@ function showPage(pageNumber) {
             row.style.display = 'none';
         }
     });
+=======
+  rows.forEach((row, index) => {
+    if (index >= (pageNumber - 1) * rowsPerPage && index < pageNumber * rowsPerPage) {
+      row.style.display = 'table-row';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }
 
 showPage(currentPage);
 
 prevButton.addEventListener('click', () => {
+<<<<<<< HEAD
     if (currentPage > 1) {
         currentPage--;
         showPage(currentPage);
@@ -67,6 +103,20 @@ nextButton.addEventListener('click', () => {
         showPage(currentPage);
         searchInput.value = '';
     }
+=======
+  if (currentPage > 1) {
+    currentPage--;
+    showPage(currentPage);
+  }
+});
+
+nextButton.addEventListener('click', () => {
+  const totalPages = Math.ceil(rows.length / rowsPerPage);
+  if (currentPage < totalPages) {
+    currentPage++;
+    showPage(currentPage);
+  }
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 });
 
 // Sort
@@ -92,9 +142,17 @@ function sortTable(column) {
     }
     // Thêm lại các hàng đã sắp xếp
     rows.forEach(row => {
+<<<<<<< HEAD
         tbody.appendChild(row);
     });
 
     // Đảo chiều sắp xếp cho lần nhấn tiếp theo
     sortDirection *= -1;
+=======
+      tbody.appendChild(row);
+  });
+
+  // Đảo chiều sắp xếp cho lần nhấn tiếp theo
+  sortDirection *= -1;
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }

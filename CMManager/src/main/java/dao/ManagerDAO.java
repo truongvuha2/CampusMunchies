@@ -12,10 +12,17 @@ public class ManagerDAO extends DBContext {
 
     public boolean isExisted(String username, String password) {
         try {
+<<<<<<< HEAD
             String sql = "SELECT * FROM Manager WHERE username = '"+username+"' AND password = CONVERT(VARCHAR(20), HASHBYTES('MD5', '"+password+"'), 2)";
             PreparedStatement ps = connection.prepareStatement(sql);
             //ps.setString(1, username);
             //ps.setString(2, password);
+=======
+            String sql = "SELECT * FROM Manager WHERE username = ? AND password = CONVERT(VARCHAR(20), HASHBYTES('MD5', ?), 2)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
             ResultSet rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {

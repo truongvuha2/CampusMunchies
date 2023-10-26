@@ -147,6 +147,7 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
 
     @Override
     public void changePassword(String phone, String password) {
+<<<<<<< HEAD
         try {
             String sql = "update employee set emp_password=convert(varchar(20),hashbytes('MD5',?),2) where emp_phone=?";
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -248,6 +249,13 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
             String sql = "update Employee set emp_status = 'Deleted' where emp_phone = ? ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, phone);
+=======
+        String sql = "update employee set emp_password=convert(varchar(20),hashbytes('MD5',?),2) where emp_phone=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, password);
+            ps.setString(2, phone);
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);

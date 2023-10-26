@@ -4,16 +4,22 @@
  */
 package controller;
 
+<<<<<<< HEAD
 import dao.OrderDAO;
+=======
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import model.Order;
+=======
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 
 /**
  *
@@ -59,6 +65,7 @@ public class OrderManagement extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         OrderDAO orderDao = new OrderDAO();
         List<Order> listOrder = new ArrayList<Order>();
         try {
@@ -71,6 +78,9 @@ public class OrderManagement extends HttpServlet {
         } catch (Exception e) {
             System.out.println(e);
         }
+=======
+        processRequest(request, response);
+>>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
     }
 
     /**
