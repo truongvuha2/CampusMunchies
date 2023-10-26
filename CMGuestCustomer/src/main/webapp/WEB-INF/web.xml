@@ -64,6 +64,14 @@
         <servlet-name>CustomerChangeQuantity</servlet-name>
         <servlet-class>controller.customer.CustomerChangeQuantity</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerPurchase</servlet-name>
+        <servlet-class>controller.customer.CustomerPurchase</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerFinishOrder</servlet-name>
+        <servlet-class>controller.customer.CustomerFinishOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
         <url-pattern>/guest/home</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>CustomerChangeQuantity</servlet-name>
         <url-pattern>/customer/changeQuantity</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerPurchase</servlet-name>
+        <url-pattern>/customer/purchase</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerFinishOrder</servlet-name>
+        <url-pattern>/customer/finishOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
