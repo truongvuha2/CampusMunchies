@@ -111,18 +111,13 @@ body, h1, h2, h3, p, ul, li, table {
     text-align: left;
     font-family: 'Poppins', sans-serif;
   }
-  .sidebar .side-menu .sub-menu{
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    font-family: 'Poppins', sans-serif;
-  }
+
   
   .sidebar .side-menu li {
     margin: 10px 0;
   }
   
-  
+
   .sidebar .side-menu a {
     color: #ffffff;
     display: block;
@@ -130,17 +125,7 @@ body, h1, h2, h3, p, ul, li, table {
     transition: 0.3s;
     font-size: 18px;
   }
-  .sidebar .side-menu .sub-menu{
-    color: #ffffff;
-    display: block;
-    padding: 10px;
-    transition: 0.3s;
-    font-size: 18px;
-    display: none;
-  }
-  .sidebar li:hover .sub-menu{
-    display: block;
-  }
+
 
  
 
@@ -150,12 +135,7 @@ body, h1, h2, h3, p, ul, li, table {
     border-left: 4px solid #C21010;
     padding-left: 6px;
   }
-  .sidebar .side-menu a:hover .sub-menu{
-    background-color: #C21010;
-    color: #ecf0f1;
-    border-left: 4px solid #C21010;
-    padding-left: 6px;
-  }
+
  
   main {
     flex: 1;
@@ -183,7 +163,9 @@ body, h1, h2, h3, p, ul, li, table {
     width: 80px;
     height: 80px;
     border-radius: 10px;
-    font-size: 36px;
+
+    font-size: 40px;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -263,7 +245,7 @@ body, h1, h2, h3, p, ul, li, table {
     padding-top: 20px;
   }
  
-  
+
   /* Media Query for Responsive Design */
   @media (max-width: 768px) {
     .container-i {
@@ -276,10 +258,3 @@ body, h1, h2, h3, p, ul, li, table {
       margin-left: 0;
     }
   }
-  .slidebar .slide-menu .li{
-      position: relative;
-  }
-  .slidebar .slide-menu ul.sub-menu{
-      position: absolute;
-  }
-  

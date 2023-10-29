@@ -117,13 +117,6 @@ aside {
   text-align: left;
 }
 
-.sidebar .side-menu .sub-menu{
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    font-family: 'Poppins', sans-serif;
-  }
-
 
 .sidebar .side-menu li {
   margin: 10px 0;
@@ -137,17 +130,7 @@ aside {
   font-size: 18px;
 }
 
-.sidebar .side-menu .sub-menu{
-    color: #ffffff;
-    display: block;
-    padding: 10px;
-    transition: 0.3s;
-    font-size: 18px;
-    display: none;
-  }
-.sidebar li:hover .sub-menu{
-    display: block;
-  }
+
 
 .sidebar .side-menu a:hover {
   background-color: #C21010;
@@ -156,13 +139,6 @@ aside {
   padding-left: 6px;
 }
 
-
-.sidebar .side-menu a:hover .sub-menu{
-    background-color: #C21010;
-    color: #ecf0f1;
-    border-left: 4px solid #C21010;
-    padding-left: 6px;
-}
 
 main {
   flex: 1;
@@ -320,7 +296,7 @@ a {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   margin-top: 20px;
   padding-bottom: 30px;
-  margin-right: 10px;
+
 }
 
 .honor-employee-table h2{
@@ -344,10 +320,6 @@ a {
   .right-section {
     margin-left: 0;
   }
+
 }
-.slidebar .slide-menu .li{
-      position: relative;
-  }
- .slidebar .slide-menu ul.sub-menu{
-      position: absolute;
-  }
+

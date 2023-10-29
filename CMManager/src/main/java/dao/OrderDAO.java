@@ -124,41 +124,5 @@ public class OrderDAO extends DBContext {
 //        }
 //        return null;
 //    }
-=======
- * @author MY LAPTOP
- */
-public class OrderDAO extends DBContext {
 
-    private Connection conn;
-    private PreparedStatement ps;
-    private ResultSet rs;
-
-    public OrderDAO() {
-        this.conn = connection;
-    }
-
-    public ResultSet getAll() {
-        String sql = "select * from [Order] o join Customer c on c.cus_phone=o.cus_phone order by o.ord_status desc";
-        try {
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return rs;
-    }
-    
-    public ResultSet getOrderByPhone(String empoyeePhone) {
-        String sql = "select * from [Order] o join Customer c on c.cus_phone=o.cus_phone where c.cus_phone=?";
-        try {
-            ps = conn.prepareStatement(sql);
-            ps.setInt(1, Integer.parseInt(empoyeePhone));
-            rs = ps.executeQuery();
-        } catch (SQLException ex) {
-            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return rs;
-    }
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }

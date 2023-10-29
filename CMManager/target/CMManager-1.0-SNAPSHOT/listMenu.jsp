@@ -25,50 +25,8 @@
 
     <div class="container-i">
         <!-- Sidebar -->
-        <aside>
-            <div class="sidebar">
-                <a href="#" class="logo-side">
-                    <div class="logo-name">
-                        <div class="Campus">Campus</div>
-                        <div class="Munchines">Munchines</div>
-                    </div>
-                </a>
-                <ul class="side-menu">
-                    <li><a href="analytics.jsp"><i class='bx bx-analyse'></i> Analytics</a></li>
-                    <li><a href="orderManagement.jsp"><i class='bx bx-box'></i> Order</a>
-                        
-                    </li>
-                    <li><a href="#"><i class='bx bx-food-menu'></i> Menu</a>
-                        
-                        <ul class="sub-menu">
-                                <li><a href="addFood.jsp"> Add Food</a></li>
-                                <li><a href="updateFood.jsp"> Update Food</a></li>
-                                <li><a href="foodDetai.jsp"> Food Detail</a></li>
-                                <li><a href="listMenu.jsp"> List Menu</a></li>
-                            </ul>
-                        
-                    </li>
-                    <li><a href="customerManagement.jsp"><i class='bx bxs-user-account'></i> Customer</a>
-                        
-                        
-                        
-                    </li>
-                    <li><a href="employeeManagement.jsp"><i class='bx bxs-user-detail'></i> Employee</a>
-                    
-                   
-                    
-                    </li>
-                </ul>
-                <ul class="side-menu">
-                    <li>
-                        <a href="#" class="logout">
-                            <i class='bx bx-log-out-circle'></i>
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
+        <%@include file="sidebar.jsp" %>
+
         <!-- End of Sidebar -->
         <!-- Main Content -->
         <main>
@@ -81,7 +39,8 @@
                     Menu
                 </div>
                 <div class="user-info">
-                    <p>Hey, <b>Reza</b></p>
+                    <p>Hey, <b><%= request.getSession().getAttribute("username") %></b></p>
+
                     <small class="text-muted">Admin</small>
                 </div>
             </div>

@@ -10,18 +10,15 @@ p,
 ul,
 li,
 table {
-<<<<<<< HEAD
+
   margin: 0;
   padding: 0;
-=======
-    margin: 0;
-    padding: 0;
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
 }
 
 /* Header Style */
 .logo-tittle {
-<<<<<<< HEAD
+
   width: 8.4375rem;
   height: 8.5625rem;
   flex-shrink: 0;
@@ -62,90 +59,35 @@ table {
 .user-info small {
   text-align: left;
   color: #888;
-=======
-    width: 8.4375rem;
-    height: 8.5625rem;
-    flex-shrink: 0;
-}
 
-.logo-tittle img {
-    object-fit: contain;
-    width: 100%;
-    border-radius: 50%;
-}
-
-.name-tittle {
-    color: #000;
-    font-size: 2.5rem;
-    font-weight: 800;
-    line-height: normal;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header h1 {
-    font-size: 24px;
-    margin: 0;
-}
-
-.user-info {
-    text-align: right;
-}
-
-.user-info p {
-    margin: 0;
-}
-
-.user-info small {
-    text-align: left;
-    color: #888;
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }
 
 
 /* Set the background color for the entire page */
 body {
-<<<<<<< HEAD
   background-color: #f2f2f2;
   font-family: 'Poppins', sans-serif;
 }
 
 .container-i {
   display: flex;
-=======
-    background-color: #f2f2f2;
-    font-family: 'Poppins', sans-serif;
-}
 
-.container-i {
-    display: flex;
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }
 
 /* Sidebar Styles */
 aside {
-<<<<<<< HEAD
+
   width: 250px;
   background-color: #333;
   color: #fff;
   text-align: center;
   position: relative;
-=======
-    width: 250px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    position: relative;
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
 }
 
 /* Thiết lập cho thanh sidebar */
 .Campus {
-<<<<<<< HEAD
+
   color: #C21010;
   font-size: 2.1875rem;
   font-style: italic;
@@ -207,100 +149,12 @@ aside {
 main {
   flex: 1;
   padding: 20px;
-=======
-    color: #C21010;
-    font-size: 2.1875rem;
-    font-style: italic;
-    font-weight: 800;
-    line-height: normal;
-    font-family: Arial, sans-serif;
-}
 
-.Munchines {
-    color: #ffffff;
-    font-size: 2.1875rem;
-    font-style: italic;
-    font-weight: 800;
-    line-height: normal;
-}
-
-.sidebar {
-    position: fixed;
-    width: 250px;
-    height: 100%;
-    background-color: #000000;
-    padding-top: 20px;
-}
-
-.sidebar .logo-side {
-    text-align: center;
-    color: #ecf0f1;
-    font-size: 24px;
-    margin-bottom: 50px;
-}
-
-.sidebar .side-menu {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-}
-
-
-.sidebar .side-menu .sub-menu{
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    font-family: 'Poppins', sans-serif;
-  }
-
-
-.sidebar .side-menu li {
-    margin: 10px 0;
-}
-
-.sidebar .side-menu a {
-    color: #ffffff;
-    display: block;
-    padding: 10px;
-    transition: 0.3s;
-    font-size: 18px;
-}
-
-.sidebar .side-menu .sub-menu{
-    color: #ffffff;
-    display: block;
-    padding: 10px;
-    transition: 0.3s;
-    font-size: 18px;
-    display: none;
-  }
- .sidebar li:hover .sub-menu{
-    display: block;
-  }
-
-.sidebar .side-menu a:hover {
-    background-color: #C21010;
-    color: #ecf0f1;
-    border-left: 4px solid #C21010;
-    padding-left: 6px;
-}
-
-
-.sidebar .side-menu a:hover .sub-menu{
-    background-color: #C21010;
-    color: #ecf0f1;
-    border-left: 4px solid #C21010;
-    padding-left: 6px;
-}
-main {
-    flex: 1;
-    padding: 20px;
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }
 
 /* Customer Management Styles */
 .customer-table {
-<<<<<<< HEAD
+
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
@@ -375,105 +229,23 @@ table {
 thead {
   background-color: #C21010;
   color: #fff;
-=======
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-    padding-bottom: 30px;
-}
 
-.customer-list {
-    margin-bottom: 20px;
-}
-
-.select-box {
-    margin-left: 40%;
-    margin-bottom: 20px;
-    padding: 0 20px 0 15px;
-    border-radius: 10px;
-    width: 16%;
-    color: black;
-    background-color: white;
-    font-size: 16px;
-}
-
-.select-box option {
-    font-size: 16px;
-}
-
-.search-container {
-    display: flex;
-    align-items: center;
-}
-
-.search-box {
-    margin-left: 10px;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 50px;
-    width: 320px;
-    font-size: 16px;
-}
-
-.search-button {
-    margin-bottom: 20px;
-    background-color: #000000;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.search-main {
-    display: flex;
-}
-
-.search-button:hover {
-    background-color: #C21010;
-}
-
-.status {
-    color: rgb(27, 230, 0);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    justify-content: space-between;
-}
-
-thead {
-    background-color: #C21010;
-    color: #fff;
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }
 
 th,
 td {
-<<<<<<< HEAD
   font-weight: 600;
   font-size: larger;
   padding: 20px 0 20px 0;
   text-align: center;
   border-bottom: 1px solid #ccc;
-=======
-    font-weight: 600;
-    font-size: larger;
-    padding: 20px 0 20px 0;
-    text-align: center;
-    border-bottom: 1px solid #ccc;
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
 }
 
 
 
 #itemList {
-<<<<<<< HEAD
+
   list-style: none;
   padding: 0;
 }
@@ -481,21 +253,13 @@ td {
 #pagination {
   text-align: center;
   margin-top: 10px;
-=======
-    list-style: none;
-    padding: 0;
-}
 
-#pagination {
-    text-align: center;
-    margin-top: 10px;
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }
 
 
 
 .btn-pagination button {
-<<<<<<< HEAD
+
   font-size: 50px;
   width: 70px;
   border: none;
@@ -506,23 +270,12 @@ td {
 
 th{
   cursor: pointer;
-=======
-    font-size: 50px;
-    width: 70px;
-    border: none;
-    color: black;
-    background-color: white;
-    cursor: pointer;
-}
 
-th{
-    cursor: pointer;
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }
 
 
 a {
-<<<<<<< HEAD
+
   display: inline-block;
   text-decoration: none;
   color: #007bff;
@@ -568,58 +321,11 @@ a {
 
 .black-list-table th{
   background-color: #ff8800;
-=======
-    display: inline-block;
-    text-decoration: none;
-    color: #007bff;
-}
 
-.other-info{
-    display: flex;
-}
-
-.honor-customer-table{
-    width: 100%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-    padding-bottom: 30px;
-    margin-right: 10px;
-}
-
-.black-list-table{
-    width: 100%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-    padding-bottom: 30px;
-    margin-left: 10px;
-}
-
-.honor-customer-table h2{
-    text-align: center;
-}
-
-.black-list-table h2{
-    text-align: center;
-}
-
-.honor-customer-table th{
-    background-color: #00CDCD;
-}
-
-.black-list-table th{
-    background-color: #ff8800;
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }
 
 /* Media Query for Responsive Design */
 @media (max-width: 768px) {
-<<<<<<< HEAD
   .container-i {
     flex-direction: column;
   }
@@ -630,21 +336,4 @@ a {
     margin-left: 0;
   }
 }
-=======
-    .container-i {
-        flex-direction: column;
-    }
 
-
-
-    .right-section {
-        margin-left: 0;
-    }
-}
-.slidebar .slide-menu .li{
-      position: relative;
-  }
- .slidebar .slide-menu ul.sub-menu{
-      position: absolute;
-  }
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0

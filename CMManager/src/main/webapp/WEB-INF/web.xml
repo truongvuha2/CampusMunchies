@@ -52,7 +52,7 @@
         <servlet-name>Analytics</servlet-name>
         <servlet-class>controller.Analytics</servlet-class>
     </servlet>
-<<<<<<< HEAD
+
     <servlet>
         <servlet-name>DeleteCustomer</servlet-name>
         <servlet-class>controller.DeleteCustomer</servlet-class>
@@ -69,8 +69,7 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
     </servlet>
-=======
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
     <servlet-mapping>
         <servlet-name>AddFood</servlet-name>
         <url-pattern>/addFood</url-pattern>
@@ -123,7 +122,7 @@
         <servlet-name>Analytics</servlet-name>
         <url-pattern>/analytics</url-pattern>
     </servlet-mapping>
-<<<<<<< HEAD
+
     <servlet-mapping>
         <servlet-name>DeleteCustomer</servlet-name>
         <url-pattern>/deleteCustomer</url-pattern>
@@ -140,8 +139,7 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-=======
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
     <session-config>
         <session-timeout>
             30
@@ -149,11 +147,9 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>
-<<<<<<< HEAD
+
             Login.jsp
-=======
-            analytics.jsp
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
         </welcome-file>
     </welcome-file-list>
 </web-app>

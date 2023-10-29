@@ -127,18 +127,13 @@ body, h1, h2, h3, p, ul, li, table {
     font-family: 'Poppins', sans-serif;
   }
   
-.sidebar .side-menu .sub-menu{
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-.sidebar .side-menu li {
+
+  .sidebar .side-menu li {
     margin: 10px 0;
   }
   
- .sidebar .side-menu a {
+  .sidebar .side-menu a {
+
     color: #ffffff;
     display: block;
     padding: 10px;
@@ -146,25 +141,11 @@ body, h1, h2, h3, p, ul, li, table {
     font-size: 18px;
   }
 
-.sidebar .side-menu .sub-menu{
-    color: #ffffff;
-    display: block;
-    padding: 10px;
-    transition: 0.3s;
-    font-size: 18px;
-    display: none;
-  }
-.sidebar li:hover .sub-menu{
-    display: block;
-  }
 
-.sidebar .side-menu a:hover {
-    background-color: #C21010;
-    color: #ecf0f1;
-    border-left: 4px solid #C21010;
-    padding-left: 6px;
-  }
-  .sidebar .side-menu a:hover .sub-menu{
+ 
+
+  .sidebar .side-menu a:hover {
+
     background-color: #C21010;
     color: #ecf0f1;
     border-left: 4px solid #C21010;
@@ -284,11 +265,5 @@ body, h1, h2, h3, p, ul, li, table {
       margin-left: 0;
     }
   }
-  
-.slidebar .slide-menu .li{
-      position: relative;
-  }
-.slidebar .slide-menu ul.sub-menu{
-      position: absolute;
-  }
+
   

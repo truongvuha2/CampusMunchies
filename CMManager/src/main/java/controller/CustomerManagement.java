@@ -4,22 +4,20 @@
  */
 package controller;
 
-<<<<<<< HEAD
+
 import dao.CustomerDAO;
-=======
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.List;
 import model.Customer;
-=======
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
 
 /**
  *
@@ -44,11 +42,10 @@ public class CustomerManagement extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-<<<<<<< HEAD
+
             out.println("<title>Servlet CustomerManagement</title>");
-=======
-            out.println("<title>Servlet CustomerManagement</title>");            
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
+
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CustomerManagement at " + request.getContextPath() + "</h1>");
@@ -69,7 +66,7 @@ public class CustomerManagement extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<< HEAD
+
         CustomerDAO customerDao = new CustomerDAO();
         List<Customer> listCustomerMain = new ArrayList<Customer>();
         List<Customer> listCustomerHonor = new ArrayList<Customer>();
@@ -86,9 +83,7 @@ public class CustomerManagement extends HttpServlet {
         } catch (Exception e) {
             System.out.println(e);
         }
-=======
-        processRequest(request, response);
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
     }
 
     /**

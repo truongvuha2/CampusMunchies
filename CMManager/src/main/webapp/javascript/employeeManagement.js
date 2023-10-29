@@ -1,23 +1,16 @@
-<<<<<<< HEAD
+
 const customerTable = document.querySelector('.customer-table');
 const searchInput = customerTable.querySelector('.search-box');
 const filterSelect = customerTable.querySelector('.select-box');
 const tableRows = customerTable.querySelectorAll('tbody tr');
-=======
-// Lấy tham chiếu đến các phần tử HTML
-const searchInput = document.getElementById('searchInput');
-const filterSelect = document.getElementById('filterSelect');
-const tableRows = document.querySelectorAll('tbody tr');
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
 
 // Lắng nghe sự kiện input trên thanh tìm kiếm và change trên select
 searchInput.addEventListener('input', filterTable);
 filterSelect.addEventListener('change', filterTable);
-<<<<<<< HEAD
+
 filterSelect.addEventListener('change', function () {
-=======
-filterSelect.addEventListener('change', function() {
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
   searchInput.value = ''; // Đặt lại giá trị thanh tìm kiếm về chuỗi trống
   filterTable();
 });
@@ -52,7 +45,7 @@ const rowsPerPage = 10;
 let currentPage = 1;
 
 function showPage(pageNumber) {
-<<<<<<< HEAD
+
     rows.forEach((row, index) => {
         if (index >= (pageNumber - 1) * rowsPerPage && index < pageNumber * rowsPerPage) {
             row.style.display = 'table-row';
@@ -60,21 +53,13 @@ function showPage(pageNumber) {
             row.style.display = 'none';
         }
     });
-=======
-  rows.forEach((row, index) => {
-    if (index >= (pageNumber - 1) * rowsPerPage && index < pageNumber * rowsPerPage) {
-      row.style.display = 'table-row';
-    } else {
-      row.style.display = 'none';
-    }
-  });
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
 }
 
 showPage(currentPage);
 
 prevButton.addEventListener('click', () => {
-<<<<<<< HEAD
+
     if (currentPage > 1) {
         currentPage--;
         showPage(currentPage);
@@ -121,50 +106,5 @@ function sortTable(column) {
     // Đảo chiều sắp xếp cho lần nhấn tiếp theo
     sortDirection *= -1;
 }
-=======
-  if (currentPage > 1) {
-    currentPage--;
-    showPage(currentPage);
-  }
-});
 
-nextButton.addEventListener('click', () => {
-  const totalPages = Math.ceil(rows.length / rowsPerPage);
-  if (currentPage < totalPages) {
-    currentPage++;
-    showPage(currentPage);
-  }
-});
-
-// Sort
-  // Biến để theo dõi trạng thái sắp xếp
-  let sortDirection = 1; // 1: tăng dần, -1: giảm dần
-
-  // Hàm để sắp xếp bảng dựa trên cột được chọn
-  function sortTable(column) {
-      const table = document.querySelector("table");
-      const tbody = document.querySelector("#itemList");
-      const rows = Array.from(tbody.querySelectorAll("tr"));
-
-      // Sắp xếp các hàng dữ liệu
-      rows.sort((a, b) => {
-          const aValue = a.querySelector(`td:nth-child(${column + 1}`).textContent;
-          const bValue = b.querySelector(`td:nth-child(${column + 1}`).textContent;
-          return aValue.localeCompare(bValue) * sortDirection;
-      });
-
-      // Xóa các hàng hiện tại
-      while (tbody.firstChild) {
-          tbody.removeChild(tbody.firstChild);
-      }
-
-      // Thêm lại các hàng đã sắp xếp
-      rows.forEach(row => {
-          tbody.appendChild(row);
-      });
-
-      // Đảo chiều sắp xếp cho lần nhấn tiếp theo
-      sortDirection *= -1;
-  }
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 

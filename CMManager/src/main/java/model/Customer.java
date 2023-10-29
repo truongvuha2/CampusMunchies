@@ -11,27 +11,21 @@ import java.sql.Date;
  * @author ddand
  */
 public class Customer {
-<<<<<<< HEAD
 
-=======
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
     private String phone;
     private String name;
     private String address;
     private Date birthday;
     private Date create_date;
     private int cancel_count;
-<<<<<<< HEAD
+
     private int numberOrder;
     private double totalSpending;
     private String cus_status;
     private String time_ago;
 
     public Customer(String name, String phone, String address, Date birthday, Date create_date, int cancel_count) {
-=======
 
-    public Customer(String phone, String name, String address, Date birthday, Date create_date, int cancel_count) {
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
         this.phone = phone;
         this.name = name;
         this.address = address;
@@ -40,16 +34,14 @@ public class Customer {
         this.cancel_count = cancel_count;
     }
 
-<<<<<<< HEAD
+
     public Customer(String name, String phone, String address, Date birthday, Date create_date, int cancel_count, int numberOrder, double totalSpending, String cus_status) {
-=======
-    public Customer(String phone, String name, String address, Date birthday) {
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
         this.phone = phone;
         this.name = name;
         this.address = address;
         this.birthday = birthday;
-<<<<<<< HEAD
+
         this.create_date = create_date;
         this.cancel_count = cancel_count;
         this.numberOrder = numberOrder;
@@ -100,11 +92,7 @@ public class Customer {
         this.cus_status = cus_status;
     }
 
-=======
-       
-    }
-    
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
     public String getPhone() {
         return phone;
     }
@@ -145,7 +133,7 @@ public class Customer {
         this.create_date = create_date;
     }
 
-<<<<<<< HEAD
+
     public int getNumberOrder() {
         return numberOrder;
     }
@@ -162,8 +150,7 @@ public class Customer {
         this.totalSpending = totalSpending;
     }
 
-=======
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
     public int getCancel_count() {
         return cancel_count;
     }
@@ -176,10 +163,6 @@ public class Customer {
     public String toString() {
         return "Customer{" + "phone=" + phone + ", name=" + name + ", address=" + address + ", birthday=" + birthday + ", create_date=" + create_date + ", cancel_count=" + cancel_count + '}';
     }
-<<<<<<< HEAD
-=======
-    
-     
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
 
 }

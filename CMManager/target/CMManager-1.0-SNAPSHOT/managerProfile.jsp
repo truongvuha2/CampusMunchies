@@ -21,33 +21,8 @@
 
     <div class="container-i">
         <!-- Sidebar -->
-        <aside>
-            <div class="sidebar">
-                <a href="#" class="logo-side">
-                    <div class="logo-name">
-                        <div class="Campus">Campus</div>
-                        <div class="Munchines">Munchines</div>
-                    </div>
-                </a>
-                <ul class="side-menu">
-                    <li><a href="#"><i class='bx bx-analyse'></i> Analytics</a></li>
-                    <li><a href="#"><i class='bx bx-box'></i> Order</a></li>
-                    <li><a href="#"><i class='bx bx-food-menu'></i> Menu</a></li>
-                    <li><a href="#"><i class='bx bxs-user-account'></i>
-                            Customer</a></li>
-                    <li><a href="#"><i class='bx bxs-user-detail'></i>
-                            Employee</a></li>
-                </ul>
-                <ul class="side-menu">
-                    <li>
-                        <a href="#" class="logout">
-                            <i class='bx bx-log-out-circle'></i>
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
+        <%@include file="sidebar.jsp" %>
+
         <!-- End of Sidebar -->
         <!-- Main Content -->
         <main>

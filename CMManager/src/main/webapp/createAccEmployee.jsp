@@ -21,37 +21,9 @@
 
         <div class="container-i">
             <!-- Sidebar -->
-<<<<<<< HEAD
+
             <%@include file="sidebar.jsp" %>
-=======
-            <aside>
-                <div class="sidebar">
-                    <a href="#" class="logo-side">
-                        <div class="logo-name">
-                            <div class="Campus">Campus</div>
-                            <div class="Munchines">Munchines</div>
-                        </div>
-                    </a>
-                    <ul class="side-menu">
-                        <li><a href="#"><i class='bx bx-analyse'></i> Analytics</a></li>
-                        <li><a href="#"><i class='bx bx-box'></i> Order</a></li>
-                        <li><a href="#"><i class='bx bx-food-menu'></i> Menu</a></li>
-                        <li><a href="#"><i class='bx bxs-user-account'></i>
-                                Customer</a></li>
-                        <li><a href="#"><i class='bx bxs-user-detail'></i>
-                                Employee</a></li>
-                    </ul>
-                    <ul class="side-menu">
-                        <li>
-                            <a href="#" class="logout">
-                                <i class='bx bx-log-out-circle'></i>
-                                Logout
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
             <!-- End of Sidebar -->
             <!-- Main Content -->
             <main>
@@ -66,11 +38,9 @@
                     </div>
 
                     <div class="user-info">
-<<<<<<< HEAD
+
                         <p>Hey, <b><%= request.getSession().getAttribute("username") %></b></p>
-=======
-                        <p>Hey, <b>Reza</b></p>
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
                         <small class="text-muted">Admin</small>
                     </div>
                 </div>

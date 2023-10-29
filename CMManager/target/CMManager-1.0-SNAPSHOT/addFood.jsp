@@ -17,54 +17,13 @@
         <title>Add Food</title>
     </head>
     <body>
+
+        
         <div class="container-i">
             <!-- Sidebar -->
-            <aside>
-                <div class="sidebar">
-                    <a href="#" class="logo-side">
-                        <div class="logo-name">
-                            <div class="Campus">Campus</div>
-                            <div class="Munchines">Munchies</div>
-                        </div>
-                    </a>
-                    <ul class="side-menu">
-                        <li><a href="analytics.jsp"><i class='bx bx-analyse'></i> Analytics</a></li>
-                        <li><a href="orderManagement.jsp"><i class='bx bx-box'></i> Order</a>
+            <%@include file="sidebar.jsp" %>
+     
 
-                            
-
-                        </li>
-                        <li><a href="#"><i class='bx bx-food-menu'></i> Menu</a>
-
-                            <ul class="sub-menu">
-                                <li><a href="addFood.jsp"> Add Food</a></li>
-                                <li><a href="updateFood.jsp"> Update Food</a></li>
-                                <li><a href="foodDetai.jsp"> Food Detail</a></li>
-                                <li><a href="listMenu.jsp"> List Menu</a></li>
-                            </ul>
-
-                        </li>
-                        <li><a href="customerManagement.jsp"><i class='bx bxs-user-account'></i>Customer</a>
-                        
-                        
-                        
-                        </li>
-                        <li><a href="employeeManagement.jsp"><i class='bx bxs-user-detail'></i>Employee</a>
-                        
-                       
-                        
-                        </li>
-                    </ul>
-                    <ul class="side-menu">
-                        <li>
-                            <a href="#" class="logout">
-                                <i class='bx bx-log-out-circle'></i>
-                                Logout
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
             <!-- End of Sidebar -->
             <!-- Main Content -->
             <main>
@@ -79,7 +38,9 @@
                     </div>
 
                     <div class="user-info">
-                        <p>Hey, <b>Reza</b></p>
+
+                        <p>Hey, <b><%= request.getSession().getAttribute("username") %></b></p>
+
                         <small class="text-muted">Admin</small>
                     </div>
                 </div>
@@ -93,10 +54,12 @@
 
                                 <li><label>Food Name: </label><input type="text" name="food_name" value></li>
                                 <li><label>Price: </label><input type="number" name="price" value><label>$</label></li>
-                                <li><label>Sale: </label><input type="number" name="sale" value><label>$</label></li>
+
+                                <li><label>Sale: </label><input type="number" name="sale" value><label>%</label></li>
                                 <li>
                                     <label>Select file image: </label>
-                                    <input type="file" id="fileInput" accept="image/*" value />
+                                    <input type="file" id="fileInput" accept="image/*" value name="img" />
+
                                     <label style="color: black; margin-left: 7%;" for="fileInput">Choose File Image</label>
 
                                 </li>
@@ -217,7 +180,56 @@
                                 statusText.textContent = 'Lỗi: ' + error.message;
                             });
                 }
+
+                document.querySelector('.btn-add-product button').addEventListener('click', function (event) {
+                    // Ngăn chặn mặc định của nút Submit để tránh gửi mẫu ngay lập tức
+                    event.preventDefault();
+
+                    const foodName = document.querySelector('input[name="food_name"]').value.trim();
+                    const price = parseFloat(document.querySelector('input[name="price"]').value.trim());
+                    const sale = parseFloat(document.querySelector('input[name="sale"]').value.trim());
+
+                    const image = document.querySelector('input[name="img"]').value.trim();
+                    const imageUrl = document.querySelector('input[name="imageUrl"]').value.trim();
+                    const category_name = document.querySelector('select[name="category_name"]').value;
+                    const description = document.querySelector('textarea[name="description"]').value.trim();
+                    const status = document.querySelector('select[name="status"]').value;
+
+                    if (!foodName || !price || !sale || !image || !imageUrl || !category_name || !description || !status) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Invalid information',
+                            text: 'Please fill in the required information!',
+                        });
+                    } else if (foodName.length < 1 || foodName.length > 10) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Invalid Food name Length',
+                            text: 'Food must be between 1 and 30 characters.',
+                        });
+                    } else if (sale < 0 || sale > 100) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Invalid Sale Value',
+                            text: 'Sale value must be between 0 and 100.',
+                        });
+                    } else if (description.length < 1 || description.length > 10) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Invalid Description Length',
+                            text: 'Description must be between 1 and 250 characters.',
+                        });
+                    } else {
+                        // Nếu tất cả thông tin hợp lệ, cho phép form được submit
+                        document.querySelector('form').submit();
+                    }
+                });
             </script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.6/compressed/picker.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.6/compressed/picker.date.js"></script>
 
         </div>
     </body>

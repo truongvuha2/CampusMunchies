@@ -23,5 +23,6 @@ model\Category.class
 model\Food.class
 controller\EmployeeDetail.class
 controller\UpdateFood.class
+controller\DeleteEmployee.class
 controller\AddFood.class
 dao\EmployeeDAO.class

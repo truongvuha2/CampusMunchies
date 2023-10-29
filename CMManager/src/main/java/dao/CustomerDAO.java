@@ -8,12 +8,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-<<<<<<< HEAD
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-=======
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
 import java.util.ArrayList;
 import java.util.List;
 import model.Customer;
@@ -142,11 +141,10 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
             while (rs.next()) {
                 return new Customer(rs.getString(1),
                         rs.getString(2),
-<<<<<<< HEAD
+
                         rs.getString(4),
-=======
-                        rs.getString(3),
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
+                       
                         rs.getDate(5),
                         rs.getDate(6),
                         rs.getInt(7)
@@ -171,7 +169,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-<<<<<<< HEAD
+
     public List<Customer> getCusListManagement() {
         List<Customer> listCus = new ArrayList<>();
         String sql = "with r as(\n"
@@ -382,15 +380,14 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         CustomerDAO c = new CustomerDAO();
         List<Customer> list = c.getAll();
         System.out.println(c.getCustomerDetail("0123456788").toString());
-=======
-    public static void main(String[] args) {
-        CustomerDAO c = new CustomerDAO();
-        List<Customer> list = c.getAll();
+
+    
+       
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).toString());
         }
         
         System.out.println(c.isExisted("0123456788", "password2"));
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
     }
 }

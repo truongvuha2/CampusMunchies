@@ -9,10 +9,7 @@ package model;
  * @author MY LAPTOP
  */
 public class Order {
-<<<<<<< HEAD
 
-=======
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
     private String ord_id;
     private String cus_phone;
     private String emp_phone;
@@ -36,7 +33,7 @@ public class Order {
         this.ord_total = ord_total;
     }
 
-<<<<<<< HEAD
+
     public Order(String ord_id, String cus_phone, String ord_date, String ord_status) {
         this.ord_id = ord_id;
         this.cus_phone = cus_phone;
@@ -50,8 +47,7 @@ public class Order {
         this.ord_date = ord_date;
     }
 
-=======
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
     public String getOrd_id() {
         return ord_id;
     }
@@ -115,10 +111,5 @@ public class Order {
     public void setOrd_total(Double ord_total) {
         this.ord_total = ord_total;
     }
-<<<<<<< HEAD
 
-=======
-    
-    
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
 }

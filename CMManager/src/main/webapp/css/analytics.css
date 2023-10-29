@@ -111,24 +111,13 @@ body, h1, h2, h3, p, ul, li, table {
     text-align: left;
     font-family: 'Poppins', sans-serif;
   }
-<<<<<<< HEAD
-=======
-  .sidebar .side-menu .sub-menu{
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    font-family: 'Poppins', sans-serif;
-  }
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
   
   .sidebar .side-menu li {
     margin: 10px 0;
   }
   
-<<<<<<< HEAD
-=======
-  
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
   .sidebar .side-menu a {
     color: #ffffff;
     display: block;
@@ -136,20 +125,7 @@ body, h1, h2, h3, p, ul, li, table {
     transition: 0.3s;
     font-size: 18px;
   }
-<<<<<<< HEAD
-=======
-  .sidebar .side-menu .sub-menu{
-    color: #ffffff;
-    display: block;
-    padding: 10px;
-    transition: 0.3s;
-    font-size: 18px;
-    display: none;
-  }
-  .sidebar li:hover .sub-menu{
-    display: block;
-  }
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
 
  
 
@@ -159,15 +135,7 @@ body, h1, h2, h3, p, ul, li, table {
     border-left: 4px solid #C21010;
     padding-left: 6px;
   }
-<<<<<<< HEAD
-=======
-  .sidebar .side-menu a:hover .sub-menu{
-    background-color: #C21010;
-    color: #ecf0f1;
-    border-left: 4px solid #C21010;
-    padding-left: 6px;
-  }
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
  
   main {
     flex: 1;
@@ -195,11 +163,9 @@ body, h1, h2, h3, p, ul, li, table {
     width: 80px;
     height: 80px;
     border-radius: 10px;
-<<<<<<< HEAD
+
     font-size: 40px;
-=======
-    font-size: 36px;
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -279,10 +245,7 @@ body, h1, h2, h3, p, ul, li, table {
     padding-top: 20px;
   }
  
-<<<<<<< HEAD
-=======
-  
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
   /* Media Query for Responsive Design */
   @media (max-width: 768px) {
     .container-i {
@@ -295,13 +258,3 @@ body, h1, h2, h3, p, ul, li, table {
       margin-left: 0;
     }
   }
-<<<<<<< HEAD
-=======
-  .slidebar .slide-menu .li{
-      position: relative;
-  }
-  .slidebar .slide-menu ul.sub-menu{
-      position: absolute;
-  }
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
-  

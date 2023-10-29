@@ -17,62 +17,13 @@
         <title>Add Food</title>
     </head>
     <body>
-<<<<<<< HEAD
+
         
         <div class="container-i">
             <!-- Sidebar -->
             <%@include file="sidebar.jsp" %>
      
-=======
-        <div class="container-i">
-            <!-- Sidebar -->
-            <aside>
-                <div class="sidebar">
-                    <a href="#" class="logo-side">
-                        <div class="logo-name">
-                            <div class="Campus">Campus</div>
-                            <div class="Munchines">Munchies</div>
-                        </div>
-                    </a>
-                    <ul class="side-menu">
-                        <li><a href="analytics.jsp"><i class='bx bx-analyse'></i> Analytics</a></li>
-                        <li><a href="orderManagement.jsp"><i class='bx bx-box'></i> Order</a>
 
-                            
-
-                        </li>
-                        <li><a href="#"><i class='bx bx-food-menu'></i> Menu</a>
-
-                            <ul class="sub-menu">
-                                <li><a href="addFood.jsp"> Add Food</a></li>
-                                <li><a href="updateFood.jsp"> Update Food</a></li>
-                                <li><a href="foodDetai.jsp"> Food Detail</a></li>
-                                <li><a href="listMenu.jsp"> List Menu</a></li>
-                            </ul>
-
-                        </li>
-                        <li><a href="customerManagement.jsp"><i class='bx bxs-user-account'></i>Customer</a>
-                        
-                        
-                        
-                        </li>
-                        <li><a href="employeeManagement.jsp"><i class='bx bxs-user-detail'></i>Employee</a>
-                        
-                       
-                        
-                        </li>
-                    </ul>
-                    <ul class="side-menu">
-                        <li>
-                            <a href="#" class="logout">
-                                <i class='bx bx-log-out-circle'></i>
-                                Logout
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
             <!-- End of Sidebar -->
             <!-- Main Content -->
             <main>
@@ -87,11 +38,9 @@
                     </div>
 
                     <div class="user-info">
-<<<<<<< HEAD
+
                         <p>Hey, <b><%= request.getSession().getAttribute("username") %></b></p>
-=======
-                        <p>Hey, <b>Reza</b></p>
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
                         <small class="text-muted">Admin</small>
                     </div>
                 </div>
@@ -105,17 +54,12 @@
 
                                 <li><label>Food Name: </label><input type="text" name="food_name" value></li>
                                 <li><label>Price: </label><input type="number" name="price" value><label>$</label></li>
-<<<<<<< HEAD
+
                                 <li><label>Sale: </label><input type="number" name="sale" value><label>%</label></li>
                                 <li>
                                     <label>Select file image: </label>
                                     <input type="file" id="fileInput" accept="image/*" value name="img" />
-=======
-                                <li><label>Sale: </label><input type="number" name="sale" value><label>$</label></li>
-                                <li>
-                                    <label>Select file image: </label>
-                                    <input type="file" id="fileInput" accept="image/*" value />
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
+
                                     <label style="color: black; margin-left: 7%;" for="fileInput">Choose File Image</label>
 
                                 </li>
@@ -236,7 +180,7 @@
                                 statusText.textContent = 'Lỗi: ' + error.message;
                             });
                 }
-<<<<<<< HEAD
+
                 document.querySelector('.btn-add-product button').addEventListener('click', function (event) {
                     // Ngăn chặn mặc định của nút Submit để tránh gửi mẫu ngay lập tức
                     event.preventDefault();
@@ -286,10 +230,7 @@
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.6/compressed/picker.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.6/compressed/picker.date.js"></script>
-=======
-            </script>
 
->>>>>>> 0e97c60adb008404fa0a182d50f04fc5295cb1b0
         </div>
     </body>
 
