@@ -1,6 +1,6 @@
 <%-- 
-    Document   : home.jsp
-    Created on : Oct 12, 2023, 11:06:55 AM
+    Document   : header
+    Created on : Oct 24, 2023, 7:20:06 AM
     Author     : khang
 --%>
 
@@ -156,8 +156,10 @@
                         <li><a href="/CampusMunchies/customer/home">Home</a></li>
                         <li><a href="/CampusMunchies/customer/menu">Menu</a></li>
                         <li><a href="/CampusMunchies/customer/cart">Cart</a></li>
-                        <li><a href="">About Us</a></li>
-                        <li><a  style = "color:orange" href="/CampusMunchies/customer/logout">${name}</a></li>
+                        <li><a href="/CampusMunchies/customer/history">History</a></li>
+                        <li><a href="/CampusMunchies/customer/aboutUs">About Us</a></li>
+                        <li><a href="/CampusMunchies/customer/logout">Logout</a></li>
+                        <li><a  style = "color:orange" href="/CampusMunchies/customer/profile">${name}</a></li>
                         <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
                     </span>
                     <label for="check" class="close-menu">

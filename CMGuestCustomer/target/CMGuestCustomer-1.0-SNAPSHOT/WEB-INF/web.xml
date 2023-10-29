@@ -72,6 +72,34 @@
         <servlet-name>CustomerFinishOrder</servlet-name>
         <servlet-class>controller.customer.CustomerFinishOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerHistory</servlet-name>
+        <servlet-class>controller.customer.CustomerHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerHistoryDetail</servlet-name>
+        <servlet-class>controller.customer.CustomerHistoryDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GuestAboutUs</servlet-name>
+        <servlet-class>controller.guest.GuestAboutUs</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerAboutUs</servlet-name>
+        <servlet-class>controller.customer.CustomerAboutUs</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerProfile</servlet-name>
+        <servlet-class>controller.customer.CustomerProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerChangePassword</servlet-name>
+        <servlet-class>controller.customer.CustomerChangePassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerUpdateProfile</servlet-name>
+        <servlet-class>controller.customer.CustomerUpdateProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
         <url-pattern>/guest/home</url-pattern>
@@ -135,6 +163,34 @@
     <servlet-mapping>
         <servlet-name>CustomerFinishOrder</servlet-name>
         <url-pattern>/customer/finishOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerHistory</servlet-name>
+        <url-pattern>/customer/history</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerHistoryDetail</servlet-name>
+        <url-pattern>/customer/historyDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuestAboutUs</servlet-name>
+        <url-pattern>/guest/aboutUs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerAboutUs</servlet-name>
+        <url-pattern>/customer/aboutUs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerProfile</servlet-name>
+        <url-pattern>/customer/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerChangePassword</servlet-name>
+        <url-pattern>/customer/changePassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerUpdateProfile</servlet-name>
+        <url-pattern>/customer/updateProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -18,6 +18,7 @@ public class Customer {
     private Date birthday;
     private Date create_date;
     private String status;
+   
 
     public Customer(String phone, String name, String address, Date birthday, Date create_date, String status) {
         this.phone = phone;

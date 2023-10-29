@@ -128,24 +128,6 @@ public class FoodDAO extends DBContext {
     }
 
     /**
-     * remove food which has before from food table
-     *
-     * @param id
-     */
-    public void remove(String id) {
-        try {
-            String sql = "delete Employee where foo_id  = ?  ";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, id);
-            ps.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-
-    }
-
-    /**
      * get all food from food table
      *
      * @return

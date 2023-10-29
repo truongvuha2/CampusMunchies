@@ -82,7 +82,9 @@ public class GuestLogin extends HttpServlet {
             response.addCookie(cookie);
             response.sendRedirect("/CampusMunchies/customer/home");
         } else {
-            response.sendRedirect("/CampusMunchies/guest/login");
+            request.setAttribute("error", "Phone number or password is incorrect");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+//            response.sendRedirect("/CampusMunchies/guest/login");
         }
 
     }

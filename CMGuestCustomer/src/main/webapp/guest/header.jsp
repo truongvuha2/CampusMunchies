@@ -155,7 +155,7 @@
                     <span class="menu">
                         <li><a href="/CampusMunchies/guest/home">Home</a></li>
                         <li><a href="/CampusMunchies/guest/menu">Menu</a></li>
-                        <li><a href="">About Us</a></li>
+                        <li><a href="/CampusMunchies/guest/aboutUs">About Us</a></li>
                         <li><a  style = "color:orange" href="/CampusMunchies/guest/login">Login</a></li>
                         <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
                     </span>

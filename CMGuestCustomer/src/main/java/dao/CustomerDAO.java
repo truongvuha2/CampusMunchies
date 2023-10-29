@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import model.Customer;
@@ -17,7 +18,7 @@ import model.Customer;
  * @author khang
  */
 public class CustomerDAO extends DBContext {
-    
+
     public boolean isExisted(String phone, String password) {
         try {
             String sql = "select * from Customer "
@@ -30,7 +31,7 @@ public class CustomerDAO extends DBContext {
             return false;
         }
     }
-    
+
     public void add(Customer customer, String password) {
         try {
             String sql = "INSERT INTO Customer VALUES\n"
@@ -46,33 +47,31 @@ public class CustomerDAO extends DBContext {
             System.out.println(e);
         }
     }
-    
+
     public void update(Customer customer) {
         try {
-            String sql = "update Customer set  cus_name=?,  cus_address=?, cus_birthday=?, where cus_phone=?";
+            String sql = "update Customer set  cus_name='"+customer.getName()+"',  cus_address='"+customer.getAddress()+
+                    "', cus_birthday='"+customer.getBirthday()+"'  where cus_phone='"+customer.getPhone()+"'";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, customer.getName());
-            ps.setString(2, customer.getAddress());
-            ps.setDate(3, customer.getBirthday());
-            ps.setString(4, customer.getPhone());
+           
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
-    
+
     public void remove(String phone) {
         try {
             String sql = "delete Customer where cus_phone = ?  ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, phone);
             ps.executeUpdate();
-            
+
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
-    
+
     public List getAll() {
         List<Customer> customers = new ArrayList<>();
         String sql = "select * from Customer";
@@ -93,7 +92,7 @@ public class CustomerDAO extends DBContext {
         }
         return customers;
     }
-    
+
     public List<Customer> searchByName(String name) {
         List<Customer> customers = new ArrayList<>();
         try {
@@ -116,7 +115,7 @@ public class CustomerDAO extends DBContext {
         }
         return customers;
     }
-    
+
     public Customer searchByPhone(String phone) {
         try {
             String sql = "SELECT * "
@@ -138,27 +137,29 @@ public class CustomerDAO extends DBContext {
         }
         return null;
     }
-    
+
     public void changePassword(String phone, String password) {
-        String sql = "update Customer set cus_password=convert(varchar(20),hashbytes('MD5',?),2) where cus_phone=?";
+        String sql = "update Customer set "
+                + "cus_password=convert(varchar(20),hashbytes('MD5','" + password + "'),2) where cus_phone='" + phone + "'";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, password);
-            ps.setString(2, phone);
+
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
-    
+
     public static void main(String[] args) {
         CustomerDAO c = new CustomerDAO();
 //        List<Customer> list = c.getAll();
 //        for (int i = 0; i < list.size(); i++) {
 //            System.out.println(list.get(i).toString());
 //        }
+        //System.out.println(c.searchByPhone("0123456788"));
+        Customer cus = new Customer("0123456788", "Tien", "aaa",Date.valueOf("1900-02-03"));
+        c.update(cus);
         System.out.println(c.searchByPhone("0123456788"));
-
-//        System.out.println(c.isExisted("0123456788", "password2"));
+        //System.out.println(c.isExisted("0123456788", "123456789"));
     }
 }
