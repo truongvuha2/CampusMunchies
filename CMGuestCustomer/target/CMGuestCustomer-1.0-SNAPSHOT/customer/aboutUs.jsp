@@ -58,55 +58,55 @@
                 justify-content: space-between;
                 padding: 40px 0 30px;
             }
-/*            nav ul li{
-                list-style: none;
-                display: inline-block;
-            }
-            nav ul li a{
-                text-decoration: none;
-                color: white;
-                margin-left: 60px;
-                font-size: 15px;
-                font-weight: 600;
-                border-bottom: 2px solid transparent;
-                transition: .4s;
-                -webkit-transition: .4s;
-                -moz-transition: .4s;
-                -ms-transition: .4s;
-                -o-transition: .4s;
-            }
-            nav ul li:not(:last-child) a:hover,
-            nav ul li:not(:last-child) a:focus{
-                border-bottom: 2px solid white;
-            }
-            nav ul li.active a{
-                border-bottom: 2px solid white;
-            }
-            nav ul li.btn a{
-                background: transparent;
-                color: white;
-                border: 1px solid #f5dca8;
-                padding: 9px 20px;
-                border-radius: 30px;
-                -webkit-border-radius: 30px;
-                -moz-border-radius: 30px;
-                -ms-border-radius: 30px;
-                -o-border-radius: 30px;
-                line-height: 1.4;
-                font-size: 14px;
-                font-weight: 500;
-                margin-left: 150px;
-            }
-            nav ul li.btn:hover a{
-                border: 1px solid white;
-                color: black;
-                background: white;
-                transition: .4s;
-                -webkit-transition: .4s;
-                -moz-transition: .4s;
-                -ms-transition: .4s;
-                -o-transition: .4s;
-            }*/
+            /*            nav ul li{
+                            list-style: none;
+                            display: inline-block;
+                        }
+                        nav ul li a{
+                            text-decoration: none;
+                            color: white;
+                            margin-left: 60px;
+                            font-size: 15px;
+                            font-weight: 600;
+                            border-bottom: 2px solid transparent;
+                            transition: .4s;
+                            -webkit-transition: .4s;
+                            -moz-transition: .4s;
+                            -ms-transition: .4s;
+                            -o-transition: .4s;
+                        }
+                        nav ul li:not(:last-child) a:hover,
+                        nav ul li:not(:last-child) a:focus{
+                            border-bottom: 2px solid white;
+                        }
+                        nav ul li.active a{
+                            border-bottom: 2px solid white;
+                        }
+                        nav ul li.btn a{
+                            background: transparent;
+                            color: white;
+                            border: 1px solid #f5dca8;
+                            padding: 9px 20px;
+                            border-radius: 30px;
+                            -webkit-border-radius: 30px;
+                            -moz-border-radius: 30px;
+                            -ms-border-radius: 30px;
+                            -o-border-radius: 30px;
+                            line-height: 1.4;
+                            font-size: 14px;
+                            font-weight: 500;
+                            margin-left: 150px;
+                        }
+                        nav ul li.btn:hover a{
+                            border: 1px solid white;
+                            color: black;
+                            background: white;
+                            transition: .4s;
+                            -webkit-transition: .4s;
+                            -moz-transition: .4s;
+                            -ms-transition: .4s;
+                            -o-transition: .4s;
+                        }*/
             .content{
                 padding-top: 14px;
             }
@@ -217,15 +217,14 @@
                     <div class="main-text">
                         <h3>Fast Food</h3>
                         <h1>Campus Munchies</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in viverra erat. Aenean vitae
-                            lacus porttitor, mattis nulla sit amet, consequat nisi. Quisque magna eros, pellentesque vitae
-                            odio in, sodales tristique magna. Vestibulum nec ante ac nulla imperdiet venenatis. Ut venenatis
-                            venenatis pellentesque. Integer aliquet dictum libero in tincidunt. In blandit tincidunt ex, ac
-                            vestibulum felis pretium quis. Proin viverra tristique mi, id consequat dui congue at. Proin ac
-                            lectus non felis iaculis maximus bibendum in dui. Integer maximus pretium nibh. Aliquam
-                            tincidunt, lectus eu porttitor tempor, est ex bibendum ipsum, ut tincidunt risus nulla sit amet
-                            risus. In hac habitasse platea dictumst. Suspendisse vitae placerat ligula. Nulla mattis
-                            consectetur mollis.</p>
+                        <h3>Campus Munchies - Where Flavorful Delights are at Your Fingertips!</h3>
+                        <p></p>
+                        <p>Welcome to Campus Munchies, the place where you can explore a diverse world of delicious and convenient food right at your school or workplace. We are a team of food enthusiasts who understand that finding a satisfying meal in a busy life isn't always easy. That's why we've created Campus Munchies to cater to your culinary needs.</p>
+                        <p>With Campus Munchies, you have the opportunity to experience a variety of delectable dishes from some of the most popular local restaurants in your area, all without leaving your workplace or school. We've established partnerships with numerous local eateries to ensure that you always have plenty of exciting choices to satisfy your taste buds.</p>
+                        <p>Order online through our user-friendly website or mobile app, and we'll deliver fresh and delicious food right to your doorstep or workplace. No need to worry about missing an important meal or standing in long queues at food counters. Campus Munchies guarantees convenience and time-saving.</p>
+                        <p>Furthermore, we continuously listen to customer feedback and strive to improve our services. Our goal is to provide you with the best online ordering experience, with a professional support team ready to assist you at any time.</p>
+                        <p>Join Campus Munchies to explore the world of culinary delights at your fingertips. We're delighted to serve you and ensure that every meal you enjoy is a flavorful and convenient journey.</p>
+
                         <a href="#" class="cta"><i class="fa-solid fa-cart-shopping"></i>Order food</a>
                     </div>
 
