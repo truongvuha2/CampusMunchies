@@ -125,7 +125,7 @@
                 Customer Profile
             </h4>
             <div class="card overflow-hidden">
-                
+
                 <div class="row no-gutters row-bordered row-border-light">
                     <div class="col-md-3 pt-0">
                         <div class="list-group list-group-flush account-settings-links">
@@ -144,7 +144,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label class="form-label">Name</label>
-                                        <input type="text" class="form-control mb-1" value="${customer.name}" name="name">
+                                        <input type="text" id="name" class="form-control mb-1" value="${customer.name}" name="name" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Phone</label>
@@ -152,18 +152,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Birthday</label>
-                                        <input type="text" class="form-control" value="${customer.birthday}" name="birth">
+                                        <input type="text" class="form-control" value="${customer.birthday}" name="birth" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="form-label">Address</label>
-                                        <input type="text" class="form-control" value="${customer.address}" name="address">
+                                        <input type="text" id="address" class="form-control" value="${customer.address}" name="address" required>
                                     </div>
                                     <strong class="text-success" style="color: green !important">${messU}</strong>
                                 </div>
                                 <div class="text-right mt-3">
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                    <button type="button" class="btn btn-default">Cancel</button>
+                                    <button type="submit" id="SaveChangeBtn" class="btn btn-primary">Save changes</button>
+                                    
                                 </div>
                             </form>
                             <form action="/CampusMunchies/customer/changePassword" method="post" class="tab-pane fade" id="account-change-password">
@@ -171,12 +171,12 @@
                                 <div class="card-body pb-2">
                                     <div class="form-group">
                                         <label class="form-label">Current password</label>
-                                        <input type="password" id="password" class="form-control" name="currentPass">
+                                        <input type="password" id="password" class="form-control" name="currentPass" required="">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">New password</label>
                                         <input type="password" id="password1" class="form-control" name="newPass"
-                                               oninput="checkPasswords()">
+                                               oninput="checkPasswords()" required="">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Repeat new password</label>
@@ -188,9 +188,9 @@
                                     <p id="message" style="color: red;"></p>
                                 </div>
                                 <div class="text-right mt-3">
-                                    <button type="submit" id="saveChangesBtn" class="btn btn-primary" >Save
+                                    <button type="submit" id="savePassBtn" class="btn btn-primary" >Save
                                         changes</button>
-                                    <button type="button" class="btn btn-default">Cancel</button>
+                              
                                 </div>
 
                             </form>
@@ -211,7 +211,77 @@
 
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+
         <script>
+            document.getElementById('SaveChangeBtn').addEventListener('click', function (event) {
+                event.preventDefault();
+                const name = document.getElementById('name').value;
+                const address = document.getElementById('address').value;
+
+                if (!name || !address) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid information',
+                        text: 'Please fill in the required information!'
+                    });
+                } else if (!isValidName(name)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid name',
+                        text: 'It must be between 2 and 50 characters.'
+                    });
+                } else if (!isValidAddress(address)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid address',
+                        text: 'It must be more than 50 characters.'
+                    });
+                } else {
+                    // Nếu tất cả thông tin hợp lệ, cho phép form được submit
+                    document.querySelector('form#account-general').submit();
+                }
+            });
+
+            document.getElementById('savePassBtn').addEventListener('click', function (event) {
+                event.preventDefault();
+                const password1 = document.getElementById('password1').value;
+
+                if (!password1) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid information',
+                        text: 'Please fill in the required information!'
+                    });
+                } else if (!isValidPassword(password1)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid password',
+                        text: 'It must be between 8 and 20 characters.'
+                    });
+                } else {
+                    // Nếu tất cả thông tin hợp lệ, cho phép form được submit
+                    document.querySelector('form#account-change-password').submit();
+                }
+            });
+
+            function isValidName(name) {
+                return name.length >= 2 && name.length <= 50;
+            }
+
+            function isValidAddress(address) {
+                return address.length >= 0 && address.length <= 50;
+            }
+
+            function isValidPassword(password1) {
+                return password1.length >= 8 && password1.length <= 20;
+            }
+
+
+
             function checkPasswords() {
                 var password1 = document.getElementById("password1").value;
                 var password2 = document.getElementById("password2").value;
