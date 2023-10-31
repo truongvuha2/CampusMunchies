@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -25,11 +28,11 @@
                                 <!-- Shopping cart table -->
                                 <div class="table-responsive">
                                     <table class="table">
-                                        <h4>Order details</h4>
+
                                         <thead>
                                             <tr>
                                                 <th scope="col" class="border-0 bg-light">
-                                                    <div class="p-2 px-3 text-uppercase">Address</div>
+                                                    <div class="p-2 px-3 text-uppercase">Order</div>
                                                 </th>
                                                 <th scope="col" class="border-0 bg-light">
                                                     <div class="p-2 px-3 text-uppercase"></div>
@@ -40,10 +43,10 @@
 
 
                                         <td class="align-middle">
-                                            <h5>Order ID: </h5>
+                                            <h5>Order ID: ${order.id}</h5>
                                         </td>
                                         <td class="align-middle">
-                                            <h5>Date created: </h5>
+                                            <h5>Date created: ${order.orderDate}</h5>
                                         </td>
 
 
@@ -63,7 +66,7 @@
 
 
                                         <td class="align-middle">
-                                            <div>aaaaaaaaaaaaaaaa sssss</div>
+                                            <div>${cus.address}</div>
                                         </td>
 
 
@@ -93,25 +96,28 @@
                                             </tr>
                                         </thead>
                                         <tbody id="body">
-                                            <tr>
-                                                <th class="align-middle">
-                                                    <div class="ml-0 d-inline-block align-top">abc</div>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <div class="ml-3 d-inline-block align-top">5</div>
-                                                </td>
-                                                <td class="align-middle">
-                                                    <div class="ml-3 d-inline-block align-top">5</div>
-                                                </td>
-                                                <td class="align-middle">
-                                                    <div class="ml-3 d-inline-block align-top">5</div>
-                                                </td>
-                                            </tr>
 
+                                            <c:forEach items="${detail}" var="o">
+                                                <tr>
+                                                    <th class="align-middle">
+                                                        <div class="ml-0 d-inline-block align-top">${o.foodName}</div>
+                                                    </th>
+                                                    <td class="align-middle">
+                                                        <div class="ml-3 d-inline-block align-top">${o.quantity}</div>
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <div class="ml-3 d-inline-block align-top">
+                                                            <fmt:formatNumber value="${o.price / o.quantity}" type="number" pattern="0.00" />
+                                                        </div>
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <div class="ml-3 d-inline-block align-top">${o.price}</div>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                            
 
-
-
-                                        </tbody>
+                                            </tbody>
                                     </table>
                                 </div>
                                 <!-- End -->
@@ -128,15 +134,13 @@
                                 <div class="p-4">
                                     <ul class="list-unstyled mb-4">
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                                                class="text-muted">Price</strong><strong id="totalPrice"></strong></li>
+                                                class="text-muted">Price</strong><strong id="totalPrice">${sum}</strong></li>
+                                       
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                                                class="text-muted">Transport Fee</strong><strong id="totalPrice"></strong>
-                                        </li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                                                class="text-muted">Total</strong><strong id="totalPrice"></strong></li>
+                                                class="text-muted">Total</strong><strong id="totalPrice">${sum}</strong></li>
 
 
-                                    </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Buy again</a>
+                                    
                                 </div>
                             </div>
                         </div>
