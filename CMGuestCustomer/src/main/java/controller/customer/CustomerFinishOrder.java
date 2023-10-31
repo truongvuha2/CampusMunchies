@@ -70,6 +70,7 @@ public class CustomerFinishOrder extends HttpServlet {
 
         OrderDAO order = new OrderDAO();
         order.add(new Order(phone, delivery, pay, description, total),carts);
+        response.sendRedirect("/CampusMunchies/customer/history");
     }
 
     /**

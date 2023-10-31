@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +21,7 @@
         .banner-slide img {
             width: 100%
         }
-        
+
         .food{
             padding: 0 10%;
         }
@@ -68,57 +69,33 @@
             <div class="best-seller">
                 <h2>Best Seller</h2>
                 <div class="food-row">
-                    <div class="food-item">
-                        <h3>Item 1</h3>
-                        <p>Price: $10.99</p>
-                        <i class="fas fa-shopping-cart cart-icon"></i>
-                    </div>
-                    <div class="food-item">
-                        <h3>Item 1</h3>
-                        <p>Price: $10.99</p>
-                        <i class="fas fa-shopping-cart cart-icon"></i>
-                    </div>
-                    <div class="food-item">
-                        <h3>Item 1</h3>
-                        <p>Price: $10.99</p>
-                        <i class="fas fa-shopping-cart cart-icon"></i>
-                    </div>
-                    <div class="food-item">
-                        <h3>Item 1</h3>
-                        <p>Price: $10.99</p>
-                        <i class="fas fa-shopping-cart cart-icon"></i>
-                    </div>
+                    <c:forEach items="${requestScope.topFoods}" var="food">
+                        <div class="food-item">
+                            <img style="width:100%" src="${food.getImg()}">
+                            <h3>${food.getName()}</h3>
+                            <p>${food.getRealPrice()}</p>
+                            <a href="/CampusMunchies/guest/foodDetail?id=${food.getId()}"><i class="fas fa-shopping-cart cart-icon"></i></a>
+                        </div>
+                    </c:forEach>
                 </div>
-
             </div>
 
 
             <div class="latest-food">
-                <h2>Latest Food</h2>
+                <h2>New Food</h2>
                 <div class="food-row">
-                    <div class="food-item">
-                        <h3>Item 1</h3>
-                        <p>Price: $12.99</p>
-                        <i class="fas fa-shopping-cart cart-icon"></i>
-                    </div>
-                    <div class="food-item">
-                        <h3>Item 1</h3>
-                        <p>Price: $12.99</p>
-                        <i class="fas fa-shopping-cart cart-icon"></i>
-                    </div>
-                    <div class="food-item">
-                        <h3>Item 1</h3>
-                        <p>Price: $12.99</p>
-                        <i class="fas fa-shopping-cart cart-icon"></i>
-                    </div>
-                    <div class="food-item">
-                        <h3>Item 1</h3>
-                        <p>Price: $12.99</p>
-                        <i class="fas fa-shopping-cart cart-icon"></i>
-                    </div>
+                    <c:forEach items="${requestScope.latestFoods}" var="food">
+                        <div class="food-item">
+                            <img style="width:100%" src="${food.getImg()}">
+                            <h3>${food.getName()}</h3>
+                            <p>${food.getRealPrice()}</p>
+                            <a href="/CampusMunchies/customer/foodDetail?id=${food.getId()}"><i class="fas fa-shopping-cart cart-icon"></i></a>
+                        </div>
+                    </c:forEach>
 
                 </div>
             </div>
+
         </div>
         <%@include file="footer.jsp"%>
     </body>

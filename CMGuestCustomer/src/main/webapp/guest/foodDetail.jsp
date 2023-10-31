@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,15 +115,21 @@
                         <p class="description mt-3 food-details">
                             ${food.getDescription()}
                         </p>
-                        <div class="combo-button">
-                            <box class="quantity mt-2">
-                                <button class="btn btn-sub">-</button>
-                                <span class="mx-2">1</span>
-                                <button class="btn btn-plus">+</button>
-                            </box>
-                            <button class="btn-add mt-2" onclick="addToCart()">Add to Cart</button>
-                            <button class="btn-buy mt-2">Buy it Now</button>
-                        </div>
+                        <c:choose>
+                            <c:when test="${food.getStatus() eq 'Sold Out'}">
+                                <span style ="color:grey">Sold Out</span>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="combo-button">
+                                    <box class="quantity mt-2">
+                                        <button class="btn btn-sub">-</button>
+                                        <span class="mx-2">1</span>
+                                        <button class="btn btn-plus">+</button>
+                                    </box>                           
+                                    <button class="btn-add mt-2" onclick="addToCart()">Add to Cart</button>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>

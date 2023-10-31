@@ -64,11 +64,19 @@ public class CustomerSearch extends HttpServlet {
         PrintWriter out = response.getWriter();
         if (foods.size() != 0) {
             for (Food food : foods) {
+                String x = "";
                 String b = "";
                 if (food.getSale() > 0) {
                     b = "<p>$" + food.getRealPrice() + "<del>$" + food.getPrice() + "</del></p>";
                 } else {
                     b = "<p>$" + food.getPrice() + "<p>";
+                }
+                if (food.getStatus().equals("Sold Out")) {
+                    x = "<span style=\"color:grey\">Sold Out</span>";
+                } else {
+                    x = "<button class=\"cart\" onclick=\"addToCart()\">\n"
+                            + "                                                    <i class=\"fas fa-shopping-cart cart-icon\"></i>\n"
+                            + "                                                </button>\n";
                 }
                 out.println("<div class=\"food-item col-lg-3 col-md-4 col-sm-6 col-12\">\n"
                         + "                            <div class=\"food-border\">\n"
@@ -79,16 +87,15 @@ public class CustomerSearch extends HttpServlet {
                         + "                                    <p class=\"name\">" + food.getName() + "</p>\n"
                         + "                                    <p class=\"price\">" + b + "</p>\n"
                         + "                                    <div class=\"food-button\">\n"
-                        + "                                        <button class=\"cart\" onclick=\"addToCart('" + food.getId() + "')\">\n"
-                        + "                                            <i class=\"fas fa-shopping-cart cart-icon\"></i>\n"
-                        + "                                        </button>\n"
+                        +                                                   x
                         + "                                        <button class=\"detail\" onclick=\"getDetail('" + food.getId() + "')\">\n"
                         + "                                            <i class=\"fas fa-info-circle\"></i>\n"
                         + "                                        </button>\n"
                         + "                                    </div>\n"
                         + "                                </div>\n"
                         + "                            </div>\n"
-                        + "                        </div>");
+                        + "                        </div>"
+                );
             }
         } else {
             out.println("<style>.centered-text {\n"

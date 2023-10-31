@@ -58,8 +58,12 @@ public class GuestFoodDetail extends HttpServlet {
         FoodDAO f = new FoodDAO();
         String id = request.getParameter("id");
         Food food = f.searchByID(id);
+          if (food!=null){
         request.setAttribute("food", food);
         request.getRequestDispatcher("foodDetail.jsp").forward(request, response);
+        } else{
+            request.getRequestDispatcher("/error/Error.html").forward(request, response);
+        }
     } 
 
     /** 

@@ -4,6 +4,7 @@
  */
 package controller.guest;
 
+import dao.FoodDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Food;
 
 /**
  *
@@ -55,7 +58,12 @@ public class GuestHome extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException { 
+        FoodDAO f=  new FoodDAO();
+        List<Food> topFoods = f.getTopFourSeller();
+        List<Food> latestFoods = f.getTopFourLastest();
+        request.setAttribute("topFoods", topFoods);
+        request.setAttribute("latestFoods", latestFoods);
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 

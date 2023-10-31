@@ -135,7 +135,7 @@ public class FoodDAO extends DBContext {
     public List<Food> getAll() {
         List<Food> list = new ArrayList<>();
         try {
-            String sql = "select * from Food";
+            String sql = "select * from Food where foo_status<>'Deleted'";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -164,7 +164,7 @@ public class FoodDAO extends DBContext {
     public List<Food> searchByName(String name) {
         List<Food> list = new ArrayList<>();
         try {
-            String sql = "select * from Food  where foo_name LIKE ?  ";
+            String sql = "select * from Food  where foo_name LIKE ? and foo_status<>'Deleted' ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, "%" + name + "%");
             ResultSet rs = ps.executeQuery();
@@ -194,7 +194,7 @@ public class FoodDAO extends DBContext {
     public List<Food> searchByCateID(String cateID) {
         List<Food> list = new ArrayList<>();
         try {
-            String sql = "select * from Food  where cat_id = ?  ";
+            String sql = "select * from Food  where cat_id = ? and foo_status<>'Deleted' ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, cateID);
             ResultSet rs = ps.executeQuery();
@@ -217,7 +217,7 @@ public class FoodDAO extends DBContext {
 
     public Food searchByID(String id) {
         try {
-            String sql = "select * from Food  where foo_id = ?  ";
+            String sql = "select * from Food  where foo_id = ? and foo_status<>'Deleted' ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
@@ -238,4 +238,40 @@ public class FoodDAO extends DBContext {
         return null;
     }
 
+    public List<Food> getTopFourSeller() {
+        List<Food> foods = new ArrayList<>();
+        try {
+            String sql = "SELECT top(4) f.foo_id, COALESCE(SUM(od.quantity), 0) AS so_lan_dat\n"
+                    + "FROM food f\n"
+                    + "LEFT JOIN orderdetail od ON f.foo_id = od.foo_id\n"
+                    + "where f.foo_status <> 'Deleted'\n"
+                    + "GROUP BY f.foo_id\n"
+                    + "order by so_lan_dat desc";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                foods.add(searchByID(rs.getString(1)));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return foods;
+    }
+
+    public List<Food> getTopFourLastest() {
+        List<Food> foods = new ArrayList<>();
+        try {
+            String sql = "Select top(4) foo_id from Food\n"
+                    + "where foo_status<>'Deleted'\n"
+                    + "order by foo_id desc";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                foods.add(searchByID(rs.getString(1)));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return foods;
+    }
 }

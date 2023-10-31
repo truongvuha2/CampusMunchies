@@ -162,9 +162,16 @@
                                             </c:otherwise>
                                         </c:choose></p>
                                     <div class="food-button">
-                                        <button class="cart" onclick="addToCart()">
-                                            <i class="fas fa-shopping-cart cart-icon"></i>
-                                        </button>
+                                        <c:choose>
+                                            <c:when test="${food.getStatus() eq 'Sold Out'}">
+                                                <span style ="color:grey">Sold Out</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <button class="cart" onclick="addToCart()">
+                                                    <i class="fas fa-shopping-cart cart-icon"></i>
+                                                </button>
+                                            </c:otherwise>    
+                                        </c:choose>
                                         <button class="detail" onclick="getDetail('${food.getId()}')">
                                             <i class="fas fa-info-circle"></i>
                                         </button>
@@ -182,7 +189,7 @@
         <%@include file="footer.jsp"%>
         <div id="popup" class="hidden">
             <div id="popupContent">
-                 Please log in before add to cart!!!
+                Please log in before add to cart!!!
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
