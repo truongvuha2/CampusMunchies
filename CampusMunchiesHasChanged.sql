@@ -151,16 +151,16 @@ VALUES
 
 
 INSERT INTO Customer  VALUES
-('0123456789', 'John Smith', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password'), 2), '123 Main St, Cityville', '1990-05-15','2023-10-15','Available'),
+('0123456789', 'John Smith', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password'), 2), '123 Main St, Cityville', '1990-05-15','2023-10-15','Blocked'),
 ('0123456788', 'Sarah Johnson', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password2'), 2), '456 Elm St, Townsville', '1985-09-20','2023-9-11', 'Available'),
 ('0123456787', 'Michael Davis', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password3'), 2), '789 Oak St, Villageton', '1995-02-10','2023-10-15', 'Available'),
 ('0123456786', 'Emily Wilson', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password4'), 2), '101 Maple St, Hamletown', '1988-11-30','2023-01-20', 'Available'),
 ('0123456785', 'Daniel Lee', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password5'), 2), '222 Pine St, Forestville', '1992-03-25','2023-09-23', 'Available'),
-('0123456784', 'Olivia Brown', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password6'), 2), '333 Cedar St, Hillside', '1993-07-12','2023-02-19','Available'),
+('0123456784', 'Olivia Brown', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password6'), 2), '333 Cedar St, Hillside', '1993-07-12','2023-02-19','Blocked'),
 ('0123456783', 'James Taylor', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password7'), 2), '444 Birch St, Mountainview', '1991-08-18','2023-03-01', 'Available'),
-('0123456782', 'Ava Martinez', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password8'), 2), '555 Redwood St, Lakeside', '1987-06-08','2023-05-05', 'Available'),
-('0123456781', 'Ethan Harris', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password9'), 2), '666 Fir St, Riverside', '1994-04-05','2023-10-19', 'Available'),
-('0123456780', 'Sophia Clark', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password10'), 2), '777 Cedar St, Parkville', '1996-01-03','2023-09-25', 'Available');
+('0123456782', 'Ava Martinez', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password8'), 2), '555 Redwood St, Lakeside', '1987-06-08','2023-05-05', 'Blocked'),
+('0123456781', 'Ethan Harris', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password9'), 2), '666 Fir St, Riverside', '1994-04-05','2023-10-19', 'Deleted'),
+('0123456780', 'Sophia Clark', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password10'), 2), '777 Cedar St, Parkville', '1996-01-03','2023-09-25', 'Deleted');
 
 
 
@@ -171,7 +171,7 @@ INSERT INTO Employee VALUES
 ('0123456788', 'Jennifer White', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password2'), 2), '5678 Worker St, Laborville', '1982-08-15','2022-09-25', 'Available'),
 ('0123456787', 'Robert Martin', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password3'), 2), '9876 Staff St, Employeeville', '1975-11-10','2022-09-25', 'Available'),
 ('0123456786', 'Mary Wilson', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password4'), 2), '5420 Service St, Serviceton', '1983-02-28','2022-09-25', 'Available'),
-('0123456785', 'Richard Brown', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password5'), 2), '8765 Crew St, Workville', '1978-07-07','2022-09-25', 'Available'),
+('0123456785', 'Richard Brown', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password5'), 2), '8765 Crew St, Workville', '1978-07-07','2022-09-25', 'Deleted'),
 ('0', '', CONVERT(VARCHAR(20), HASHBYTES('MD5', '?'), 2), '', '1900-01-01','2000-01-01', 'Banned');
 
 
@@ -224,6 +224,21 @@ VALUES
 		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
     ('ORD0000012','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 9.47)
+		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000013','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 10.99)
+		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000014','0123456780', '0123456786', '2023-10-20', 'Delivery', 'Preparing','COD', N'', 6.99)
+		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000015','0123456780', '0123456786', '2023-10-20', 'Delivery', 'Preparing','COD', N'', 7.99)
+		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000016','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 8.99)
+		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000017','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 4.99)
 
 
 -- Tạo 10 chi tiết đơn đặt hàng tương ứng
@@ -245,7 +260,12 @@ VALUES
 	('ORD0000011', 'FOOD002', 1, 8.99),
 	('ORD0000012', 'FOOD016', 1, 2.49),
 	('ORD0000012', 'FOOD015', 1, 1.99),
-	('ORD0000012', 'FOOD002', 1, 4.99);
+	('ORD0000012', 'FOOD002', 1, 4.99),
+	('ORD0000013', 'FOOD004', 5, 10.99),
+	('ORD0000014', 'FOOD007', 4, 6.99),
+	('ORD0000015', 'FOOD001', 5, 7.99),
+	('ORD0000016', 'FOOD002', 10, 8.99),
+	('ORD0000017', 'FOOD010', 7, 4.99);
 
 
 INSERT INTO Cart values ('0123456788','FOOD001',3)
