@@ -168,7 +168,7 @@ INSERT INTO Customer  VALUES
 
 INSERT INTO Employee VALUES
 ('0123456789', 'David Anderson', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password1'), 2), '1234 Employee St, Stafftown', '1980-04-22','2022-09-25', 'Available'),
-('0123456788', 'Jennifer White', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password2'), 2), '5678 Worker St, Laborville', '1982-08-15','2022-09-25', 'Available'),
+('0123456788', 'Jennifer White', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password2'), 2), '5678 Worker St, Laborville', '1982-08-15','2022-09-25', 'Banned'),
 ('0123456787', 'Robert Martin', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password3'), 2), '9876 Staff St, Employeeville', '1975-11-10','2022-09-25', 'Available'),
 ('0123456786', 'Mary Wilson', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password4'), 2), '5420 Service St, Serviceton', '1983-02-28','2022-09-25', 'Available'),
 ('0123456785', 'Richard Brown', CONVERT(VARCHAR(20), HASHBYTES('MD5', 'password5'), 2), '8765 Crew St, Workville', '1978-07-07','2022-09-25', 'Deleted'),
@@ -208,7 +208,7 @@ VALUES
     ('ORD0000007','0123456784', '0123456786', '2023-10-10', 'Takeout', 'Preparing','COD', N'', 33.96)
 		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
-    ('ORD0000008','0123456784', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 5.99)
+    ('ORD0000008','0123456784', '0123456786', '2023-10-20', 'Takeout', 'Processing','COD', N'Deliver after 5 pm', 5.99)
 
 		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
@@ -216,29 +216,29 @@ VALUES
 
 		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
-    ('ORD0000010','0123456784', '0123456786', '2023-10-20', 'Delivery', 'Completed','COD', N'', 4.99)
+    ('ORD0000010','0123456784', '0123456786', '2023-10-20', 'Delivery', 'Rejected','COD', N'', 4.99)
 
 		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
     ('ORD0000011','0123456784', '0123456786', '2023-10-20', 'Delivery', 'Completed','COD', N'Nhanh nhanh', 8.99)
 		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
-    ('ORD0000012','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 9.47)
+    ('ORD0000012','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Rejected','COD', N'', 9.47)
 		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
-    ('ORD0000013','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 10.99)
+    ('ORD0000013','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'Dont include any plastic cutlery', 10.99)
 		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
     ('ORD0000014','0123456780', '0123456786', '2023-10-20', 'Delivery', 'Preparing','COD', N'', 6.99)
 		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
-    ('ORD0000015','0123456780', '0123456786', '2023-10-20', 'Delivery', 'Preparing','COD', N'', 7.99)
+    ('ORD0000015','0123456780', '0123456786', '2023-10-20', 'Delivery', 'Rejected','COD', N'Dont include any plastic cutlery', 7.99)
 		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
     ('ORD0000016','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 8.99)
 		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
-    ('ORD0000017','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 4.99)
+    ('ORD0000017','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Processing','COD', N'Dont include any plastic cutlery', 4.99)
 
 
 -- Tạo 10 chi tiết đơn đặt hàng tương ứng
