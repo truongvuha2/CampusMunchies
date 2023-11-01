@@ -59,7 +59,8 @@ public class CustomerHistory extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         OrderDAO o = new OrderDAO();
-        List<Order> orders = o.getAll();
+        String phone = CMCookie.CMCookie.getCustomerPhone(request, response);
+        List<Order> orders = o.getAll(phone);
         request.setAttribute("orders", orders);
         request.getRequestDispatcher("history.jsp").forward(request, response);
     }

@@ -57,12 +57,14 @@ public class OrderDAO extends DBContext {
 //         System.out.println(o.changeOrder("ORD0000001"));
     }
 
-    public List<Order> getAll() {
+    public List<Order> getAll(String phone) {
         List<Order> orders = new ArrayList<>();
         try {
-            String sql = "select * from [Order] order by ord_date desc, ord_id desc";
+            String sql = "select * from [Order] where cus_phone = ? order by ord_date desc, ord_id desc";
             PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,phone);
             ResultSet rs = ps.executeQuery();
+            
             while (rs.next()) {
                 orders.add(new Order(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5),
                         rs.getString(6), rs.getString(7), rs.getString(8), rs.getDouble(9)));

@@ -58,8 +58,9 @@ public class CustomerUpdateHistory extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String phone = CMCookie.CMCookie.getCustomerPhone(request, response);
         OrderDAO o = new OrderDAO();
-        List<Order> orders = o.getAll();
+        List<Order> orders = o.getAll(phone);
         PrintWriter out = response.getWriter();
         if (orders != null) {
             for (Order order : orders) {
@@ -94,7 +95,7 @@ public class CustomerUpdateHistory extends HttpServlet {
                         + "                                                    </td>\n"
                         + "                                                    <td class=\"mt-0\">\n"
                         + "                                                        <div class=\"container\">\n"
-                        + "                                                            <button class=\"col-md-5 btn btn-primary\"  onclick= \"viewOrder('"+order.getId()+"')\" class=\"btn btn-outline-secondary\"\n"
+                        + "                                                            <button class=\"col-md-5 btn btn-primary\"  onclick= \"viewOrder('" + order.getId() + "')\" class=\"btn btn-outline-secondary\"\n"
                         + "                                                                    >Show</button>\n"
                         + a
                         + "                                                        </div>\n"
