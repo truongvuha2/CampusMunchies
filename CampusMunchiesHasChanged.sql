@@ -107,23 +107,23 @@ create table Cart(
 
 -- Insert data into Category table
 INSERT INTO Category (cat_id, cat_name,cat_status)
-VALUES ('CAT001', N'Appetizers','Available'),
-       ('CAT002', N'Soups','Available'),
-       ('CAT003', N'Salads','Available'),
-       ('CAT004', N'Entrees','Available'),
-       ('CAT005', N'Desserts','Available'),
+VALUES ('CAT001', N'Other','Available'),
+       ('CAT002', N'Chicken','Available'),
+       ('CAT003', N'Banh mi','Available'),
+       ('CAT004', N'Side dish','Available'),
+       ('CAT005', N'Drink','Available'),
 	   ('CAT006', N'Combo','Available');
 
 ---- Insert data into Food table
 INSERT INTO Food (foo_id, cat_id, foo_name, foo_price, foo_sale, foo_description, foo_status, foo_img)
 VALUES
-	('FOOD001', 'CAT001', N'Salad', 7.99, 0.00, N'Fresh and healthy salad with a variety of ingredients', 'Available', 'https://i.ibb.co/4ST0XCZ/Salad.png'),
+	('FOOD001', 'CAT004', N'Salad', 7.99, 0.00, N'Fresh and healthy salad with a variety of ingredients', 'Available', 'https://i.ibb.co/4ST0XCZ/Salad.png'),
 
     ('FOOD002', 'CAT003', N'Kebab', 8.99, 0.00, N'Grilled kebab served with pita bread and sauce', 'Available', 'https://i.ibb.co/MscZLfn/Kebab.png'),
 
     ('FOOD003', 'CAT001', N'Italian Pasta', 9.99, 0.00, N'Delicious Italian pasta with your choice of sauce', 'Available', 'https://i.ibb.co/zxnNz2h/Pasta.png'),
 
-    ('FOOD004', 'CAT002', N'Fried Chicken Wings', 10.99, 0.00, N'Crispy fried chicken wings with your choice of sauce', 'Available', 'https://i.ibb.co/jzLLJkq/Chicken-Wings.png'),
+    ('FOOD004', 'CAT005', N'Fried Chicken Wings', 10.99, 0.00, N'Crispy fried chicken wings with your choice of sauce', 'Available', 'https://i.ibb.co/jzLLJkq/Chicken-Wings.png'),
 
     ('FOOD005', 'CAT002', N'Fried Chicken Drumsticks', 10.99, 0.00, N'Crispy fried chicken drumsticks with your choice of sauce', 'Available', 'https://i.ibb.co/cXwkt1L/Chicken-Drumstick.png'),
 
@@ -131,23 +131,23 @@ VALUES
 
     ('FOOD007', 'CAT003', N'Meat Banh Mi', 6.99, 0.00, N'Hearty meat sandwich with a variety of fillings', 'Available', 'https://i.ibb.co/zNtW5wN/Meat-Banh-Mi.png'),
 
-    ('FOOD008', 'CAT002', N'French Fries', 3.99, 0.00, N'Golden and crispy french fries with ketchup', 'Available', 'https://i.ibb.co/yyvfzsN/French-Fries.png'),
+    ('FOOD008', 'CAT004', N'French Fries', 3.99, 0.00, N'Golden and crispy french fries with ketchup', 'Available', 'https://i.ibb.co/yyvfzsN/French-Fries.png'),
 
     ('FOOD009', 'CAT003', N'Hamburger', 7.49, 0.00, N'Delicious hamburger with your choice of toppings', 'Available', 'https://i.ibb.co/Nm3BsQt/Hamburger.png'),
 
-	('FOOD010', 'CAT003', N'Xoi Man', 4.99, 0.00, N'Sticky rice with a variety of toppings', 'Available', 'https://i.ibb.co/ydX8vbb/XoiMan.png'),
+	('FOOD010', 'CAT001', N'Xoi Man', 4.99, 0.00, N'Sticky rice with a variety of toppings', 'Available', 'https://i.ibb.co/ydX8vbb/XoiMan.png'),
 
     ('FOOD011', 'CAT003', N'Toco', 3.49, 0.00, N'Toco Toco', 'Available', 'https://i.ibb.co/kKxPFRy/Toco.png'),
 
-    ('FOOD012', 'CAT001', N'Pepsi', 1.99, 0.00, N'Classic Pepsi soda', 'Available', 'https://i.ibb.co/8r2cnDh/Pepsi.png'),
+    ('FOOD012', 'CAT005', N'Pepsi', 1.99, 0.00, N'Classic Pepsi soda', 'Available', 'https://i.ibb.co/8r2cnDh/Pepsi.png'),
 
-    ('FOOD013', 'CAT001', N'Coca-Cola', 1.99, 0.00, N'Classic Coca-Cola soda', 'Available', 'https://i.ibb.co/G7jBD5M/CocaCola.png'),
+    ('FOOD013', 'CAT005', N'Coca-Cola', 1.99, 0.00, N'Classic Coca-Cola soda', 'Available', 'https://i.ibb.co/G7jBD5M/CocaCola.png'),
 
-    ('FOOD014', 'CAT001', N'7UP', 1.99, 0.00, N'Refreshing 7UP soda', 'Available', 'https://i.ibb.co/sVSMXJs/7up.png'),
+    ('FOOD014', 'CAT005', N'7UP', 1.99, 0.00, N'Refreshing 7UP soda', 'Available', 'https://i.ibb.co/sVSMXJs/7up.png'),
 
-    ('FOOD015', 'CAT001', N'Fanta', 1.99, 0.00, N'Fruity Fanta soda', 'Available', 'https://i.ibb.co/9wxKxXW/Fanta.png'),
+    ('FOOD015', 'CAT005', N'Fanta', 1.99, 0.00, N'Fruity Fanta soda', 'Available', 'https://i.ibb.co/9wxKxXW/Fanta.png'),
 
-    ('FOOD016', 'CAT001', N'Milo', 2.49, 0.00, N'Delicious Milo chocolate drink', 'Available', 'https://i.ibb.co/m8d7Qft/Milo.png');
+    ('FOOD016', 'CAT005', N'Milo', 2.49, 0.00, N'Delicious Milo chocolate drink', 'Available', 'https://i.ibb.co/m8d7Qft/Milo.png');
 
 
 INSERT INTO Customer  VALUES
@@ -197,7 +197,33 @@ VALUES
     ('ORD0000004','0123456785', '0123456786', '2023-10-14', 'Takeout', 'Cancelled','COD', N'Deliver after 7 pm', 22.47)
 	INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
 VALUES
-    ('ORD0000005','0123456784', '0', '2023-10-14', 'Takeout', 'Waiting','COD', N'', 9.98)
+    ('ORD0000005','0123456784', '0123456789', '2023-10-14', 'Takeout', 'Waiting','COD', N'', 9.98)
+
+		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000006','0123456784', '0123456789', '2023-10-14', 'Delivery', 'Completed','COD', N'', 9.98)
+
+	INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000007','0123456784', '0123456786', '2023-10-10', 'Takeout', 'Preparing','COD', N'', 33.96)
+		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000008','0123456784', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 5.99)
+
+		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000009','0123456784', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 8.99)
+
+		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000010','0123456784', '0123456786', '2023-10-20', 'Delivery', 'Completed','COD', N'', 4.99)
+
+		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000011','0123456784', '0123456786', '2023-10-20', 'Delivery', 'Completed','COD', N'Nhanh nhanh', 8.99)
+		INSERT INTO [Order] (ord_id,cus_phone, emp_phone, ord_date, ord_type, ord_status, ord_pay, ord_note, ord_total)
+VALUES
+    ('ORD0000012','0123456780', '0123456786', '2023-10-20', 'Takeout', 'Completed','COD', N'', 9.47)
 
 
 -- Tạo 10 chi tiết đơn đặt hàng tương ứng
@@ -209,7 +235,18 @@ VALUES
     ('ORD0000002', 'FOOD005', 1, 10.99),
     ('ORD0000003', 'FOOD007', 1, 6.99),
     ('ORD0000004', 'FOOD009', 3, 22.47),
-    ('ORD0000005', 'FOOD010', 2, 9.98);
+    ('ORD0000005', 'FOOD010', 2, 9.98),
+	('ORD0000007', 'FOOD001', 1, 15.98),
+	('ORD0000007', 'FOOD002', 1, 17.98),
+	('ORD0000006', 'FOOD010', 1, 9.98),
+	('ORD0000008', 'FOOD006', 1, 5.99),
+	('ORD0000009', 'FOOD002', 1, 8.99),
+	('ORD0000010', 'FOOD010', 2, 4.99),
+	('ORD0000011', 'FOOD002', 1, 8.99),
+	('ORD0000012', 'FOOD016', 1, 2.49),
+	('ORD0000012', 'FOOD015', 1, 1.99),
+	('ORD0000012', 'FOOD002', 1, 4.99);
+
 
 INSERT INTO Cart values ('0123456788','FOOD001',3)
 select * from [Order] o join Customer c on c.cus_phone=o.cus_phone where o.emp_phone='0123456787';
