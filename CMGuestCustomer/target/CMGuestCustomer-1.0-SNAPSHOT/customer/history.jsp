@@ -75,9 +75,16 @@
                                                     </td>
                                                     <td class="mt-0">
                                                         <div class="container">
-                                                            <a href="/CampusMunchies/customer/historyDetail?id=${order.getId()}" class="btn btn-outline-secondary"
-                                                               >Show</a>
+                                                            <button class="col-md-5 btn btn-primary" onclick= "viewOrder('${order.getId()}')"     class="btn btn-outline-secondary"
+                                                                    >Show</button>
+                                                            <c:choose>
+                                                                <c:when test="${order.getStatus() eq 'Waiting'}">
+                                                                    <button class="col-md-6 btn btn-primary" onclick= "deleteOrder('${order.getId()}')" class="btn btn-outline-secondary"
+                                                                            >Cancel Order</button>
+                                                                </c:when>
+                                                            </c:choose>  
                                                         </div>
+
                                                     </td>
                                                 </tr>
                                             </c:forEach>
@@ -100,6 +107,73 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+            <script>
+                                                                        function deleteOrder(id) {
+                                                                            $.ajax({
+                                                                                url: "/CampusMunchies/customer/cancelOrder",
+                                                                                type: "get",
+                                                                                data: {
+                                                                                    id: id
+                                                                                },
+                                                                                success: function (data) {
+                                                                                    location.reload();
+
+                                                                                },
+                                                                                error: function (xhr) {
+                                                                                    Swal.fire({
+                                                                                        icon: 'error',
+                                                                                        text: 'Current Password is not correct'
+                                                                                    });
+                                                                                }
+                                                                            });
+                                                                        }
+                                                                        function viewOrder(id){
+                                                                            window.location= "/CampusMunchies/customer/historyDetail?id="+id
+                                                                        }
+
+                                                                        window.addEventListener('load', function () {
+                                                                            // Gọi hàm updateHistory() sau khi trang đã tải hoàn toàn.
+                                                                            checkForChanges();
+                                                                        });
+                                                                        function checkForChanges() {
+                                                                            $.ajax({
+                                                                                url: '/CampusMunchies/customer/updateHistory',
+                                                                                type: 'GET',
+                                                                               
+                                                                                success: function (data) {
+                                                                                    // Xử lý dữ liệu trả về từ API endpoint
+
+                                                                                    // Cập nhật trang "history.jsp" nếu có thay đổi
+                                                                                    document.getElementById("body").innerHTML = data;
+
+                                                                                },
+                                                                                complete: function () {
+                                                                                    // Thiết lập một khoảng thời gian cho việc kiểm tra lại (đặt thời gian tùy ý)
+                                                                                    setTimeout(checkForChanges, 5000); // Ví dụ: kiểm tra lại sau mỗi 5 giây
+                                                                                }
+                                                                            });
+                                                                        }
+//                                                                        function updateHistory(){
+//                                                                            $.ajax({
+//                                                                                url: "/CampusMunchies/customer/updateHistory",
+//                                                                                type: "get",
+//                                                                                data: {
+//                                             
+//                                                                                },
+//                                                                                success: function (data) {
+//                                                                                    var row = document.getElementById("body");
+//                                                                                    row.innerHTML=data;
+//                                                                                },
+//                                                                                error: function (xhr) {
+//                                                                                    
+//                                                                                }
+//                                                                            }); 
+//                                                                            setInterval(updateHistory, 5000);
+//                                                                        }
+            </script>
     </body>
 
 </html>

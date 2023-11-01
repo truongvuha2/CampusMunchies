@@ -75,7 +75,6 @@ public class GuestRegister extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CustomerDAO cus = new CustomerDAO();
-
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
         String password = request.getParameter("password");
@@ -83,14 +82,19 @@ public class GuestRegister extends HttpServlet {
         String birthday = request.getParameter("birthday");
 
         Date date = Date.valueOf(birthday);
-        if (!cus.isExisted(phone, password)) {
+
+        // Sử dụng hàm kiểm tra số điện thoại đã tồn tại
+        if (!cus.isPhoneExisted(phone)) {
             Customer c = new Customer(phone, name, address, date);
             cus.add(c, password);
-            response.sendRedirect("/CampusMunchies/guest/login");
+//            response.sendRedirect("/CampusMunchies/guest/login");
         } else {
-
-            response.sendRedirect("/CampusMunchies/guest/register");
+            // Trả về thông báo lỗi (có thể là JSON hoặc HTML)
+            response.setStatus(HttpServletResponse.SC_CONFLICT); // HTTP status code 409 Conflict
+            PrintWriter out = response.getWriter();
+            out.print("Phone number already exists");
         }
+
     }
 
     /**

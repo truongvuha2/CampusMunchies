@@ -100,6 +100,22 @@
         <servlet-name>CustomerUpdateProfile</servlet-name>
         <servlet-class>controller.customer.CustomerUpdateProfile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GuestSearchCategory</servlet-name>
+        <servlet-class>controller.guest.GuestSearchCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerSearchCategory</servlet-name>
+        <servlet-class>controller.customer.CustomerSearchCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerCancelOrder</servlet-name>
+        <servlet-class>controller.customer.CustomerCancelOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerUpdateHistory</servlet-name>
+        <servlet-class>controller.customer.CustomerUpdateHistory</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
         <url-pattern>/guest/home</url-pattern>
@@ -191,6 +207,22 @@
     <servlet-mapping>
         <servlet-name>CustomerUpdateProfile</servlet-name>
         <url-pattern>/customer/updateProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuestSearchCategory</servlet-name>
+        <url-pattern>/guest/searchCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerSearchCategory</servlet-name>
+        <url-pattern>/customer/searchCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerCancelOrder</servlet-name>
+        <url-pattern>/customer/cancelOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerUpdateHistory</servlet-name>
+        <url-pattern>/customer/updateHistory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

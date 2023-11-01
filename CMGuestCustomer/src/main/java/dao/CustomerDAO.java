@@ -18,6 +18,19 @@ import model.Customer;
  * @author khang
  */
 public class CustomerDAO extends DBContext {
+    
+    public boolean isPhoneExisted(String phone){
+         try {
+            String sql = "select * from Customer "
+                    + "where cus_phone = '" + phone+"'";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 
     public boolean isExisted(String phone, String password) {
         try {
@@ -152,14 +165,15 @@ public class CustomerDAO extends DBContext {
 
     public static void main(String[] args) {
         CustomerDAO c = new CustomerDAO();
-//        List<Customer> list = c.getAll();
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(list.get(i).toString());
-//        }
-        //System.out.println(c.searchByPhone("0123456788"));
-        Customer cus = new Customer("0123456788", "Tien", "aaa",Date.valueOf("1900-02-03"));
-        c.update(cus);
-        System.out.println(c.searchByPhone("0123456788"));
+////        List<Customer> list = c.getAll();
+////        for (int i = 0; i < list.size(); i++) {
+////            System.out.println(list.get(i).toString());
+////        }
+//        //System.out.println(c.searchByPhone("0123456788"));
+//        Customer cus = new Customer("0123456788", "Tien", "aaa",Date.valueOf("1900-02-03"));
+//        c.update(cus);
+//        System.out.println(c.searchByPhone("0123456788"));
+System.out.println(c.isPhoneExisted("0123456700"));
         //System.out.println(c.isExisted("0123456788", "123456789"));
     }
 }

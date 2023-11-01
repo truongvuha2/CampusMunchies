@@ -138,7 +138,7 @@
                     </div>
                     <div class="col-md-9">
                         <div class="tab-content">
-                            <form action="/CampusMunchies/customer/updateProfile" method="post" class="tab-pane fade active show" id="account-general">
+                            <form class="tab-pane fade active show" id="account-general">
 
                                 <hr class="border-light m-0">
                                 <div class="card-body">
@@ -152,7 +152,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Birthday</label>
-                                        <input type="text" class="form-control" value="${customer.birthday}" name="birth" required>
+                                        <input type="date" id="birthday" class="form-control" value="${customer.birthday}" name="birth" required>
                                     </div>
 
                                     <div class="form-group">
@@ -162,11 +162,11 @@
                                     <strong class="text-success" style="color: green !important">${messU}</strong>
                                 </div>
                                 <div class="text-right mt-3">
-                                    <button type="submit" id="SaveChangeBtn" class="btn btn-primary">Save changes</button>
-                                    
+                                    <button  id="SaveChangeBtn" class="btn btn-primary">Save changes</button>
+
                                 </div>
                             </form>
-                            <form action="/CampusMunchies/customer/changePassword" method="post" class="tab-pane fade" id="account-change-password">
+                            <form  class="tab-pane fade" id="account-change-password">
 
                                 <div class="card-body pb-2">
                                     <div class="form-group">
@@ -190,7 +190,7 @@
                                 <div class="text-right mt-3">
                                     <button type="submit" id="savePassBtn" class="btn btn-primary" >Save
                                         changes</button>
-                              
+
                                 </div>
 
                             </form>
@@ -221,8 +221,8 @@
                 event.preventDefault();
                 const name = document.getElementById('name').value;
                 const address = document.getElementById('address').value;
-
-                if (!name || !address) {
+                const birthday = document.getElementById('birthday').value;
+                if (!name || !address || !birthday) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Invalid information',
@@ -241,10 +241,31 @@
                         text: 'It must be more than 50 characters.'
                     });
                 } else {
-                    // Nếu tất cả thông tin hợp lệ, cho phép form được submit
-                    document.querySelector('form#account-general').submit();
+                    saveChange();
                 }
             });
+
+            function saveChange() {
+                const name = document.getElementById('name').value;
+                const address = document.getElementById('address').value;
+                const birthday = document.getElementById('birthday').value;
+                $.ajax({
+                    url: "/CampusMunchies/customer/updateProfile",
+                    type: "post",
+                    data: {
+                        name: name, address: address, birthday: birthday
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Update successfully'
+                        });
+                    },
+                    error: function (xhr) {
+                        console.log(error);
+                    }
+                });
+            }
 
             document.getElementById('savePassBtn').addEventListener('click', function (event) {
                 event.preventDefault();
@@ -263,10 +284,34 @@
                         text: 'It must be between 8 and 20 characters.'
                     });
                 } else {
-                    // Nếu tất cả thông tin hợp lệ, cho phép form được submit
-                    document.querySelector('form#account-change-password').submit();
+                    savePassword();
                 }
             });
+            
+            function savePassword() {
+                  const currentPass= document.getElementById('password').value;
+                  const newPass= document.getElementById('password1').value;
+                $.ajax({
+                    url: "/CampusMunchies/customer/changePassword",
+                    type: "post",
+                    data: {
+                        currentPass:currentPass,
+                        newPass:newPass
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Update successfully'
+                        });
+                    },
+                    error: function (xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            text: 'Current Password is not correct'
+                        });
+                    }
+                });
+            }
 
             function isValidName(name) {
                 return name.length >= 2 && name.length <= 50;

@@ -101,7 +101,7 @@
                 padding: 10px;
                 border: none;
                 border-radius: 5px;
-                width: 50%;
+                width: 90%;
                 border: #BDBBBB 2px solid;
             }
             #popup {
@@ -139,6 +139,15 @@
         <div class ="container">
             <div class="search-box">
                 <input oninput="searchByName(this)" type="text" name = "txt" placeholder="Search food">
+            </div>
+            <div class="">
+                <label>Category:
+                    <select id="cate" name="category" oninput="searchByCategory(this)">
+                        <option value="">All</option>
+                        <c:forEach var="f" items="${requestScope.cates}" >
+                            <option value="${f.getId()}">${f.getName()}</option>
+                        </c:forEach>
+                    </select>
             </div>
 
 
@@ -209,7 +218,7 @@
                 }, 3000);
             }
             function searchByName(param) {
-                var txtSearch = param.value;
+               var  txtSearch = param.value;
                 $.ajax({
                     url: "/CampusMunchies/guest/search",
                     type: "get",
@@ -229,7 +238,28 @@
                     }
                 });
             }
+            function searchByCategory(param) {
+                  var  txtSearch = param.value;
+                $.ajax({
+                    url: "/CampusMunchies/guest/searchCategory",
+                    type: "get",
+                    data: {
+                        txt: txtSearch
+                    },
+                    success: function (data) {
+                        // Đảm bảo rằng bạn sử dụng document.getElementById thay vì document.getElementbyID
+                        var row = document.getElementById("content");
 
+                        // Sử dụng innerHTML để cập nhật nội dung của phần tử "content"
+                        row.innerHTML = data;
+                    },
+                    error: function (xhr) {
+                        // Xử lý lỗi ở đây nếu cần
+                        console.log(error);
+                    }
+                });
+            }
+            
 
         </script>
 

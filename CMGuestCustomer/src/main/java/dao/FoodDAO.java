@@ -24,7 +24,7 @@ public class FoodDAO extends DBContext {
      */
     public static void main(String[] args) {
         FoodDAO f = new FoodDAO();
-        List<Food> foods = f.searchByName("b");
+        List<Food> foods = f.searchByCateID("b");
         for (int i = 0; i < foods.size(); i++) {
             System.out.println(foods.get(i).toString());
         }

@@ -108,7 +108,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="register-button">Register</button>
+                    <button class="register-button">Register</button>
                 </div>
             </form>
         </div>
@@ -118,6 +118,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.6/compressed/picker.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.6/compressed/picker.date.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
 
 
@@ -172,16 +173,62 @@
                         text: 'Please enter a valid date of birth in yyyy/mm/dd format.'
                     });
 
-                }else {
+                } else {
                     // Nếu tất cả thông tin hợp lệ, cho phép form được submit
-                    document.querySelector('form').submit();
+                    register();
                 }
 
-                
+
             });
 
+            function register() {
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const password = document.getElementById('password').value;
+                const address = document.getElementById('address').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const birthday = document.getElementById('birthday').value;
+
+                $.ajax({
+                    url: "/CampusMunchies/guest/register",
+                    type: "post",
+                    data: {
+                        name: name,
+                        phone: phone,
+                        password: password,
+                        address: address,
+                        confirmPassword: confirmPassword,
+                        birthday: birthday
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Register successfully',
+                            text: 'Click OK to redirect to Log in page',
+                            showCancelButton: true, // Hiển thị nút Cancel
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK',
+                            cancelButtonColor: '#d33',
+                            cancelButtonText: 'Cancel'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.href = "/CampusMunchies/guest/login";
+                            }
+                        });
+                    },
+                    error: function (xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Phone is existed',
+                            text: 'Please enter the other phone.'
+                        });
+                    }
+                });
+            }
+
+
             function isValidPhone(phone) {
-                return /^[0-9]{10}$/.test(username) && username[0] === '0';
+                return /^[0-9]{10}$/.test(phone) && phone[0] === '0';
             }
             function isValidName(name) {
                 return name.length >= 2 && name.length <= 50;
@@ -196,8 +243,7 @@
             }
 
             function isValidDate(birthday) {
-                const dateRegex = /^\d{4}\/\d{2}\/\d{2}$/;
-                return dateRegex.test(birthday);
+                return birthday != null;
             }
         </script>
     </body>

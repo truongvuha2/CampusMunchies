@@ -73,7 +73,7 @@ public class CustomerUpdateProfile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String name = request.getParameter("name");
-        String birth = request.getParameter("birth");
+        String birth = request.getParameter("birthday");
         String address = request.getParameter("address");
         Date date = Date.valueOf(birth);
 
@@ -81,10 +81,10 @@ public class CustomerUpdateProfile extends HttpServlet {
         CustomerDAO cus = new CustomerDAO();
         Customer c = new Customer(phone, name, address, date);
         cus.update(c);
-        request.setAttribute("messU", "Update profile successfully!");
-        request.setAttribute("customer", c);
-       
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
+//        request.setAttribute("messU", "Update profile successfully!");
+//        request.setAttribute("customer", c);
+//       
+//        request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 
     /**

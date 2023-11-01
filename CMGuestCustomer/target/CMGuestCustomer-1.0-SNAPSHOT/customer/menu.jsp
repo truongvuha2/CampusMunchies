@@ -141,9 +141,17 @@
             <div class="search-box">
                 <input oninput="searchByName(this)" type="text" name = "txt" placeholder="Search food">
             </div>
+            <div class="">
+                <label>Category:
+                    <select id="cate" name="category" oninput="searchByCategory(this)">
+                        <option value="">All</option>
+                        <c:forEach var="f" items="${requestScope.cates}" >
+                            <option value="${f.getId()}">${f.getName()}</option>
+                        </c:forEach>
+                    </select>
+            </div>
 
 
-            
             <div class="container">
                 <div class="row" id="content">
                     <c:forEach var="food" items="${requestScope.foods}" >
@@ -225,6 +233,27 @@
                                                 var txtSearch = param.value;
                                                 $.ajax({
                                                     url: "/CampusMunchies/customer/search",
+                                                    type: "get",
+                                                    data: {
+                                                        txt: txtSearch
+                                                    },
+                                                    success: function (data) {
+                                                        // Đảm bảo rằng bạn sử dụng document.getElementById thay vì document.getElementbyID
+                                                        var row = document.getElementById("content");
+
+                                                        // Sử dụng innerHTML để cập nhật nội dung của phần tử "content"
+                                                        row.innerHTML = data;
+                                                    },
+                                                    error: function (xhr) {
+                                                        // Xử lý lỗi ở đây nếu cần
+                                                        console.log(error);
+                                                    }
+                                                });
+                                            }
+                                            function searchByCategory(param) {
+                                                var txtSearch = param.value;
+                                                $.ajax({
+                                                    url: "/CampusMunchies/customer/searchCategory",
                                                     type: "get",
                                                     data: {
                                                         txt: txtSearch

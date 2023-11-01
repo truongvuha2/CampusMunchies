@@ -80,15 +80,15 @@ public class CustomerChangePassword extends HttpServlet {
         CustomerDAO cus = new CustomerDAO();
          Customer c = cus.searchByPhone(phone);
         if (cus.isExisted(phone, oldPass)) {
-            request.setAttribute("messS", "Change password successfully!");
-            request.setAttribute("customer", c);
+//            request.setAttribute("messS", "Change password successfully!");
+//            request.setAttribute("customer", c);
             cus.changePassword(phone, newPass);
-            request.getRequestDispatcher("profile.jsp").forward(request, response);
+//            request.getRequestDispatcher("profile.jsp").forward(request, response);
         } else {
            
-            request.setAttribute("customer", c);
-            request.setAttribute("messF", "Wrong current password!");
-            request.getRequestDispatcher("profile.jsp").forward(request, response);
+            response.setStatus(HttpServletResponse.SC_CONFLICT); // HTTP status code 409 Conflict
+//            PrintWriter out = response.getWriter();
+//            out.print("Phone number already exists");
         }
     }
 

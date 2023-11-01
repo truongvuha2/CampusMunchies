@@ -30,10 +30,37 @@ public class OrderDAO extends DBContext {
         addOrderDetails(order.getId(), carts);
     }
 
+    public boolean cancelOrder(String ordId) {
+        try {
+            String sql = "select ord_status from [Order] where ord_id =? ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, ordId);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            if (rs.getString(1).equals("Waiting")) {
+                sql = "update [Order] set ord_status='Cancelled' where ord_id=?";
+                ps = connection.prepareStatement(sql);
+                ps.setString(1, ordId);
+                ps.executeUpdate();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    
+     public static void main(String[] args) {
+        OrderDAO o = new OrderDAO();
+//         System.out.println(o.changeOrder("ORD0000001"));
+    }
+
     public List<Order> getAll() {
         List<Order> orders = new ArrayList<>();
         try {
-            String sql = "select * from [Order] order by ord_date desc";
+            String sql = "select * from [Order] order by ord_date desc, ord_id desc";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -63,28 +90,29 @@ public class OrderDAO extends DBContext {
         return orderDetail;
     }
 
-       public Order getOrderByID(String id) {
+    public Order getOrderByID(String id) {
         try {
             String sql = "select * from [Order] where ord_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               return new Order(rs.getString(1),
-                      rs.getString(2), 
-                       rs.getString(3), 
-                       rs.getDate(4), 
-                       rs.getString(5), 
-                       rs.getString(6), 
-                       rs.getString(7), 
-                       rs.getString(8), 
-                       rs.getDouble(9));
+                return new Order(rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDate(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getDouble(9));
             }
         } catch (Exception e) {
             System.out.println(e);
         }
         return null;
     }
+
     private void addOrderDetails(String orderId, List<Cart> carts) {
         String sql = "";
         PreparedStatement ps;
@@ -141,12 +169,6 @@ public class OrderDAO extends DBContext {
         return id;
     }
 
-    public static void main(String[] args) {
-        OrderDAO o = new OrderDAO();
-        List<OrderDetail> orders = o.getOrder("ORD0000001");
-        for (OrderDetail order : orders) {
-            System.out.println(order.toString());
-        }
-    }
+   
 
 }
