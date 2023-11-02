@@ -9,7 +9,7 @@
 <html>
 
     <head>
-        <title>Đăng nhập</title>
+        <title>Login</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -121,19 +121,55 @@
             </form>
         </div>
 
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
         <script>
             document.querySelector('form').addEventListener('submit', function (event) {
+                event.preventDefault();
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
                 const errorMessage = document.getElementById('error-message');
 
                 if (!username || !password) {
-                    errorMessage.style.display = 'block';
-                    event.preventDefault();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid information',
+                        text: 'Please fill in the required information!'
+                    });
                 } else {
-                    errorMessage.style.display = 'none';
+                    login();
                 }
             });
+            function login() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                $.ajax({
+                    url: "/CampusMunchies/guest/login",
+                    type: "post",
+                    data: {
+                        phone: username, password: password,
+                    },
+                    success: function (data) {
+                        
+                        window.location="/CampusMunchies/customer/home";
+                    },
+                    error: function (xhr) {
+                       Swal.fire({
+                            icon: 'error',
+                            text: 'Phone or password incorrect!'
+                        });
+                    }
+                });
+            }
         </script>
     </body>
 
