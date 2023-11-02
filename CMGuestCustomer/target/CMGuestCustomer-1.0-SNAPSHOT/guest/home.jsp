@@ -61,7 +61,10 @@
                 <img src="../img/Banner1.png" alt=""/>
             </div>
             <div class="banner-slide">
-                <img src="../img/dual-monitor-wallpaper-10.jpg" alt=""/>
+                <img src="../img/Burger.png" alt=""/>
+            </div>
+            <div class="banner-slide">
+                <img src="../img/Delicous.png" alt=""/>
             </div>
         </div>
 

@@ -19,6 +19,14 @@
                 margin: 0;
                 padding:0;
             }
+
+            .banner{
+                margin-bottom: 20px;
+                margin-top: 83px;
+            }
+            .banner-slide img {
+                width: 100%
+            }
             .food-item {
                 height: 300px;
                 text-align: center;
@@ -91,7 +99,7 @@
 
 
             .search-box {
-                margin-top: 100px;
+/*                margin-top: 100px;*/
                 text-align: center;
                 margin-bottom: 20px
             }
@@ -136,7 +144,17 @@
     </head>
     <body>
         <%@include file="header.jsp"%>
-
+        <div  class="banner">
+            <div class="banner-slide">
+                <img src="../img/Banner1.png" alt=""/>
+            </div>
+            <div class="banner-slide">
+                <img src="../img/Burger.png" alt=""/>
+            </div>
+            <div class="banner-slide">
+                <img src="../img/Delicous.png" alt=""/>
+            </div>
+        </div>
         <div class ="container">
             <div class="search-box">
                 <input oninput="searchByName(this)" type="text" name = "txt" placeholder="Search food">
@@ -202,6 +220,7 @@
                 Add successfully!!!
             </div>
         </div>
+       
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
                                             function getDetail(id) {
@@ -273,6 +292,25 @@
                                             }
 
         </script>
+ <script>
+                                            $(document).ready(function () {
+                                                var currentIndex = 0;
+                                                var slides = $(".banner-slide");
 
+                                                function showSlide(index) {
+                                                    slides.hide();
+                                                    slides.eq(index).fadeIn();
+                                                }
+
+                                                function nextSlide() {
+                                                    currentIndex = (currentIndex + 1) % slides.length;
+                                                    showSlide(currentIndex);
+                                                }
+
+                                                showSlide(currentIndex);
+
+                                                setInterval(nextSlide, 5000);
+                                            });
+        </script>
     </body>
 </html>

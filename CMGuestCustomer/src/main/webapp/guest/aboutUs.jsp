@@ -214,19 +214,15 @@
 
 
                 <div class="content">
-                    <div class="main-text">
+                    <div class="main-text" style="margin:0">
                         <h3>Fast Food</h3>
                         <h1>Campus Munchies</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in viverra erat. Aenean vitae
-                            lacus porttitor, mattis nulla sit amet, consequat nisi. Quisque magna eros, pellentesque vitae
-                            odio in, sodales tristique magna. Vestibulum nec ante ac nulla imperdiet venenatis. Ut venenatis
-                            venenatis pellentesque. Integer aliquet dictum libero in tincidunt. In blandit tincidunt ex, ac
-                            vestibulum felis pretium quis. Proin viverra tristique mi, id consequat dui congue at. Proin ac
-                            lectus non felis iaculis maximus bibendum in dui. Integer maximus pretium nibh. Aliquam
-                            tincidunt, lectus eu porttitor tempor, est ex bibendum ipsum, ut tincidunt risus nulla sit amet
-                            risus. In hac habitasse platea dictumst. Suspendisse vitae placerat ligula. Nulla mattis
-                            consectetur mollis.</p>
-                        <a href="#" class="cta"><i class="fa-solid fa-cart-shopping"></i>Order food</a>
+                        <h3>Campus Munchies - Where Flavorful Delights are at Your Fingertips!</h3>
+                        <p></p>
+                        <p>Welcome to Campus Munchies, the place where you can explore a diverse world of delicious and convenient food right at your school or workplace. We are a team of food enthusiasts who understand that finding a satisfying meal in a busy life isn't always easy. That's why we've created Campus Munchies to cater to your culinary needs.</p>
+                        <p>With Campus Munchies, you have the opportunity to experience a variety of delectable dishes from some of the most popular local restaurants in your area, all without leaving your workplace or school. We've established partnerships with numerous local eateries to ensure that you always have plenty of exciting choices to satisfy your taste buds.</p>
+                        <p>Order online through our user-friendly website or mobile app, and we'll deliver fresh and delicious food right to your doorstep or workplace. No need to worry about missing an important meal or standing in long queues at food counters. Campus Munchies guarantees convenience and time-saving.</p>
+                        <p style="margin:0; padding-bottom:20px">Furthermore, we continuously listen to customer feedback and strive to improve our services. Our goal is to provide you with the best online ordering experience, with a professional support team ready to assist you at any time.</p>
                     </div>
 
                     <div class="image">

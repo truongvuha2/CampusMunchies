@@ -19,6 +19,13 @@
                 margin: 0;
                 padding:0;
             }
+            .banner{
+                margin-bottom: 20px;
+                margin-top: 83px;
+            }
+            .banner-slide img {
+                width: 100%
+            }
             .food-item {
                 height: 300px;
                 text-align: center;
@@ -91,7 +98,7 @@
 
 
             .search-box {
-                margin-top: 100px;
+
                 text-align: center;
                 margin-bottom: 20px
             }
@@ -135,7 +142,17 @@
     </head>
     <body>
         <%@include file="header.jsp"%>
-
+        <div  class="banner">
+            <div class="banner-slide">
+                <img src="../img/Banner1.png" alt=""/>
+            </div>
+            <div class="banner-slide">
+                <img src="../img/Burger.png" alt=""/>
+            </div>
+            <div class="banner-slide">
+                <img src="../img/Delicous.png" alt=""/>
+            </div>
+        </div>
         <div class ="container">
             <div class="search-box">
                 <input oninput="searchByName(this)" type="text" name = "txt" placeholder="Search food">
@@ -204,7 +221,24 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <script>
+                                            $(document).ready(function () {
+                                                var currentIndex = 0;
+                                                var slides = $(".banner-slide");
 
+                                                function showSlide(index) {
+                                                    slides.hide();
+                                                    slides.eq(index).fadeIn();
+                                                }
+
+                                                function nextSlide() {
+                                                    currentIndex = (currentIndex + 1) % slides.length;
+                                                    showSlide(currentIndex);
+                                                }
+
+                                                showSlide(currentIndex);
+
+                                                setInterval(nextSlide, 5000);
+                                            });
         </script>
         <script>
             function getDetail(id) {
@@ -218,7 +252,7 @@
                 }, 3000);
             }
             function searchByName(param) {
-               var  txtSearch = param.value;
+                var txtSearch = param.value;
                 $.ajax({
                     url: "/CampusMunchies/guest/search",
                     type: "get",
@@ -239,7 +273,7 @@
                 });
             }
             function searchByCategory(param) {
-                  var  txtSearch = param.value;
+                var txtSearch = param.value;
                 $.ajax({
                     url: "/CampusMunchies/guest/searchCategory",
                     type: "get",
@@ -259,7 +293,7 @@
                     }
                 });
             }
-            
+
 
         </script>
 
