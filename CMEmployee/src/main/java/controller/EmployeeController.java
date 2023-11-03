@@ -69,12 +69,12 @@ public class EmployeeController extends HttpServlet {
         String folder = "/EmployeePage";
         String path = request.getRequestURI();
         OrderDAO ordDAO = new OrderDAO();
+        String phone = request.getSession().getAttribute("phone") + "";
         if (path.endsWith("/employee/login")) {
             request.getRequestDispatcher(folder + "/login.jsp").forward(request, response);
         } else if (path.endsWith("/employee/orderList")) {
 
 //            ResultSet rs =  ordDAO.getAll();
-            String phone = request.getSession().getAttribute("phone") + "";
             ResultSet rs = ordDAO.getOrderByEmployeePhone(phone);
 
             request.setAttribute("rs", rs);
@@ -94,22 +94,27 @@ public class EmployeeController extends HttpServlet {
         } else if (path.startsWith("/employee/searchByOrderId")) {
             try {
                 String orderId = request.getParameter("orderId");
-                String phone = request.getSession().getAttribute("phone") + "";
                 ResultSet rs = ordDAO.getOrderById(orderId, phone);
                 String searchResultHtml = "<tbody id=\"itemList\">";
-//            ResultSet rs = (ResultSet) request.getAttribute("rs");
+
                 while (rs.next()) {
                     searchResultHtml += "<tr align=\"center\">";
                     searchResultHtml += "<td>" + rs.getString("ord_id") + "</td>";
                     String status = rs.getString("ord_status");
                     searchResultHtml += "<td>";
+
                     if (status.equals("Preparing")) {
-                        searchResultHtml += "<div style=\"font-weight: bold; font-size: 25px\" class=\"btn btn-warning\">" + rs.getString("ord_status") + "</div>";
+                        searchResultHtml += "<div class=\"btn btn-warning\" style=\"font-weight: bold; font-size: 25px\">" + rs.getString("ord_status") + "</div>";
                     } else if (status.equals("Completed")) {
-                        searchResultHtml += "<div style=\"font-weight: bold; font-size: 25px\" class=\"btn btn-success\">" + rs.getString("ord_status") + "</div>";
-                    } else {
-                        searchResultHtml += "<div style=\"font-weight: bold; font-size: 25px\" class=\"btn btn-danger\">" + rs.getString("ord_status") + "</div>";
+                        searchResultHtml += "<div class=\"btn btn-success\" style=\"font-weight: bold; font-size: 25px\">" + rs.getString("ord_status") + "</div>";
+                    } else if (status.equals("Waiting")) {
+                        searchResultHtml += "<div class=\"btn btn-warning\" style=\"font-weight: bold; font-size: 25px\">" + rs.getString("ord_status") + "</div>";
+                    } else if (status.equals("Rejected")) {
+                        searchResultHtml += "<div class=\"btn btn-secondary\" style=\"font-weight: bold; font-size: 25px\">" + rs.getString("ord_status") + "</div>";
+                    } else if (status.equals("Cancelled")) {
+                        searchResultHtml += "<div class=\"btn btn-danger\" style=\"font-weight: bold; font-size: 25px\">" + rs.getString("ord_status") + "</div>";
                     }
+
                     searchResultHtml += "</td>";
                     searchResultHtml += "<td>" + rs.getString("ord_date") + "</td>";
                     searchResultHtml += "<td>" + rs.getString("cus_name") + "</td>";
@@ -117,9 +122,10 @@ public class EmployeeController extends HttpServlet {
                     searchResultHtml += "<td>" + rs.getString("ord_type") + "</td>";
                     searchResultHtml += "<td>" + rs.getString("ord_pay") + "</td>";
                     searchResultHtml += "<td>" + rs.getString("ord_total") + "</td>";
-                    searchResultHtml += "<td><a href=\"/orderDetail/" + rs.getString("ord_id") + "\">View</a></td>";
+                    searchResultHtml += "<td><a class=\"btn btn-primary\" id=\"btnView\" href=\"/orderDetail/" + rs.getString("ord_id") + "\" style=\"font-weight: bold; font-size: 25px\">View</a></td>";
                     searchResultHtml += "</tr>";
                 }
+
                 searchResultHtml += "</tbody>";
                 response.setContentType("text/html");
                 response.getWriter().write(searchResultHtml);
@@ -130,11 +136,39 @@ public class EmployeeController extends HttpServlet {
         } else if (path.endsWith("/employee/logout")) {
             session.removeAttribute("phone");
             session.removeAttribute("fullname");
+            session.invalidate();
             request.getRequestDispatcher(folder + "/login.jsp").forward(request, response);
         } else if (path.endsWith("/employee/login/fail")) {
             String loginError = "The phone or password is incorrect!";
             request.setAttribute("loginError", loginError);
             request.getRequestDispatcher(folder + "/login.jsp").forward(request, response);
+        } 
+        
+        else if (path.endsWith("/employee/updateProfile")) {
+            request.getRequestDispatcher(folder + "/updateProfile.jsp").forward(request, response);
+        }else if(path.endsWith("/employee/updateProfileSuccess")){
+            request.setAttribute("result", "Update Profile Successfully!");
+             request.getRequestDispatcher(folder + "/updateProfile.jsp").forward(request, response);
+        }else if(path.endsWith("/employee/updateProfileFail")){
+            request.setAttribute("result", "Update Profile Fail!");
+             request.getRequestDispatcher(folder + "/updateProfile.jsp").forward(request, response);
+        }else if(path.endsWith("/employee/newOrderList")){
+            request.getRequestDispatcher(folder + "/newOrderList.jsp").forward(request, response);
+        }
+        
+        else if(path.endsWith("/employee/changePassword")){
+            request.getRequestDispatcher(folder+"/changePassword.jsp").forward(request, response);
+        }else if(path.endsWith("/employee/changePasswordSuccess")){
+                request.setAttribute("result", "Password is changed successfully!");
+            request.getRequestDispatcher(folder+"/changePassword.jsp").forward(request, response);
+        }else if(path.endsWith("/employee/changePasswordFail")){
+            request.setAttribute("result", "Old password is incorrect! Please Try Again!");
+            request.getRequestDispatcher(folder+"/changePassword.jsp").forward(request, response);
+        }else if(path.startsWith("/employee/takeOrder/")){
+            String[] data = path.split("/");
+            String orderId = data[data.length-1];
+            ordDAO.setPhoneForOrder(phone, orderId);
+            response.sendRedirect("/employee/orderList");
         }
     }
 
@@ -152,7 +186,9 @@ public class EmployeeController extends HttpServlet {
         String folder = "/EmployeePage";
         String btnLogin = request.getParameter("btnLogin");
         String btnSearch = request.getParameter("btnSearch");
-        String btnUpdateStatus =request.getParameter("btnUpdateStatus");
+        String btnUpdateStatus = request.getParameter("btnUpdateStatus");
+        String btnUpdateProfile = request.getParameter("btnUpdateProfile");
+        String btnChangePassword = request.getParameter("btnChangePassword");
         EmployeeDAO empDAO = new EmployeeDAO();
         OrderDAO ordDAO = new OrderDAO();
         if (btnLogin != null && btnLogin.equals("login")) {
@@ -179,18 +215,44 @@ public class EmployeeController extends HttpServlet {
             request.setAttribute("endDate", endDate);
             request.getRequestDispatcher(folder + "/orderList.jsp").forward(request, response);
         }
-        if(btnUpdateStatus!=null && btnUpdateStatus.equals("Update")){
+        if (btnUpdateStatus != null && btnUpdateStatus.equals("Update")) {
             String[] statusValues = request.getParameterValues("status");
             String orderId = request.getParameter("orderId");
             String selectedStatus = "";
-            if(statusValues!=null){
+            if (statusValues != null) {
                 selectedStatus = statusValues[0];
             }
             int kq = ordDAO.updateOrderStatus(orderId, selectedStatus);
-            if (kq!=0) {
-                response.sendRedirect("/orderDetail/"+orderId);
+            if (kq != 0) {
+                response.sendRedirect("/orderDetail/updateSuccess/" + orderId);
             } else {
-                response.sendRedirect("/orderDetail/"+orderId);
+                response.sendRedirect("/orderDetail/updateFail/" + orderId);
+            }
+        }
+        if (btnUpdateProfile != null && btnUpdateProfile.equals("Update")) {
+            int kq = 0;
+            String txtPhone = request.getParameter("txtPhone");
+            String txtName = request.getParameter("txtName");
+            String txtAddress = request.getParameter("txtAddress");
+            String txtBirthday = request.getParameter("txtBirthday");
+            String txtCreateDay = request.getParameter("txtCreateDay");
+            kq = empDAO.updateProfile(txtPhone, txtName, txtAddress, txtBirthday, txtCreateDay);
+            if (kq != 0) {
+                response.sendRedirect("/employee/updateProfileSuccess");
+            } else {
+                response.sendRedirect("/employee/updateProfileFail");
+            }
+        }
+        if (btnChangePassword!=null && btnChangePassword.equals("ChangePassword")) {
+            String oldPassword = request.getParameter("txtOldPassword");
+            String newPassword = request.getParameter("txtNewPassword");
+            String phone = (String)request.getSession().getAttribute("phone");
+            boolean correctOldPass = empDAO.isExisted(phone, oldPassword);
+            if (correctOldPass) {
+                empDAO.changePassword(phone, newPassword);
+                response.sendRedirect("/employee/changePasswordSuccess");
+            }else{
+                response.sendRedirect("/employee/changePasswordFail");
             }
         }
     }

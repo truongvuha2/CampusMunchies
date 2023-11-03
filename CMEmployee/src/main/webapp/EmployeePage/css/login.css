@@ -37,6 +37,9 @@
     line-height: normal;
     border: none;
     border-radius: 0.75rem;
+    background: #ff7c7c;
+}
+.btnLogin button:hover{
     background: #C21010;
 }
 div a{

@@ -34,10 +34,10 @@ public class Login {
         driver.get("http://localhost:8080/");
         driver.manage().window().maximize(); // Mở cửa sổ trình duyệt ở chế độ toàn màn hình
         // Điền dữ liệu vào trường phone
-        driver.findElement(By.name("phone")).sendKeys("0123456789");
+        driver.findElement(By.name("phone")).sendKeys("0123456787");
 
         // Điền dữ liệu vào trường password
-        driver.findElement(By.name("password")).sendKeys("password1");
+        driver.findElement(By.name("password")).sendKeys("password3");
 
         // Ấn nút Login
         driver.findElement(By.name("btnLogin")).click();

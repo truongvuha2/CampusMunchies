@@ -13,7 +13,7 @@
         <link href="/EmployeePage/css/login.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <header><%@include file="header.jsp" %></header>
+        <header><%@include file="/EmployeePage/header.jsp" %></header>
         <form action="/employee" method="post" style="height: calc(100vh - 137px - 241px);">
             <div class="container-fluid d-flex justify-content-center py-5 mb-5">
                 <div class="loginBox d-flex flex-column align-items-center px-5 py-1 w-25">
@@ -51,7 +51,7 @@
         </form>  
     </main>
     <footer>
-        <%@include file="footer.jsp" %>
+        <%@include file="/EmployeePage/footer.jsp" %>
     </footer>
     <script>
             function validateForm() {

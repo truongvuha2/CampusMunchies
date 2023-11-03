@@ -47,7 +47,7 @@
         <div class="info-value m-3"><%= customerInfo.getBirthday()%></div>
       </div>
       <div class="d-flex">
-        <div class="info-items m-3">Cancel Count</div>
+        <div class="info-items m-3">Rejected Count</div>
         <div class="info-value m-3"><%= customerInfo.getCancel_count()%></div>
       </div>
     </div>

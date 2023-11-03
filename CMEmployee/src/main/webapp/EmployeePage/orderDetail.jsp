@@ -28,30 +28,43 @@
                 ResultSet customerInfo = (ResultSet) request.getAttribute("orderInfo");
                 int status = 0;
                 if (customerInfo.next()) {
-                    if (customerInfo.getString("ord_status").equals("Preparing")) {
+                    if (customerInfo.getString("ord_status").equals("Waiting")) {
                         status = 1;
-                    } else if (customerInfo.getString("ord_status").equals("Completed")) {
+                    } else if (customerInfo.getString("ord_status").equals("Preparing")) {
                         status = 2;
-                    } else if (customerInfo.getString("ord_status").equals("Cancelled")) {
+                    } else if (customerInfo.getString("ord_status").equals("Completed")) {
                         status = 3;
+                    } else if (customerInfo.getString("ord_status").equals("Rejected")) {
+                        status = 4;
+                    } else if (customerInfo.getString("ord_status").equals("Cancelled")) {
+                        status = 5;
                     }
 
             %>
             <div class="box1 d-flex justify-content-around mx-auto" style="height: 22.1875rem">
-                <form method="post" action="/employee?orderId=<%= orderId %>">
+                <form method="post" action="/employee?orderId=<%= orderId%>">
                     <div class="order-status mt-5">
-                        <div class="preparing">
-                            <input type="radio" value="Preparing" name="status" <%= status == 1 ? "checked" : ""%>>
+                        <div class="waiting status">
+                            <input type="radio" value="Waiting" name="status" <%= status == 1 ? "checked" : ""%>>
+                            Waiting
+                        </div>
+                        <div class="preparing status">
+                            <input type="radio" value="Preparing" name="status" <%= status == 2 ? "checked" : ""%>>
                             Preparing
                         </div>
-                        <div class="completed">
-                            <input type="radio" value="Completed" name="status" <%= status == 2 ? "checked" : ""%>>
+                        <div class="completed status">
+                            <input type="radio" value="Completed" name="status" <%= status == 3 ? "checked" : ""%>>
                             Completed
                         </div>
-                        <div class="cancel">
-                            <input type="radio" value="Cancelled" name="status" <%= status == 3 ? "checked" : ""%>>
+                        <div class="rejected status">
+                            <input type="radio" value="Rejected" name="status" <%= status == 4 ? "checked" : ""%>>
+                            Rejected
+                        </div>
+                        <div class="cancelled status">
+                            <input type="radio" value="Cancelled" name="status" <%= status == 5 ? "checked" : ""%>>
                             Cancelled
                         </div>
+
 
                         <div class="btnUpdate mt-3">
                             <button name="btnUpdateStatus" type="submit" value="Update">Update</button>
@@ -77,13 +90,24 @@
                 </div>
 
             </div>
+            <%
+                try {
+
+                    String result = (String) request.getAttribute("result");
+                    if (!result.equals("")) {
+            %>
+            <div class="d-flex justify-content-center result p-2 mx-auto mt-4"><%=result%></div>
+            <%
+                    }
+                } catch (Exception e) {
+                }
+            %>
             <div class="order-detail mx-auto mt-4">
-                <table class="table table-bordered custom-table " border="1">
+                <table class="table table-bordered custom-table " border="1" style="font-weight: bold; font-size: larger;">
                     <thead>
                         <tr align="center">
-                            <th scope="col">Food ID</th>
-                            <th scope="col">Food Name</th>
-                            <th scope="col">Price</th>
+                            <th scope="col">Food</th>
+                            <th scope="col">Unit Price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Sum</th>
                         </tr>
@@ -96,12 +120,12 @@
                             double total = 0;
                             while (detailList.next()) {
                         %>
-                        <tr  align="center">
-                            <td><%=detailList.getString("foo_id")%></td>
-                            <td>
+                        <tr  align="center" style=" vertical-align: middle;">
+                            <td style="font-size: xx-large" align="left">
+                                <img src="<%=detailList.getString("foo_img")%>" alt="alt" style="width: 10rem"/>
                                 <%= detailList.getString("foo_name")%>
                             </td>
-                            <td><%= detailList.getDouble("foo_price")%></td>
+                            <td class="py-auto"><%= detailList.getDouble("foo_price")%></td>
                             <td><%= detailList.getInt("quantity")%></td>
                             <td><%= detailList.getDouble("foo_price") * detailList.getInt("quantity")%></td>
                         </tr>    
@@ -111,13 +135,13 @@
                         %>
                     </tbody>
                     <tr class="total" align="center">
-                        <th colspan="4">Total</th>
+                        <th colspan="3">Total</th>
                         <th><%=total%></th>
                     </tr>  
                 </table>
             </div>
             <div class="btnBack mx-auto">
-                <a href="/employee/orderList"><button>Back</button></a>               
+                <a href="/employee/orderList"><button>Order List</button></a>               
             </div>
         </div>
         <%@include file="/EmployeePage/footer.jsp" %>

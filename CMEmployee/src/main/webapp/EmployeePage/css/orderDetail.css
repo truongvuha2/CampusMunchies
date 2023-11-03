@@ -17,26 +17,27 @@
     border: 1px solid #000;
     background: #EDE9D0;
 }
-.preparing{
-    color: #DBBE24;
+.status{
     font-size: 1.75rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+.waiting{
+    color: #DBBE24;    
+}
+.preparing{
+    color: #5151cf;
 }
 .completed{
     color: #48B936;
-    font-size: 1.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
 }
-.cancel{
+.rejected{
+    color: grey;
+}
+.cancelled{
     color: #C21010;
-    font-size: 1.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
 }
 .btnUpdate{
 
@@ -94,4 +95,11 @@
 }
 .order-status{
     flex-shrink: 0;
+}
+.result{
+    border-radius: 1rem;
+    width: 33rem;
+    color: white;
+    background: burlywood;
+    font-family: sans-serif;
 }

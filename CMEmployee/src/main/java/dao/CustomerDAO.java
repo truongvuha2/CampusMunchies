@@ -167,7 +167,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
 
     public int getCancelCount(String cusPhone) {
         String cancelCount = "select COUNT(o.ord_id) from Customer c \n"
-                + "join [Order] o on c.cus_phone = o.cus_phone and o.ord_status = 'Cancelled'\n"
+                + "join [Order] o on c.cus_phone = o.cus_phone and o.ord_status = 'Rejected'\n"
                 + "where c.cus_phone=?\n"
                 + "group by c.cus_phone";
         try {

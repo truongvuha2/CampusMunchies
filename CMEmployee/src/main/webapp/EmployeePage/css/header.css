@@ -29,14 +29,14 @@
 }
 
 .search {
-    width: 60em;
+    width: 40em;
     /* min-width: 332px; */
 }
 
 .searchText {
     color: #968989;
     /* font-family: Inter; */
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -46,7 +46,7 @@
 
 .searchText input {
     min-width: 267px;
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
     width: 100%;
     flex-shrink: 0;
     border-radius: 0.8125rem 0 0 0.8125rem;
@@ -55,16 +55,19 @@
 }
 
 .searchButton button {
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
     /* font-family: Inter; */
-    background: #C21010;
+    background: #ff7c7c;
     color: #FEFEFE;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     border: none;
     border-radius: 0 0.8125rem 0.8125rem 0;
+}
+.searchButton button:hover {
+    background: #C21010;
 }
 
 .profile {

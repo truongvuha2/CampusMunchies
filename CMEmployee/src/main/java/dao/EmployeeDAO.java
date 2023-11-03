@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Employee;
 
 /**
@@ -144,18 +146,34 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
 
     @Override
     public void changePassword(String phone, String password) {
-        String sql = "update employee set emp_password=convert(varchar(20),hashbytes('MD5',?),2) where emp_phone=?";
+        String sql = "update employee set emp_password=convert(varchar(20),hashbytes('MD5','"+password+"'),2) where emp_phone='"+phone+"'";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, password);
-            ps.setString(2, phone);
+//            ps.setString(1, password);
+//            ps.setString(2, phone);
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
+    
 
-    public static void main(String[] args) {
-
+    public int updateProfile(String phone, String name, String address,String birthday, String create){
+        String sql = "update employee set emp_name=?, emp_address=?, emp_birthday=?, emp_create=? where emp_phone=?";
+        int kq =0;
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, address);
+            ps.setString(3, birthday);
+            ps.setString(4, create);
+            ps.setString(5, phone);
+            kq = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return kq;
     }
+    
+    
 }

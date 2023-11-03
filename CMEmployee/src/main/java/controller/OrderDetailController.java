@@ -37,7 +37,7 @@ public class OrderDetailController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet OrderDetailController</title>");            
+            out.println("<title>Servlet OrderDetailController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet OrderDetailController at " + request.getContextPath() + "</h1>");
@@ -61,19 +61,49 @@ public class OrderDetailController extends HttpServlet {
         String path = request.getRequestURI();
         String folder = "/EmployeePage";
         String phone = request.getSession().getAttribute("phone") + "";
-        if(path.startsWith("/orderDetail")){
+        if (path.startsWith("/orderDetail/updateSuccess")) {
             String[] data = path.split("/");
-            String id = data[data.length-1];
+            String id = data[data.length - 1];
             OrderDetailDAO odd = new OrderDetailDAO();
             OrderDAO ord = new OrderDAO();
-            
-            ResultSet order = ord.getOrderById(id,phone);
+
+            ResultSet order = ord.getOrderDetailById(id);
             request.setAttribute("orderInfo", order);
-            
+
             ResultSet orderDetailList = odd.getListOrderDetailById(id);
             request.setAttribute("orderDetailList", orderDetailList); //danh sách sản phẩm chi tiết của order
             request.setAttribute("orderId", id);
-            request.getRequestDispatcher(folder+"/orderDetail.jsp").forward(request, response);
+            request.setAttribute("result", "Update Status Success!");
+            request.getRequestDispatcher(folder + "/orderDetail.jsp").forward(request, response);
+            
+        } else if (path.startsWith("/orderDetail/updateFail")) {
+            String[] data = path.split("/");
+            String id = data[data.length - 1];
+            OrderDetailDAO odd = new OrderDetailDAO();
+            OrderDAO ord = new OrderDAO();
+
+            ResultSet order = ord.getOrderDetailById(id);
+            request.setAttribute("orderInfo", order);
+
+            ResultSet orderDetailList = odd.getListOrderDetailById(id);
+            request.setAttribute("orderDetailList", orderDetailList); //danh sách sản phẩm chi tiết của order
+            request.setAttribute("orderId", id);
+            request.setAttribute("result", "Update Status Fail!");
+            request.getRequestDispatcher(folder + "/orderDetail.jsp").forward(request, response);
+            
+        } else if (path.startsWith("/orderDetail")) {
+            String[] data = path.split("/");
+            String id = data[data.length - 1];
+            OrderDetailDAO odd = new OrderDetailDAO();
+            OrderDAO ord = new OrderDAO();
+
+            ResultSet order = ord.getOrderDetailById(id);
+            request.setAttribute("orderInfo", order);
+
+            ResultSet orderDetailList = odd.getListOrderDetailById(id);
+            request.setAttribute("orderDetailList", orderDetailList); //danh sách sản phẩm chi tiết của order
+            request.setAttribute("orderId", id);
+            request.getRequestDispatcher(folder + "/orderDetail.jsp").forward(request, response);
         }
     }
 

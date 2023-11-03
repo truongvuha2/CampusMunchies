@@ -20,11 +20,31 @@
                 position: absolute;
                 top: 100px;
                 right: 100px;
-                width: 150px;
+                width: 160px;
                 background: #fff;
                 padding: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                border-radius: 5px;
+                & a {
+                    text-decoration: none;
+                    color: rgb(83, 83, 83);
+                    font-weight: bold;
+                    font-family: Arial, Helvetica, sans-serif;
+                }
+
+                & a:hover {
+                    color: black;
+                }
+
+                & a:last-child{
+                    color: rgb(255, 79, 79);
+                }
+
+                & a:last-child:hover{
+                    color: rgb(255, 0, 0);
+                }
             }
+
 
             .profileBox.show {
                 display: block;
@@ -45,16 +65,34 @@
                         <div>Munchies</div>
                     </div>
                 </div>
+                <%
+                    boolean OrderList = Boolean.parseBoolean(request.getParameter("isOrderList"));
+                    pageContext.setAttribute("OrderList", OrderList);
+                %>
 
-                <div class="search d-flex">
-                    <div class="searchText">
-                        <input name="orderId" type="text" placeholder="Search Order By ID">
-                    </div>
-                    <div class="searchButton">
-                        <button>Search</button>
-                    </div>
+
+                <div class="flex-fill d-flex justify-content-center">
+                    <c:if test="${OrderList}">
+                        <div class="search d-flex mx-1">
+                            <div class="searchText">
+                                <input name="orderId" type="text" placeholder="Search Order By ID">
+                            </div>
+                            <div class="searchButton" >
+                                <button>Search</button>
+                            </div>
+                        </div>    
+                    </c:if>
+                    
+                    <c:choose>
+                    <c:when test="${sessionScope.phone!=null}">
+                        <a href="/employee/orderList" class="btn btn-outline-danger mx-1">Order List</a>
+                    </c:when>
+                    <c:otherwise>
+                       <a href="/employee/login" class="btn btn-outline-danger mx-1">Order List</a>
+                    </c:otherwise>
+                </c:choose>
+                    <a href="/employee/newOrderList" class="btn btn-outline-danger mx-1">New Order</a>
                 </div>
-
                 <div class="profile d-flex align-items-center">
                     <div class="iconAvatar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
@@ -80,8 +118,9 @@
                     <div class="nameAccount">
                         <a href="#">${sessionScope.fullname}</a>
                     </div>
-                    <div class="profileBox" id="profileBox">
-                        <a href="url">Update Profile</a>
+                    <div class="profileBox" id="profileBox" name="profile">
+                        <a href="/employee/updateProfile" name="updateProfile" >Update Profile</a>
+                        <a href="/employee/changePassword" name="updateProfile" >Change Password</a>
                         <a href="/employee/logout"><div>Logout</div></a>
                     </div>
                     <%}%>
