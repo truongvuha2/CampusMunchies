@@ -86,16 +86,21 @@ public class AddFood extends HttpServlet {
             FoodDAO foodDao = new FoodDAO();
             String foodId = request.getParameter("food_id");
             String categoryId = categoryDao.getCategoryID(request.getParameter("category_name"));
-            System.out.println(categoryId);
             String foodName = request.getParameter("food_name");
             double price = Double.parseDouble(request.getParameter("price"));
             double sale = Double.parseDouble(request.getParameter("sale"));
             String description = request.getParameter("description");
             String status = request.getParameter("status");
+            String imageSrc = request.getParameter("imageSrc");
             String imageUrl = request.getParameter("imageUrl");
-            System.out.println("imageUrl: " + imageUrl);
-            Food food = new Food(foodId, categoryId, foodName, price, sale, description, status, imageUrl);
+            Food food;
+            if (imageUrl.length() > 0) {
+                food = new Food(foodId, categoryId, foodName, price, sale, description, status, imageUrl);
+            } else {
+                food = new Food(foodId, categoryId, foodName, price, sale, description, status, imageSrc);
+            }
             foodDao.add(food);
+            response.sendRedirect("/foodDetails?fid=" + foodId);
         } catch (Exception ex) {
             System.out.println("addFoodPost" + ex);
         }

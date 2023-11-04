@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import model.Employee;
 
 /**
@@ -61,7 +62,7 @@ public class CreateAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("createAccEmployee.jsp").forward(request, response);
+        request.getRequestDispatcher("/createAccEmployee.jsp").forward(request, response);
     }
 
     /**
@@ -76,24 +77,28 @@ public class CreateAccount extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            Date birthday = new Date(3000);
             EmployeeDAO employeeDao = new EmployeeDAO();
             String phone = request.getParameter("phone");
-            if (employeeDao.searchByPhone(phone) == null) {
-                String name = request.getParameter("name");
-                String address = request.getParameter("address");
-                String password = request.getParameter("password");
-                String birthdayString = request.getParameter("birthday");
-                Date birthday = Date.valueOf(birthdayString);
-                LocalDate currentDate = LocalDate.now();
-                // Định dạng ngày theo "yyyy-MM-dd"
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                String formattedDate = currentDate.format(formatter);
-                Date dateCreate = Date.valueOf(formattedDate);
-                Employee employee = new Employee(phone, name, password, address, birthday, dateCreate);
-                employeeDao.add(employee, password);
-            } else {
-                response.getWriter().write("Phone already exists");
+
+            String name = request.getParameter("name");
+            String password = request.getParameter("password");
+            String address = request.getParameter("address");
+            String email = request.getParameter("email");
+            String birthdayString = request.getParameter("birthday");
+            if (birthdayString.length() > 0) {
+                birthday = Date.valueOf(birthdayString);
             }
+
+            if (!employeeDao.isPhoneExisted(phone)) {
+                Employee employee = new Employee(phone, name, password, email, address, birthday);
+                employeeDao.createAcc(employee);
+            } else {
+                response.setStatus(HttpServletResponse.SC_CONFLICT); // HTTP status code 409 Conflict
+                PrintWriter out = response.getWriter();
+                out.print("Phone number already exists");
+            }
+
         } catch (Exception ex) {
             System.out.println(ex);
         }

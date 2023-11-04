@@ -52,7 +52,6 @@
         <servlet-name>Analytics</servlet-name>
         <servlet-class>controller.Analytics</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>DeleteCustomer</servlet-name>
         <servlet-class>controller.DeleteCustomer</servlet-class>
@@ -69,7 +68,10 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>DeleteFood</servlet-name>
+        <servlet-class>controller.DeleteFood</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddFood</servlet-name>
         <url-pattern>/addFood</url-pattern>
@@ -122,7 +124,6 @@
         <servlet-name>Analytics</servlet-name>
         <url-pattern>/analytics</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>DeleteCustomer</servlet-name>
         <url-pattern>/deleteCustomer</url-pattern>
@@ -139,7 +140,10 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>DeleteFood</servlet-name>
+        <url-pattern>/deleteFood</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

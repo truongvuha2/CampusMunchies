@@ -13,7 +13,7 @@ public class ManagerDAO extends DBContext {
     public boolean isExisted(String username, String password) {
         try {
 
-            String sql = "SELECT * FROM Manager WHERE username = '"+username+"' AND password = CONVERT(VARCHAR(20), HASHBYTES('MD5', '"+password+"'), 2)";
+            String sql = "SELECT * FROM Manager WHERE username = '"+username+"' AND password = CONVERT(VARCHAR(32), HASHBYTES('MD5', '"+password+"'), 2)";
             PreparedStatement ps = connection.prepareStatement(sql);
             //ps.setString(1, username);
             //ps.setString(2, password);
@@ -28,7 +28,7 @@ public class ManagerDAO extends DBContext {
 
     public void updatePassword(String username, String newPassword) {
         try {
-            String sql = "UPDATE Manager SET password = CONVERT(VARCHAR(20), HASHBYTES('MD5', ?), 2) WHERE username = ?";
+            String sql = "UPDATE Manager SET password = CONVERT(VARCHAR(32), HASHBYTES('MD5', ?), 2) WHERE username = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, newPassword);
             ps.setString(2, username);

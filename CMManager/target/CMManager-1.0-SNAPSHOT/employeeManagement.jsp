@@ -85,7 +85,7 @@
                                         <td>${m.name}</td>
                                         <td>${m.phone}</td>
                                         <td>${m.order_served}</td>
-                                        <td><a class="view" href="/employeeDetail?eid=${m.phone}">View</a></td>
+                                        <td><a class="view" href="employeeDetail?eid=${m.phone}">View</a></td>
                                     </tr>
                                 </c:forEach>
 
@@ -118,7 +118,7 @@
                                     <td>${h.name}</td>
                                     <td>${h.phone}</td>
                                     <td>${h.order_served}</td>
-                                    <td><a class="view" href="/employeeDetail?eid=${h.phone}">View</a></td>
+                                    <td><a class="view" href="employeeDetail?eid=${h.phone}">View</a></td>
                                 </tr>
                             </c:forEach>
 
@@ -138,7 +138,7 @@
 
     <script>
                                         function createAcc() {
-                                            window.location = "/createAccount";
+                                            window.location = "createAccount";
                                         }
     </script>
 

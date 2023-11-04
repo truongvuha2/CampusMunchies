@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author khang
@@ -18,11 +20,61 @@ public class Food {
     private String description;
     private String status;
     private String img;
-    private double realPrice;
+    private String realPrice;
+    private int numOrder;
+    private String caterogyName;
 
     public Food() {
     }
 
+    public Food(String id, String name, double price, double sale, String description, String status, String img, int numOrder, String caterogyName, String categoryId) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.sale = sale;
+        this.description = description;
+        this.status = status;
+        this.img = img;
+        this.numOrder = numOrder;
+        this.caterogyName = caterogyName;
+        this.categoryId = categoryId;
+     }
+    
+    public Food(String id, String name, double price, double sale, String description, String status, String img, String caterogyName, String categoryId) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.sale = sale;
+        this.description = description;
+        this.status = status;
+        this.img = img;
+        this.caterogyName = caterogyName;
+        this.categoryId = categoryId;
+     }
+    
+    public Food(String id, String name, String img, double price, double sale, String status, int numOrder) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.sale = sale;
+        this.img = img;
+        this.status = status;
+        this.numOrder = numOrder;
+    }
+
+    public Food(String id, String name, String img, double price, double sale, String categoryId, String status, int numOrder) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.categoryId = categoryId;
+        this.sale = sale;
+        this.img = img;
+        this.status = status;
+        this.numOrder = numOrder;
+    }
+
+    
+    
     public Food(String id, String categoryId, String name, double price, double sale, String description, String status, String img) {
         this.id = id;
         this.categoryId = categoryId;
@@ -32,10 +84,39 @@ public class Food {
         this.description = description;
         this.status = status;
         this.img = img;
-        realPrice = price * sale / 100;
-        realPrice= (double) Math.round(realPrice * 100) / 100;
+    }
+    
+    
+
+    public Food(String id, String categoryId, String name, double price, double sale, String description, String status, String img, int numOrder) {
+        this.id = id;
+        this.categoryId = categoryId;
+        this.name = name;
+        this.price = price;
+        this.sale = sale;
+        this.description = description;
+        this.status = status;
+        this.img = img;
+        this.numOrder = numOrder;
+    }
+    
+    
+    public String getCaterogyName() {
+        return caterogyName;
     }
 
+    public void setCaterogyName(String caterogyName) {
+        this.caterogyName = caterogyName;
+    }
+
+    public int getNumOrder() {
+        return numOrder;
+    }
+
+    public void setNumOrder(int numOrder) {
+        this.numOrder = numOrder;
+    }
+    
     public String getId() {
         return id;
     }
@@ -100,11 +181,15 @@ public class Food {
         this.img = img;
     }
 
-    public double getRealPrice() {
-        return realPrice;
+    DecimalFormat df = new DecimalFormat("#.##");
+    
+    public String getRealPrice() {
+        return df.format(getPrice()-(getPrice()*(getSale()/100))); 
     }
     
-    
+    public void setRealPrice(String realPrice){
+        this.realPrice = df.format(getPrice()-(getPrice()*(getSale()/100))); 
+    }
 
     @Override
     public String toString() {

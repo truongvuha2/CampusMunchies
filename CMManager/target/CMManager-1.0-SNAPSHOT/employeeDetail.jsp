@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="user-info">
-                        <p>Hey, <b><%= request.getSession().getAttribute("username") %></b></p>
+                        <p>Hey, <b><%= request.getSession().getAttribute("username")%></b></p>
                         <small class="text-muted">Admin</small>
                     </div>
                 </div>
@@ -54,12 +54,15 @@
                 <ul class="employee-details-info">
                     <li>
                         <h2>Employee Information</h2>
+                        <hr>
                         <p>Name: ${infoEmp.name}</p>
                         <p>Phone: ${infoEmp.phone}</p>
+                        <p>Email: ${infoEmp.email}</p>
                         <p>Address: ${infoEmp.address}</p>
                         <p>Birthday: ${birthday}</p>
-                        <p>Orders served: ${dateCreate}</p>
+                        <p>Order Served: ${infoEmp.order_served}</p>
                         <p>Account Status: ${infoEmp.emp_status}</p>
+                        <p>Account Creation Date: ${dateCreate}</p>
                     </li>
                     <li>
                         <h2>History Order Served</h2>
@@ -74,8 +77,18 @@
                             <tbody>
                                 <c:forEach var="h" items="${requestScope.historyOrderSer}">
                                     <tr>
-                                        <td><a href="/orderDetail?oid=${h.getOrd_id()}">${h.getOrd_id()}</a></td>
-                                        <td>${h.getOrd_status()}</td>
+                                        <td><a href="orderDetails?oid=${h.getOrd_id()}">${h.getOrd_id()}</a></td>
+                                            <c:choose>
+                                                <c:when test="${h.getOrd_status() eq 'Cancelled' || h.getOrd_status() eq 'Rejected'}">
+                                                <td style="color: #C21010;">${h.getOrd_status()}</td>
+                                            </c:when>
+                                            <c:when test="${h.getOrd_status() eq 'Waiting' || h.getOrd_status() eq 'Preparing'}">
+                                                <td style="color: #0397d1;">${h.getOrd_status()}</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td style="color: #1ec708;">${h.getOrd_status()}</td>
+                                            </c:otherwise>
+                                        </c:choose>
                                         <td>${h.getOrd_date()}</td>
                                     </tr>
                                 </c:forEach>
@@ -111,7 +124,7 @@
     </body>
     <script>
         function createAcc() {
-            window.location = "/createAccount";
+            window.location = "createAccount";
         }
 
         function confirmDeleteEmp(phone) {
@@ -126,7 +139,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Nếu người dùng xác nhận xóa
-                    window.location = "/deleteEmployee?eid=" + phone;
+                    window.location = "deleteEmployee?eid=" + phone;
                 }
             });
         }

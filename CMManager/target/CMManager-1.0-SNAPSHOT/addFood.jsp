@@ -13,16 +13,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
         <link rel="stylesheet" href="css/addFood.css">
         <title>Add Food</title>
     </head>
     <body>
 
-        
+
         <div class="container-i">
             <!-- Sidebar -->
             <%@include file="sidebar.jsp" %>
-     
+
 
             <!-- End of Sidebar -->
             <!-- Main Content -->
@@ -39,7 +40,7 @@
 
                     <div class="user-info">
 
-                        <p>Hey, <b><%= request.getSession().getAttribute("username") %></b></p>
+                        <p>Hey, <b><%= request.getSession().getAttribute("username")%></b></p>
 
                         <small class="text-muted">Admin</small>
                     </div>
@@ -77,12 +78,13 @@
                                 <li>
                                     <label>Category Food: </label>
                                     <select class="select-box" name="category_name">
-                                        <option value="Appetizers">Appetizers</option>
-                                        <option value="Soups">Soups</option>
-                                        <option value="Salads">Salads</option>                             
-                                        <option value="Entrees">Entrees</option>
-                                        <option value="Desserts">Desserts</option>
-
+                                        <option value="Noodle">Noodle</option>
+                                        <option value="Chicken">Chicken</option>
+                                        <option value="Bread">Bread</option>
+                                        <option value="Side Dish">Side Dish</option>                             
+                                        <option value="Drink">Drink</option>
+                                        <option value="Rice">Rice</option>
+                                        <option value="Combo">Combo</option>
                                     </select>
                                 </li>
                                 <li><label>Description: </label>
@@ -102,7 +104,7 @@
                                     </button>
                                 </div>
                                 <div class="btn-cancel-product">
-                                    <button type="reset">
+                                    <button type="button" onclick="backMenu()">
                                         Cancel
                                     </button>
                                 </div>
@@ -170,7 +172,7 @@
                                 if (data.data && data.data.url) {
                                     const imageUrl = data.data.url;
                                     statusText.textContent = 'Hình ảnh đã được tải lên thành công!';
-                                    directLinkText.innerHTML = 'Liên kết trực tiếp: <a href="' + imageUrl + '" target="_blank">' + imageUrl + '</a>';
+                                    directLinkText.innerHTML = '<a href="' + imageUrl + '" target="_blank">' + imageUrl + '</a>';
                                     getLink.value = imageUrl;
                                 } else if (data.error) {
                                     statusText.textContent = 'Lỗi: ' + data.error.message;
@@ -195,17 +197,23 @@
                     const description = document.querySelector('textarea[name="description"]').value.trim();
                     const status = document.querySelector('select[name="status"]').value;
 
-                    if (!foodName || !price || !sale || !image || !imageUrl || !category_name || !description || !status) {
+                    if (!foodName || isNaN(price) || isNaN(sale) || sale === undefined || image === '' || imageUrl === '' || category_name === '' || description === '' || description === null || status === '') {
                         Swal.fire({
                             icon: 'error',
                             title: 'Invalid information',
                             text: 'Please fill in the required information!',
                         });
-                    } else if (foodName.length < 1 || foodName.length > 10) {
+                    } else if (foodName.length < 1 || foodName.length > 50) {
                         Swal.fire({
                             icon: 'error',
                             title: 'Invalid Food name Length',
-                            text: 'Food must be between 1 and 30 characters.',
+                            text: 'Food must be between 1 and 50 characters.',
+                        });
+                    } else if (price < 0 || price > 10000) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Invalid Price Value',
+                            text: 'Price value must be between 0 and 10000.',
                         });
                     } else if (sale < 0 || sale > 100) {
                         Swal.fire({
@@ -213,7 +221,7 @@
                             title: 'Invalid Sale Value',
                             text: 'Sale value must be between 0 and 100.',
                         });
-                    } else if (description.length < 1 || description.length > 10) {
+                    } else if (description.length < 1 || description.length > 250) {
                         Swal.fire({
                             icon: 'error',
                             title: 'Invalid Description Length',
@@ -224,6 +232,9 @@
                         document.querySelector('form').submit();
                     }
                 });
+                function backMenu() {
+                    window.location = "listMenu";
+                }
             </script>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>

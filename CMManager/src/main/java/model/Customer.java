@@ -14,11 +14,11 @@ public class Customer {
 
     private String phone;
     private String name;
+    private String email;
     private String address;
     private Date birthday;
     private Date create_date;
     private int cancel_count;
-
     private int numberOrder;
     private double totalSpending;
     private String cus_status;
@@ -35,10 +35,11 @@ public class Customer {
     }
 
 
-    public Customer(String name, String phone, String address, Date birthday, Date create_date, int cancel_count, int numberOrder, double totalSpending, String cus_status) {
+    public Customer(String name, String phone, String email, String address, Date birthday, Date create_date, int cancel_count, int numberOrder, double totalSpending, String cus_status) {
 
         this.phone = phone;
         this.name = name;
+        this.email = email;
         this.address = address;
         this.birthday = birthday;
 
@@ -56,9 +57,10 @@ public class Customer {
         this.totalSpending = totalSpending;
     }
 
-    public Customer(String name, String phone, int numberOrder, int cancel_count) {
+    public Customer(String name, String phone, String status, int numberOrder, int cancel_count) {
         this.name = name;
         this.phone = phone;
+        this.cus_status = status;
         this.numberOrder = numberOrder;
         this.cancel_count = cancel_count;
     }
@@ -75,7 +77,21 @@ public class Customer {
         this.time_ago = time_ago;
         this.phone = phone;
     }
+    
+     public Customer(String name, String phone, String address, int a) {
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+     
     public String getTime_ago() {
         return time_ago;
     }

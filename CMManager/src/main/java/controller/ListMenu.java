@@ -4,12 +4,16 @@
  */
 package controller;
 
+import dao.FoodDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import model.Food;
 
 /**
  *
@@ -34,7 +38,7 @@ public class ListMenu extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ListMenu</title>");            
+            out.println("<title>Servlet ListMenu</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ListMenu at " + request.getContextPath() + "</h1>");
@@ -55,7 +59,21 @@ public class ListMenu extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            FoodDAO foodDao = new FoodDAO();
+            List<Food> listBestSeller = new ArrayList<>();
+            List<Food> listMenu = new ArrayList<>();
+
+            listBestSeller = foodDao.getListBestSeller();
+            listMenu = foodDao.getListMenu();
+
+            request.setAttribute("bestSeller", listBestSeller);
+            request.setAttribute("menu", listMenu);
+
+            request.getRequestDispatcher("listMenu.jsp").forward(request, response);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     /**

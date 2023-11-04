@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="user-info">
-                        <p>Hey, <b><%= request.getSession().getAttribute("username") %></b></p>
+                        <p>Hey, <b><%= request.getSession().getAttribute("username")%></b></p>
                         <small class="text-muted">Admin</small>
                     </div>
                 </div>
@@ -54,13 +54,15 @@
                 <ul class="customer-details-info">
                     <li>
                         <h2>Customer Information</h2>
+                        <hr>
                         <p>Name: ${infoCus.name}</p>
                         <p>Phone: ${infoCus.phone}</p>
+                        <p>Email: ${infoCus.email}</p>
                         <p>Address: ${infoCus.address}</p>
                         <p>Birthday: ${birthday}</p>
-                        <p>Number of orders: ${infoCus.numberOrder}</p>
+                        <p>Number of successful orders: ${infoCus.numberOrder}</p>
                         <p>Total spending: ${infoCus.totalSpending}$</p>
-                        <p>Cancel order: ${infoCus.cancel_count}</p>
+                        <p>Rejected order: ${infoCus.cancel_count}</p>
                         <p>Account Creation Date: ${dateCreate}</p>
                         <p>Account Status: ${infoCus.cus_status}</p>
                     </li>
@@ -77,8 +79,18 @@
                             <tbody>
                                 <c:forEach var="h" items="${requestScope.historyOrder}">
                                     <tr>
-                                        <td><a href="/customerDetails?cid=${h.getOrd_id()}">${h.getOrd_id()}</a></td>
-                                        <td>${h.getOrd_status()}</td>
+                                        <td><a href="orderDetails?oid=${h.getOrd_id()}">${h.getOrd_id()}</a></td>
+                                            <c:choose>
+                                                <c:when test="${h.getOrd_status() eq 'Cancelled' || h.getOrd_status() eq 'Rejected'}">
+                                                <td style="color: #C21010;">${h.getOrd_status()}</td>
+                                            </c:when>
+                                            <c:when test="${h.getOrd_status() eq 'Waiting' || h.getOrd_status() eq 'Preparing'}">
+                                                <td style="color: #0397d1;">${h.getOrd_status()}</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td style="color: #1ec708;">${h.getOrd_status()}</td>
+                                            </c:otherwise>
+                                        </c:choose>
                                         <td>${h.getOrd_date()}</td>
                                     </tr>
                                 </c:forEach>
@@ -98,8 +110,8 @@
                                     <button type="submit"  onclick="blockCus('${phoneCus}', '${statusAcc}')">
                                         Unblock
                                         <ion-icon name="lock-open-outline"></ion-icon>
-                                    </c:when>
-                                </c:choose>
+                                        </c:when>
+                                    </c:choose>
                             </button>
 
                     </div>
@@ -135,7 +147,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Nếu người dùng xác nhận xóa
-                    window.location = "/deleteCustomer?cid=" + phone;
+                    window.location = "deleteCustomer?cid=" + phone;
                 }
             });
         }
@@ -154,7 +166,7 @@
                     reverseButtons: false
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/blockCustomer?cid=" + phone + "&st=" + status;
+                        window.location = "blockCustomer?cid=" + phone + "&st=" + status;
                     }
                 });
             }

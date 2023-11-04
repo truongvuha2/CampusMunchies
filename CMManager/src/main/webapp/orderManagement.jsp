@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +39,7 @@
                     </div>
 
                     <div class="user-info">
-                        <p>Hey, <b><%= request.getSession().getAttribute("username") %></b></p>
+                        <p>Hey, <b><%= request.getSession().getAttribute("username")%></b></p>
 
                         <small class="text-muted">Admin</small>
                     </div>
@@ -74,42 +75,27 @@
                             </thead>
 
                             <tbody id="itemList">
-                                <tr>
-                                    <td>123</td>
-                                    <td class="status">Completed</td>
-                                    <td>8-7-2023</td>
-                                    <td>0123456789</td>
-                                    <td>COD</td>
-                                    <td>23$</td>
-                                    <td class="view-link"><a href="#" class="view">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td>124</td>
-                                    <td class="status">Completed</td>
-                                    <td>7-7-2023</td>
-                                    <td>0123456789</td>
-                                    <td>COD</td>
-                                    <td>23$</td>
-                                    <td class="view-link"><a href="#" class="view">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td>125</td>
-                                    <td class="status">Completed</td>
-                                    <td>9-7-2023</td>
-                                    <td>0123456666</td>
-                                    <td>COD</td>
-                                    <td>23$</td>
-                                    <td class="view-link"><a href="#" class="view">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td>126</td>
-                                    <td class="status">Completed</td>
-                                    <td>10-7-2023</td>
-                                    <td>0123456789</td>
-                                    <td>COD</td>
-                                    <td>23$</td>
-                                    <td class="view-link"><a href="#" class="view">View</a></td>
-                                </tr>
+                                <c:forEach var="m" items="${requestScope.listOrderM}">
+                                    <tr>
+                                        <td>${m.ord_id}</td>
+                                        <c:choose>
+                                            <c:when test="${m.ord_status eq 'Cancelled' || m.ord_status eq 'Rejected'}">
+                                            <td style="color: #C21010;">${m.ord_status}</td>
+                                            </c:when>
+                                            <c:when test="${m.ord_status eq 'Waiting' || m.ord_status eq 'Preparing'}">
+                                            <td style="color: #0397d1;">${m.ord_status}</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                            <td style="color: #1ec708;">${m.ord_status}</td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <td>${m.ord_date}</td>
+                                        <td>${m.cus_phone}</td>
+                                        <td>${m.ord_pay}</td>
+                                        <td>${m.ord_total}$</td>
+                                        <td class="view-link"><a href="orderDetails?oid=${m.ord_id}" class="view">View</a></td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                         <div class="btn-pagination" id="pagination">

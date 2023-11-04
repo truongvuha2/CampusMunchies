@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.sql.Date;
+
 /**
  *
  * @author MY LAPTOP
@@ -13,16 +15,18 @@ public class Order {
     private String ord_id;
     private String cus_phone;
     private String emp_phone;
-    private String ord_date;
+    private String emp_name;
+    private Date ord_date;
     private String ord_type;
+    private String ord_pay;
     private String ord_status;
     private String ord_note;
-    private Double ord_total;
+    private double ord_total;
 
     public Order() {
     }
 
-    public Order(String ord_id, String cus_phone, String emp_phone, String ord_date, String ord_type, String ord_status, String ord_note, Double ord_total) {
+    public Order(String ord_id, String cus_phone, String emp_phone, Date ord_date, String ord_type, String ord_status, String ord_note, double ord_total) {
         this.ord_id = ord_id;
         this.cus_phone = cus_phone;
         this.emp_phone = emp_phone;
@@ -33,20 +37,52 @@ public class Order {
         this.ord_total = ord_total;
     }
 
+    public Order(String ord_id, String ord_status, Date ord_date, String cus_phone, String ord_pay, double ord_total) {
+        this.ord_id = ord_id;
+        this.cus_phone = cus_phone;
+        this.ord_date = ord_date;
+        this.ord_pay = ord_pay;
+        this.ord_status = ord_status;
+        this.ord_total = ord_total;
+    }
 
-    public Order(String ord_id, String cus_phone, String ord_date, String ord_status) {
+    public Order(String ord_id, String cus_phone, Date ord_date, String ord_status) {
         this.ord_id = ord_id;
         this.cus_phone = cus_phone;
         this.ord_date = ord_date;
         this.ord_status = ord_status;
     }
-    
-    public Order(String ord_id, String ord_status, String ord_date) {
+
+    public Order(String ord_id, String ord_status, Date ord_date) {
         this.ord_id = ord_id;
         this.ord_status = ord_status;
         this.ord_date = ord_date;
     }
 
+    public Order(String ord_status, String emp_name, String ord_type, String ord_pay, Date ord_date,  String ord_note) {
+        this.ord_status = ord_status;
+        this.emp_name = emp_name;
+        this.ord_type = ord_type;
+        this.ord_pay = ord_pay;
+        this.ord_date = ord_date;
+        this.ord_note = ord_note;
+    }
+
+    public String getEmp_name() {
+        return emp_name;
+    }
+
+    public void setEmp_name(String emp_name) {
+        this.emp_name = emp_name;
+    }
+
+    public String getOrd_pay() {
+        return ord_pay;
+    }
+
+    public void setOrd_pay(String ord_pay) {
+        this.ord_pay = ord_pay;
+    }
 
     public String getOrd_id() {
         return ord_id;
@@ -72,11 +108,11 @@ public class Order {
         this.emp_phone = emp_phone;
     }
 
-    public String getOrd_date() {
+    public Date getOrd_date() {
         return ord_date;
     }
 
-    public void setOrd_date(String ord_date) {
+    public void setOrd_date(Date ord_date) {
         this.ord_date = ord_date;
     }
 
@@ -108,7 +144,7 @@ public class Order {
         return ord_total;
     }
 
-    public void setOrd_total(Double ord_total) {
+    public void setOrd_total(double ord_total) {
         this.ord_total = ord_total;
     }
 

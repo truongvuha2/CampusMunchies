@@ -133,7 +133,6 @@ aside {
   font-family: 'Poppins', sans-serif;
 }
 
-
 .sidebar .side-menu li {
   margin: 10px 0;
 }
@@ -148,14 +147,12 @@ aside {
 
 
 
-
 .sidebar .side-menu a:hover {
   background-color: #C21010;
   color: #ecf0f1;
   border-left: 4px solid #C21010;
   padding-left: 6px;
 }
-
 
 main {
   flex: 1;
@@ -199,6 +196,7 @@ h2 {
   text-align: center;
   font-size: 25px;
   padding-bottom: 5px;
+  color: #000;
 }
 
 .food-info {
@@ -261,26 +259,19 @@ h2 {
   margin-top: 5px;
 }
 
-.sort-food {
-  margin-left: 2%;
+.filter {
+  display: flex;
 }
 
-.sort-food button{
-  color: white;
-  padding: 6px;
-  background-color: #45cc39;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
-}
-.sort-food button:hover{
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+.filter label{
+  margin-left: 10px;
+  padding-top: 10px;
 }
 
 .select-box {
-  padding: 10px;
+  height: 45px;
+  margin-left: 10px;
   border-radius: 10px;
-  width: 52%;
   color: black;
   background-color: white;
   font-size: 16px;
@@ -309,6 +300,21 @@ h2 {
   color: #C21010;
 }
 
+.price-section p {
+  display: inline; /* Hiển thị các phần tử p cùng một hàng */
+  margin-right: 5px; /* Khoảng cách giữa các phần tử p */
+}
+
+.original-price {
+    text-decoration: line-through; /* Gạch ngang văn bản */
+    color: gray; /* Đổi màu chữ thành xám */
+}
+
+.discounted-price {
+    font-size: 19px; /* Để làm nổi bật giá giảm */
+    /* Các thuộc tính khác tùy thuộc vào yêu cầu thiết kế cụ thể khác */
+}
+
 
 /* Media Query for Responsive Design */
 @media (max-width: 768px) {
@@ -321,6 +327,4 @@ h2 {
   .right-section {
     margin-left: 0;
   }
-
 }
-

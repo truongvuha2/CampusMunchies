@@ -4,12 +4,16 @@
  */
 package controller;
 
+import dao.FoodDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import model.Food;
 
 /**
  *
@@ -55,7 +59,22 @@ public class FoodDetails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            FoodDAO FoodDao = new FoodDAO();
+            List<Food> listFoodSuggest = new ArrayList<>();
+
+            String food_id = request.getParameter("fid");
+            request.setAttribute("foodID", food_id);
+            Food infoFood = FoodDao.getFoodDetails(food_id);
+            request.setAttribute("infoFood", infoFood);
+            
+            listFoodSuggest = FoodDao.getListSuggest(infoFood.getCategoryId());
+            request.setAttribute("suggestList", listFoodSuggest);
+            
+            request.getRequestDispatcher("foodDetail.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     /**

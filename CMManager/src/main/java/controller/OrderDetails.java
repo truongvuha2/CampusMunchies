@@ -4,12 +4,20 @@
  */
 package controller;
 
+import dao.CustomerDAO;
+import dao.OrderDAO;
+import dao.OrderDetailDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import model.Customer;
+import model.Order;
+import model.OrderDetail;
 
 /**
  *
@@ -34,7 +42,7 @@ public class OrderDetails extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet OrderDetails</title>");            
+            out.println("<title>Servlet OrderDetails</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet OrderDetails at " + request.getContextPath() + "</h1>");
@@ -55,7 +63,30 @@ public class OrderDetails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            String orderId = request.getParameter("oid");
+            OrderDetailDAO orderDetailsDao = new OrderDetailDAO();
+            CustomerDAO customerDao = new CustomerDAO();
+            OrderDAO orderDao = new OrderDAO();
+            List<OrderDetail> listOrderInfo = new ArrayList<>();
+            double total_order = 0;
+
+            request.setAttribute("orderId", orderId);
+            listOrderInfo = orderDetailsDao.getListOrderDetail(orderId);
+            request.setAttribute("listOrderDetail", listOrderInfo);
+            for (OrderDetail orderDetail : listOrderInfo) {
+                total_order += orderDetail.getTotal_price();
+            }
+            request.setAttribute("totalOrder", total_order);
+            Customer cusInfo = customerDao.getCusInfoForOrder(orderId);
+            request.setAttribute("cusInfo", cusInfo);
+            Order invoiceInfo = orderDao.getOrderInfo(orderId);
+            request.setAttribute("invoiceInfo", invoiceInfo);
+            
+            request.getRequestDispatcher("orderDetail.jsp").forward(request, response);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     /**

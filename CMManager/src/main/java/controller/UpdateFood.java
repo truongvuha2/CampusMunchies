@@ -4,12 +4,15 @@
  */
 package controller;
 
+import dao.CategoryDAO;
+import dao.FoodDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Food;
 
 /**
  *
@@ -34,7 +37,7 @@ public class UpdateFood extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateFood</title>");            
+            out.println("<title>Servlet UpdateFood</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UpdateFood at " + request.getContextPath() + "</h1>");
@@ -55,21 +58,48 @@ public class UpdateFood extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            FoodDAO foodDao = new FoodDAO();
+            String food_id = request.getParameter("fid");
+
+            Food foodUpdate = foodDao.getFoodUpdate(food_id);
+            request.setAttribute("food_update", foodUpdate);
+            request.setAttribute("category_food", foodUpdate.getCaterogyName());
+            request.setAttribute("status_food", foodUpdate.getStatus());
+
+            request.getRequestDispatcher("updateFood.jsp").forward(request, response);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            CategoryDAO categoryDao = new CategoryDAO();
+            FoodDAO foodDao = new FoodDAO();
+            String foodId = request.getParameter("food_id");
+            String categoryId = categoryDao.getCategoryID(request.getParameter("category_name"));
+            String foodName = request.getParameter("food_name");
+            double price = Double.parseDouble(request.getParameter("price"));
+            double sale = Double.parseDouble(request.getParameter("sale"));
+            String description = request.getParameter("description");
+            String status = request.getParameter("status");
+            String imageUrl = request.getParameter("imageUrl");
+            String imageSrc = request.getParameter("imgSrc");
+            Food food;
+            if (imageUrl.length() > 0) {
+                food = new Food(foodId, categoryId, foodName, price, sale, description, status, imageUrl);
+            } else {
+                food = new Food(foodId, categoryId, foodName, price, sale, description, status, imageSrc);
+            }
+            foodDao.add(food);
+            foodDao.updateFood(food);
+            response.sendRedirect("/foodDetails?fid=" + foodId);
+        } catch (Exception ex) {
+            System.out.println("addFoodPost" + ex);
+        }
     }
 
     /**

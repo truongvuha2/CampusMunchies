@@ -66,12 +66,10 @@ public class OrderManagement extends HttpServlet {
         OrderDAO orderDao = new OrderDAO();
         List<Order> listOrder = new ArrayList<Order>();
         try {
-//            listOrder = orderDao.getEmployeeMain();
-//            request.setAttribute("listEmpM", listEmployeeMain);
-//            listOrder = employeeDao.getEmployeeHonor();
-//            request.setAttribute("listEmpH", listEmployeeHonor);
+            listOrder = orderDao.getListOrderManagement();
+            request.setAttribute("listOrderM", listOrder);
             
-            request.getRequestDispatcher("employeeManagement.jsp").forward(request, response);
+            request.getRequestDispatcher("orderManagement.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println(e);
         }

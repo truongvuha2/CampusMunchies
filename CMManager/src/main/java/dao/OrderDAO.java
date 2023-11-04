@@ -16,8 +16,10 @@ import model.Order;
 
 /**
  *
-<<<<<<< HEAD
- * @author Khanh
+ * <<<<<<< HEAD @a
+ *
+ *
+ * uthor Khanh
  */
 public class OrderDAO extends DBContext {
 
@@ -33,7 +35,7 @@ public class OrderDAO extends DBContext {
             while (rz.next()) {
                 list.add(new Order(rz.getString(1),
                         rz.getString(2),
-                        rz.getString(3)
+                        rz.getDate(3)
                 ));
             }
         } catch (SQLException e) {
@@ -52,7 +54,7 @@ public class OrderDAO extends DBContext {
             while (rz.next()) {
                 list.add(new Order(rz.getString(1),
                         rz.getString(2),
-                        rz.getString(3)
+                        rz.getDate(3)
                 ));
             }
         } catch (SQLException e) {
@@ -91,13 +93,13 @@ public class OrderDAO extends DBContext {
         List<Order> listReOrder = new ArrayList<>();
         try {
             String sql = "select top(5) ord_id, cus_phone, ord_date, ord_status from [Order]\n"
-                    + "order by(ord_date) desc";
+                    + "order by(ord_date) desc, (ord_id) desc";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 listReOrder.add(new Order(rs.getString(1),
                         rs.getString(2),
-                        rs.getString(3),
+                        rs.getDate(3),
                         rs.getString(4)
                 ));
             }
@@ -107,22 +109,49 @@ public class OrderDAO extends DBContext {
         return listReOrder;
     }
 
-//    public List<Order> getEmployeeMain() {
-//        try {
-//            List<Order> list = new ArrayList<Order>();
-//            String sql = "select ord_id, cus_phone, ord_status, ord_date, ord_total from [Order]";
-//            PreparedStatement ps = connection.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next()) {
-//                list.add(new Order(rs.getString(1),
-//                        rs.getString(2),
-//                        rs.getInt(3)));
-//            }
-//            return list;
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//        return null;
-//    }
+    public List<Order> getListOrderManagement() {
+        List<Order> listOrder = new ArrayList<>();
+        try {
+            String sql = "SELECT ord_id, ord_status, ord_date, cus_phone, ord_pay, ord_total FROM [Order]\n"
+                    + "order by(ord_date) desc, ord_id desc";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listOrder.add(new Order(rs.getString(1),
+                        rs.getString(2),
+                        rs.getDate(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getDouble(6)
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return listOrder;
+    }
+
+    public Order getOrderInfo(String oid) {
+        try {
+            String sql = "select ord_status, b.emp_name, ord_type, ord_pay, ord_date, ord_note from [Order] a\n"
+                    + "join Employee b on a.emp_phone=b.emp_phone\n"
+                    + "where a.ord_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, oid);
+            ResultSet rz = ps.executeQuery();
+            rz.next();
+            return new Order(
+                    rz.getString(1),
+                    rz.getString(2),
+                    rz.getString(3),
+                    rz.getString(4),
+                    rz.getDate(5),
+                    rz.getString(6)
+            );
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 
 }

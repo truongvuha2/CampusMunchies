@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="user-info">
-                        <p>Hey, <b><%= request.getSession().getAttribute("username") %></b></p>
+                        <p>Hey, <b><%= request.getSession().getAttribute("username")%></b></p>
 
                         <small class="text-muted">Admin</small>
                     </div>
@@ -90,13 +90,13 @@
 
                         <c:forEach var="u" items="${requestScope.listNewUser}">
                             <div class="user">
-                                <h2><a style="color: #000000" href="/customerDetails?cid=${u.phone}">${u.name}</a></h2>
+                                <h2><a style="color: #000000" href="customerDetails?cid=${u.phone}">${u.name}</a></h2>
                                 <p>Customer</p>
                                 <p>${u.time_ago}</p>
                             </div>
                         </c:forEach>
                     </div>
-                    <a class="show" href="/customerManagement">Show All</a>
+                    <a class="show" href="customerManagement">Show All</a>
 
                 </div>
                 <!-- End of New Users Section -->
@@ -108,7 +108,6 @@
                         <thead>
                             <tr>
                                 <th>Order ID</th>
-
                                 <th>Customer Phone</th>
                                 <th>Time Order</th>
                                 <th>Status</th>
@@ -121,17 +120,27 @@
 
                             <c:forEach var="r" items="${requestScope.listRecentOrder}">
                                 <tr>
-                                    <th>${r.ord_id}</th>
-                                    <th>${r.cus_phone}</th>
-                                    <th>${r.ord_date}</th>
-                                    <th>${r.ord_status}</th>
-                                    <th><a class="view" href="/orderDetails?oid=${r.ord_id}">View</a></th>
+                                    <td>${r.ord_id}</td>
+                                    <td>${r.cus_phone}</td>
+                                    <td>${r.ord_date}</td>
+                                        <c:choose>
+                                            <c:when test="${r.ord_status eq 'Cancelled' || r.ord_status eq 'Rejected'}">
+                                            <td style="color: #C21010;">${r.ord_status}</td>
+                                            </c:when>
+                                            <c:when test="${r.ord_status eq 'Waiting' || r.ord_status eq 'Preparing'}">
+                                            <td style="color: #0397d1;">${r.ord_status}</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                            <td style="color: #1ec708;">${r.ord_status}</td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    <td><a class="view" href="orderDetails?oid=${r.ord_id}">View</a></td>
                                 </tr>
                             </c:forEach>
                         </tbody>
 
                     </table>
-                    <a class="show" href="/orderManagement">Show All</a>
+                    <a class="show" href="orderManagement">Show All</a>
 
                 </div>
                 <!-- End of Recent Orders -->

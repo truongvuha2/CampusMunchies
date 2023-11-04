@@ -141,10 +141,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
             while (rs.next()) {
                 return new Customer(rs.getString(1),
                         rs.getString(2),
-
                         rs.getString(4),
-
-                       
                         rs.getDate(5),
                         rs.getDate(6),
                         rs.getInt(7)
@@ -169,17 +166,25 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-
     public List<Customer> getCusListManagement() {
         List<Customer> listCus = new ArrayList<>();
-        String sql = "with r as(\n"
-                + "SELECT C.cus_phone, COALESCE(COUNT(O.ord_id), 0) AS order_count,COALESCE(sum(O.ord_total),0)[total]\n"
-                + "FROM Customer C\n"
-                + "LEFT JOIN [Order] O ON C.cus_phone = O.cus_phone\n"
-                + "GROUP BY C.cus_phone\n"
+        String sql = "WITH r AS (\n"
+                + "    SELECT\n"
+                + "        C.cus_phone,\n"
+                + "        COALESCE(SUM(CASE WHEN O.ord_status = 'Completed' THEN 1 ELSE 0 END), 0) AS order_count_completed,\n"
+                + "        COALESCE(SUM(CASE WHEN O.ord_status = 'Completed' THEN O.ord_total ELSE 0 END), 0) AS total_completed\n"
+                + "    FROM Customer C\n"
+                + "    LEFT JOIN [Order] O ON C.cus_phone = O.cus_phone\n"
+                + "    GROUP BY C.cus_phone\n"
                 + ")\n"
-                + "select c.cus_name, r.* from r join Customer c on r.cus_phone=c.cus_phone\n"
-                + "where c.cus_status !='Deleted'";
+                + "SELECT\n"
+                + "    C.cus_name,\n"
+                + "    C.cus_phone,\n"
+                + "    r.order_count_completed AS order_count,\n"
+                + "    r.total_completed\n"
+                + "FROM r\n"
+                + "JOIN Customer C ON r.cus_phone = C.cus_phone\n"
+                + "WHERE C.cus_status != 'Deleted';";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -200,16 +205,23 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
     public List<Customer> getHonorListManagement() {
         List<Customer> listCus = new ArrayList<>();
         String sql = "WITH r AS (\n"
-                + "SELECT o.cus_phone, COUNT(o.cus_phone) AS [count], SUM(o.ord_total) AS [total]\n"
-                + "FROM Customer c\n"
-                + "JOIN [Order] o ON c.cus_phone = o.cus_phone\n"
-                + "GROUP BY o.cus_phone\n"
+                + "    SELECT\n"
+                + "        C.cus_phone,\n"
+                + "        COALESCE(SUM(CASE WHEN O.ord_status = 'Completed' THEN 1 ELSE 0 END), 0) AS order_count_completed,\n"
+                + "        COALESCE(SUM(CASE WHEN O.ord_status = 'Completed' THEN O.ord_total ELSE 0 END), 0) AS total_completed\n"
+                + "    FROM Customer C\n"
+                + "    LEFT JOIN [Order] O ON C.cus_phone = O.cus_phone\n"
+                + "    GROUP BY C.cus_phone\n"
                 + ")\n"
-                + "SELECT TOP 5 c.cus_name, r.cus_phone, [count], [total]\n"
+                + "SELECT\n"
+                + "    C.cus_name,\n"
+                + "    C.cus_phone,\n"
+                + "    r.order_count_completed AS order_count,\n"
+                + "    r.total_completed\n"
                 + "FROM r\n"
-                + "JOIN Customer c ON r.cus_phone = c.cus_phone\n"
-                + "where c.cus_status !='Deleted'\n"
-                + "ORDER BY [total] DESC";
+                + "JOIN Customer C ON r.cus_phone = C.cus_phone\n"
+                + "WHERE C.cus_status != 'Deleted'"
+                + "ORDER BY total_completed DESC";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -234,7 +246,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
                 + "        c.cus_name,\n"
                 + "        c.cus_phone,\n"
                 + "        c.cus_status,\n"
-                + "        SUM(CASE WHEN o.ord_status = 'Cancelled' THEN 1 ELSE 0 END) AS CancelledOrderCount,\n"
+                + "        SUM(CASE WHEN o.ord_status = 'Rejected' THEN 1 ELSE 0 END) AS CancelledOrderCount,\n"
                 + "        COUNT(DISTINCT o.ord_id) AS TotalOrderCount\n"
                 + "    FROM Customer c\n"
                 + "    LEFT JOIN [Order] o ON c.cus_phone = o.cus_phone\n"
@@ -243,20 +255,22 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
                 + "SELECT\n"
                 + "    cus_name,\n"
                 + "    cus_phone,\n"
+                + "	cus_status,\n"
                 + "    TotalOrderCount,\n"
                 + "    CancelledOrderCount\n"
                 + "FROM OrderSummary\n"
-                + "WHERE cus_status = 'Blocked'\n"
-                + "ORDER BY CancelledOrderCount DESC;";
+                + "WHERE cus_status = 'Blocked' OR CancelledOrderCount > 0\n"
+                + "ORDER BY cus_status desc, CancelledOrderCount DESC;";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String name = rs.getString(1);
                 String phone = rs.getString(2);
-                int numOrders = Integer.parseInt(rs.getString(3));
-                int cancelCount = Integer.parseInt(rs.getString(4));
-                listCus.add(new Customer(name, phone, numOrders, cancelCount));
+                String status = rs.getString(3);
+                int numOrders = Integer.parseInt(rs.getString(4));
+                int cancelCount = Integer.parseInt(rs.getString(5));
+                listCus.add(new Customer(name, phone, status, numOrders, cancelCount));
             }
             return listCus;
         } catch (SQLException e) {
@@ -268,32 +282,45 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
     public Customer getCustomerDetail(String cid) {
         try {
             String sql = "WITH OrderSummary AS (\n"
-                    + "SELECT C.cus_phone,\n"
-                    + "COALESCE(COUNT(O.ord_id), 0) AS order_count,\n"
-                    + "COALESCE(SUM(O.ord_total), 0) AS total,\n"
-                    + "COALESCE(SUM(CASE WHEN O.ord_status = 'Cancelled' THEN 1 ELSE 0 END), 0) AS cus_cancel_count\n"
-                    + "FROM Customer C\n"
-                    + "LEFT JOIN [Order] O ON C.cus_phone = O.cus_phone\n"
-                    + "GROUP BY C.cus_phone\n"
+                    + "    SELECT\n"
+                    + "        C.cus_phone,\n"
+                    + "        COALESCE(COUNT(O.ord_id), 0) AS order_count,\n"
+                    + "        COALESCE(SUM(CASE WHEN O.ord_status = 'Rejected' THEN 1 ELSE 0 END), 0) AS cus_cancel_count,\n"
+                    + "        COALESCE(SUM(CASE WHEN O.ord_status = 'Completed' THEN 1 ELSE 0 END), 0) AS completed_order_count,\n"
+                    + "        COALESCE(SUM(CASE WHEN O.ord_status = 'Completed' THEN O.ord_total ELSE 0 END), 0) AS total_completed\n"
+                    + "    FROM Customer C\n"
+                    + "    LEFT JOIN [Order] O ON C.cus_phone = O.cus_phone\n"
+                    + "    GROUP BY C.cus_phone\n"
                     + ")\n"
-                    + "SELECT C.cus_name, C.cus_phone, C.cus_address, C.cus_birthday, C.cus_create, OS.cus_cancel_count, OS.order_count, OS.total, C.cus_status\n"
+                    + "SELECT\n"
+                    + "    C.cus_name,\n"
+                    + "    C.cus_phone,\n"
+                    + "    C.cus_email,\n"
+                    + "    C.cus_address,\n"
+                    + "    C.cus_birthday,\n"
+                    + "    C.cus_create,\n"
+                    + "    OS.cus_cancel_count,\n"
+                    + "    OS.completed_order_count AS order_count,\n"
+                    + "    OS.total_completed AS total_completed,\n"
+                    + "    C.cus_status\n"
                     + "FROM Customer C\n"
                     + "JOIN OrderSummary OS ON C.cus_phone = OS.cus_phone\n"
-                    + "where c.cus_phone = ?";
+                    + "WHERE C.cus_phone = ? ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, cid);
             ResultSet rs = ps.executeQuery();
             rs.next();
             String name = rs.getString(1);
-            String address = rs.getString(2);
-            String phone = rs.getString(3);
-            Date birthday = rs.getDate(4);//
-            Date create_date = rs.getDate(5);
-            int cancel_count = rs.getInt(6);
-            int numberOrder = rs.getInt(7);
-            double totalSpending = rs.getDouble(8);
-            String cus_status = rs.getString(9);
-            return new Customer(name, phone, address, birthday, create_date, cancel_count, numberOrder, totalSpending, cus_status);
+            String phone = rs.getString(2);
+            String email = rs.getString(3);
+            String address = rs.getString(4);
+            Date birthday = rs.getDate(5);//
+            Date create_date = rs.getDate(6);
+            int cancel_count = rs.getInt(7);
+            int numberOrder = rs.getInt(8);
+            double totalSpending = rs.getDouble(9);
+            String cus_status = rs.getString(10);
+            return new Customer(name, phone, email, address, birthday, create_date, cancel_count, numberOrder, totalSpending, cus_status);
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -353,13 +380,14 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
             String sql = "select top (4) cus_name, cus_create, cus_phone from Customer\n"
                     + "where cus_status <> 'Deleted'\n"
                     + "order by(cus_create) desc ";
-            String time_ago;
+
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String name = rs.getString(1);
                 Date create_date = rs.getDate(2);
                 String phone = rs.getString(3);
+                String time_ago;
                 LocalDate localDateCreate = create_date.toLocalDate();
                 time_ago = getTimeAgo(localDateCreate);
                 listNew.add(new Customer(name, time_ago, phone));
@@ -370,10 +398,29 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         return listNew;
     }
 
+    public Customer getCusInfoForOrder(String cid) {
+        try {
+            String sql = "select cus_name, a.cus_phone, cus_address from Customer a\n"
+                    + "join [Order] b on a.cus_phone=b.cus_phone\n"
+                    + "where b.ord_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, cid);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            String name = rs.getString(1);
+            String phone = rs.getString(2);
+            String address = rs.getString(3);
+            return new Customer(name, phone, address, 0);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     public String getTimeAgo(LocalDate dateCreate) {
         LocalDate currentDate = LocalDate.now();
         long timeAgo = ChronoUnit.DAYS.between(dateCreate, currentDate);
-        return timeAgo == 0 ? "Today": timeAgo + " Days Ago";
+        return timeAgo == 0 ? "Today" : timeAgo + " Days Ago";
     }
 
     public static void main(String[] args) {
@@ -381,12 +428,10 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         List<Customer> list = c.getAll();
         System.out.println(c.getCustomerDetail("0123456788").toString());
 
-    
-       
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).toString());
         }
-        
+
         System.out.println(c.isExisted("0123456788", "password2"));
 
     }

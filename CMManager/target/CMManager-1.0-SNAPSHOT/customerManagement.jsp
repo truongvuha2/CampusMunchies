@@ -44,7 +44,7 @@
 
                     <div class="user-info">
 
-                        <p>Hey, <b><%= request.getSession().getAttribute("username") %></b></p>
+                        <p>Hey, <b><%= request.getSession().getAttribute("username")%></b></p>
 
                         <small class="text-muted">Admin</small>
                     </div>
@@ -85,7 +85,7 @@
                                         <td>${m.phone}</td>
                                         <td>${m.numberOrder}</td>
                                         <td>${m.totalSpending}$</td>
-                                        <td><a class="view" href="/customerDetails?cid=${m.phone}">View</a></td>
+                                        <td><a class="view" href="customerDetails?cid=${m.phone}">View</a></td>
                                     </tr>
                                 </c:forEach>
 
@@ -119,7 +119,7 @@
                                         <td>${h.name}</td>
                                         <td>${h.numberOrder}</td>
                                         <td>${h.totalSpending}$</td>
-                                        <td><a class="view" href="/customerDetails?cid=${h.phone}">View</a></td>
+                                        <td><a class="view" href="customerDetails?cid=${h.phone}">View</a></td>
                                     </tr>
                                 </c:forEach>
 
@@ -133,22 +133,32 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Orders</th>
-                                    <th>Cancel Orders</th>
+                                    <th>Reject Orders</th>
                                     <th>Details</th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <c:forEach var="b" items="${requestScope.listCusB}">
-                                    
-                                    <tr>
-                                        <td>${b.name}</td>
+                                    <c:choose>
+                                        <c:when test="${b.cus_status eq 'Blocked'}">
+                                            <tr>
+                                        <td>${b.name} <ion-icon name="lock-closed-outline"></ion-icon></td>
                                         <td>${b.numberOrder}</td>
                                         <td>${b.cancel_count}</td>
-                                        <td><a class="view" href="/customerDetails?cid=${b.phone}">View</a></td>
-                                    </tr>
-                                    
-                                </c:forEach>
+                                        <td><a class="view" href="customerDetails?cid=${b.phone}">View</a></td>
+                                        </tr>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <tr>
+                                            <td>${b.name}</td>
+                                            <td>${b.numberOrder}</td>
+                                            <td>${b.cancel_count}</td>
+                                            <td><a class="view" href="customerDetails?cid=${b.phone}">View</a></td>
+                                        </tr>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
 
                             </tbody>
                         </table>

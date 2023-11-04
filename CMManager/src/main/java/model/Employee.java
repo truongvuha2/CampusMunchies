@@ -11,6 +11,7 @@ public class Employee {
 
     private String phone;
     private String name;
+    private String email;
     private String address;
     private String password;
     private Date birthday;
@@ -28,10 +29,32 @@ public class Employee {
         this.create = create;
     }
 
+    public Employee(String phone, String name, String password, String email, String address, Date birthday) {
 
-    public Employee(String name, String phone, String address, Date birthday, int order_served, Date create, String emp_status) {
         this.phone = phone;
         this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.birthday = birthday;
+    }
+    
+    public Employee(String phone, String name, String password, String address, Date birthday, Date create, String emp_status) {
+        this.phone = phone;
+        this.name = name;
+        this.address = address;
+        this.password = password;
+        this.birthday = birthday;
+        this.create = create;
+        this.emp_status = emp_status;
+    }
+    
+     
+
+    public Employee(String name, String email, String phone, String address, Date birthday, int order_served, Date create, String emp_status) {
+        this.phone = phone;
+        this.name = name;
+        this.email = email;
         this.address = address;
         this.birthday = birthday;
         this.create = create;
@@ -43,6 +66,14 @@ public class Employee {
         this.phone = phone;
         this.name = name;
         this.order_served = order_served;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getEmp_status() {

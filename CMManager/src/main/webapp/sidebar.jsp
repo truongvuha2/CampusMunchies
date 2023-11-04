@@ -113,37 +113,40 @@
     <body>
         <aside>
             <div class="sidebar">
-                <a href="#" class="logo-side">
+                <a href="analytics" class="logo-side">
                     <div class="logo-name">
                         <div class="Campus">Campus</div>
                         <div class="Munchines">Munchies</div>
                     </div>
                 </a>
                 <ul class="side-menu">
-                    <li><a href="/analytics"><i class='bx bx-analyse'></i> Analytics</a></li>
+                    <li><a href="analytics"><i class='bx bx-analyse'></i> Analytics</a></li>
 
-                    <li><a href="/orderManagement"><i class='bx bx-box'></i> Order</a>
+                    <li><a href="orderManagement"><i class='bx bx-box'></i> Order</a>
 
                     </li>
-                    <li><a href="/listMenu"><i class='bx bx-food-menu'></i> Menu</a>
+                    <li><a href="listMenu"><i class='bx bx-food-menu'></i> Menu</a>
                         <ul class="sub-menu">
-                            <li><a href="/listMenu"> List Menu</a></li>
-                            <li><a href="/addFood"> Add Food</a></li>
-                            <li><a href="/updateFood"> Update Food</a></li>
+                            <li><a href="listMenu"> List Menu</a></li>
+                            <li><a href="addFood"> Add Food</a></li>
                         </ul>
-
                     </li>
-                    <li><a href="/customerManagement"><i class='bx bxs-user-account'></i> Customer</a>
+                    
 
+                    <li><a href="employeeManagement"><i class='bx bxs-user-detail'></i> Employee</a>
+                        <ul class="sub-menu">
+                            <li><a href="employeeManagement"> List Employee</a></li>
+                            <li><a href="createAccount"> Create Account</a></li>
+                        </ul>
                     </li>
-
-                    <li><a href="/employeeManagement"><i class='bx bxs-user-detail'></i> Employee</a>
+                    
+                    <li><a href="customerManagement"><i class='bx bxs-user-account'></i> Customer</a>
 
                     </li>
                 </ul>
                 <ul class="side-menu">
                     <li>
-                        <a href="#" class="logout">
+                        <a href="login" class="logout">
                             <i class='bx bx-log-out-circle'></i>
                             Logout
                         </a>

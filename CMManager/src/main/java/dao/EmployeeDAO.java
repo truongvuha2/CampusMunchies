@@ -35,9 +35,16 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
     @Override
     public void add(Employee employee, String password) {
         try {
-            String sql = "insert into [Employee] values"
-                    + "(?,?,CONVERT(VARCHAR(20), HASHBYTES('MD5', ?), 2),"
-                    + "?,?,getdate())";
+            String sql = "INSERT INTO Employee (emp_phone, emp_name, emp_password, emp_address, emp_birthday, emp_create, emp_status)\n"
+                    + "VALUES (\n"
+                    + "'?,\n"
+                    + "?,\n"
+                    + "CONVERT(varchar(20), HashBytes('MD5', ?), 2),\n"
+                    + "?,\n"
+                    + "?,\n"
+                    + "GETDATE(),\n"
+                    + "?\n"
+                    + ");";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, employee.getPhone());
             ps.setString(2, employee.getName());
@@ -158,6 +165,33 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
         }
     }
 
+    public void createAcc(Employee employee) {
+        try {
+            String sql = "INSERT INTO Employee (emp_phone, emp_name, emp_password, emp_email, emp_address, emp_birthday, emp_create, emp_status)\n"
+                    + "VALUES (\n"
+                    + "?,\n"
+                    + "?,\n"
+                    + "CONVERT(varchar(32), HashBytes('MD5', ?), 2),\n"
+                    + "?,\n"
+                    + "?,\n"
+                    + "?,\n"
+                    + "GETDATE(),\n"
+                    + "?\n"
+                    + ");";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, employee.getPhone());
+            ps.setString(2, employee.getName());
+            ps.setString(3, employee.getPassword());
+            ps.setString(4, employee.getEmail());
+            ps.setString(5, employee.getAddress());
+            ps.setDate(6, employee.getBirthday());
+            ps.setString(7, "Available");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     public List<Employee> getEmployeeMain() {
         try {
             List<Employee> list = new ArrayList<Employee>();
@@ -177,6 +211,22 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
                 list.add(new Employee(rs.getString(1),
                         rs.getString(2),
                         rs.getInt(3)));
+            }
+            return list;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public List<String> getListPhoneValided() {
+        try {
+            List<String> list = new ArrayList<String>();
+            String sql = "select emp_phone from Employee";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getString(1));
             }
             return list;
         } catch (Exception e) {
@@ -221,7 +271,7 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
                     + "    LEFT JOIN [Order] O ON E.emp_phone = O.emp_phone\n"
                     + "    GROUP BY E.emp_phone\n"
                     + ")\n"
-                    + "SELECT e.emp_name, e.emp_address, e.emp_birthday, e.emp_create, e.emp_status, r.*\n"
+                    + "SELECT e.emp_name, e.emp_email, e.emp_address, e.emp_birthday, e.emp_create, e.emp_status, r.*\n"
                     + "FROM r\n"
                     + "JOIN Employee e ON r.emp_phone = e.emp_phone\n"
                     + "WHERE e.emp_phone = ?";
@@ -230,20 +280,21 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
             ResultSet rs = ps.executeQuery();
             rs.next();
             String name = rs.getString(1);
-            String phone = rs.getString(6);
-            String address = rs.getString(2);
-            Date birthday = rs.getDate(3);
-            Date create_date = rs.getDate(4);
-            int order_served = rs.getInt(7);
-            String emp_status = rs.getString(5);
+            String email = rs.getString(2);
+            String phone = rs.getString(7);
+            String address = rs.getString(3);
+            Date birthday = rs.getDate(4);
+            Date create_date = rs.getDate(5);
+            int order_served = rs.getInt(8);
+            String emp_status = rs.getString(6);
 
-            return new Employee(name, phone, address, birthday, order_served, create_date, emp_status);
+            return new Employee(name, email, phone, address, birthday, order_served, create_date, emp_status);
         } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
     }
-    
+
     public void deleteEmployee(String phone) {
         try {
             String sql = "update Employee set emp_status = 'Deleted' where emp_phone = ? ";
@@ -256,7 +307,44 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
         }
     }
 
-    public static void main(String[] args) {
-
+    public Employee searchEmployeeDeleted(String phone) {
+        try {
+            String sql = "select * from Employee where emp_phone = ? and emp_status = 'Deleted'";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, phone);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Employee(rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getDate(6),
+                        rs.getString(7)
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
     }
+
+    public boolean isPhoneExisted(String phone) {
+        try {
+            String sql = "select * from employee "
+                    + "where emp_phone = '" + phone + "'";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public static void main(String[] args) {
+        EmployeeDAO e = new EmployeeDAO();
+        System.out.println(e.isPhoneExisted("0123456700"));
+    }
+
 }
