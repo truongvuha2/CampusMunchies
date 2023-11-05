@@ -36,9 +36,9 @@
         <jsp:include page="/EmployeePage/header.jsp">
             <jsp:param name="isOrderList" value="${true}"></jsp:param>
         </jsp:include>
-        <div class="container-fluid" >
+        <div class="container-fluid" style="height: 100vh; padding-top: 241px;">
             <div class="d-flex justify-content-center">
-                <div class="d-flex justify-content-center px-2 py-1 title my-3">Order List</div>
+                <div class="d-flex justify-content-center px-2 py-1 title my-3" style="color: white;">Order List</div>
             </div>
             <%
                 String startDate = "";
@@ -54,8 +54,8 @@
             <div class="d-flex justify-content-end mb-2 mt-4">
                 <form action="/employee" method="post">
                     <div>
-                        <label for="">From: </label><input type="date" name="startDate" value="<%= startDate.equals("") ? "" : startDate%>">
-                        <label for="">To: </label><input type="date" name="endDate" value="<%= endDate.equals("") ? "" : endDate%>">
+                        <label for="" style="color: white; font-weight: bold">From: </label><input type="date" name="startDate" value="<%= startDate.equals("") ? "" : startDate%>">
+                        <label for="" style="color: white; font-weight: bold">To: </label><input type="date" name="endDate" value="<%= endDate.equals("") ? "" : endDate%>">
                         <button class="mx-2" style="border: none;background: none" name="btnSearch" value="Search">
                             <!--<div class="search p-0 d-flex justify-content-center align-items-center">-->
                             <i class="fa-solid fa-magnifying-glass nav_acc_glass" style="color: #FFB23E;"></i>
@@ -70,15 +70,15 @@
             <table class="table table-bordered" style="color: white; font-size: 25px;font-weight: bold">
                 <thead>
                     <tr align="center">
-                        <th scope="col">Order ID</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Order Date</th>
-                        <th scope="col">Customer Name</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Payment</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Detail</th>
+                        <th scope="col" style="color: white;">Order ID</th>
+                        <th scope="col" style="color: white;">Status</th>
+                        <th scope="col" style="color: white;">Order Date</th>
+                        <th scope="col" style="color: white;">Customer Name</th>
+                        <th scope="col" style="color: white;">Phone</th>
+                        <th scope="col" style="color: white;">Type</th>
+                        <th scope="col" style="color: white;">Payment</th>
+                        <th scope="col" style="color: white;">Total</th>
+                        <th scope="col" style="color: white;">Detail</th>
                     </tr>
                 </thead>
                 <tbody id="itemList">
@@ -132,8 +132,8 @@
 
             </table>
             <div class="btn-pagination" id="pagination">
-                <button id="prevButton"><i class='bx bx-left-arrow-circle'></i></button>
-                <button id="nextButton"><i class='bx bx-right-arrow-circle'></i></button>
+                <button id="prevButton" style="border-radius:50%"><i class='bx bx-left-arrow-circle' ></i></button>
+                <button id="nextButton" style="border-radius:50%"><i class='bx bx-right-arrow-circle'></i></button>
             </div>
         </div>
         <%@include file="/EmployeePage/footer.jsp" %>

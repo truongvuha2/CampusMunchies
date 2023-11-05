@@ -12,11 +12,14 @@
         <title>Campus Munchies</title>
         <link href="/EmployeePage/css/login.css" rel="stylesheet" type="text/css"/>
     </head>
+    <style>
+        
+    </style>
     <body>
         <header><%@include file="/EmployeePage/header.jsp" %></header>
-        <form action="/employee" method="post" style="height: calc(100vh - 137px - 241px);">
-            <div class="container-fluid d-flex justify-content-center py-5 mb-5">
-                <div class="loginBox d-flex flex-column align-items-center px-5 py-1 w-25">
+        <form action="/employee" method="post" style="height: 100vh; padding-top: 241px;">
+            <div class="container-fluid d-flex justify-content-center py-5 mb-5" >
+                <div class="loginBox d-flex flex-column align-items-center px-5 py-1 w-25" style="border: none">
                     <div class="title py-4">Login</div>
 
                     <div class="phone py-1">
@@ -28,7 +31,7 @@
 
                     <div class="d-flex justify-content-between align-items-center w-100">
                         <div><input name="checkRememberMe" type="checkbox" class="me-1"><Span  style="color: #4D4D4D;">Remember Me</Span></div>
-                        <div><a href="#">Forgot Your Password?</a></div>
+                        <div><a href="/employee/forgotPass">Forgot Your Password?</a></div>
                     </div>
                     <%
                         String invalid = "";

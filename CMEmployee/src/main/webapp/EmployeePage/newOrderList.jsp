@@ -30,9 +30,9 @@
     </head>
     <body>
         <%@include file="/EmployeePage/header.jsp" %>
-        <div class="container-fluid" >
+        <div class="container-fluid" style="height: 100vh; padding-top: 241px;">
             <div class="d-flex justify-content-center">
-                <div class="d-flex justify-content-center px-2 py-1 title my-3">New Order List</div>
+                <div class="d-flex justify-content-center px-2 py-1 title my-3" style="color: white">New Order List</div>
             </div>
             <%
                 String startDate = "";
@@ -64,15 +64,15 @@
             <table class="table table-bordered" style="color: white; font-size: 25px;font-weight: bold">
                 <thead>
                     <tr align="center">
-                        <th scope="col">Order ID</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Order Date</th>
-                        <th scope="col">Customer Name</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Payment</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Detail</th>
+                        <th scope="col" style="color: white">Order ID</th>
+                        <th scope="col" style="color: white;">Status</th>
+                        <th scope="col" style="color: white;">Order Date</th>
+                        <th scope="col" style="color: white;">Customer Name</th>
+                        <th scope="col" style="color: white;">Phone</th>
+                        <th scope="col" style="color: white;">Type</th>
+                        <th scope="col" style="color: white;">Payment</th>
+                        <th scope="col" style="color: white;">Total</th>
+                        <th scope="col" style="color: white;">Detail</th>
                     </tr>
                 </thead>
                 <tbody id="itemList">
@@ -138,8 +138,8 @@
 
             </table>
             <div class="btn-pagination" id="pagination">
-                <button id="prevButton"><i class='bx bx-left-arrow-circle'></i></button>
-                <button id="nextButton"><i class='bx bx-right-arrow-circle'></i></button>
+                <button id="prevButton" style="border-radius:50%"><i class='bx bx-left-arrow-circle' ></i></button>
+                <button id="nextButton" style="border-radius:50%"><i class='bx bx-right-arrow-circle'></i></button>
             </div>
         </div>
         <%@include file="/EmployeePage/footer.jsp" %>

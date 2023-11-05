@@ -18,10 +18,13 @@
         <link rel="stylesheet" href="/EmployeePage/css/orderDetail.css">
     </head>
     <body>
-        <%@include file="/EmployeePage/header.jsp" %>
-        <div class="container-fluid my-4">
+        <header>
+             <%@include file="/EmployeePage/header.jsp" %>
+        </header>
+       
+        <div class="container-fluid my-4" style="height: 100vh; padding-top: 90px;">
             <div class="title d-flex justify-content-center mb-4">
-                <div class="text d-flex align-items-center justify-content-center">Order Detail</div>
+                <div class="text d-flex align-items-center justify-content-center" style="color: white;">Order Detail</div>
             </div>
             <%
                 String orderId = request.getAttribute("orderId") + "";
@@ -106,10 +109,10 @@
                 <table class="table table-bordered custom-table " border="1" style="font-weight: bold; font-size: larger;">
                     <thead>
                         <tr align="center">
-                            <th scope="col">Food</th>
-                            <th scope="col">Unit Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Sum</th>
+                            <th scope="col" style="color: white;">Food</th>
+                            <th scope="col" style="color: white;">Unit Price</th>
+                            <th scope="col" style="color: white;">Quantity</th>
+                            <th scope="col" style="color: white;">Sum</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,8 +138,8 @@
                         %>
                     </tbody>
                     <tr class="total" align="center">
-                        <th colspan="3">Total</th>
-                        <th><%=total%></th>
+                        <th colspan="3" style="color: white;">Total</th>
+                        <th style="color: white;"><%=total%></th>
                     </tr>  
                 </table>
             </div>

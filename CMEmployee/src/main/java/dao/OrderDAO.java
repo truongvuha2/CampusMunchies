@@ -48,7 +48,7 @@ public class OrderDAO extends DBContext {
                 + "    WHEN ord_status = 'preparing' THEN 2\n"
                 + "    WHEN ord_status = 'completed' THEN 3\n"
                 + "    ELSE 4\n"
-                + "  END;";
+                + "  END, o.ord_id desc;";
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, employeePhone);
@@ -72,10 +72,10 @@ public class OrderDAO extends DBContext {
     }
 
     public ResultSet getOrderById(String orderId, String employeePhone) {
-        String sql = "select * from [Order] o join Customer c on c.cus_phone=o.cus_phone where o.ord_id=? and o.emp_phone=?";
+        String sql = "select * from [Order] o join Customer c on c.cus_phone=o.cus_phone where o.ord_id like ? and o.emp_phone=?";
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, orderId);
+            ps.setString(1, "%"+orderId+"%");
             ps.setString(2, employeePhone);
             rs = ps.executeQuery();
         } catch (SQLException ex) {
@@ -84,7 +84,7 @@ public class OrderDAO extends DBContext {
         return rs;
     }
 
-    public ResultSet getOrderDetailById(String orderId) {
+    public ResultSet getCusOfOrder(String orderId) {
         String sql = "select * from [Order] o join Customer c on c.cus_phone=o.cus_phone where o.ord_id=?";
         try {
             ps = conn.prepareStatement(sql);

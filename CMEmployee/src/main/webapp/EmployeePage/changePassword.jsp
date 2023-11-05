@@ -14,19 +14,19 @@
     </head>
     <body>
         <%@include file="/EmployeePage/header.jsp" %>
-        <div class="container-fluid">
+        <div class="container-fluid" style="height: 100vh; padding-top: 100px;">
             <div class="title mx-auto my-5">Changing Password</div>
             <form action="/employee" method="post" onsubmit="return validateForm()">
-                <div class="customer-info mx-auto p-4">
-                    <div class="d-flex">
+                <div class="customer-info mx-auto p-4 d-flex flex-column justify-content-center" style="border: none">
+                    <div class="d-flex justify-content-around">
                         <div class="info-items m-3">Old Password</div>
-                        <div class="info-value m-3"><input required="" type="text" name="txtOldPassword"></div>
+                        <div class="info-value m-3"><input required="" type="password" name="txtOldPassword"></div>
                     </div>
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-around">
                         <div class="info-items m-3">New Password</div>
                         <div class="info-value m-3"><input required="" type="password" name="txtNewPassword"></div>
                     </div>
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-around">
                         <div class="info-items m-3">Confirm New Password</div>
                         <div class="info-value m-3"><input required="" type="password" name="txtNewPassword1"></div>
                     </div>

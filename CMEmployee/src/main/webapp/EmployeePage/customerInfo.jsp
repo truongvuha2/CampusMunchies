@@ -25,42 +25,46 @@
     <% 
         Customer customerInfo = (Customer)request.getAttribute("customerInfo");
     %>
-  <div class="container-fluid">
-    <div class="title mx-auto my-5">Customer Information</div>
-    <div class="customer-info mx-auto p-4">
-      <div class="d-flex">
-        <div class="info-items m-3">Name</div>
-        <div class="info-value m-3"><%= customerInfo.getName() %></div>
+  <div class="container-fluid" style="height: 155vh; padding-top: 90px;">
+    <div class="title mx-auto my-5" style="color: white;">Customer Information</div>
+    <div class="customer-info mx-auto p-4 d-flex flex-column justify-content-center" style="border: none">
+      <div class="d-flex justify-content-between mb-2">
+        <div class="info-items">Name</div>
+        <div class="info-value"><%= customerInfo.getName() %></div>
       </div>
-      <div class="d-flex">
-        <div class="info-items m-3">Phone</div>
-        <div class="info-value m-3"><%= customerInfo.getPhone()%></div>
+      <div class="d-flex justify-content-between mb-2">
+        <div class="info-items">Phone</div>
+        <div class="info-value"><%= customerInfo.getPhone()%></div>
       </div>
-      <div class="d-flex">
-        <div class="info-items m-3">Address</div>
-        <div class="info-value m-3" style="height: 12.5625rem; justify-content: start;">
+      <div class="d-flex justify-content-between mb-2">
+        <div class="info-items">Email</div>
+        <div class="info-value"><%= customerInfo.getEmail() %></div>
+      </div>
+      <div class="d-flex justify-content-between mb-2">
+        <div class="info-items">Address</div>
+        <div class="info-value" style="height: 12.5625rem; justify-content: start;">
           <%= customerInfo.getAddress()%>
         </div>
       </div>
-      <div class="d-flex">
-        <div class="info-items m-3">Birthday</div>
-        <div class="info-value m-3"><%= customerInfo.getBirthday()%></div>
+      <div class="d-flex justify-content-between mb-2">
+        <div class="info-items">Birthday</div>
+        <div class="info-value"><%= customerInfo.getBirthday()%></div>
       </div>
-      <div class="d-flex">
-        <div class="info-items m-3">Rejected Count</div>
-        <div class="info-value m-3"><%= customerInfo.getCancel_count()%></div>
+      <div class="d-flex justify-content-between mb-2">
+        <div class="info-items">Rejected Count</div>
+        <div class="info-value"><%= customerInfo.getCancel_count()%></div>
       </div>
     </div>
       
-    <div class="title mx-auto my-5">Orders</div>
+    <div class="title mx-auto my-5" style="color: white;">Orders</div>
     <div class="history-order w-75 mx-auto">
       <table class="table table-bordered" border="1">
         <thead class="table-header">
             
           <tr align="center">
-            <th scope="col">Order ID</th>
-            <th scope="col">Status</th>
-            <th scope="col">Date</th>
+            <th scope="col" style="color: white;">Order ID</th>
+            <th scope="col" style="color: white;">Status</th>
+            <th scope="col" style="color: white;">Date</th>
           </tr>
         </thead>
         <tbody class="table-body">

@@ -67,7 +67,7 @@ public class OrderDetailController extends HttpServlet {
             OrderDetailDAO odd = new OrderDetailDAO();
             OrderDAO ord = new OrderDAO();
 
-            ResultSet order = ord.getOrderDetailById(id);
+            ResultSet order = ord.getCusOfOrder(id);
             request.setAttribute("orderInfo", order);
 
             ResultSet orderDetailList = odd.getListOrderDetailById(id);
@@ -82,7 +82,7 @@ public class OrderDetailController extends HttpServlet {
             OrderDetailDAO odd = new OrderDetailDAO();
             OrderDAO ord = new OrderDAO();
 
-            ResultSet order = ord.getOrderDetailById(id);
+            ResultSet order = ord.getCusOfOrder(id);
             request.setAttribute("orderInfo", order);
 
             ResultSet orderDetailList = odd.getListOrderDetailById(id);
@@ -97,7 +97,7 @@ public class OrderDetailController extends HttpServlet {
             OrderDetailDAO odd = new OrderDetailDAO();
             OrderDAO ord = new OrderDAO();
 
-            ResultSet order = ord.getOrderDetailById(id);
+            ResultSet order = ord.getCusOfOrder(id);
             request.setAttribute("orderInfo", order);
 
             ResultSet orderDetailList = odd.getListOrderDetailById(id);

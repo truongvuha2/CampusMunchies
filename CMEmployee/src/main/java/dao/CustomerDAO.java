@@ -19,9 +19,9 @@ import model.Customer;
  *
  * @author khang
  */
-public class CustomerDAO extends DBContext implements ICRUD<Customer> {
+public class CustomerDAO extends DBContext {
 
-    @Override
+    
     public boolean isExisted(String phone, String password) {
         try {
             String sql = "select * from Customer "
@@ -35,7 +35,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    @Override
+    
     public void add(Customer customer, String password) {
         try {
             String sql = "INSERT INTO Customer VALUES\n"
@@ -53,7 +53,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    @Override
+    
     public void update(Customer customer) {
         try {
             String sql = "update Customer set  cus_name=?,  cus_address=?, cus_birthday=?, cus_cancel_count=? where cus_phone=?";
@@ -69,7 +69,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    @Override
+    
     public void remove(String phone) {
         try {
             String sql = "delete Customer where cus_phone = ?  ";
@@ -82,7 +82,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         }
     }
 
-    @Override
+    
     public List getAll() {
         List<Customer> customers = new ArrayList<>();
         String sql = "select * from Customer";
@@ -96,7 +96,10 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
                 Date birthday = rs.getDate(5);
                 Date create_date = rs.getDate(6);
                 int cus_cancel_count = rs.getInt(7);
-                customers.add(new Customer(phone, name, address, birthday, create_date, cus_cancel_count));
+                customers.add(new Customer(rs.getString(1), rs.getString(2), rs.getString(3), 
+                        rs.getString(4), rs.getString(5), rs.getDate(6),
+                        rs.getDate(7), rs.getString(8), getCancelCount(rs.getString(1))
+                ));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -104,7 +107,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         return customers;
     }
 
-    @Override
+    
     public List<Customer> searchByName(String name) {
         List<Customer> customers = new ArrayList<>();
         try {
@@ -114,12 +117,9 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
             ps.setString(1, "%" + name + "%");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                customers.add(new Customer(rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(4),
-                        rs.getDate(5),
-                        rs.getDate(6),
-                        rs.getInt(7)
+                customers.add(new Customer(rs.getString(1), rs.getString(2), rs.getString(3), 
+                        rs.getString(4), rs.getString(5), rs.getDate(6),
+                        rs.getDate(7), rs.getString(8), getCancelCount(rs.getString(1))
                 ));
             }
         } catch (SQLException e) {
@@ -128,7 +128,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         return customers;
     }
 
-    @Override
+    
     public Customer searchByPhone(String phone) {
         try {
             String sql = "SELECT * "
@@ -138,12 +138,9 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                return new Customer(rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(4), //chỗ này là địa chỉ nhưng lúc đầu lấy cột 3
-                        rs.getDate(5),
-                        rs.getDate(6),
-                        getCancelCount(phone)
+                return new Customer(rs.getString(1), rs.getString(2), rs.getString(3), 
+                        rs.getString(4), rs.getString(5), rs.getDate(6),
+                        rs.getDate(7), rs.getString(8), getCancelCount(phone)
                 );
             }
         } catch (SQLException e) {
@@ -152,7 +149,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
         return null;
     }
 
-    @Override
+    
     public void changePassword(String phone, String password) {
         String sql = "update Customer set cus_password=convert(varchar(20),hashbytes('MD5',?),2) where cus_phone=?";
         try {
