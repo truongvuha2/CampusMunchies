@@ -25,7 +25,7 @@
 
     <body>
         <%@include file="header.jsp"%>
-        <div style="margin-top:100px"></div>
+        <div style="margin-top:160px"></div>
         <div class="container">
             <!-- Main Content -->
             <main>

@@ -122,7 +122,7 @@
                 const address = document.getElementById('address').value;
                 const birthday = document.getElementById('birthday').value;
                 const email = document.getElementById('email').value;
-                if (!name || !address || !birthday|| !email) {
+                if (!name || !address || !birthday || !email) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Invalid information',
@@ -156,11 +156,17 @@
                 const address = document.getElementById('address').value;
                 const birthday = document.getElementById('birthday').value;
                 const email = document.getElementById('email').value;
+                var same = "true";
+                if (email == '${customer.email}') {
+                    same = "true";
+                } else {
+                    same = "false";
+                }
                 $.ajax({
                     url: "/customer/updateProfile",
                     type: "post",
                     data: {
-                        name: name, address: address, birthday: birthday,email:email
+                        name: name, address: address, birthday: birthday, email: email, same: same
                     },
                     success: function (data) {
                         Swal.fire({
@@ -169,7 +175,10 @@
                         });
                     },
                     error: function (xhr) {
-                        console.log(xhr);
+                        Swal.fire({
+                            icon: 'error',
+                            text: xhr.responseText
+                        });
                     }
                 });
             }
@@ -231,7 +240,7 @@
             function isValidPassword(password1) {
                 return password1.length >= 8 && password1.length <= 20;
             }
-            
+
             function isValidEmail(email) {
                 return email.length >= 1 && email.length <= 50;
             }

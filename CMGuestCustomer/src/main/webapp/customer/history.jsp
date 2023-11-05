@@ -59,7 +59,7 @@
                                                 <c:when test="${o.getStatus() eq 'Cancelled' || o.getStatus() eq 'Rejected'}"> <!-- Access 'status' property instead of 'getStatus()' -->
                                                     <div style="color: #C21010;" class="status">${o.status}</div>
                                                 </c:when>
-                                                <c:when test="${o.getStatus() eq 'Waiting' || o.getStatus() eq 'Processing'}"> <!-- Access 'status' property instead of 'getStatus()' -->
+                                                <c:when test="${o.getStatus() eq 'Waiting' || o.getStatus() eq 'Preparing'}"> <!-- Access 'status' property instead of 'getStatus()' -->
                                                     <div style="color: #0397d1;" class="status">${o.getStatus()}</div>
                                                 </c:when>
                                                 <c:otherwise>

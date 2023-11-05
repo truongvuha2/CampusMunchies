@@ -70,7 +70,7 @@
                                         </c:otherwise>
                                     </c:choose> 
                                 </div>
-                                </a>
+                                <hr>
                                 <div class="food-info">
                                     <div class="price-section">
                                         <p>Price:</p>
@@ -88,7 +88,14 @@
                                 </div>
                                 <div class="food-btn">
                                     <button onclick="viewFood('${food.getId()}')">View</button>
-                                    <button  onclick="addToCart('${food.getId()}')"><ion-icon style="font-size: 22px;" name="cart"></ion-icon></button>
+                                    <c:choose>
+                                        <c:when test="${food.getStatus() eq 'Sold Out'}">
+                                            <button style="background-color: grey">Sold Out</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button onclick="addToCart('${food.getId()}')"><ion-icon style="font-size: 22px;" name="cart"></ion-icon></button>
+                                                </c:otherwise>
+                                            </c:choose>
                                 </div>
                             </div>
                         </div>
@@ -117,6 +124,7 @@
                                         </c:otherwise>
                                     </c:choose> 
                                 </div>
+                                <hr>
 
                                 <div class="food-info">
                                     <div class="price-section">
@@ -138,7 +146,14 @@
                                 </div>
                                 <div class="food-btn">
                                     <button onclick="viewFood('${food.getId()}')">View</button>
-                                    <button  onclick="addToCart('${food.getId()}')"><ion-icon style="font-size: 22px;" name="cart"></ion-icon></button>
+                                    <c:choose>
+                                        <c:when test="${food.getStatus() eq 'Sold Out'}">
+                                            <button style="background-color: grey">Sold Out</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button onclick="addToCart('${food.getId()}')"><ion-icon style="font-size: 22px;" name="cart"></ion-icon></button>
+                                                </c:otherwise>
+                                            </c:choose>
                                 </div>
                             </div>
                         </div>
@@ -154,44 +169,44 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-                                        $(document).ready(function () {
-                                            var currentIndex = 0;
-                                            var slides = $(".banner-slide");
+                                                $(document).ready(function () {
+                                                    var currentIndex = 0;
+                                                    var slides = $(".banner-slide");
 
-                                            function showSlide(index) {
-                                                slides.hide();
-                                                slides.eq(index).fadeIn();
-                                            }
+                                                    function showSlide(index) {
+                                                        slides.hide();
+                                                        slides.eq(index).fadeIn();
+                                                    }
 
-                                            function nextSlide() {
-                                                currentIndex = (currentIndex + 1) % slides.length;
-                                                showSlide(currentIndex);
-                                            }
+                                                    function nextSlide() {
+                                                        currentIndex = (currentIndex + 1) % slides.length;
+                                                        showSlide(currentIndex);
+                                                    }
 
-                                            showSlide(currentIndex);
+                                                    showSlide(currentIndex);
 
-                                            setInterval(nextSlide, 5000);
-                                        });
+                                                    setInterval(nextSlide, 5000);
+                                                });
 
-                                        function viewFood(id) {
-                                            window.location = "/guest/foodDetail?id=" + id;
-                                        }
-                                        function addToCart(id) {
-                                            Swal.fire({
-                                                title: '',
-                                                text: "You have to login to add to cart",
-                                                icon: 'warning',
-                                                showCancelButton: true,
-                                                confirmButtonColor: '#3085d6',
-                                                cancelButtonColor: '#d33',
-                                                confirmButtonText: 'Log in now'
-                                            }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    window.location = "/guest/login";
-                                                    f
+                                                function viewFood(id) {
+                                                    window.location = "/guest/foodDetail?id=" + id;
                                                 }
-                                            })
-                                        }
+                                                function addToCart(id) {
+                                                    Swal.fire({
+                                                        title: '',
+                                                        text: "You have to login to add to cart",
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        confirmButtonText: 'Log in now'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            window.location = "/guest/login";
+                                                            f
+                                                        }
+                                                    })
+                                                }
     </script>
 
 </html>

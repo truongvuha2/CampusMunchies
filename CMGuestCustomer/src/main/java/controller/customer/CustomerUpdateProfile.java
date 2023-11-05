@@ -75,14 +75,22 @@ public class CustomerUpdateProfile extends HttpServlet {
         String name = request.getParameter("name");
         String birth = request.getParameter("birthday");
         String address = request.getParameter("address");
-         String email= request.getParameter("email");
+        String email = request.getParameter("email");
+        String same = request.getParameter("same");
         Date date = Date.valueOf(birth);
 
         String phone = CMCookie.CMCookie.getCustomerPhone(request, response);
         CustomerDAO cus = new CustomerDAO();
-        Customer c = new Customer(phone, name, email, address, date);
-        cus.update(c);
-
+        if (same.equals("true")) {
+            Customer c = new Customer(phone, name, email, address, date);
+            cus.update(c);
+        } else if (cus.isEmailExisted(email)) {
+            response.setStatus(HttpServletResponse.SC_CONFLICT);
+            response.getWriter().println("The email is already existed!");
+        } else {
+            Customer c = new Customer(phone, name, email, address, date);
+            cus.update(c);
+        }
     }
 
     /**

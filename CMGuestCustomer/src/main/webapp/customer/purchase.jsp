@@ -44,7 +44,7 @@
                                 <li><label>Your Name: *</label><input type="text" name="name"  readonly value="${customer.getName()}"></li>
                                 <li><label>Your Phone: *</label><input type="text" name="number"  readonly value="${customer.getPhone()}"></li>
                                 <li><label>Address: *</label>
-                                    <textarea cols="30" rows="3" readonly>${customer.getAddress()}</textarea>
+                                    <textarea style="resize:none" cols="30" rows="3" readonly>${customer.getAddress()}</textarea>
                                 </li>
                                 <li>
                                     <label>Shipping Method:</label>
@@ -62,7 +62,7 @@
                                     </select>
                                 </li>
                                 <li><label>Note:</label>
-                                    <textarea cols="30" rows="3" id="note" value=""></textarea>
+                                    <textarea  style="resize:none" cols="30" rows="3" id="note" value=""></textarea>
                                 </li>
 
                         </ul>

@@ -69,7 +69,7 @@ public class CustomerUpdateHistory extends HttpServlet {
                 if (o.getStatus().equals("Waiting")) {
                     a = "<button onclick=\"cancelOrder('" + o.getId() + "')\">Cancel</button>\n";
                 }
-                if (o.getStatus().equals("Waiting") || o.getStatus().equals("Processing")) {
+                if (o.getStatus().equals("Waiting") || o.getStatus().equals("Preparing")) {
                     b = "<div style=\"color: #0397d1;\" class=\"status\">" + o.getStatus() + "</div>\n";
                 }else
                 if (o.getStatus().equals("Cancelled") || o.getStatus().equals("Rejected")) {

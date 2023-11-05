@@ -77,7 +77,7 @@
                                     </c:choose> 
 
                                 </div>
-
+                                <hr>
                                 <div class="food-info">
                                     <div class="price-section">
                                         <p>Price:</p>
