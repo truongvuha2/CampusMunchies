@@ -61,16 +61,17 @@ public class CustomerFinishOrder extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CartDAO c = new CartDAO();
-        String description = request.getParameter("description");
+        String note = request.getParameter("note") == null ? "" : request.getParameter("note");
         String delivery = request.getParameter("delivery");
         String pay = request.getParameter("pay");
         String phone = CMCookie.CMCookie.getCustomerPhone(request, response);
         double total = Double.parseDouble(request.getParameter("total"));
         List<Cart> carts = c.searchByPhone(phone);
-
+      
         OrderDAO order = new OrderDAO();
-        order.add(new Order(phone, delivery, pay, description, total),carts);
-        response.sendRedirect("/CampusMunchies/customer/history");
+        order.add(new Order(phone, delivery, pay, note, total), carts);
+          c.deleteAll(phone);
+        response.sendRedirect("/customer/history");
     }
 
     /**
@@ -84,7 +85,7 @@ public class CustomerFinishOrder extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     /**

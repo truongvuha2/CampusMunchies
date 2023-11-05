@@ -1,136 +1,87 @@
-<%-- 
-    Document   : register
-    Created on : Oct 18, 2023, 7:32:37 AM
-    Author     : CNM
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <title>Register</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-image: url('https://img.tastykitchen.vn/resize/764x-/2021/03/31/cong-thuc-che-bien-ga-chien-xu-don-gian-tai-nha-2-eeb7.jpg');
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-            }
-
-            .container {
-                max-width: 40%;
-                margin: 8% auto;
-                padding: 20px;
-                background: #ffffff;
-                border-radius: 5px;
-                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            }
-
-            h1 {
-                text-align: center;
-            }
-
-            .form-group {
-                margin: 10px 0;
-            }
-
-            label {
-                display: block;
-            }
-
-            input[type="text"],
-            input[type="password"] {
-                width: 90%;
-                padding: 10px;
-                margin-top: 5px;
-                margin-bottom: 10px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
-
-            .error-message {
-                color: red;
-            }
-
-            .register-button {
-                background: #ffae00;
-                color: #fff;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 4px;
-                cursor: pointer;
-                display: block;
-                margin: 0 auto;
-            }
-            .birthday-input {
-                width: 90%;
-                padding: 10px;
-                margin-top: 5px;
-                margin-bottom: 10px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                float: left;
-                color: gray
-            }
-
-        </style>
+        <link href="css/register.css" rel="stylesheet" type="text/css"/>
     </head>
+
     <body>
-        <div class="container">
-            <h1>Register</h1>
-            <form action="/CampusMunchies/guest/register" method="post">
+        <div class="box">
+            <div class="container">
+                <!--<form action="/CampusMunchies/guest/login" method="post">-->
+                <div class="top-header">
+                    <header>Register</header>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="name" name="name" class="input" placeholder="Enter your name..." >
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="phone" name="phone" class="input" placeholder="Enter your phone...">
+                    <i class='bx bx-phone'></i>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="email" name="email" class="input" placeholder="Enter your email..." >
+                    <i class='bx bx-envelope'></i>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="password" name="password" class="input" placeholder="Enter password..." >
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="input" placeholder="Enter confirm password..." >
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="address" name="address" class="input" placeholder="Enter your address...">
+                    <i class='bx bx-home' ></i>
+                </div>
+                <div class="input-field">
+                    <input type="date" id="birthday" name="birthday" class="input" placeholder="Enter your birthday...">
+                    <i class='bx bx-calendar-alt' ></i>
+                </div>
 
-                <div class="form-group">
-                    <label for="name">Your name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name...">
+                <div class="error-message" id="error-message" style="display: none; text-align: center;">
+                    Please enter your phone and password!
                 </div>
-                <div class="form-group">
-                    <label for="phone">Phone number</label>
-                    <input type="text" id="phone" name="phone" placeholder="Enter phone number...">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter password...">
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Enter confirm password...">
-                </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address" placeholder="Enter address...">
-                </div>
-                <div class="form-group">
-                    <label for="birthday">Birthday</label>
-                    <input type="date" id="birthday" name="birthday" class="birthday-input" placeholder="Enter birthday (yyyy/mm/dd)">
+                <div class="error-message" style="text-align: center;">
+                    <!-- <p>${error}</p> -->
                 </div>
 
-                <div class="form-group">
-                    <button class="register-button">Register</button>
+                <div class="input-field" >
+                    <input type="button" class="submit" value="Register">
                 </div>
-            </form>
+
+                <!-- <div class="bottom">
+                    <div class="left">
+                        <input type="checkbox" id="check">
+                        <label for="check"> Remember Me</label>
+                    </div>
+                    <div class="right">
+                        <label><a href="#">Forgot password?</a></label>
+                    </div>
+                </div> -->
+                <!--</form>-->
+            </div>
         </div>
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.6/compressed/picker.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.6/compressed/picker.date.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
-
-
-            document.querySelector('.register-button').addEventListener('click', function (event) {
+            document.querySelector('.submit').addEventListener('click', function (event) {
                 event.preventDefault();
                 const name = document.getElementById('name').value;
                 const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
                 const address = document.getElementById('address').value;
                 const confirmPassword = document.getElementById('confirmPassword').value;
                 const birthday = document.getElementById('birthday').value;
-                if (!phone || !password || !confirmPassword || !name || !birthday || !address) {
+                if (!phone || !password || !email || !confirmPassword || !name || !birthday || !address) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Invalid information',
@@ -147,6 +98,12 @@
                         icon: 'error',
                         title: 'Invalid phone number',
                         text: 'It should have 10 digits and the first number should be 0.'
+                    });
+                } else if (!isValidEmail(email)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid email',
+                        text: 'It should follow the email format. (abc@domain.com)'
                     });
                 } else if (!isValidPassword(password)) {
                     Swal.fire({
@@ -174,7 +131,7 @@
                     });
 
                 } else {
-                    // Nếu tất cả thông tin hợp lệ, cho phép form được submit
+
                     register();
                 }
 
@@ -188,9 +145,9 @@
                 const address = document.getElementById('address').value;
                 const confirmPassword = document.getElementById('confirmPassword').value;
                 const birthday = document.getElementById('birthday').value;
-
+                const email = document.getElementById('email').value;
                 $.ajax({
-                    url: "/CampusMunchies/guest/register",
+                    url: "/guest/register",
                     type: "post",
                     data: {
                         name: name,
@@ -198,34 +155,33 @@
                         password: password,
                         address: address,
                         confirmPassword: confirmPassword,
-                        birthday: birthday
+                        birthday: birthday,
+                        email:email
                     },
                     success: function (data) {
                         Swal.fire({
                             icon: 'success',
                             title: 'Register successfully',
                             text: 'Click OK to redirect to Log in page',
-                            showCancelButton: true, // Hiển thị nút Cancel
+                            showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             confirmButtonText: 'OK',
                             cancelButtonColor: '#d33',
                             cancelButtonText: 'Cancel'
                         }).then((result) => {
                             if (result.value) {
-                                window.location.href = "/CampusMunchies/guest/login";
+                                window.location.href = "/guest/login";
                             }
                         });
                     },
                     error: function (xhr) {
                         Swal.fire({
                             icon: 'error',
-                            title: 'Phone is existed',
-                            text: 'Please enter the other phone.'
+                            text: xhr.responseText
                         });
                     }
                 });
             }
-
 
             function isValidPhone(phone) {
                 return /^[0-9]{10}$/.test(phone) && phone[0] === '0';
@@ -245,6 +201,14 @@
             function isValidDate(birthday) {
                 return birthday != null;
             }
+
+            function isValidEmail(email) {
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                return emailRegex.test(email);
+            }
         </script>
+
     </body>
+
 </html>

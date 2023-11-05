@@ -58,9 +58,9 @@ public class CustomerLogout extends HttpServlet {
             throws ServletException, IOException {
         Cookie cookie = new Cookie("phone", "");
         cookie.setMaxAge(0);
-        cookie.setPath(request.getContextPath());
+        cookie.setPath("/");
         response.addCookie(cookie);
-        response.sendRedirect("/CampusMunchies/guest/home");
+        response.sendRedirect("/guest/home");
     }
 
     /**

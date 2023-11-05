@@ -1,9 +1,8 @@
-package controller.guest;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+package controller.guest;
 
 import dao.CategoryDAO;
 import dao.FoodDAO;
@@ -14,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import javax.persistence.Cache;
 import model.Category;
 import model.Food;
 
@@ -63,10 +63,10 @@ public class GuestMenu extends HttpServlet {
             throws ServletException, IOException {
         FoodDAO f = new FoodDAO();
         CategoryDAO c = new CategoryDAO();
+        List<Category> categories = c.getAll();
         List<Food> foods = f.getAll();
-        List<Category> cates = c.getAll();
-        request.setAttribute("cates", cates);
         request.setAttribute("foods", foods);
+         request.setAttribute("categories", categories);
         request.getRequestDispatcher("menu.jsp").forward(request, response);
     }
 

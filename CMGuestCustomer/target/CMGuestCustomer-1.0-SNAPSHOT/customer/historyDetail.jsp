@@ -1,166 +1,168 @@
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
     <head>
         <meta charset="UTF-8">
-        <title>Shopping Cart</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <link href="css/historyDetail.css" rel="stylesheet" type="text/css"/>
+        <title>Order Information</title>
     </head>
 
     <body>
         <%@include file="header.jsp"%>
-        <div style="margin-top:100px" class="shopping-cart" id="shoppingCart">
-            <div class="px-4 px-lg-0">
+        <div style="margin-top: 160px" ></div>
+        <div class="container">
+            <!-- Sidebar -->
 
-                <div class="pb-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
-                                <div class="col-lg-12 p-2 bg-info text-light rounded shadow-sm mb-2">
-                                    <h2>Information Order</h2>
-                                </div>
-
-                                <!-- Shopping cart table -->
-                                <div class="table-responsive">
-                                    <table class="table">
-
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="border-0 bg-light">
-                                                    <div class="p-2 px-3 text-uppercase">Order</div>
-                                                </th>
-                                                <th scope="col" class="border-0 bg-light">
-                                                    <div class="p-2 px-3 text-uppercase"></div>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="body">
-
-
-                                        <td class="align-middle">
-                                            <h5>Order ID: ${order.id}</h5>
-                                        </td>
-                                        <td class="align-middle">
-                                            <h5>Date created: ${order.orderDate}</h5>
-                                        </td>
-
-
-                                        </tbody>
-                                    </table>
-                                    <table class="table">
-                                        <h4>Customer information</h4>
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="border-0 bg-light">
-                                                    <div class="p-2 px-3 text-uppercase">Address</div>
-                                                </th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody id="body">
-
-
-                                        <td class="align-middle">
-                                            <div>${cus.address}</div>
-                                        </td>
-
-
-                                        </tbody>
-                                    </table>
-                                    <div>
-
-                                    </div>
-
-                                    <table class="table">
-                                        <h4>Food information</h4>
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="border-0 bg-light">
-                                                    <div class="p-2 px-3 text-uppercase">Food</div>
-                                                </th>
-                                                <th scope="col" class="border-0 bg-light">
-                                                    <div class="py-2 text-uppercase">Quantity</div>
-                                                </th>
-                                                <th scope="col" class="border-0 bg-light">
-                                                    <div class="py-2 text-uppercase">Unit price</div>
-                                                </th>
-
-                                                <th scope="col" class="border-0 bg-light">
-                                                    <div class="py-2 text-uppercase">Total</div>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="body">
-
-                                            <c:forEach items="${detail}" var="o">
-                                                <tr>
-                                                    <th class="align-middle">
-                                                        <div class="ml-0 d-inline-block align-top">${o.foodName}</div>
-                                                    </th>
-                                                    <td class="align-middle">
-                                                        <div class="ml-3 d-inline-block align-top">${o.quantity}</div>
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <div class="ml-3 d-inline-block align-top">
-                                                            <fmt:formatNumber value="${o.price / o.quantity}" type="number" pattern="0.00" />
-                                                        </div>
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <div class="ml-3 d-inline-block align-top">${o.price}</div>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                            
-
-                                            </tbody>
-                                    </table>
-                                </div>
-                                <!-- End -->
-                            </div>
-                        </div>
-
-                        <div class="row py-5 p-4 bg-white rounded shadow-sm">
-                            <div class="col-lg-6">
-
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Total Payment
-                                </div>
-                                <div class="p-4">
-                                    <ul class="list-unstyled mb-4">
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                                                class="text-muted">Price</strong><strong id="totalPrice">${sum}</strong></li>
-                                       
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                                                class="text-muted">Total</strong><strong id="totalPrice">${sum}</strong></li>
-
-
-                                    
-                                </div>
-                            </div>
-                        </div>
-
+            <!-- End of Sidebar -->
+            <!-- Main Content -->
+            <main id="main">
+                <div class="header">
+                    <div class="name-tittle">
+                        Order Information
                     </div>
                 </div>
+                <!-- Orders Food Information Table -->
 
-            </div>
+                <!-- End of Food Order Information Orders -->
+                <div class="history-order row">
+                    <div class="col-md-8">
+                        <div class="orders-table">
+                            <h2 style="font-weight: 600; text-align: center;" class="order-list">Order Details</h2>
+                            <table>
+                                <thead  style="text-align: center">
+                                    <tr >
+                                        <th>Food</th>
+                                        <th>Unit Price</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <c:forEach var="o" items="${requestScope.orders}">
+                                        <tr>
+                                            <!--                                            <td class="food-info">
+                                            
+                                                                                            <img src="" alt="">
+                                            
+                                                                                        </td>-->
+                                            <!-- liên kết với food detail -->
+                                            <td>${o.getFoodName()}</td>
+                                            <td>${o.getPrice()}$</td>
+                                            <td>${o.getQuantity()}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <div class="total-order">Total Order: ${order.getTotal()}$</div>
+                        </div>
+                    </div>
+                    <div style="height: 340px; background-color: #c7c6c6;" class="col-md-4 order-info">
+                        <h2 style="font-weight: 600; padding-bottom: 10px; text-align: center;" class="customer-info">
+                            Invoice Information</h2>
+                        <hr>
+                        <span>
+                            <p><span class="bold-numbers">Order ID: </span>  ${order.getId()}</p>
+                            <p><span class="bold-numbers">Order Status: </span>  ${order.getStatus()} </p>
+                            <p><span class="bold-numbers">Payment Methods: </span>  ${order.getPay()} </p>
+                            <p><span class="bold-numbers">Order Date: </span> ${order.getOrderDate()} </p>
+                            <p><span class="bold-numbers">Address: </span>${cus.getAddress()} </p>
+                            <p><span class="bold-numbers">Note: </span> ${order.getNote()}</p>
+                        </span>
+                    </div>
+                </div> 
+                <c:choose>
+                    <c:when test="${order.getStatus() eq 'Waiting'&&order.getPay() eq 'Banking'}">
+                        <div style="display: flex;">
+                            <div style="width: 450px; padding: 20px; background-color: #c2c2c2; margin-top: 20px; border-radius: 5px;">
+                                <p style="margin-top: 5px; font-size: 20px; font-weight: 500;">Please pay to proceed with the order
+                                </p><p style="font-size: 20px; font-weight: 500;" >(If you have already paid, please skip)</p>
+                                <p style="font-size: 20px; font-weight: 500;">Scan the QR code below:</p>
+                                <img style="width: 200px; margin-top: 20px;" src="../img/qrcode.jpg" alt="">
+                            </div>
+
+                            <div class="cancel-order">
+                                <button onclick="cancelOrder('${order.getId()}')">Cancel Order</button>
+                            </div>
+                        </div>
+                    </c:when>
+
+                    <c:when test="${order.getStatus() eq 'Waiting'}">
+                        <div style="display: flex;">
+                            <div  class="cancel-order">
+                                <button style="margin:0" onclick="cancelOrder('${order.getId()}')">Cancel Order</button>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                    </c:otherwise>
+                </c:choose>              
+
+
+            </main>
+            <!-- End of Main Content -->
+
+
+
         </div>
-        <%@include file="footer.jsp"%>
-
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
     </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+                                        function cancelOrder(id) {
+                                            $.ajax({
+                                                url: "/customer/cancelOrder",
+                                                type: "get",
+                                                data: {
+                                                    id: id
+                                                },
+                                                success: function (data) {
+                                                    location.reload();
+                                                },
+                                                error: function (xhr) {
+                                                    Swal.fire({
+                                                        icon: 'error',
+                                                        text: 'The order is processing'
+                                                    });
+                                                }
+                                            });
+                                        }
 
+
+                                        window.addEventListener('load', function () {
+                                            // Gọi hàm updateHistory() sau khi trang đã tải hoàn toàn.
+                                            checkForChanges();
+                                        });
+                                        function checkForChanges() {
+                                            $.ajax({
+                                                url: '/customer/updateHistoryDetail',
+                                                type: 'GET',
+                                                data: {
+                                                    id: '${order.getId()}'
+                                                },
+                                                success: function (data) {
+                                                    // Xử lý dữ liệu trả về từ API endpoint
+
+                                                    // Cập nhật trang "history.jsp" nếu có thay đổi
+                                                    document.getElementById("main").innerHTML = data;
+                                                },
+                                                complete: function () {
+                                                    // Thiết lập một khoảng thời gian cho việc kiểm tra lại (đặt thời gian tùy ý)
+                                                    setTimeout(checkForChanges, 5000); // Ví dụ: kiểm tra lại sau mỗi 5 giây
+                                                }
+                                            });
+                                        }
+
+    </script>
 </html>

@@ -13,113 +13,11 @@
         <title>JSP Page</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <style>
-            .container{
-                margin-top: 100px
-            }
-            .ui-w-80 {
-                width: 80px !important;
-                height: auto;
-            }
-
-            .btn-default {
-                border-color: rgba(24, 28, 33, 0.1);
-                background: rgba(0, 0, 0, 0);
-                color: #4E5155;
-            }
-
-            label.btn {
-                margin-bottom: 0;
-            }
-
-            .btn-outline-primary {
-                border-color: #26B4FF;
-                background: transparent;
-                color: #26B4FF;
-            }
-
-            .btn {
-                cursor: pointer;
-            }
-
-            .text-light {
-                color: #babbbc !important;
-            }
-
-
-
-            .card {
-                background-clip: padding-box;
-                box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
-            }
-
-            .row-bordered {
-                overflow: hidden;
-            }
-
-            .account-settings-fileinput {
-                position: absolute;
-                visibility: hidden;
-                width: 1px;
-                height: 1px;
-                opacity: 0;
-            }
-
-            .account-settings-links .list-group-item.active {
-                font-weight: bold !important;
-            }
-
-            html:not(.dark-style) .account-settings-links .list-group-item.active {
-                background: transparent !important;
-            }
-
-            .account-settings-multiselect~.select2-container {
-                width: 100% !important;
-            }
-
-            .light-style .account-settings-links .list-group-item {
-                padding: 0.85rem 1.5rem;
-                border-color: rgba(24, 28, 33, 0.03) !important;
-            }
-
-            .light-style .account-settings-links .list-group-item.active {
-                color: #4e5155 !important;
-            }
-
-            .material-style .account-settings-links .list-group-item {
-                padding: 0.85rem 1.5rem;
-                border-color: rgba(24, 28, 33, 0.03) !important;
-            }
-
-            .material-style .account-settings-links .list-group-item.active {
-                color: #4e5155 !important;
-            }
-
-            .dark-style .account-settings-links .list-group-item {
-                padding: 0.85rem 1.5rem;
-                border-color: rgba(255, 255, 255, 0.03) !important;
-            }
-
-            .dark-style .account-settings-links .list-group-item.active {
-                color: #fff !important;
-            }
-
-            .light-style .account-settings-links .list-group-item.active {
-                color: #4E5155 !important;
-            }
-
-            .light-style .account-settings-links .list-group-item {
-                padding: 0.85rem 1.5rem;
-                border-color: rgba(24, 28, 33, 0.03) !important;
-            }
-
-            .mt-3 {
-                margin-bottom: 20px;
-            }
-        </style>
+        <link href="css/profile.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <%@include file="header.jsp"%>
+        <div class="banner" style="margin-top:160px"></div>
         <div class="container light-style flex-grow-1 container-p-y">
             <h4 class="font-weight-bold py-3 mb-4">
                 Customer Profile
@@ -151,6 +49,10 @@
                                         <input type="text" class="form-control" value="${customer.phone}" disabled>
                                     </div>
                                     <div class="form-group">
+                                        <label class="form-label">Email</label>
+                                        <input type="text" id="email" class="form-control" value="${customer.email}" name="email" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="form-label">Birthday</label>
                                         <input type="date" id="birthday" class="form-control" value="${customer.birthday}" name="birth" required>
                                     </div>
@@ -161,7 +63,7 @@
                                     </div>
                                     <strong class="text-success" style="color: green !important">${messU}</strong>
                                 </div>
-                                <div class="text-right mt-3">
+                                <div class="text-left mt-3">
                                     <button  id="SaveChangeBtn" class="btn btn-primary">Save changes</button>
 
                                 </div>
@@ -183,11 +85,8 @@
                                         <input type="password" id="password2" class="form-control" name="repeatPass"
                                                oninput="checkPasswords()">
                                     </div>
-                                    <strong class="text-warning" style="color: red !important">${messF}</strong>
-                                    <strong class="text-success" style="color: green !important">${messS}</strong>
-                                    <p id="message" style="color: red;"></p>
                                 </div>
-                                <div class="text-right mt-3">
+                                <div class="text-left mt-3">
                                     <button type="submit" id="savePassBtn" class="btn btn-primary" >Save
                                         changes</button>
 
@@ -204,7 +103,7 @@
 
         </div>
         <%@include file="footer.jsp"%>
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <!--<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>-->
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript"></script>
@@ -213,8 +112,8 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <script>
             document.getElementById('SaveChangeBtn').addEventListener('click', function (event) {
@@ -222,7 +121,8 @@
                 const name = document.getElementById('name').value;
                 const address = document.getElementById('address').value;
                 const birthday = document.getElementById('birthday').value;
-                if (!name || !address || !birthday) {
+                const email = document.getElementById('email').value;
+                if (!name || !address || !birthday|| !email) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Invalid information',
@@ -238,7 +138,13 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Invalid address',
-                        text: 'It must be more than 50 characters.'
+                        text: 'It must be between 1 to 50 characters'
+                    });
+                } else if (!isValidEmail(email)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid email',
+                        text: 'It must be between 1 to 50 characters'
                     });
                 } else {
                     saveChange();
@@ -249,11 +155,12 @@
                 const name = document.getElementById('name').value;
                 const address = document.getElementById('address').value;
                 const birthday = document.getElementById('birthday').value;
+                const email = document.getElementById('email').value;
                 $.ajax({
-                    url: "/CampusMunchies/customer/updateProfile",
+                    url: "/customer/updateProfile",
                     type: "post",
                     data: {
-                        name: name, address: address, birthday: birthday
+                        name: name, address: address, birthday: birthday,email:email
                     },
                     success: function (data) {
                         Swal.fire({
@@ -262,7 +169,7 @@
                         });
                     },
                     error: function (xhr) {
-                        console.log(error);
+                        console.log(xhr);
                     }
                 });
             }
@@ -287,16 +194,16 @@
                     savePassword();
                 }
             });
-            
+
             function savePassword() {
-                  const currentPass= document.getElementById('password').value;
-                  const newPass= document.getElementById('password1').value;
+                const currentPass = document.getElementById('password').value;
+                const newPass = document.getElementById('password1').value;
                 $.ajax({
-                    url: "/CampusMunchies/customer/changePassword",
+                    url: "/customer/changePassword",
                     type: "post",
                     data: {
-                        currentPass:currentPass,
-                        newPass:newPass
+                        currentPass: currentPass,
+                        newPass: newPass
                     },
                     success: function (data) {
                         Swal.fire({
@@ -318,11 +225,15 @@
             }
 
             function isValidAddress(address) {
-                return address.length >= 0 && address.length <= 50;
+                return address.length >= 1 && address.length <= 50;
             }
 
             function isValidPassword(password1) {
                 return password1.length >= 8 && password1.length <= 20;
+            }
+            
+            function isValidEmail(email) {
+                return email.length >= 1 && email.length <= 50;
             }
 
 

@@ -214,8 +214,8 @@
             <div class="main-width">
 
 
-                <div class="content">
-                    <div class="main-text" style="margin:0">
+                <div class="content" >
+                    <div class="main-text" style="margin-top:100px">
                         <h3>Fast Food</h3>
                         <h1>Campus Munchies</h1>
                         <h3>Campus Munchies - Where Flavorful Delights are at Your Fingertips!</h3>
@@ -231,7 +231,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> <%@include file="footer.jsp"%>
 
     </body>
 

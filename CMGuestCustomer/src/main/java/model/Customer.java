@@ -14,29 +14,30 @@ public class Customer {
 
     private String phone;
     private String name;
+    private String email;
     private String address;
     private Date birthday;
     private Date create_date;
     private String status;
-   
 
-    public Customer(String phone, String name, String address, Date birthday, Date create_date, String status) {
+    public Customer(String phone, String name, String email, String address, Date birthday, Date create_date,
+            String status) {
         this.phone = phone;
         this.name = name;
+        this.email = email;
         this.address = address;
         this.birthday = birthday;
         this.create_date = create_date;
         this.status = status;
     }
 
-    public Customer(String phone, String name, String address, Date birthday) {
+    public Customer(String phone, String name, String email, String address, Date birthday) {
         this.phone = phone;
         this.name = name;
+        this.email = email;
         this.address = address;
         this.birthday = birthday;
     }
-    
-    
 
     public String getPhone() {
         return phone;
@@ -52,6 +53,14 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAddress() {
@@ -88,7 +97,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" + "phone=" + phone + ", name=" + name + ", address=" + address + ", birthday=" + birthday + ", create_date=" + create_date + ", status=" + status + '}';
+        return "Customer{" + "phone=" + phone + ", name=" + name + ", email=" + email + ", address=" + address
+                + ", birthday=" + birthday + ", create_date=" + create_date + ", status=" + status + '}';
     }
-
 }

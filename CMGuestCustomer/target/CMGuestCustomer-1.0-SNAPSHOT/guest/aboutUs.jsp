@@ -58,57 +58,58 @@
                 justify-content: space-between;
                 padding: 40px 0 30px;
             }
-/*            nav ul li{
-                list-style: none;
-                display: inline-block;
-            }
-            nav ul li a{
-                text-decoration: none;
-                color: white;
-                margin-left: 60px;
-                font-size: 15px;
-                font-weight: 600;
-                border-bottom: 2px solid transparent;
-                transition: .4s;
-                -webkit-transition: .4s;
-                -moz-transition: .4s;
-                -ms-transition: .4s;
-                -o-transition: .4s;
-            }
-            nav ul li:not(:last-child) a:hover,
-            nav ul li:not(:last-child) a:focus{
-                border-bottom: 2px solid white;
-            }
-            nav ul li.active a{
-                border-bottom: 2px solid white;
-            }
-            nav ul li.btn a{
-                background: transparent;
-                color: white;
-                border: 1px solid #f5dca8;
-                padding: 9px 20px;
-                border-radius: 30px;
-                -webkit-border-radius: 30px;
-                -moz-border-radius: 30px;
-                -ms-border-radius: 30px;
-                -o-border-radius: 30px;
-                line-height: 1.4;
-                font-size: 14px;
-                font-weight: 500;
-                margin-left: 150px;
-            }
-            nav ul li.btn:hover a{
-                border: 1px solid white;
-                color: black;
-                background: white;
-                transition: .4s;
-                -webkit-transition: .4s;
-                -moz-transition: .4s;
-                -ms-transition: .4s;
-                -o-transition: .4s;
-            }*/
+            /*            nav ul li{
+                            list-style: none;
+                            display: inline-block;
+                        }
+                        nav ul li a{
+                            text-decoration: none;
+                            color: white;
+                            margin-left: 60px;
+                            font-size: 15px;
+                            font-weight: 600;
+                            border-bottom: 2px solid transparent;
+                            transition: .4s;
+                            -webkit-transition: .4s;
+                            -moz-transition: .4s;
+                            -ms-transition: .4s;
+                            -o-transition: .4s;
+                        }
+                        nav ul li:not(:last-child) a:hover,
+                        nav ul li:not(:last-child) a:focus{
+                            border-bottom: 2px solid white;
+                        }
+                        nav ul li.active a{
+                            border-bottom: 2px solid white;
+                        }
+                        nav ul li.btn a{
+                            background: transparent;
+                            color: white;
+                            border: 1px solid #f5dca8;
+                            padding: 9px 20px;
+                            border-radius: 30px;
+                            -webkit-border-radius: 30px;
+                            -moz-border-radius: 30px;
+                            -ms-border-radius: 30px;
+                            -o-border-radius: 30px;
+                            line-height: 1.4;
+                            font-size: 14px;
+                            font-weight: 500;
+                            margin-left: 150px;
+                        }
+                        nav ul li.btn:hover a{
+                            border: 1px solid white;
+                            color: black;
+                            background: white;
+                            transition: .4s;
+                            -webkit-transition: .4s;
+                            -moz-transition: .4s;
+                            -ms-transition: .4s;
+                            -o-transition: .4s;
+                        }*/
             .content{
                 padding-top: 14px;
+                height:100%
             }
             .content .main-text{
                 position: relative;
@@ -213,8 +214,8 @@
             <div class="main-width">
 
 
-                <div class="content">
-                    <div class="main-text" style="margin:0">
+                <div class="content" >
+                    <div class="main-text" style="margin-top:100px">
                         <h3>Fast Food</h3>
                         <h1>Campus Munchies</h1>
                         <h3>Campus Munchies - Where Flavorful Delights are at Your Fingertips!</h3>
@@ -230,7 +231,8 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section><%@include file="footer.jsp"%>
+
     </body>
 
 </html>

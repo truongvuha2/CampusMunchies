@@ -61,7 +61,12 @@ public class CustomerCart extends HttpServlet {
         CartDAO c = new CartDAO();
         String phone = CMCookie.CMCookie.getCustomerPhone(request, response);
         List<Cart> carts = c.searchByPhone(phone);
+        double sum=0;
+        for(Cart cart:carts){
+            sum+= cart.getQuantity()*cart.getFood().getRealPrice();
+        }
         request.setAttribute("carts", carts);
+         request.setAttribute("sum", (double) Math.round(sum * 100) / 100);
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 

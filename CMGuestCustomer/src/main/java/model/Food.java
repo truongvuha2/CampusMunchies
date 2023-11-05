@@ -11,7 +11,7 @@ package model;
 public class Food {
 
     private String id;
-    private String categoryId;
+    private Category category;
     private String name;
     private double price;
     private double sale;
@@ -20,19 +20,16 @@ public class Food {
     private String img;
     private double realPrice;
 
-    public Food() {
-    }
-
-    public Food(String id, String categoryId, String name, double price, double sale, String description, String status, String img) {
+    public Food(String id, Category category, String name, double price, double sale, String description, String status, String img) {
         this.id = id;
-        this.categoryId = categoryId;
+        this.category = category;
         this.name = name;
-        this.price = price;
+        this.price = (double) Math.round(price * 100) / 100;
         this.sale = sale;
         this.description = description;
         this.status = status;
         this.img = img;
-        realPrice = price - (price * sale / 100);
+        realPrice = price - (price * sale/100);
         realPrice = (double) Math.round(realPrice * 100) / 100;
     }
 
@@ -44,12 +41,12 @@ public class Food {
         this.id = id;
     }
 
-    public String getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getName() {
@@ -104,9 +101,15 @@ public class Food {
         return realPrice;
     }
 
+    public void setRealPrice(double realPrice) {
+        this.realPrice = realPrice;
+    }
+
     @Override
     public String toString() {
-        return "Food{" + "id=" + id + ", categoryId=" + categoryId + ", name=" + name + ", price=" + price + ", sale=" + sale + ", description=" + description + ", status=" + status + ", img=" + img + ", realPrice=" + realPrice + '}';
+        return "Food{" + "id=" + id + ", category=" + category + ", name=" + name + ", price=" + price + ", sale=" + sale + ", description=" + description + ", status=" + status + ", img=" + img + ", realPrice=" + realPrice + '}';
     }
+    
+    
 
 }

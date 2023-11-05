@@ -8,168 +8,177 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
               integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <title>Food Details</title>
-        <style>
-            .food-card {
-                background-color: #f2f2f2;
-                border: none;
-            }
-
-            .food-image {
-                max-width: 100%;
-                height: auto;
-            }
-            .container{
-                margin-top:100px
-            }
-            .food-details {
-                text-align: left;
-                margin-bottom: 100px;
-            }
-
-            .detail {
-                margin-top: 50px;
-            }
-
-            .btn-add,
-            .btn-buy {
-                padding: 10px 20px;
-                border-radius: 5px;
-                border: none;
-            }
-
-            .btn-sub {
-                background-color: #ffffff;
-            }
-
-            .btn-plus {
-                background-color: #ffffff;
-            }
-
-            .btn-add {
-                background-color: #b21313;
-                color: #fff;
-                margin-right: 10px;
-            }
-
-            .btn-buy {
-                background-color: #ffd600;
-                color: #000;
-            }
-
-            .quantity {
-                border: 1px solid #000;
-                padding: 12px;
-                border-radius: 5px;
-                margin-right: 50px;
-            }
-
-            #popup {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background-color: #fff;
-                padding: 20px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-                display: none;
-                animation: fadeOut 5s forwards;
-            }
-
-            @keyframes fadeOut {
-                0% {
-                    opacity: 1;
-                }
-                100% {
-                    opacity: 0;
-                }
-            }
-
-            .hidden {
-                display: none;
-            }
-
-        </style>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <link href="css/foodDetail.css" rel="stylesheet" type="text/css"/>
+        <title>Food Detail</title>
     </head>
 
-    <body>  
+    <body>
         <%@include file="header.jsp"%>
+        <div style="margin-top:100px"></div>
         <div class="container">
-            <div class="food-detail">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card food-card">
-                            <img src="${food.getImg()}" alt="Food Image" class="card-img-top food-image">
+            <!-- Main Content -->
+            <main>
+                <div class="header">
+
+                    <div class="name-tittle">
+                        Food Details
+                    </div>
+
+                </div>
+                <!-- Food Detail -->
+                <div class="main-food-details">
+                    <div class="food-detail">
+                        <div class="food-img">
+                            <img src="${food.getImg()}" alt="">
+                        </div>
+                        <div class="food-edit">
+                            <p style="margin-right: 5px; font-size: 50px; font-weight: 600; color: #C21010;">${food.getName()}</p>
+                            <div class="price-section">
+                                <p style="font-size: 25px; font-weight: 500;">Price:</p>
+                                <c:choose>
+                                    <c:when test="${food.getSale() == 0}">
+
+                                        <p style="font-size: 25px; font-weight: 500;">${food.getRealPrice()}$</p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p c style="font-size: 20px;" class="original-price">${food.getPrice()}$</p>
+                                        <p style="font-size: 25px; font-weight: 500;">${food.getRealPrice()}$</p>
+                                    </c:otherwise>
+                                </c:choose>
+
+                                <!--                                <p style="font-size: 20px;" class="original-price">23$</p>
+                                                                <p style="font-size: 28px;">20$</p>-->
+                            </div>
+                            <div class="edit-quantity">
+                                <box style="display: flex; align-items: center; margin: 20px;" class="quantity mt-2">
+                                    <button style="font-weight: 1000; color: black;" class="btn btn-sub">-</button>
+                                    <span style="margin-top: 30px;padding: 20px;" id="quantity" class="mx-2">1</span>
+                                    <button style="font-weight: 600; color: black;" class="btn btn-plus">+</button>
+                                </box>
+                                <button onclick="addToCart()" style="margin-bottom: 80px; width: 250px; padding: 10px; margin-top: 0px; background-color: #C21010;" ><ion-icon style="font-size: 22px;" name="cart"></ion-icon></button>
+                            </div>
                         </div>
                     </div>
-                    <div class="detail col-md-6">
-                        <!-- Thông tin chi tiết sản phẩm -->
-                        <h1 class="mt-3">${food.getName()}</h1>
-                        <h2 class="text-success">$${food.getPrice()}</h2>
-                        <p class="description mt-3 food-details">
-                            ${food.getDescription()}
-                        </p>
-                        <c:choose>
-                            <c:when test="${food.getStatus() eq 'Sold Out'}">
-                                <span style ="color:grey">Sold Out</span>
-                            </c:when>
-                            <c:otherwise>
-                                <div class="combo-button">
-                                    <box class="quantity mt-2">
-                                        <button class="btn btn-sub">-</button>
-                                        <span class="mx-2">1</span>
-                                        <button class="btn btn-plus">+</button>
-                                    </box>                           
-                                    <button class="btn-add mt-2" onclick="addToCart()">Add to Cart</button>
-                                </div>
-                            </c:otherwise>
-                        </c:choose>
+                    <div class="food-info-detail">
+                        <h2>Food Information</h2>
+                        <p><span class="bold-numbers">Category Name:</span> ${food.getCategory().getName()}</p>
+                        <p><span class="bold-numbers">Description:</span> ${food.getDescription()}</p>
                     </div>
                 </div>
-            </div>
+                <h2 style="margin: 20px; color: #C21010;">We think you'll like them too</h2>
+                <!-- End Food Detail -->
+                <!-- List Menu -->
+
+                <div class="list-menu row">
+                    <c:forEach var="food" items="${requestScope.topFour}" >
+                        <div class="best-seller col-md-3">
+                            <a href="#">
+                                <img src="${food.getImg()}" alt="">
+                                <div class="name-food">
+
+
+                                    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+
+                                    <c:choose>
+                                        <c:when test="${fn:length(food.getName()) > 15}">
+                                            ${fn:substring(food.getName(), 0, 15)}...
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${food.getName()}
+                                        </c:otherwise>
+                                    </c:choose> 
+                                </div>
+                            </a>
+                            <div class="food-info">
+                                <div class="price-section">
+                                    <p>Price:</p>
+                                    <c:choose>
+                                        <c:when test="${food.getSale() == 0}">
+
+                                            <p class="discounted-price">${food.getRealPrice()}$</p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p class="original-price">${food.getPrice()}$</p>
+                                            <p class="discounted-price">${food.getRealPrice()}$</p>
+                                        </c:otherwise>
+                                    </c:choose>
+
+
+                                </div>
+                                <p>Units Sold: (+15)</p>
+                            </div>
+                            <div class="food-btn">
+                                <button onclick="viewFood('${food.getId()}')">View</button>
+                                <button onclick="addToCart()"><ion-icon style="font-size: 22px;" name="cart"></ion-icon></button>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <div class="not-found" style="display: none;">
+                        <p>Name food not found !</p>
+                    </div>
+                </div>
+
+                <!-- End List Menu -->
+            </main>
+            <!-- End of Main Content -->
+
+
+
         </div>
         <%@include file="footer.jsp"%>
-        <div id="popup" class="hidden">
-            <div id="popupContent">
-                Please log in before add to cart!!!
-            </div>
-        </div>
-    </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        const quantityText = document.querySelector(".quantity span");
-        const minusButton = document.querySelector(".btn-sub");
-        const plusButton = document.querySelector(".btn-plus");
+                                    const quantityText = document.querySelector(".quantity span");
+                                    const minusButton = document.querySelector(".btn-sub");
+                                    const plusButton = document.querySelector(".btn-plus");
 
-        let quantity = 1;
+                                    let quantity = 1;
 
-        minusButton.addEventListener("click", () => {
-            if (quantity > 1) {
-                quantity--;
-                quantityText.textContent = quantity;
-            }
-        });
+                                    minusButton.addEventListener("click", () => {
+                                        if (quantity > 1) {
+                                            quantity--;
+                                            quantityText.textContent = quantity;
+                                        }
+                                    });
 
-        plusButton.addEventListener("click", () => {
-            quantity++;
-            quantityText.textContent = quantity;
-        });
-        function addToCart() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "block";
-            setTimeout(function () {
-                popup.style.display = "none";
-            }, 3000);
-        }
+                                    plusButton.addEventListener("click", () => {
+                                        quantity++;
+                                        quantityText.textContent = quantity;
+                                    });
+                                    function viewFood(id) {
+                                        window.location = "/guest/foodDetail?id=" + id;
+                                    }
+                                    function addToCart() {
+                                        Swal.fire({
+                                            title: '',
+                                            text: "You have to login to add to cart",
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#3085d6',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'Log in now'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location = "/guest/login";
+                                                f
+                                            }
+                                        })
+                                    }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
-</body>
-
 </html>
+

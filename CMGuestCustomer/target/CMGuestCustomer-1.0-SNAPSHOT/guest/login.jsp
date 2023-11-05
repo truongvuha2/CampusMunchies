@@ -6,170 +6,96 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
     <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <title>Login</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #eae0dd;/* Đường dẫn đến hình ảnh nền */
-                /*                background-size: cover;  Thay đổi kích thước ảnh để nó phù hợp với cửa sổ trình duyệt 
-                                background-repeat: no-repeat;  Không lặp lại ảnh nền 
-                                background-attachment: fixed;  Để hình ảnh nền cố định và không cuộn khi bạn cuộn trang web */
-                font-family: 'Poppins', sans-serif;
-            }
-
-
-            .container {
-                max-width: 40%;
-                margin: 8% auto;
-                padding: 20px;
-                background: #ffffff;
-                border-radius: 20px;
-                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            }
-
-            h1 {
-                text-align: center;
-            }
-
-            .form-group {
-                margin: 10px 0;
-
-            }
-
-            label {
-                display: block;
-            }
-
-            input[type="text"],
-            input[type="password"] {
-                width: 90%;
-                padding: 10px;
-                margin-top: 5px;
-                margin-bottom: 10px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
-
-            .error-message {
-                color: red;
-            }
-
-            .remember-me {
-                display: flex;
-                align-items: flex-start;
-            }
-
-            .forgot-password {
-                text-align: center;
-                margin-top: 10px;
-            }
-
-            .login-button {
-                background: #ffae00;
-                color: #fff;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 4px;
-                cursor: pointer;
-                display: block;
-                margin: 0 auto; /* Để nút ở giữa */
-            }
-
-        </style>
+        <link href="css/login.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
-        <div class="container">
-            <h1>Login</h1>
-            <form action="/CampusMunchies/guest/login" method="post">
-                <div class="form-group">
-                    <label for="username">Your phone</label>
-                    <input type="text" id="username" name="phone" placeholder="Enter your phone..." >
+        <div class="box">
+            <div class="container">
+                <div class="top-header">
+                    <!-- <span>Have an account?</span> -->
+                    <header>Login</header>
                 </div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter password..." >
+                <div class="input-field">
+                    <input type="text" id="username" name="phone" class="input" placeholder="Enter your phone...">
+                    <i style="color:black" class="bx bx-user"></i>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="password" name="password" class="input" placeholder="Enter password...">
+                    <i style="color:black" class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-field">
+                    <input type="button" class="submit" onclick="validateForm()" value="Login">
                 </div>
 
-                <!--                <div class="form-group remember-me">
-                                    <input type="checkbox" id="remember" name="remember">
-                                    <label for="remember">Remember me</label>
-                                </div>-->
-
-                <div class="error-message" id="error-message" style="display: none; text-align: center;">
-                    Please enter your phone and password!
-                </div>
-                <div class="error-message" style="text-align: center;">
-                    <p>${error}</p>
-                </div>
-
-                <div class="form-group" >
-                    <button type="submit" class="login-button">Login</button>
-                </div>
-                <div class="forgot-password">
-                    <a href="#">Forget password</a>
+                <div class="bottom">
+                    <div class="left">
+                        <!--                            <input type="checkbox" id="check">
+                                                    <label for="check"> Remember Me</label>-->
+                    </div>
+                    <div class="right">
+                        <label><a href="/guest/forgotPassword">Forgot password?</a></label>
+                    </div>
                 </div>
                 <div class="register">
                     <p>If you don't have account, <a href="register">click here</a></p>
                 </div>
-
-
-            </form>
+            </div>
         </div>
-
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript"></script>
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-        
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
-            document.querySelector('form').addEventListener('submit', function (event) {
-                event.preventDefault();
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                const errorMessage = document.getElementById('error-message');
+                        function validateForm(){
+                            const username = document.getElementById('username').value;
+                            const password = document.getElementById('password').value;
+                            if (!username || !password) {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: "You have input phone and password",
+                                    icon: 'warning'
+                                });
+                            } else {
+                                checkUser();
+                            }
+                        }
+                        function checkUser() {
+                            const username = document.getElementById('username').value;
+                            const password = document.getElementById('password').value;
+                            $.ajax({
+                                url: "/guest/login",
+                                type: "post",
+                                data: {
+                                    phone: username,
+                                    password: password
+                                },
+                                success: function (data) {
+                                    // Kiểm tra xem có thông báo lỗi hay không
 
-                if (!username || !password) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Invalid information',
-                        text: 'Please fill in the required information!'
-                    });
-                } else {
-                    login();
-                }
-            });
-            function login() {
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                $.ajax({
-                    url: "/CampusMunchies/guest/login",
-                    type: "post",
-                    data: {
-                        phone: username, password: password,
-                    },
-                    success: function (data) {
-                        
-                        window.location="/CampusMunchies/customer/home";
-                    },
-                    error: function (xhr) {
-                       Swal.fire({
-                            icon: 'error',
-                            text: 'Phone or password incorrect!'
-                        });
-                    }
-                });
-            }
+                                    window.location = "/customer/home";
+
+                                },
+                                error: function (xhr) {
+                                        Swal.fire({
+                                            title: 'Error',
+                                            text: xhr.responseText,
+                                            icon: 'error'
+                                        });
+                                    }
+                                
+                            });
+                        }
+
+
         </script>
     </body>
 

@@ -13,52 +13,44 @@
         <servlet-class>controller.guest.GuestHome</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GuestLogin</servlet-name>
-        <servlet-class>controller.guest.GuestLogin</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerHome</servlet-name>
-        <servlet-class>controller.customer.CustomerHome</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerLogout</servlet-name>
-        <servlet-class>controller.customer.CustomerLogout</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>GuestMenu</servlet-name>
         <servlet-class>controller.guest.GuestMenu</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerMenu</servlet-name>
-        <servlet-class>controller.customer.CustomerMenu</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GuestSearch</servlet-name>
-        <servlet-class>controller.guest.GuestSearch</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerSearch</servlet-name>
-        <servlet-class>controller.customer.CustomerSearch</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GuestRegister</servlet-name>
-        <servlet-class>controller.guest.GuestRegister</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GuestFoodDetail</servlet-name>
         <servlet-class>controller.guest.GuestFoodDetail</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>SearchName</servlet-name>
+        <servlet-class>controller.guestcustomer.SearchName</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchCategory</servlet-name>
+        <servlet-class>controller.guestcustomer.SearchCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerHome</servlet-name>
+        <servlet-class>controller.customer.CustomerHome</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GuestLogin</servlet-name>
+        <servlet-class>controller.guest.GuestLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerMenu</servlet-name>
+        <servlet-class>controller.customer.CustomerMenu</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CustomerFoodDetail</servlet-name>
         <servlet-class>controller.customer.CustomerFoodDetail</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CustomerAddToCart</servlet-name>
-        <servlet-class>controller.customer.CustomerAddToCart</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CustomerCart</servlet-name>
         <servlet-class>controller.customer.CustomerCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerAddToCart</servlet-name>
+        <servlet-class>controller.customer.CustomerAddToCart</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CustomerChangeQuantity</servlet-name>
@@ -77,38 +69,6 @@
         <servlet-class>controller.customer.CustomerHistory</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CustomerHistoryDetail</servlet-name>
-        <servlet-class>controller.customer.CustomerHistoryDetail</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GuestAboutUs</servlet-name>
-        <servlet-class>controller.guest.GuestAboutUs</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerAboutUs</servlet-name>
-        <servlet-class>controller.customer.CustomerAboutUs</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerProfile</servlet-name>
-        <servlet-class>controller.customer.CustomerProfile</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerChangePassword</servlet-name>
-        <servlet-class>controller.customer.CustomerChangePassword</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerUpdateProfile</servlet-name>
-        <servlet-class>controller.customer.CustomerUpdateProfile</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GuestSearchCategory</servlet-name>
-        <servlet-class>controller.guest.GuestSearchCategory</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerSearchCategory</servlet-name>
-        <servlet-class>controller.customer.CustomerSearchCategory</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CustomerCancelOrder</servlet-name>
         <servlet-class>controller.customer.CustomerCancelOrder</servlet-class>
     </servlet>
@@ -116,57 +76,89 @@
         <servlet-name>CustomerUpdateHistory</servlet-name>
         <servlet-class>controller.customer.CustomerUpdateHistory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerHistoryDetail</servlet-name>
+        <servlet-class>controller.customer.CustomerHistoryDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerLogout</servlet-name>
+        <servlet-class>controller.customer.CustomerLogout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerAboutUs</servlet-name>
+        <servlet-class>controller.customer.CustomerAboutUs</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GuestAboutUs</servlet-name>
+        <servlet-class>controller.guest.GuestAboutUs</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerProfile</servlet-name>
+        <servlet-class>controller.customer.CustomerProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerUpdateProfile</servlet-name>
+        <servlet-class>controller.customer.CustomerUpdateProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerChangePassword</servlet-name>
+        <servlet-class>controller.customer.CustomerChangePassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GuestRegister</servlet-name>
+        <servlet-class>controller.guest.GuestRegister</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GuestForgotPassword</servlet-name>
+        <servlet-class>controller.guest.GuestForgotPassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerUpdateHistoryDetail</servlet-name>
+        <servlet-class>controller.customer.CustomerUpdateHistoryDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GuestHome</servlet-name>
         <url-pattern>/guest/home</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GuestLogin</servlet-name>
-        <url-pattern>/guest/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CustomerHome</servlet-name>
-        <url-pattern>/customer/home</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CustomerLogout</servlet-name>
-        <url-pattern>/customer/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GuestMenu</servlet-name>
         <url-pattern>/guest/menu</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CustomerMenu</servlet-name>
-        <url-pattern>/customer/menu</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GuestSearch</servlet-name>
-        <url-pattern>/guest/search</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CustomerSearch</servlet-name>
-        <url-pattern>/customer/search</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GuestRegister</servlet-name>
-        <url-pattern>/guest/register</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>GuestFoodDetail</servlet-name>
         <url-pattern>/guest/foodDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchName</servlet-name>
+        <url-pattern>/searchName</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCategory</servlet-name>
+        <url-pattern>/searchCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerHome</servlet-name>
+        <url-pattern>/customer/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuestLogin</servlet-name>
+        <url-pattern>/guest/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerMenu</servlet-name>
+        <url-pattern>/customer/menu</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerFoodDetail</servlet-name>
         <url-pattern>/customer/foodDetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CustomerAddToCart</servlet-name>
-        <url-pattern>/customer/addToCart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CustomerCart</servlet-name>
         <url-pattern>/customer/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerAddToCart</servlet-name>
+        <url-pattern>/customer/addToCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerChangeQuantity</servlet-name>
@@ -185,38 +177,6 @@
         <url-pattern>/customer/history</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CustomerHistoryDetail</servlet-name>
-        <url-pattern>/customer/historyDetail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GuestAboutUs</servlet-name>
-        <url-pattern>/guest/aboutUs</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CustomerAboutUs</servlet-name>
-        <url-pattern>/customer/aboutUs</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CustomerProfile</servlet-name>
-        <url-pattern>/customer/profile</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CustomerChangePassword</servlet-name>
-        <url-pattern>/customer/changePassword</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CustomerUpdateProfile</servlet-name>
-        <url-pattern>/customer/updateProfile</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GuestSearchCategory</servlet-name>
-        <url-pattern>/guest/searchCategory</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CustomerSearchCategory</servlet-name>
-        <url-pattern>/customer/searchCategory</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CustomerCancelOrder</servlet-name>
         <url-pattern>/customer/cancelOrder</url-pattern>
     </servlet-mapping>
@@ -224,14 +184,59 @@
         <servlet-name>CustomerUpdateHistory</servlet-name>
         <url-pattern>/customer/updateHistory</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerHistoryDetail</servlet-name>
+        <url-pattern>/customer/historyDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerLogout</servlet-name>
+        <url-pattern>/customer/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerAboutUs</servlet-name>
+        <url-pattern>/customer/aboutUs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuestAboutUs</servlet-name>
+        <url-pattern>/guest/aboutUs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerProfile</servlet-name>
+        <url-pattern>/customer/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerUpdateProfile</servlet-name>
+        <url-pattern>/customer/updateProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerChangePassword</servlet-name>
+        <url-pattern>/customer/changePassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuestRegister</servlet-name>
+        <url-pattern>/guest/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuestForgotPassword</servlet-name>
+        <url-pattern>/guest/forgotPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerUpdateHistoryDetail</servlet-name>
+        <url-pattern>/customer/updateHistoryDetail</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
+    <welcome-file-list>
+        <welcome-file>
+            /customer/home
+        </welcome-file>
+    </welcome-file-list>
     <error-page>
-        <error-code>404</error-code>
-        <location>/error/Error.html</location>
+        <location>
+            /error/Error.html
+        </location>
     </error-page>
 </web-app>

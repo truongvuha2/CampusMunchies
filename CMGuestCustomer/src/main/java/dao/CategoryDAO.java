@@ -6,6 +6,7 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Category;
@@ -16,27 +17,21 @@ import model.Category;
  */
 public class CategoryDAO extends DBContext {
 
-    public List<Category> getAll() {
-        List<Category> cate = new ArrayList<>();
+    public List getAll() {
+        List<Category> categories = new ArrayList<>();
+        String sql = "select * from Category";
         try {
-            String sql = "select * from category";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                cate.add(new Category(rs.getString(1), rs.getString(2), rs.getString(3)));
+                categories.add(new Category(rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3))
+                );
             }
-
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
-        return cate;
-    
-    }
-    public static void main(String[] args) {
-        CategoryDAO c = new CategoryDAO();
-        List<Category>  lists = c.getAll();
-        for(Category ca:lists){
-            System.out.println(ca.toString());
-        }
+        return categories;
     }
 }

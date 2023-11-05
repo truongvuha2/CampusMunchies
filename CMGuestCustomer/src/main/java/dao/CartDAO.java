@@ -128,4 +128,14 @@ public class CartDAO extends DBContext {
         } catch (Exception e) {
         }
     }
+    
+     public void deleteAll(String phone) {
+        try {
+            String sql = "delete from cart where cus_phone = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, phone);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 }

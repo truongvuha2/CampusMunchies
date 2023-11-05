@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Category;
 import model.Food;
 
 /**
@@ -23,11 +24,11 @@ public class FoodDAO extends DBContext {
      * @param args
      */
     public static void main(String[] args) {
-        FoodDAO f = new FoodDAO();
-        List<Food> foods = f.searchByCateID("b");
-        for (int i = 0; i < foods.size(); i++) {
-            System.out.println(foods.get(i).toString());
-        }
+//        FoodDAO f = new FoodDAO();
+//        List<Food> foods = f.searchByCateID("b");
+//        for (int i = 0; i < foods.size(); i++) {
+//            System.out.println(foods.get(i).toString());
+//        }
     }
 
     /**
@@ -60,7 +61,7 @@ public class FoodDAO extends DBContext {
             String sql = "insert into Food values(?,?,?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, food.getId());
-            ps.setString(2, food.getCategoryId());
+            ps.setString(2, food.getCategory().getId());
             ps.setString(3, food.getName());
             ps.setDouble(4, food.getPrice());
             ps.setDouble(5, food.getSale());
@@ -72,170 +73,6 @@ public class FoodDAO extends DBContext {
         } catch (SQLException e) {
             System.out.println(e);
         }
-    }
-
-    /**
-     * update food which has before from food table
-     *
-     * @param food
-     */
-    public void update(Food food) {
-        try {
-            String sql = "update Food set cat_id = ?, "
-                    + "foo_name = ?, "
-                    + "foo_price = ? , "
-                    + "foo_sale = ? , "
-                    + "foo_desription =?, "
-                    + "foo_status = ?, "
-                    + "foo_img =? "
-                    + "where foo_id =?";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(8, food.getId());
-            ps.setString(1, food.getCategoryId());
-            ps.setString(2, food.getName());
-            ps.setDouble(3, food.getPrice());
-            ps.setDouble(4, food.getSale());
-            ps.setString(5, food.getDescription());
-            ps.setString(6, food.getStatus());
-            ps.setString(7, food.getImg());
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-    }
-
-    /**
-     * update food status by id in food table
-     *
-     * @param id
-     * @param status
-     */
-    public void updateStatus(String id, String status) {
-        try {
-            String sql = "update Food set"
-                    + "foo_status = ?, "
-                    + "where foo_id =?";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, status);
-            ps.setString(1, id);
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-
-    }
-
-    /**
-     * get all food from food table
-     *
-     * @return
-     */
-    public List<Food> getAll() {
-        List<Food> list = new ArrayList<>();
-        try {
-            String sql = "select * from Food where foo_status<>'Deleted'";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Food(rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getDouble(4),
-                        rs.getDouble(5),
-                        rs.getString(6),
-                        rs.getString(7),
-                        rs.getString(8)
-                ));
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
-
-    /**
-     * search food by name from food table
-     *
-     * @param name
-     * @return
-     */
-    public List<Food> searchByName(String name) {
-        List<Food> list = new ArrayList<>();
-        try {
-            String sql = "select * from Food  where foo_name LIKE ? and foo_status<>'Deleted' ";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, "%" + name + "%");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Food(rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getDouble(4),
-                        rs.getDouble(5),
-                        rs.getString(6),
-                        rs.getString(7),
-                        rs.getString(8)
-                ));
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
-
-    /**
-     * search by cateID from food table
-     *
-     * @param cateID
-     * @return
-     */
-    public List<Food> searchByCateID(String cateID) {
-        List<Food> list = new ArrayList<>();
-        try {
-            String sql = "select * from Food  where cat_id = ? and foo_status<>'Deleted' ";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, cateID);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Food(rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getDouble(4),
-                        rs.getDouble(5),
-                        rs.getString(6),
-                        rs.getString(7),
-                        rs.getString(8)
-                ));
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
-
-    public Food searchByID(String id) {
-        try {
-            String sql = "select * from Food  where foo_id = ? and foo_status<>'Deleted' ";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, id);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                return new Food(rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getDouble(4),
-                        rs.getDouble(5),
-                        rs.getString(6),
-                        rs.getString(7),
-                        rs.getString(8)
-                );
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return null;
     }
 
     public List<Food> getTopFourSeller() {
@@ -274,4 +111,113 @@ public class FoodDAO extends DBContext {
         }
         return foods;
     }
+
+    public Category getCategory(String categoryID) {
+        try {
+            String sql = "select * from category  where cat_id= ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, categoryID);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return new Category(rs.getString(1), rs.getString(2), rs.getString(3));
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public Food searchByID(String id) {
+        try {
+            String sql = "select * from Food  where foo_id = ? and foo_status<>'Deleted' ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Food(rs.getString(1),
+                        getCategory(rs.getString(2)),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getDouble(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public List<Food> getAll() {
+        List<Food> list = new ArrayList<>();
+        try {
+            String sql = "select * from Food where foo_status<>'Deleted'";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Food(rs.getString(1),
+                        getCategory(rs.getString(2)),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getDouble(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Food> searchByName(String name) {
+        List<Food> list = new ArrayList<>();
+        try {
+            String sql = "select * from Food  where foo_name LIKE ? and foo_status<>'Deleted' ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + name + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Food(rs.getString(1),
+                        getCategory(rs.getString(2)),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getDouble(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Food> searchByCateID(String cateID) {
+        List<Food> list = new ArrayList<>();
+        try {
+            String sql = "select * from Food  where cat_id = ? and foo_status<>'Deleted' ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, cateID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Food(rs.getString(1),
+                        getCategory(rs.getString(2)),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getDouble(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
 }

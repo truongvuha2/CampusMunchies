@@ -65,14 +65,18 @@ public class CustomerPurchase extends HttpServlet {
         String phone = CMCookie.CMCookie.getCustomerPhone(request, response);
         Customer customer = c.searchByPhone(phone);
         List<Cart> carts = ca.searchByPhone(phone);
-        double sum = 0;
-        for (int i = 0; i < carts.size(); i++) {
-            sum += (double)carts.get(i).getQuantity() * carts.get(i).getFood().getRealPrice();
+        if (!carts.isEmpty()) {
+            double sum = 0;
+            for (int i = 0; i < carts.size(); i++) {
+                sum += (double) carts.get(i).getQuantity() * carts.get(i).getFood().getRealPrice();
+            }
+            request.setAttribute("customer", customer);
+            request.setAttribute("carts", carts);
+            request.setAttribute("total", (double) Math.round(sum * 100) / 100);
+            request.getRequestDispatcher("purchase.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("error/Error.html").forward(request, response);
         }
-        request.setAttribute("customer", customer);
-        request.setAttribute("carts", carts);
-        request.setAttribute("total", (double)Math.round(sum*100)/100);
-        request.getRequestDispatcher("purchase.jsp").forward(request, response);
     }
 
     /**

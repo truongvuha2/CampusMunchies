@@ -75,16 +75,14 @@ public class CustomerUpdateProfile extends HttpServlet {
         String name = request.getParameter("name");
         String birth = request.getParameter("birthday");
         String address = request.getParameter("address");
+         String email= request.getParameter("email");
         Date date = Date.valueOf(birth);
 
         String phone = CMCookie.CMCookie.getCustomerPhone(request, response);
         CustomerDAO cus = new CustomerDAO();
-        Customer c = new Customer(phone, name, address, date);
+        Customer c = new Customer(phone, name, email, address, date);
         cus.update(c);
-//        request.setAttribute("messU", "Update profile successfully!");
-//        request.setAttribute("customer", c);
-//       
-//        request.getRequestDispatcher("profile.jsp").forward(request, response);
+
     }
 
     /**

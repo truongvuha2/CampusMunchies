@@ -4,7 +4,6 @@
  */
 package controller.customer;
 
-import CMCookie.CMCookie;
 import dao.CategoryDAO;
 import dao.FoodDAO;
 import java.io.IOException;
@@ -61,12 +60,12 @@ public class CustomerMenu extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         FoodDAO f = new FoodDAO();
+        FoodDAO f = new FoodDAO();
         CategoryDAO c = new CategoryDAO();
+        List<Category> categories = c.getAll();
         List<Food> foods = f.getAll();
-        List<Category> cates = c.getAll();
-        request.setAttribute("cates", cates);
         request.setAttribute("foods", foods);
+        request.setAttribute("categories", categories);
         request.getRequestDispatcher("menu.jsp").forward(request, response);
     }
 

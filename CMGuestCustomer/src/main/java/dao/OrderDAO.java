@@ -51,8 +51,8 @@ public class OrderDAO extends DBContext {
             return false;
         }
     }
-    
-     public static void main(String[] args) {
+
+    public static void main(String[] args) {
         OrderDAO o = new OrderDAO();
 //         System.out.println(o.changeOrder("ORD0000001"));
     }
@@ -62,12 +62,21 @@ public class OrderDAO extends DBContext {
         try {
             String sql = "select * from [Order] where cus_phone = ? order by ord_date desc, ord_id desc";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1,phone);
+            ps.setString(1, phone);
             ResultSet rs = ps.executeQuery();
-            
+
             while (rs.next()) {
-                orders.add(new Order(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5),
-                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getDouble(9)));
+                orders.add(new Order(rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDate(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getDouble(9),
+                        getOrderDetail(rs.getString(1))
+                ));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -75,7 +84,7 @@ public class OrderDAO extends DBContext {
         return orders;
     }
 
-    public List<OrderDetail> getOrder(String id) {
+    public List<OrderDetail> getOrderDetail(String id) {
         List<OrderDetail> orderDetail = new ArrayList<>();
         FoodDAO f = new FoodDAO();
         try {
@@ -107,7 +116,8 @@ public class OrderDAO extends DBContext {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getDouble(9));
+                        rs.getDouble(9),
+                        getOrderDetail(rs.getString(1)));
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -125,7 +135,7 @@ public class OrderDAO extends DBContext {
                 ps.setString(1, id);
                 ps.setString(2, cart.getFood().getId());
                 ps.setInt(3, cart.getQuantity());
-                ps.setDouble(4, cart.getFood().getRealPrice() * cart.getQuantity());
+                ps.setDouble(4, cart.getFood().getRealPrice());
                 ps.executeUpdate();
             }
 
@@ -170,7 +180,5 @@ public class OrderDAO extends DBContext {
         }
         return id;
     }
-
-   
 
 }

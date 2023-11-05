@@ -112,18 +112,23 @@ public class CustomerFilter implements Filter {
         System.out.println(url);
         if (url.equals("/")) {
             if (!CMCookie.isCustomerLogIn(httpRequest, httpResponse)) {
-                httpResponse.sendRedirect("/CampusMunchies/guest/home");
+                httpResponse.sendRedirect("/guest/home");
             } else {
-                httpResponse.sendRedirect("/CampusMunchies/customer/home");
+                httpResponse.sendRedirect("/customer/home");
                 return;
             }
         }
         if (url.startsWith("/customer")) {
             if (!CMCookie.isCustomerLogIn(httpRequest, httpResponse)) {
-                httpResponse.sendRedirect("/CampusMunchies/guest/home");
+                httpResponse.sendRedirect("/guest/home");
             }
         }
+        if(url.endsWith(".jsp")){
+             httpResponse.sendRedirect("/customer/home");
+        }
+
         Throwable problem = null;
+
         try {
             chain.doFilter(request, response);
         } catch (Throwable t) {
@@ -138,7 +143,8 @@ public class CustomerFilter implements Filter {
 
         // If there was a problem, we want to rethrow it if it is
         // a known type, otherwise log it.
-        if (problem != null) {
+        if (problem
+                != null) {
             if (problem instanceof ServletException) {
                 throw (ServletException) problem;
             }

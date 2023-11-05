@@ -59,49 +59,38 @@ public class CustomerUpdateHistory extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String phone = CMCookie.CMCookie.getCustomerPhone(request, response);
-        OrderDAO o = new OrderDAO();
-        List<Order> orders = o.getAll(phone);
+        OrderDAO or = new OrderDAO();
+        List<Order> orders = or.getAll(phone);
         PrintWriter out = response.getWriter();
         if (orders != null) {
-            for (Order order : orders) {
+            for (Order o : orders) {
                 String a = "";
-                if (order.getStatus().equals("Waiting")) {
-                    a = "<button class=\"col-md-6 btn btn-primary\" onclick= \"deleteOrder('" + order.getId() + "')\" class=\"btn btn-outline-secondary\"\n"
-                            + "                                                                            >Cancel Order</button>";
+                String b = "";
+                if (o.getStatus().equals("Waiting")) {
+                    a = "<button onclick=\"cancelOrder('" + o.getId() + "')\">Cancel</button>\n";
                 }
-                out.println(" <tr>\n"
-                        + "                                                    <th scope=\"row\" class=\"align-middle\">\n"
-                        + "                                                        <div>\n"
-                        + "                                                            <div class=\"ml-2 d-inline-block align-top\">\n"
-                        + "                                                                <h5>" + order.getId() + "</h5>\n"
-                        + "                                                            </div>\n"
-                        + "                                                        </div>\n"
-                        + "                                                    </th>\n"
-                        + "                                                    <td class=\"align-middle\">\n"
-                        + "                                                        <div class=\"ml-2 d-inline-block align-top\">\n"
-                        + "                                                            <h5>" + order.getStatus() + "</h5>\n"
-                        + "                                                        </div>\n"
-                        + "                                                    </td>\n"
-                        + "                                                    <td class=\"align-middle\">\n"
-                        + "                                                        <div class=\"ml-0 d-inline-block align-top\">\n"
-                        + "                                                            <h5>" + order.getOrderDate() + "</h5>\n"
-                        + "                                                        </div>\n"
-                        + "                                                    </td>\n"
-                        + "\n"
-                        + "                                                    <td class=\"align-middle\">\n"
-                        + "                                                        <div class=\"ml-4 d-inline-block align-top\">\n"
-                        + "                                                            <h5>$ " + order.getTotal() + "</h5>\n"
-                        + "                                                        </div>\n"
-                        + "                                                    </td>\n"
-                        + "                                                    <td class=\"mt-0\">\n"
-                        + "                                                        <div class=\"container\">\n"
-                        + "                                                            <button class=\"col-md-5 btn btn-primary\"  onclick= \"viewOrder('" + order.getId() + "')\" class=\"btn btn-outline-secondary\"\n"
-                        + "                                                                    >Show</button>\n"
+                if (o.getStatus().equals("Waiting") || o.getStatus().equals("Processing")) {
+                    b = "<div style=\"color: #0397d1;\" class=\"status\">" + o.getStatus() + "</div>\n";
+                }else
+                if (o.getStatus().equals("Cancelled") || o.getStatus().equals("Rejected")) {
+                    b = "<div style=\"color: #C21010;\" class=\"status\">" + o.getStatus() + "</div>\n";
+                } else {
+                    b = "<div style=\"color: #1ec708;\" class=\"status\">" + o.getStatus() + "</div>\n";
+                }
+                out.println("  <tr>\n"
+                        + "                                        <td>" + o.getId() + "</td>\n"
+                        + "                                        <td class=\"status\">\n"
+                        + b
+                        + "                                        <td>" + o.getOrderDate() + "</td>\n"
+                        + "                                        <td>" + o.getPay() + "</td>\n"
+                        + "                                        <td>" + o.getTotal() + "$</td>\n"
+                        + "                                        <td>\n"
+                        + "                                            <button onclick=\"viewOrder('" + o.getId() + "')\">\n"
+                        + "                                                View\n"
+                        + "                                            </button>\n"
                         + a
-                        + "                                                        </div>\n"
-                        + "\n"
-                        + "                                                    </td>\n"
-                        + "                                                </tr>");
+                        + "                                        </td>\n"
+                        + "                                    </tr>");
             }
         }
     }

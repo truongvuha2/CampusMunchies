@@ -8,100 +8,127 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <style>
-            .container{
-                height: 80vh;
-            }
-        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <link href="css/purchase.css" rel="stylesheet" type="text/css"/>
+        <title>Order Page</title>
     </head>
+
     <body>
         <%@include file="header.jsp" %>
-        <div style = "margin-top:100px" class = "container">
-            <h2>Your Order </h2>
-            <form action="finishOrder">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th class = "col-lg-6 col-md-6 col-sm-4 col-4">Food</th>
-                            <th class = "col-lg-3 col-md-3 col-sm-4  col-4">Quantity</th>
-                            <th class = "col-lg-3 col-md-3 col-sm-4  col-4">Price</th>
-                        </tr>
-                    </thead>
+        <div style="margin-top: 100px" ></div>
+        <div class="container">
 
-                    <tbody>
-                        <c:forEach var="cart" items="${requestScope.carts}">
-                            <tr>
-                                <fmt:formatNumber var="price" value="${cart.getQuantity()*cart.getFood().getRealPrice()}" maxFractionDigits="2" minFractionDigits="2"/>
-                                <td  >${cart.getFood().getName()}</td>
-                                <td >${cart.getQuantity()}</td>
-                                <td >$ ${price}</td>
-                            </tr>
-                        </c:forEach>
-                        <tr>
-                            <td><strong>Total</strong></td>
-                            <td></td>
-                            <td>
-                                $ <input style="border:none; width: 50%; background-color: transparent;" type="text" name="total" value="${total}" readonly />
-                            </td>
 
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- End of Sidebar -->
+            <!-- Main Content -->
+            <main>
 
-                <table class="table">
-                    <tr>
-                        <td><strong>Your name:</strong></td>
-                        <td>${customer.getName()}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Your phone:</strong></td>
-                        <td>${customer.getPhone()}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Delivery:</strong></td>
-                        <td>
-                            <select class="input" name="delivery">
-                                <option value="Delivery">${customer.getAddress()}</option>
-                                <option value="Takeout">At shop</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Pay by:</strong></td>
-                        <td>
-                            <select class="input" name="pay">
-                                <option value="COD">COD</option>
-                                <option value="Online">Online Banking</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Description:</strong></td>
-                        <td>
-                            <input style="width: 100%" type="text" name="description" placeholder="Example: I want more spicy" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Is your information correct?</strong></td>
-                        <td>
-                            <button type="submit" class="btn btn-success">Yes, order now!!!</button>
-                        </td>
-                    </tr>
-                </table>
-            </form>
+                <!-- Add Food Table -->
+                <div style="text-align: center; margin-bottom: 20px; margin-left: 10%;">
+                    <img src="../img/YourOrder.png" alt=""/>
+                </div>
+                <div class="acc-info">
+                    <div class="left-info">
+                        <ul>
+                            <h3 style="font-weight: 600; margin-bottom: 30px; text-align: center;">Customer Information</h2>
+                                <li><label>Your Name: *</label><input type="text" name="name"  readonly value="${customer.getName()}"></li>
+                                <li><label>Your Phone: *</label><input type="text" name="number"  readonly value="${customer.getPhone()}"></li>
+                                <li><label>Address: *</label>
+                                    <textarea cols="30" rows="3" readonly>${customer.getAddress()}</textarea>
+                                </li>
+                                <li>
+                                    <label>Shipping Method:</label>
+                                    <input style=" margin-left: 30px;" name="a" type="radio" id="delivery"  checked
+                                           value="Delivery">
+                                    <label style="font-weight: 400; color: black;" for="delivery">Delivery</label><br>
+                                    <input style=" margin-left: 192px;" name="a" type="radio" id="delivery"
+                                           value="At Store">
+                                    <label style="font-weight: 400; color: black;" for="pickup">Pickup At Store</label><br>
+                                </li>
+                                <li><label>Purchase Method:</label>
+                                    <select  id="pay">
+                                        <option value="COD">Cash On Delivery</option>
+                                        <option value="Banking">Online Banking</option>
+                                    </select>
+                                </li>
+                                <li><label>Note:</label>
+                                    <textarea cols="30" rows="3" id="note" value=""></textarea>
+                                </li>
 
+                        </ul>
+                    </div>
+                    <div class="right-info">
+                        <div class="orders-table">
+                            <h3 style="text-align: center; font-weight: 600; margin-bottom: 20px;">Order Details</h2>
+                                <table>
+                                    <thead style="font-size: 15px;" >
+                                        <tr style="text-align: center" >
+                                            <th colspan="2">Food</th>
+                                            <th>Unit Price</th>
+                                            <th>Quantity</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <c:forEach var="f" items="${requestScope.carts}">
+                                            <tr>
+                                                <td class="food-info">
+                                                    <img src="${f.getFood().getImg()}" alt="">
+                                                </td>
+                                                <td style="font-size: 20px;"><a href="#">${f.getFood().getName()}</a></td>
+                                                <td>${f.getFood().getRealPrice()}$</td>
+                                                <td>${f.getQuantity()}</td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                                <p style="margin-left: 20px; margin-top: 20px; font-size: 18px;">Provisional costs: ${total}$</p>
+                                <hr>
+                                <h4 style="font-weight: 600; margin-top: 20px; color: #C21010; ">Total Order:${total}$</h4>
+                        </div>
+                        <div class="btn-product">
+                            <div class="btn-add-product">
+                                <button onclick="order()">
+                                    Order Now
+                                </button>
+                            </div>
+                            <!-- Chuyển đến trang gio hàng -->
+                            <div class="btn-cancel-product">
+                                <button onclick="cart()" >
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- End of Main Content -->
         </div>
-    </table>
-    <%@include file="footer.jsp" %>
-</body>
-<script>
-    function getOrder() {
-        window.location = "/CampusMunchies/customer/finishOrder";
-    }
-</script>
+    </body>
+
+    <script>
+        function cart() {
+            window.location = "/customer/cart";
+        }
+        function order() {
+            var note = document.getElementById("note").value;
+            var delivery = document.getElementById("delivery").value;
+            var pay = document.getElementById("pay").value;
+            var total = ${total}
+            window.location = "/customer/finishOrder?note=" + note + "&delivery=" + delivery + "&pay=" + pay + "&total=" + total;
+        }
+    </script>
 </html>
+

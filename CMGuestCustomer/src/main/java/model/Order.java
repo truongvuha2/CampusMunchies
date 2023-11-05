@@ -5,20 +5,23 @@
 package model;
 
 import java.sql.Date;
+import java.util.List;
 
 /**
  *
  * @author khang
  */
 public class Order {
+
     private String id;
     private String cus_phone;
     private String emp_phone;
     private Date orderDate;
-    private String type,status,pay,note;
+    private String type, status, pay, note;
     private double total;
+    private List<OrderDetail> orderDetail;
 
-    public Order(String id, String cus_phone, String emp_phone, Date orderDate, String type, String status, String pay, String note, double total) {
+    public Order(String id, String cus_phone, String emp_phone, Date orderDate, String type, String status, String pay, String note, double total, List<OrderDetail> orderDetail) {
         this.id = id;
         this.cus_phone = cus_phone;
         this.emp_phone = emp_phone;
@@ -27,7 +30,8 @@ public class Order {
         this.status = status;
         this.pay = pay;
         this.note = note;
-        this.total = total;
+        this.total = (double) Math.round(total * 100) / 100;
+        this.orderDetail = orderDetail;
     }
 
     public Order(String cus_phone, String type, String pay, String note, double total) {
@@ -35,7 +39,7 @@ public class Order {
         this.type = type;
         this.pay = pay;
         this.note = note;
-        this.total = total;
+        this.total = (double) Math.round(total * 100) / 100;
     }
 
     public String getId() {
@@ -110,10 +114,17 @@ public class Order {
         this.total = total;
     }
 
+    public List<OrderDetail> getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(List<OrderDetail> orderDetail) {
+        this.orderDetail = orderDetail;
+    }
+
     @Override
     public String toString() {
-        return "Order{" + "id=" + id + ", cus_phone=" + cus_phone + ", emp_phone=" + emp_phone + ", orderDate=" + orderDate + ", type=" + type + ", status=" + status + ", pay=" + pay + ", note=" + note + ", total=" + total + '}';
+        return "Order{" + "id=" + id + ", cus_phone=" + cus_phone + ", emp_phone=" + emp_phone + ", orderDate=" + orderDate + ", type=" + type + ", status=" + status + ", pay=" + pay + ", note=" + note + ", total=" + total + ", orderDetail=" + orderDetail + '}';
     }
-    
-    
+
 }

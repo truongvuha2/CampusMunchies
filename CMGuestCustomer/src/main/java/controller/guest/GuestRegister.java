@@ -8,17 +8,15 @@ import dao.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Date;
-import java.time.LocalDate;
 import model.Customer;
 
 /**
  *
- * @author CNM
+ * @author khang
  */
 public class GuestRegister extends HttpServlet {
 
@@ -80,21 +78,22 @@ public class GuestRegister extends HttpServlet {
         String password = request.getParameter("password");
         String address = request.getParameter("address");
         String birthday = request.getParameter("birthday");
-
+        String email = request.getParameter("email");
+        PrintWriter out = response.getWriter();
         Date date = Date.valueOf(birthday);
 
-        // Sử dụng hàm kiểm tra số điện thoại đã tồn tại
-        if (!cus.isPhoneExisted(phone)) {
-            Customer c = new Customer(phone, name, address, date);
+        if (!cus.isPhoneExisted(phone) && !cus.isEmailExisted(email)) {
+            Customer c = new Customer(phone, name, email, address, date);
             cus.add(c, password);
-//            response.sendRedirect("/CampusMunchies/guest/login");
-        } else {
-            // Trả về thông báo lỗi (có thể là JSON hoặc HTML)
-            response.setStatus(HttpServletResponse.SC_CONFLICT); // HTTP status code 409 Conflict
-            PrintWriter out = response.getWriter();
-            out.print("Phone number already exists");
-        }
+        } else if (cus.isPhoneExisted(phone)) {
+            response.setStatus(HttpServletResponse.SC_CONFLICT);
 
+            out.print("Phone number is already exists");
+        } else {
+            response.setStatus(HttpServletResponse.SC_CONFLICT);
+
+            out.print("Email is already exists");
+        }
     }
 
     /**

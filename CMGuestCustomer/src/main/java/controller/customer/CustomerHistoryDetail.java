@@ -5,6 +5,7 @@
 package controller.customer;
 
 import dao.CustomerDAO;
+import dao.FoodDAO;
 import dao.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -64,19 +65,13 @@ public class CustomerHistoryDetail extends HttpServlet {
 
         String orderID = request.getParameter("id");
         OrderDAO o = new OrderDAO();
-        List<OrderDetail> orders = o.getOrder(orderID);
-        double sum =0;
-        for (OrderDetail order : orders) {
-            sum += order.getPrice();
-        }
+        List<OrderDetail> orders = o.getOrderDetail(orderID);
         Order order = o.getOrderByID(orderID);
         CustomerDAO c = new CustomerDAO();
         Customer cus = c.searchByPhone(order.getCus_phone());
         request.setAttribute("order", order);
-        request.setAttribute("detail", orders);
-        request.setAttribute("cus", cus);
-        request.setAttribute("sum", sum);
-        
+        request.setAttribute("orders", orders);
+        request.setAttribute("cus", cus);      
         request.getRequestDispatcher("historyDetail.jsp").forward(request, response);
 
     }

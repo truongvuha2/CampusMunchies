@@ -12,7 +12,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.net.HttpCookie;
 
 /**
  *
@@ -76,15 +75,27 @@ public class GuestLogin extends HttpServlet {
         String phone = request.getParameter("phone");
         String password = request.getParameter("password");
         if (c.isExisted(phone, password)) {
-            Cookie cookie = new Cookie("phone", phone);
-            cookie.setMaxAge(-1);
-            cookie.setPath(request.getContextPath());
-            response.addCookie(cookie);
-            response.sendRedirect("/CampusMunchies/customer/home");
+            switch (c.searchByPhone(phone).getStatus()) {
+                case "Blocked":
+                    response.setStatus(HttpServletResponse.SC_CONFLICT);
+                    response.getWriter().println("Your account is blocked since rejected many orders. If there is misunderstanding, please contact to the manager.");
+                    return;
+                case "Deleted":
+                    response.setStatus(HttpServletResponse.SC_CONFLICT);
+                    response.getWriter().println("Your account is banned");
+                    return;
+                default:
+                    Cookie cookie = new Cookie("phone", phone);
+                    cookie.setMaxAge(-1);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+                    response.sendRedirect("/customer/home");
+                    return;
+            }
         } else {
-             response.setStatus(HttpServletResponse.SC_CONFLICT);
+            response.setStatus(HttpServletResponse.SC_CONFLICT);
+            response.getWriter().println("Wrong phone number or password");
         }
-
     }
 
     /**

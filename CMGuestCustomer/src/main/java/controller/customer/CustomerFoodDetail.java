@@ -4,7 +4,6 @@
  */
 package controller.customer;
 
-import CMCookie.CMCookie;
 import dao.FoodDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 import model.Food;
 
 /**
@@ -58,18 +58,18 @@ public class CustomerFoodDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-
-        
         FoodDAO f = new FoodDAO();
         String id = request.getParameter("id");
         Food food = f.searchByID(id);
-        if (food!=null){
-        request.setAttribute("food", food);
-        request.getRequestDispatcher("foodDetail.jsp").forward(request, response);
-        } else{
+        List<Food> topFour = f.getTopFourSeller();
+        if (food != null) {
+            request.setAttribute("food", food);
+            request.setAttribute("topFour", topFour);
+            request.getRequestDispatcher("foodDetail.jsp").forward(request, response);
+        } else {
             request.getRequestDispatcher("/error/Error.html").forward(request, response);
         }
+
     }
 
     /**
