@@ -15,7 +15,8 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="css/orderDetail.css">
-        <title>Order Details</title>
+        <title>Manager Campus Munchies</title>
+
     </head>
 
     <body>
@@ -26,6 +27,12 @@
             <!-- End of Sidebar -->
             <!-- Main Content -->
             <main>
+                <%
+                    String username = (String) request.getSession().getAttribute("username");
+                    if (username == null) {
+                        response.sendRedirect("/login");
+                    }
+                %>                
                 <div class="header">
                     <div class="logo-tittle">
                         <img src="https://drive.google.com/uc?id=1oi7OnKZyo4ooOq0ebaJpejenlpcyOKns"
@@ -97,6 +104,7 @@
                             <h2 class="customer-info">Customer</h2>
                             <a href="customerDetails?cid=${cusInfo.phone}">View Detail</a>
                         </div>
+                        <hr>
                         <span>
                             <p><span class="bold-numbers">Name: </span>${cusInfo.name}</p>
                             <p><span class="bold-numbers">Phone: </span>${cusInfo.phone}</p>

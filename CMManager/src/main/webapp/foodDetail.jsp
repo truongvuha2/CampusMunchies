@@ -22,7 +22,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
         <link rel="stylesheet" href="css/foodDetail.css">
-        <title>Food Detail</title>
+        <title>Manager Campus Munchies</title>
+
     </head>
 
     <body>
@@ -35,6 +36,12 @@
             <!-- End of Sidebar -->
             <!-- Main Content -->
             <main>
+                <%
+                    String username = (String) request.getSession().getAttribute("username");
+                    if (username == null) {
+                        response.sendRedirect("/login");
+                    }
+                %>
                 <div class="header">
                     <div class="logo-tittle">
                         <img src="https://drive.google.com/uc?id=1oi7OnKZyo4ooOq0ebaJpejenlpcyOKns"

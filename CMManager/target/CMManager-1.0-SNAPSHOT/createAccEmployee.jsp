@@ -14,7 +14,8 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link href="css/createAccEmployee.css" rel="stylesheet" type="text/css"/>
-        <title>Create Account</title>
+        <title>Manager Campus Munchies</title>
+
     </head>
 
     <body>
@@ -27,6 +28,12 @@
             <!-- End of Sidebar -->
             <!-- Main Content -->
             <main>
+                <%
+                            String username = (String) request.getSession().getAttribute("username");
+                            if (username == null) {
+                                response.sendRedirect("/login");
+                            }
+                        %>
                 <div class="header">
                     <div class="logo-tittle">
                         <img src="https://drive.google.com/uc?id=1oi7OnKZyo4ooOq0ebaJpejenlpcyOKns"
@@ -60,7 +67,7 @@
                                 <li><label>Email: *</label><input id="email" type="text" name="email" value></li>
                                 <li><label>Birthday: </label><input id="birthday" type="date" name="birthday" value placeholder="dd/MM/yyyy"></li>
                                 <li><label>Address: </label>
-                                    <textarea id="address" cols="30" rows="3" name="address"></textarea>
+                                    <textarea style="resize: none" id="address" cols="30" rows="3" name="address"></textarea>
                                 </li>
                             </ul>
                             <div class="btn-product">
@@ -127,7 +134,7 @@
                                                 Swal.fire({
                                                     icon: 'error',
                                                     title: 'Invalid email',
-                                                    text: 'It must be between 5 and 50 characters.'
+                                                    text: 'It should follow the email format.(abc@domain.com)'
                                                 });
                                             } else {
                                                 register();
@@ -182,13 +189,14 @@
                                             return /^[0-9]{10}$/.test(phone) && phone[0] === '0';
                                         }
                                         function isValidEmail(email) {
-                                            return email.length >= 5 && email.length <= 50;
+                                            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                                            return emailRegex.test(email);
                                         }
 
                                         function isValidName(name) {
                                             return name.length >= 2 && name.length <= 50;
                                         }
-                                        
+
                                         function isValidAddress(address) {
                                             return address.length >= 0 && address.length <= 50;
                                         }

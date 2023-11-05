@@ -72,6 +72,10 @@
         <servlet-name>DeleteFood</servlet-name>
         <servlet-class>controller.DeleteFood</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>controller.Logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddFood</servlet-name>
         <url-pattern>/addFood</url-pattern>
@@ -144,11 +148,20 @@
         <servlet-name>DeleteFood</servlet-name>
         <url-pattern>/deleteFood</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <error-page>
+        <location>
+            /error/Error.html
+        </location>
+    </error-page>
     <welcome-file-list>
         <welcome-file>
 

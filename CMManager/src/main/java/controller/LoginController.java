@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -80,7 +81,7 @@ public class LoginController extends HttpServlet {
         ManagerDAO dao = new ManagerDAO();
         boolean a = dao.isExisted(username, password);
         if (a == false) {
-            request.setAttribute("mess", "Wrong User or Pass");
+            request.setAttribute("mess", "Wrong Username or Password");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
         } else {
             request.getSession().setAttribute("username", username);

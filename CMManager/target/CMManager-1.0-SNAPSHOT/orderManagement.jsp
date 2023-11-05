@@ -15,7 +15,8 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="css/orderManagement.css">
-        <title>Order Management</title>
+        <title>Manager Campus Munchies</title>
+
     </head>
 
     <body>
@@ -28,6 +29,12 @@
             <!-- End of Sidebar -->
             <!-- Main Content -->
             <main>
+                                <%
+                    String username = (String) request.getSession().getAttribute("username");
+                    if (username == null) {
+                        response.sendRedirect("/login");
+                    }
+                %>
                 <div class="header">
                     <div class="logo-tittle">
                         <img src="https://drive.google.com/uc?id=1oi7OnKZyo4ooOq0ebaJpejenlpcyOKns"

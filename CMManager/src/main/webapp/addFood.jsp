@@ -15,7 +15,7 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
         <link rel="stylesheet" href="css/addFood.css">
-        <title>Add Food</title>
+        <title>Manager Campus Munchies</title>
     </head>
     <body>
 
@@ -28,6 +28,12 @@
             <!-- End of Sidebar -->
             <!-- Main Content -->
             <main>
+                <%
+                            String username = (String) request.getSession().getAttribute("username");
+                            if (username == null) {
+                                response.sendRedirect("/login");
+                            }
+                        %>
                 <div class="header">
                     <div class="logo-tittle">
                         <img src="https://drive.google.com/uc?id=1oi7OnKZyo4ooOq0ebaJpejenlpcyOKns"
@@ -41,7 +47,7 @@
                     <div class="user-info">
 
                         <p>Hey, <b><%= request.getSession().getAttribute("username")%></b></p>
-
+                        
                         <small class="text-muted">Admin</small>
                     </div>
                 </div>
@@ -88,7 +94,7 @@
                                     </select>
                                 </li>
                                 <li><label>Description: </label>
-                                    <textarea cols="30" rows="3" name="description"></textarea>
+                                    <textarea style="resize: none" cols="30" rows="3" name="description"></textarea>
                                 </li>
                                 <li><label>Status: </label>
                                     <select class="select-box" name="status">
@@ -147,7 +153,7 @@
                     const directLinkText = document.getElementById('displayLink');
                     const getLink = document.getElementById('directLink');
 
-                    statusText.textContent = 'Đang tải lên...';
+                    statusText.textContent = 'Uploading...';
                     directLinkText.textContent = '';  // Xóa liên kết trực tiếp cũ nếu có.
                     getLink.value = '';
 
@@ -155,7 +161,7 @@
                     const file = imageInput.files[0];
 
                     if (!file) {
-                        statusText.textContent = 'Vui lòng chọn một tệp hình ảnh.';
+                        statusText.textContent = 'Please select an image file.';
                         return;
                     }
 
@@ -171,15 +177,15 @@
                             .then(data => {
                                 if (data.data && data.data.url) {
                                     const imageUrl = data.data.url;
-                                    statusText.textContent = 'Hình ảnh đã được tải lên thành công!';
+                                    statusText.textContent = 'The image has been uploaded successfully!';
                                     directLinkText.innerHTML = '<a href="' + imageUrl + '" target="_blank">' + imageUrl + '</a>';
                                     getLink.value = imageUrl;
                                 } else if (data.error) {
-                                    statusText.textContent = 'Lỗi: ' + data.error.message;
+                                    statusText.textContent = 'Error: ' + data.error.message;
                                 }
                             })
                             .catch(error => {
-                                statusText.textContent = 'Lỗi: ' + error.message;
+                                statusText.textContent = 'Error: ' + error.message;
                             });
                 }
 

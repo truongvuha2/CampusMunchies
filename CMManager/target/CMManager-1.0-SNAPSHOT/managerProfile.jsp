@@ -26,6 +26,12 @@
         <!-- End of Sidebar -->
         <!-- Main Content -->
         <main>
+                <%
+                    String username = (String) request.getSession().getAttribute("username");
+                    if (username == null) {
+                        response.sendRedirect("/login");
+                    }
+                %>            
             <div class="header">
                 <div class="logo-tittle">
                     <img src="https://drive.google.com/uc?id=1oi7OnKZyo4ooOq0ebaJpejenlpcyOKns"

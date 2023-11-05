@@ -19,7 +19,8 @@
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
         <link rel="stylesheet" href="css/customerManagement.css">
-        <title>Customer Management</title>
+        <title>Manager Campus Munchies</title>
+
     </head>
 
     <body>
@@ -32,6 +33,12 @@
             <!-- End of Sidebar -->
             <!-- Main Content -->
             <main>
+                <%
+                    String username = (String) request.getSession().getAttribute("username");
+                    if (username == null) {
+                        response.sendRedirect("/login");
+                    }
+                %>
                 <div class="header">
                     <div class="logo-tittle">
                         <img src="https://drive.google.com/uc?id=1oi7OnKZyo4ooOq0ebaJpejenlpcyOKns"
@@ -143,7 +150,7 @@
                                     <c:choose>
                                         <c:when test="${b.cus_status eq 'Blocked'}">
                                             <tr>
-                                        <td>${b.name} <ion-icon name="lock-closed-outline"></ion-icon></td>
+                                                <td>${b.name} <ion-icon name="lock-closed-outline"></ion-icon></td>
                                         <td>${b.numberOrder}</td>
                                         <td>${b.cancel_count}</td>
                                         <td><a class="view" href="customerDetails?cid=${b.phone}">View</a></td>

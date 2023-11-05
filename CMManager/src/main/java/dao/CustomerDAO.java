@@ -184,7 +184,8 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
                 + "    r.total_completed\n"
                 + "FROM r\n"
                 + "JOIN Customer C ON r.cus_phone = C.cus_phone\n"
-                + "WHERE C.cus_status != 'Deleted';";
+                + "WHERE C.cus_status != 'Deleted'\n"
+                + "ORDER BY C.cus_create desc;";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -213,7 +214,7 @@ public class CustomerDAO extends DBContext implements ICRUD<Customer> {
                 + "    LEFT JOIN [Order] O ON C.cus_phone = O.cus_phone\n"
                 + "    GROUP BY C.cus_phone\n"
                 + ")\n"
-                + "SELECT\n"
+                + "SELECT top (5)\n"
                 + "    C.cus_name,\n"
                 + "    C.cus_phone,\n"
                 + "    r.order_count_completed AS order_count,\n"

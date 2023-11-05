@@ -1,5 +1,6 @@
 controller\ListMenu.class
 dao\FoodDAO.class
+controller\Logout.class
 dao\OrderDAO.class
 model\OrderDetail.class
 controller\Analytics.class
