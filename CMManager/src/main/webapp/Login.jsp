@@ -18,7 +18,7 @@
     <body>
         <header>
             <div class="logo">
-                <img src="https://i.ibb.co/XkHv4Fv/Campus-Munchies-Logo.png" alt="">        
+                <img src="/img/logo.png" style="width: 120px;" alt=""/>
                 <h1>
                     <span class="red-text">Campus</span>
                     <span class="white-text">Munchies</span>

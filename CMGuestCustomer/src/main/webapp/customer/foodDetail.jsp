@@ -20,7 +20,7 @@
               integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <link href="css/foodDetail.css" rel="stylesheet" type="text/css"/>
-        <title>Food Detail</title>
+        <title>Campus Munchies - Food Detail</title>
     </head>
 
     <body>

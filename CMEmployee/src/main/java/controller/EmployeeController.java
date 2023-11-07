@@ -114,7 +114,7 @@ public class EmployeeController extends HttpServlet {
                     searchResultHtml += "<td>";
 
                     if (status.equals("Preparing")) {
-                        searchResultHtml += "<div class=\"btn btn-warning\" style=\"font-weight: bold; font-size: 25px\">" + rs.getString("ord_status") + "</div>";
+                        searchResultHtml += "<div class=\"btn btn-primary\" style=\"font-weight: bold; font-size: 25px\">" + rs.getString("ord_status") + "</div>";
                     } else if (status.equals("Completed")) {
                         searchResultHtml += "<div class=\"btn btn-success\" style=\"font-weight: bold; font-size: 25px\">" + rs.getString("ord_status") + "</div>";
                     } else if (status.equals("Waiting")) {

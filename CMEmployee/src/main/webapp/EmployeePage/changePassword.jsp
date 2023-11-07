@@ -14,7 +14,7 @@
     </head>
     <body>
         <%@include file="/EmployeePage/header.jsp" %>
-        <div class="container-fluid" style="height: 100vh; padding-top: 100px;">
+        <div class="container-fluid" style="min-height: 100vh; padding-top: 100px;">
             <div class="title mx-auto my-5">Changing Password</div>
             <form action="/employee" method="post" onsubmit="return validateForm()">
                 <div class="customer-info mx-auto p-4 d-flex flex-column justify-content-center" style="border: none">

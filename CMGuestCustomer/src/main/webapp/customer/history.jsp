@@ -14,7 +14,7 @@
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <link href="css/history.css" rel="stylesheet" type="text/css"/>
-        <title>Order Management</title>
+        <title>Campus Munchies - Order History</title>
     </head>
 
     <body>

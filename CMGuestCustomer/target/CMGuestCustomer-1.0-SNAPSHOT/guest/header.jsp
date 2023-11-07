@@ -21,8 +21,8 @@
     <div id="wrapper">
         <header>
             <div class="inner-header container">
-                <img style="width: 120px;" src="https://drive.google.com/uc?id=1oi7OnKZyo4ooOq0ebaJpejenlpcyOKns"
-                    alt="Logo Campus Munchies">
+                <img src="../img/logo.png" style="width: 120px;"
+                    alt="Logo Campus Munchies">             
                 <a href="" id="logo">
                     <div class="Campus">
                         Campus

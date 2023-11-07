@@ -30,7 +30,7 @@
     </head>
     <body>
         <%@include file="/EmployeePage/header.jsp" %>
-        <div class="container-fluid" style="height: 100vh; padding-top: 241px;">
+        <div class="container-fluid" style="min-height: 100vh; padding-top: 241px;">
             <div class="d-flex justify-content-center">
                 <div class="d-flex justify-content-center px-2 py-1 title my-3" style="color: white">New Order List</div>
             </div>

@@ -27,7 +27,7 @@
             Employee empInfo = empDAO.searchByPhone(phone);
         %>
         <%@include file="/EmployeePage/header.jsp" %>
-        <div class="container-fluid" style="height: 125vh; padding-top: 90px;">
+        <div class="container-fluid" style="min-height: 125vh; padding-top: 90px;">
 
 
             <div class="title mx-auto my-5">Employee Information</div>

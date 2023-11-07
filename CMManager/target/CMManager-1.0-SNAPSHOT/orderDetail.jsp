@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,8 +36,7 @@
                 %>                
                 <div class="header">
                     <div class="logo-tittle">
-                        <img src="https://drive.google.com/uc?id=1oi7OnKZyo4ooOq0ebaJpejenlpcyOKns"
-                             alt="Logo Campus Munchies">
+               <img src="/img/logo.png" style="width: 120px;" alt=""/>
                     </div>
 
                     <div class="name-tittle">
@@ -95,7 +95,8 @@
                             </c:forEach>
                         </tbody>
                     </table>
-                    <div class="total-order">Total Order: ${totalOrder}$</div>
+                    <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" var="abc" value="${totalOrder}"/>
+                    <div class="total-order">Total Order: ${abc}$</div>
                 </div>
                 <!-- End of Food Order Information Orders -->
                 <ul class="other-info">

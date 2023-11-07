@@ -19,7 +19,7 @@
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <link href="css/home.css" rel="stylesheet" type="text/css"/>
-        <title>Menu</title>
+        <title>Campus Munchies - Home</title>
     </head>
 
     <body>

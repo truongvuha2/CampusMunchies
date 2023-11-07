@@ -36,7 +36,7 @@
         <div id="wrapper">
             <header>
                 <div class="inner-header container-fluid" style="max-width: 1700px">
-                    <img style="width: 120px;" src="https://drive.google.com/uc?id=1oi7OnKZyo4ooOq0ebaJpejenlpcyOKns"
+                    <img style="width: 120px;" src="/img/logo.png"
                          alt="Logo Campus Munchies">
                     <a href="/employee/orderList" id="logo">
                         <div class="Campus">

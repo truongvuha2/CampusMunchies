@@ -25,7 +25,7 @@
     <% 
         Customer customerInfo = (Customer)request.getAttribute("customerInfo");
     %>
-  <div class="container-fluid" style="height: 155vh; padding-top: 90px;">
+  <div class="container-fluid" style="min-height: 155vh; padding-top: 90px;">
     <div class="title mx-auto my-5" style="color: white;">Customer Information</div>
     <div class="customer-info mx-auto p-4 d-flex flex-column justify-content-center" style="border: none">
       <div class="d-flex justify-content-between mb-2">

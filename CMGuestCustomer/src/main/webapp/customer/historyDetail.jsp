@@ -16,7 +16,7 @@
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <link href="css/historyDetail.css" rel="stylesheet" type="text/css"/>
-        <title>Order Information</title>
+        <title>Campus Munchies - Order Detail</title>
     </head>
 
     <body>
@@ -120,49 +120,49 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-                                        function cancelOrder(id) {
-                                            $.ajax({
-                                                url: "/customer/cancelOrder",
-                                                type: "get",
-                                                data: {
-                                                    id: id
-                                                },
-                                                success: function (data) {
-                                                    location.reload();
-                                                },
-                                                error: function (xhr) {
-                                                    Swal.fire({
-                                                        icon: 'error',
-                                                        text: 'The order is processing'
-                                                    });
-                                                }
-                                            });
-                                        }
-
-
-                                        window.addEventListener('load', function () {
-                                            // Gọi hàm updateHistory() sau khi trang đã tải hoàn toàn.
-                                            checkForChanges();
+                                    function cancelOrder(id) {
+                                        $.ajax({
+                                            url: "/customer/cancelOrder",
+                                            type: "get",
+                                            data: {
+                                                id: id
+                                            },
+                                            success: function (data) {
+                                                location.reload();
+                                            },
+                                            error: function (xhr) {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    text: 'The order is processing'
+                                                });
+                                            }
                                         });
-                                        function checkForChanges() {
-                                            $.ajax({
-                                                url: '/customer/updateHistoryDetail',
-                                                type: 'GET',
-                                                data: {
-                                                    id: '${order.getId()}'
-                                                },
-                                                success: function (data) {
-                                                    // Xử lý dữ liệu trả về từ API endpoint
+                                    }
 
-                                                    // Cập nhật trang "history.jsp" nếu có thay đổi
-                                                    document.getElementById("main").innerHTML = data;
-                                                },
-                                                complete: function () {
-                                                    // Thiết lập một khoảng thời gian cho việc kiểm tra lại (đặt thời gian tùy ý)
-                                                    setTimeout(checkForChanges, 5000); // Ví dụ: kiểm tra lại sau mỗi 5 giây
-                                                }
-                                            });
-                                        }
+
+                                    window.addEventListener('load', function () {
+                                        // Gọi hàm updateHistory() sau khi trang đã tải hoàn toàn.
+                                        checkForChanges();
+                                    });
+                                    function checkForChanges() {
+                                        $.ajax({
+                                            url: '/customer/updateHistoryDetail',
+                                            type: 'GET',
+                                            data: {
+                                                id: '${order.getId()}'
+                                            },
+                                            success: function (data) {
+                                                // Xử lý dữ liệu trả về từ API endpoint
+
+                                                // Cập nhật trang "history.jsp" nếu có thay đổi
+                                                document.getElementById("main").innerHTML = data;
+                                            },
+                                            complete: function () {
+                                                // Thiết lập một khoảng thời gian cho việc kiểm tra lại (đặt thời gian tùy ý)
+                                                setTimeout(checkForChanges, 5000); // Ví dụ: kiểm tra lại sau mỗi 5 giây
+                                            }
+                                        });
+                                    }
 
     </script>
 </html>

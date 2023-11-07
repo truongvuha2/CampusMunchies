@@ -41,8 +41,7 @@
                         %>
                 <div class="header">
                     <div class="logo-tittle">
-                        <img src="https://drive.google.com/uc?id=1oi7OnKZyo4ooOq0ebaJpejenlpcyOKns"
-                             alt="Logo Campus Munchies">
+                   <img src="/img/logo.png" style="width: 120px;" alt=""/>
                     </div>
 
                     <div class="name-tittle">

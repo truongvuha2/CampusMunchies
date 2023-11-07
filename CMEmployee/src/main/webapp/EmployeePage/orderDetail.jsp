@@ -22,7 +22,7 @@
              <%@include file="/EmployeePage/header.jsp" %>
         </header>
        
-        <div class="container-fluid my-4" style="height: 100vh; padding-top: 90px;">
+        <div class="container-fluid my-4" style="min-height: 100vh; padding-top: 90px;">
             <div class="title d-flex justify-content-center mb-4">
                 <div class="text d-flex align-items-center justify-content-center" style="color: white;">Order Detail</div>
             </div>
@@ -130,7 +130,7 @@
                             </td>
                             <td class="py-auto"><%= detailList.getDouble("foo_price")%></td>
                             <td><%= detailList.getInt("quantity")%></td>
-                            <td><%= detailList.getDouble("foo_price") * detailList.getInt("quantity")%></td>
+                            <td><%= (double)Math.round(detailList.getDouble("foo_price") * detailList.getInt("quantity")*100)/100%></td>
                         </tr>    
                         <%
                                 total += detailList.getDouble("foo_price") * detailList.getInt("quantity");
@@ -139,7 +139,7 @@
                     </tbody>
                     <tr class="total" align="center">
                         <th colspan="3" style="color: white;">Total</th>
-                        <th style="color: white;"><%=total%></th>
+                        <th style="color: white;"><%=(double)Math.round(total*100)/100%></th>
                     </tr>  
                 </table>
             </div>

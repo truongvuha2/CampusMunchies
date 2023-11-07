@@ -20,12 +20,12 @@
               integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <link href="css/foodDetail.css" rel="stylesheet" type="text/css"/>
-        <title>Food Detail</title>
+        <title>Campus Munchies - Food Detail</title>
     </head>
 
     <body>
         <%@include file="header.jsp"%>
-        <div style="margin-top:100px"></div>
+        <div style="margin-top:140px"></div>
         <div class="container">
             <!-- Main Content -->
             <main>
@@ -82,14 +82,11 @@
 
                 <div class="list-menu row">
                     <c:forEach var="food" items="${requestScope.topFour}" >
-                        <div class="best-seller col-md-3">
-                            <a href="#">
+                        <div class="col-md-3">
+                            <div class="best-seller">
                                 <img src="${food.getImg()}" alt="">
                                 <div class="name-food">
-
-
                                     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
-
                                     <c:choose>
                                         <c:when test="${fn:length(food.getName()) > 15}">
                                             ${fn:substring(food.getName(), 0, 15)}...
@@ -99,28 +96,28 @@
                                         </c:otherwise>
                                     </c:choose> 
                                 </div>
-                            </a>
-                            <div class="food-info">
-                                <div class="price-section">
-                                    <p>Price:</p>
-                                    <c:choose>
-                                        <c:when test="${food.getSale() == 0}">
 
-                                            <p class="discounted-price">${food.getRealPrice()}$</p>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <p class="original-price">${food.getPrice()}$</p>
-                                            <p class="discounted-price">${food.getRealPrice()}$</p>
-                                        </c:otherwise>
-                                    </c:choose>
+                                <div class="food-info">
+                                    <div class="price-section">
+                                        <p>Price:</p>
+                                        <c:choose>
+                                            <c:when test="${food.getSale() == 0}">
+
+                                                <p class="discounted-price">${food.getRealPrice()}$</p>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <p class="original-price">${food.getPrice()}$</p>
+                                                <p class="discounted-price">${food.getRealPrice()}$</p>
+                                            </c:otherwise>
+                                        </c:choose>
 
 
+                                    </div>  <p>Units Sold: (+15)</p> 
                                 </div>
-                                <p>Units Sold: (+15)</p>
-                            </div>
-                            <div class="food-btn">
-                                <button onclick="viewFood('${food.getId()}')">View</button>
-                                <button onclick="addToCart()"><ion-icon style="font-size: 22px;" name="cart"></ion-icon></button>
+                                <div class="food-btn">
+                                    <button onclick="viewFood('${food.getId()}')">View</button>
+                                    <button onclick="addToCart('${food.getId()}')"><ion-icon style="font-size: 22px;" name="cart"></ion-icon></button>
+                                </div>
                             </div>
                         </div>
                     </c:forEach>

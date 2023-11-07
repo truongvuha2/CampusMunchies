@@ -4,6 +4,9 @@
  */
 package dao;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -171,7 +174,7 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
                     + "VALUES (\n"
                     + "?,\n"
                     + "?,\n"
-                    + "CONVERT(varchar(32), HashBytes('MD5', ?), 2),\n"
+                    + "?,\n"
                     + "?,\n"
                     + "?,\n"
                     + "?,\n"
@@ -181,7 +184,7 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, employee.getPhone());
             ps.setString(2, employee.getName());
-            ps.setString(3, employee.getPassword());
+            ps.setString(3, getMd5(employee.getPassword()));
             ps.setString(4, employee.getEmail());
             ps.setString(5, employee.getAddress());
             ps.setDate(6, employee.getBirthday());
@@ -189,6 +192,30 @@ public class EmployeeDAO extends DBContext implements ICRUD<Employee> {
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
+        }
+    }
+
+    public String getMd5(String input) {
+        try {
+            // Static getInstance method is called with hashing MD5 
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            // digest() method is called to calculate message digest 
+            //  of an input digest() return array of byte 
+            byte[] messageDigest = md.digest(input.getBytes());
+
+            // Convert byte array into signum representation 
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            // Convert message digest into hex value 
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        } // For specifying wrong message digest algorithms 
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
     }
 
